@@ -22,8 +22,8 @@ DefaultContentLanguage = "cn"
 disqus = "sudri" # disqus account name
 extraHead = ''
 mainSections = ["posts"]
-# googleAnalytics = "UA-96156731-1"
-# description = "这里是张思扬的博客，写些心得。更多的是吐槽与无理取闹。"
+# googleAnalytics = ""
+# description = ""
 
 [[params.socials]]
 name = "Github"
