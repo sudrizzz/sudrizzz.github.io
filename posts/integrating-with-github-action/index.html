@@ -1,0 +1,115 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=generator content="Hugo 0.74.3"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Anthony Qu"><meta property="og:url" content="https://sudrizzz.github.com/posts/integrating-with-github-action/"><link rel=canonical href=https://sudrizzz.github.com/posts/integrating-with-github-action/><link rel=alternate type=application/atom+xml href=https://sudrizzz.github.comindex.xml title="Anthony's Blog"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/sudrizzz.github.com"},"articleSection":"posts","name":"Github 自动部署与图床","headline":"Github 自动部署与图床","description":"前情提要 在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。\n创建仓库  注意：\n由于 username 不方便叙述，故下文中均以 sudrizzz 为例替代 username，\n请根据实际情况进行更改。\n 在上文中我们已经创建了一个名为 \u0026lt;username\u0026gt;.github.io 的仓库，现在还需要创建另一个仓库来存放文章管理文件。仓库名任意，公有与私有均可。\n 文章管理仓库：sudrizzz\/blog_workflow 文章编译输出仓库：sudrizzz\/sudrizzz.github.io  拆分文件 上文中我们只是将 \/public 文件夹提交到了 sudrizzz.github.io 仓库，现在我们还需要将除了 \/public 以外的文件全部提交到 blog_workflow，实现这一步可以再本地建立两个对应的文件夹，分别进行提交，操作步骤不再赘述，拆分后的目录结构如下。\nblog_workflow 仓库 ├─archetypes ├─content │ └─cn │ └─posts ├─layouts ├─resources │ └─_gen └─themes └─yinyang ├─... sudrizzz.github.io 仓库 ├─categories │ └─test ├─css │ └─highlight ├─fonts ├─images ├─js ├─posts │ └─test └─tags 配置公私密钥 生成密钥 打开 Git Bash，执行如下命令\nssh-kegen -t rsa -b 4096 -C \u0026quot;sudrizzz.","inLanguage":"en-US","author":"Anthony Qu","creator":"Anthony Qu","publisher":"Anthony Qu","accountablePerson":"Anthony Qu","copyrightHolder":"Anthony Qu","copyrightYear":"2020","datePublished":"2020-08-09 15:00:00 \u002b0800 \u002b0800","dateModified":"2020-08-09 15:00:00 \u002b0800 \u002b0800","url":"https:\/\/sudrizzz.github.com\/posts\/integrating-with-github-action\/","keywords":[]}</script><title>Github 自动部署与图床 - Anthony's Blog</title><meta property="og:title" content="Github 自动部署与图床 - Anthony's Blog"><meta property="og:type" content="article"><meta property="og:description" content="前情提要 在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。
+创建仓库  注意：
+由于 username 不方便叙述，故下文中均以 sudrizzz 为例替代 username，
+请根据实际情况进行更改。
+ 在上文中我们已经创建了一个名为 <username>.github.io 的仓库，现在还需要创建另一个仓库来存放文章管理文件。仓库名任意，公有与私有均可。
+ 文章管理仓库：sudrizzz/blog_workflow 文章编译输出仓库：sudrizzz/sudrizzz.github.io  拆分文件 上文中我们只是将 /public 文件夹提交到了 sudrizzz.github.io 仓库，现在我们还需要将除了 /public 以外的文件全部提交到 blog_workflow，实现这一步可以再本地建立两个对应的文件夹，分别进行提交，操作步骤不再赘述，拆分后的目录结构如下。
+blog_workflow 仓库 ├─archetypes ├─content │ └─cn │ └─posts ├─layouts ├─resources │ └─_gen └─themes └─yinyang ├─... sudrizzz.github.io 仓库 ├─categories │ └─test ├─css │ └─highlight ├─fonts ├─images ├─js ├─posts │ └─test └─tags 配置公私密钥 生成密钥 打开 Git Bash，执行如下命令
+ssh-kegen -t rsa -b 4096 -C &#34;sudrizzz."><meta name=description content="前情提要 在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。
+创建仓库  注意：
+由于 username 不方便叙述，故下文中均以 sudrizzz 为例替代 username，
+请根据实际情况进行更改。
+ 在上文中我们已经创建了一个名为 <username>.github.io 的仓库，现在还需要创建另一个仓库来存放文章管理文件。仓库名任意，公有与私有均可。
+ 文章管理仓库：sudrizzz/blog_workflow 文章编译输出仓库：sudrizzz/sudrizzz.github.io  拆分文件 上文中我们只是将 /public 文件夹提交到了 sudrizzz.github.io 仓库，现在我们还需要将除了 /public 以外的文件全部提交到 blog_workflow，实现这一步可以再本地建立两个对应的文件夹，分别进行提交，操作步骤不再赘述，拆分后的目录结构如下。
+blog_workflow 仓库 ├─archetypes ├─content │ └─cn │ └─posts ├─layouts ├─resources │ └─_gen └─themes └─yinyang ├─... sudrizzz.github.io 仓库 ├─categories │ └─test ├─css │ └─highlight ├─fonts ├─images ├─js ├─posts │ └─test └─tags 配置公私密钥 生成密钥 打开 Git Bash，执行如下命令
+ssh-kegen -t rsa -b 4096 -C &#34;sudrizzz."><meta property="og:locale" content="zh-cn"><link rel=stylesheet href=/css/flexboxgrid-6.3.1.min.css><link rel=stylesheet href=/css/github-markdown.css><link rel=stylesheet href=/css/highlight/tomorrow.min.css><link rel=stylesheet href=/css/index.css><link href=/index.xml rel=alternate type=application/rss+xml title="Anthony's Blog"><link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel=stylesheet></head><body><article class="post Chinese" id=article><div class=row><div class=col-xs-12><div class=site-header><header><div class="signatures site-title"><a href=/>Anthony Qu</a></div></header><div class="row end-xs"></div><div class=header-line></div></div><header class=post-header><h1 class=post-title>Github 自动部署与图床</h1><div class="row post-desc"><div class=col-xs-6><time class=post-date datetime="2020-08-09 15:00:00 +0800">2020.08.09</time></div><div class=col-xs-6><div class=post-author><a target=_blank href=https://github.com/sudrizzz/>@Anthony Qu</a></div></div></div></header><div class="post-content markdown-body"><h1 id=前情提要>前情提要</h1><p>在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。</p><h1 id=创建仓库>创建仓库</h1><blockquote><p>注意：<br>由于 <code>username</code> 不方便叙述，故下文中均以 <code>sudrizzz</code> 为例替代 <code>username</code>，<br>请根据实际情况进行更改。</p></blockquote><p>在上文中我们已经创建了一个名为 <code>&lt;username>.github.io</code> 的仓库，现在还需要创建另一个仓库来存放文章管理文件。仓库名任意，公有与私有均可。</p><ul><li>文章管理仓库：<code>sudrizzz/blog_workflow</code></li><li>文章编译输出仓库：<code>sudrizzz/sudrizzz.github.io</code></li></ul><h1 id=拆分文件>拆分文件</h1><p>上文中我们只是将 <code>/public</code> 文件夹提交到了 <code>sudrizzz.github.io</code> 仓库，现在我们还需要将除了 <code>/public</code> 以外的文件全部提交到 <code>blog_workflow</code>，实现这一步可以再本地建立两个对应的文件夹，分别进行提交，操作步骤不再赘述，拆分后的目录结构如下。</p><pre><code>blog_workflow 仓库
+
+├─archetypes
+├─content
+│  └─cn
+│      └─posts
+├─layouts
+├─resources
+│  └─_gen
+└─themes
+    └─yinyang
+        ├─...
+
+
+sudrizzz.github.io 仓库
+
+├─categories
+│  └─test
+├─css
+│  └─highlight
+├─fonts
+├─images
+├─js
+├─posts
+│  └─test
+└─tags
+</code></pre><h1 id=配置公私密钥>配置公私密钥</h1><h2 id=生成密钥>生成密钥</h2><p>打开 Git Bash，执行如下命令</p><pre><code>ssh-kegen -t rsa -b 4096 -C &quot;sudrizzz.github.io&quot;
+</code></pre><p>设置密钥存储位置，按照提示进行操作，不需要自定义一路回车即可。</p><pre><code>Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/.ssh/deploy.
+Your public key has been saved in /c/Users/.ssh/deploy.pub.
+The key fingerprint is:
+SHA256:MpU2IEDuvNADO1AVWrQx/3HMAECYw+C3taw+5Fyy2F4 sudrizzz.github.io
+The key's randomart image is:
++---[RSA 4096]----+
+|.++B@oo..        |
+|.o=o * . =       |
+|o.oo... * +      |
+|.*. + .+ +       |
+|+ =. oo S        |
+| o =.. o         |
+|  B.+E           |
+| ..*.            |
+|  .o.            |
++----[SHA256]-----+
+</code></pre><p>生成的密钥文件放置在 <code>c/Users/&lt;user>/.ssh/</code> 文件夹中，分别是</p><ul><li>id_rsa</li><li>id_rsa.pub</li></ul><p>其中后缀为 .pub 的文件为公钥，另一个则为私钥。</p><h2 id=配置密钥>配置密钥</h2><h3 id=配置私钥>配置私钥</h3><p>打开 <code>blog_workflow</code> 仓库，进入 <code>Settings</code> -> <code>Secrets</code>，选择 <code>New secret</code>，名称填写为 <strong>ACTIONS_DEPLOY_KEY</strong>，后续需要用到该名称。<br>打开 <strong>id_rsa</strong>，并复制其全部内容，粘贴到 <code>Value</code> 中，点击添加。</p><h3 id=配置公钥>配置公钥</h3><p>打开 <code>sudrizzz.github.io</code> 仓库，进入 <code>Settings</code> -> <code>Deploy keys</code>，选择 <code>Add deploy key</code>，名字可以任意写。<br>打开 <strong>id_rsa.pub</strong>，并复制其全部内容，粘贴到 <code>Key</code> 中，勾选 <code>Allow write access</code>，点击添加。
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200809154958.png alt=20200809154958></p><h1 id=配置-action-脚本>配置 Action 脚本</h1><p>打开 <code>blog_workflow</code> 仓库，进入 <code>Action</code>，初始化左侧界面，选择 <code>set up a workflow yourself</code>，在编辑框中粘贴如下配置</p><pre><code>name: CI
+
+# 持续发布的分支
+on:
+  push:
+    branches: master
+
+# 执行的 jobs
+jobs:
+  # 编译环境
+  build:
+    runs-on: ubuntu-latest
+
+    # 执行的步骤
+    steps:
+    # 检出 sudrizzz/blog_workflow 工程，固定写法
+    - uses: actions/checkout@v1
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: latest
+
+    # 执行 hugo，编译出源文件
+    - name: Build
+      run: hugo --gc --minify --cleanDestinationDir
+
+    # 部署
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}    # 上面配置的私钥名称
+        external_repository: sudrizzz/sudrizzz.github.io     # Pages 发布到远程仓库
+        publish_dir: ./public    # hugo 编译生成的 public 目录下的文件
+        keep_files: true     # 保留远程仓库已存在的文件
+        publish_branch: master      # 远程仓库分支
+        commit_message: ${{ github.event.head_commit.message }}
+</code></pre><p>注意修改 <code>external_repository</code> 中的用户名，该配置的文件名任意，例如 <code>main.yml</code>。<br>保存后即可在 Actions 界面查看脚本执行情况。每当 <code>blog_workflow</code> 仓库有新的 push 操作时，就会自动执行该脚本，然后将执行后生成的文件自动提交到 <code>sudrizzz.github.io</code>。<br>至此，利用 Github Actions 实现自动部署就已经完成了，下面将介绍使用 Github 作为图床的配置。</p><h1 id=安装并配置-picgo>安装并配置 PicGo</h1><p>本文使用的方案是 VSCode + PicGo 扩展，所以首先打开 VSCode 安装好 PicGo，此处不再赘述。如果需要使用 PicGo Windows 客户端，请<a href=https://github.com/Molunerfinn/PicGo/releases>点击这里</a>下载，并跳过本节配置说明。</p><h2 id=生成-token>生成 Token</h2><p>点击 Github 右上角个人头像，进入 <code>Settings</code> -> <code>Developer settings</code> -> <code>Personal access tokens</code>，点击 <code>Generate new token</code>。<br>Note 中可以任意填写，勾选下方的 <code>repo</code> 复选框，点击页面最下方的 <code>Generate token</code>，复制生成的 token 字符串。
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200809161038.png alt=20200809161038></p><h2 id=配置-picgo>配置 PicGo</h2><p>在 VSCode 中打开 PicGo 的设置界面，将复制的 token 字符串填到 <code>picgo.picBed.github.token</code> 中，具体配置见下图。
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200809162036.png alt=20200809162036></p><ul><li><code>picgo.picBed.github.customUrl</code><br>此项是利用 jsDelivr CDN 为图片进行加速服务，填写时只需将 <code>sudrizzz/sudrizzz.github.io</code> 更改为自己的用户名与仓库即可，具体如下。</li></ul><pre><code>https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master
+</code></pre><ul><li><code>picgo.picBed.github.path</code><br>此项是配置图片的存储路径，根目录为 <code>picgo.picBed.github.repo</code> 中设置的仓库。</li></ul><p>当然你可以新建一个仓库专门用来存储图片，只需要调整上述相关设置，使其保持一致即可。</p><h1 id=使用-picgo-写作>使用 PicGo 写作</h1><p>在编写 markdown 文件需要插入图片时，只需要使用相应的快捷键即可完成上传图片操作，具体如下。</p><pre><code>从剪贴板上传图像
+Windows / Unix：Ctrl + Alt + u
+OsX：Cmd + Opt + u
+
+从资源管理器上传图像
+Windows / Unix：Ctrl + Alt + e
+OsX：Cmd + Opt + e
+
+从输入框上传图像
+Windows / Unix：Ctrl + Alt + o
+OsX：Cmd + Opt + 0
+</code></pre><h1 id=结语>结语</h1><p>至此，搭建 Github Pages 系列文章就到此结束了，作者的需求基本得到了满足，感谢您的阅读。</p></div><div class="row middle-xs"><div class=col-xs-12><div class=post-category><a href=/categories/blog>blog</a></div><div class=post-category><a href=/categories/action>action</a></div></div></div><div class=row><div class=col-xs-12></div></div><div style=height:50px></div><div class=post-comments><div id=disqus_thread></div><script>window.addEventListener("load",()=>{(function(){var d=document,s=d.createElement("script");s.src="https://sudri.disqus.com/embed.js";s.setAttribute("data-timestamp",+new Date());(d.head||d.body).appendChild(s);})();});</script><noscript>Please enable JavaScript to view the
+<a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div><div class=site-footer><div class=site-footer-item><a href=https://github.com/sudrizzz/ target=_blank>Github</a></div><div class=site-footer-item><a href=/index.xml target=_blank>RSS</a></div><div class=site-footer-item><a href="https://music.163.com/song?id=356827" target=_blank>~</a></div></div></div></div></article><script src=/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script></body></html>

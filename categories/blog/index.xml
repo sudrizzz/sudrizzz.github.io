@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's Blog</title><link>https://sudrizzz.github.com/</link><description>Recent content on Anthony's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 09 Aug 2020 15:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Github 自动部署与图床</title><link>https://sudrizzz.github.com/posts/integrating-with-github-action/</link><pubDate>Sun, 09 Aug 2020 15:00:00 +0800</pubDate><guid>https://sudrizzz.github.com/posts/integrating-with-github-action/</guid><description>前情提要 在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog on Anthony's Blog</title><link>https://sudrizzz.github.com/categories/blog/</link><description>Recent content in blog on Anthony's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 09 Aug 2020 15:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.com/categories/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Github 自动部署与图床</title><link>https://sudrizzz.github.com/posts/integrating-with-github-action/</link><pubDate>Sun, 09 Aug 2020 15:00:00 +0800</pubDate><guid>https://sudrizzz.github.com/posts/integrating-with-github-action/</guid><description>前情提要 在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。
 创建仓库 注意：
 由于 username 不方便叙述，故下文中均以 sudrizzz 为例替代 username，
 请根据实际情况进行更改。
@@ -16,7 +16,4 @@ hugo version 如果得到类似以下的结果则说明配置正确。
 Hugo Static Site Generator v0.74.3-DA0437B4 windows/amd64 BuildDate: 2020-07-23T16:23:30Z 创建博客 在命令行中输入以下命令
 hugo new site &amp;lt;blog_name&amp;gt; 上述命令将会创建一个名为 blog_name 的文件夹，请按照个人喜好取名。按照我的博客为例，取名为 sudrizzz.github.io，这样也方便后续进行代码提交
 添加主题 以 yinyang 主题为例，按照文档中的安装步骤，执行以下命令
-cd sudrizzz.github.io git clone git@github.com:joway/hugo-theme-yinyang.git themes/yinyang 进入 sudrizzz.</description></item><item><title>The meaning of life</title><link>https://sudrizzz.github.com/posts/the-meaning-of-life/</link><pubDate>Fri, 21 Jun 2019 00:00:00 +0800</pubDate><guid>https://sudrizzz.github.com/posts/the-meaning-of-life/</guid><description>……我细读来书，终觉得你不免作茧自缚。你自己去寻出一个本不成问题的问题，“人生有何意义？”其实这个问题是容易解答的。人生的意义全是各人自己寻出来、造出来的：高尚、卑劣、清贵、污浊、有用、无用，……全靠自己的作为。
- 生命本身不过是一件生物学的事实，有什么意义可说？一个人与一只猎，一只狗，有什么分别？人生的意义不在于何以有生，而在自己怎样生活。你若情愿把这六尺之躯葬送在白昼作梦之上二那就是你这一生的意义。你若发愤振作起来，决心去寻求生命的意义，去创造自己的生命的意义，那么，你活一日便有一日的意义，作一事便添一事的意义，生命无穷，生命的意义也无穷了。
- 总之，生命本没有意义，你要能给他什么意义，他就有什么意义。与其终日冥想人生有何意义，不如试用此生作点有意义的事……
- 节选自《答某君书》—— 胡适</description></item></channel></rss>
+cd sudrizzz.github.io git clone git@github.com:joway/hugo-theme-yinyang.git themes/yinyang 进入 sudrizzz.</description></item></channel></rss>
