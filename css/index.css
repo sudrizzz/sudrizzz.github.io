@@ -142,10 +142,11 @@ a:hover {
 }
 
 .post-category {
-  display: inline;
+  display: inline-flex;
   font-weight: 900;
   padding: 2px;
   border: #000 2px solid;
+  margin-bottom: 5px;
 }
 
 .post-date {
