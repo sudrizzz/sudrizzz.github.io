@@ -91,25 +91,25 @@ jobs:
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
-        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}    # 上面配置的私钥名称
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}        # 上面配置的私钥名称
         external_repository: sudrizzz/sudrizzz.github.io     # Pages 发布到远程仓库
-        publish_dir: ./public    # hugo 编译生成的 public 目录下的文件
-        keep_files: true     # 保留远程仓库已存在的文件
+        publish_dir: ./public       # hugo 编译生成的 public 目录下的文件
+        keep_files: true            # 保留远程仓库已存在的文件
         publish_branch: master      # 远程仓库分支
         commit_message: ${{ github.event.head_commit.message }}
-</code></pre><p>注意修改 <code>external_repository</code> 中的用户名，该配置的文件名任意，例如 <code>main.yml</code>。<br>保存后即可在 Actions 界面查看脚本执行情况。每当 <code>blog_workflow</code> 仓库有新的 push 操作时，就会自动执行该脚本，然后将执行后生成的文件自动提交到 <code>sudrizzz.github.io</code>。<br>至此，利用 Github Actions 实现自动部署就已经完成了，下面将介绍使用 Github 作为图床的配置。</p><h1 id=安装并配置-picgo>安装并配置 PicGo</h1><p>本文使用的方案是 VSCode + PicGo 扩展，所以首先打开 VSCode 安装好 PicGo，此处不再赘述。如果需要使用 PicGo Windows 客户端，请<a href=https://github.com/Molunerfinn/PicGo/releases>点击这里</a>下载，并跳过本节配置说明。</p><h2 id=生成-token>生成 Token</h2><p>点击 Github 右上角个人头像，进入 <code>Settings</code> -> <code>Developer settings</code> -> <code>Personal access tokens</code>，点击 <code>Generate new token</code>。<br>Note 中可以任意填写，勾选下方的 <code>repo</code> 复选框，点击页面最下方的 <code>Generate token</code>，复制生成的 token 字符串。
+</code></pre><p>注意修改 <code>external_repository</code> 中的用户名，该配置的文件名任意，例如 <code>main.yml</code>。<br>保存后即可在 Actions 界面查看脚本执行情况。每当 <code>blog_workflow</code> 仓库有新的 push 操作时，就会自动执行该脚本，然后将执行后生成的文件自动提交到 <code>sudrizzz.github.io</code>。</p><p>至此，利用 Github Actions 实现自动部署就已经完成了，写作步骤简化为：</p><ol><li>在 <code>content/posts/cn/</code> 目录中新增文章，修改相关头信息，完成内容创作并保存；</li><li>执行 <code>hugo server</code> 并访问 <code>localhost:1313</code> 查看文章显示效果，酌情修改；</li><li>提交新文章到 <code>blog_workflow</code>；</li><li>上述 Action 自动编译并将生成的静态文件部署到 <code>sudrizzz.github.io</code>。</li></ol><p>创作流程得到了极大的简化。</p><p>下面将介绍使用 Github 作为图床的相关配置。</p><h1 id=安装并配置-picgo>安装并配置 PicGo</h1><p>本文使用的方案是 VSCode + PicGo 扩展，所以首先打开 VSCode 安装好 PicGo，此处不再赘述。如果需要使用 PicGo Windows 客户端，请<a href=https://github.com/Molunerfinn/PicGo/releases>点击这里</a>下载，并跳过本节配置说明。</p><h2 id=生成-token>生成 Token</h2><p>点击 Github 右上角个人头像，进入 <code>Settings</code> -> <code>Developer settings</code> -> <code>Personal access tokens</code>，点击 <code>Generate new token</code>。<br>Note 中可以任意填写，勾选下方的 <code>repo</code> 复选框，点击页面最下方的 <code>Generate token</code>，复制生成的 token 字符串。
 <img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200809161038.png alt=20200809161038></p><h2 id=配置-picgo>配置 PicGo</h2><p>在 VSCode 中打开 PicGo 的设置界面，将复制的 token 字符串填到 <code>picgo.picBed.github.token</code> 中，具体配置见下图。
 <img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200809162036.png alt=20200809162036></p><ul><li><code>picgo.picBed.github.customUrl</code><br>此项是利用 jsDelivr CDN 为图片进行加速服务，填写时只需将 <code>sudrizzz/sudrizzz.github.io</code> 更改为自己的用户名与仓库即可，具体如下。</li></ul><pre><code>https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master
 </code></pre><ul><li><code>picgo.picBed.github.path</code><br>此项是配置图片的存储路径，根目录为 <code>picgo.picBed.github.repo</code> 中设置的仓库。</li></ul><p>当然你可以新建一个仓库专门用来存储图片，只需要调整上述相关设置，使其保持一致即可。</p><h1 id=使用-picgo-写作>使用 PicGo 写作</h1><p>在编写 markdown 文件需要插入图片时，只需要使用相应的快捷键即可完成上传图片操作，具体如下。</p><pre><code>从剪贴板上传图像
-Windows / Unix：Ctrl + Alt + u
-OsX：Cmd + Opt + u
+Windows / Unix：Ctrl + Alt + U
+OSX：Cmd + Opt + U
 
 从资源管理器上传图像
-Windows / Unix：Ctrl + Alt + e
-OsX：Cmd + Opt + e
+Windows / Unix：Ctrl + Alt + E
+OSX：Cmd + Opt + E
 
 从输入框上传图像
-Windows / Unix：Ctrl + Alt + o
-OsX：Cmd + Opt + 0
+Windows / Unix：Ctrl + Alt + O
+OSX：Cmd + Opt + O
 </code></pre><h1 id=结语>结语</h1><p>至此，搭建 Github Pages 系列文章就到此结束了，作者的需求基本得到了满足，感谢您的阅读。</p></div><div class="row middle-xs"><div class=col-xs-12><div class=post-category><a href=/categories/blog>blog</a></div><div class=post-category><a href=/categories/action>action</a></div></div></div><div class=row><div class=col-xs-12></div></div><div style=height:50px></div><div class=post-comments><div id=disqus_thread></div><script>window.addEventListener("load",()=>{(function(){var d=document,s=d.createElement("script");s.src="https://sudri.disqus.com/embed.js";s.setAttribute("data-timestamp",+new Date());(d.head||d.body).appendChild(s);})();});</script><noscript>Please enable JavaScript to view the
 <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div><div class=site-footer><div class=site-footer-item><a href=https://github.com/sudrizzz/ target=_blank>Github</a></div><div class=site-footer-item><a href=/index.xml target=_blank>RSS</a></div><div class=site-footer-item><a href="https://music.163.com/song?id=356827" target=_blank>~</a></div></div></div></div></article><script src=/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script></body></html>
