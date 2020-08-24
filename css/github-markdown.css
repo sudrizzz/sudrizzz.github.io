@@ -110,6 +110,7 @@
 }
 .markdown-body a {
   background-color: transparent;
+  word-break: break-word;
 }
 .markdown-body a:active,
 .markdown-body a:hover {
@@ -488,6 +489,7 @@
   font-size: 85%;
   background-color: rgba(27, 31, 35, 0.05);
   border-radius: 3px;
+  word-break: break-word;
 }
 .markdown-body pre {
   word-wrap: normal;
@@ -496,8 +498,6 @@
   padding: 0;
   margin: 0;
   font-size: 100%;
-  word-break: normal;
-  white-space: pre;
   background: 0 0;
   border: 0;
 }

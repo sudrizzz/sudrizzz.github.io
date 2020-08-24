@@ -9,7 +9,7 @@
 由于 username 不方便叙述，故下文中均以 sudrizzz 为例替代 username，
 请根据实际情况进行更改。
 例如我的 Github 用户名是 sudrizzz，于是创建的仓库名就是 sudrizzz.github.io。
-初始化 Hugo 安装 Hugo 应用 https://github.com/gohugoio/hugo/releases/download/v0.74.3/hugo_0.74.3_Windows-64bit.zip
+初始化 Hugo 安装 Hugo 应用 https://github.com/gohugoio/hugo/releases
 配置环境变量 将安装 Hugo 的目录路径配置到用户环境变量 PATH 中，如图 检验配置 在命令行窗口中输入以下内容
 1hugo version 如果得到类似以下的结果则说明配置正确。
 1Hugo Static Site Generator v0.74.3-DA0437B4 windows/amd64 BuildDate: 2020-07-23T16:23:30Z 创建博客 在命令行中输入以下命令
