@@ -233,3 +233,10 @@ a:hover {
   padding-right: 12px;
   color: #ccc;
 }
+
+/* 使公式居中 */
+p .MathJax {
+  display: flex;
+  justify-content: center;
+  -webkit-user-select: none;
+}
