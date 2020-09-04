@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Anthony's Blog</title><link>https://sudrizzz.github.com/posts/</link><description>Recent content in Posts on Anthony's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 02 Sep 2020 18:37:11 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>初识 Docker</title><link>https://sudrizzz.github.com/posts/getting-to-know-docker/</link><pubDate>Wed, 02 Sep 2020 18:37:11 +0800</pubDate><guid>https://sudrizzz.github.com/posts/getting-to-know-docker/</guid><description>Docker 出现以前 在过去的开发过程中，通常是先编写代码，然后在本地机器上进行测试，测试通过后提交到服务器。这个时候往往会因为服务器环境配置或者系统设置的原因，导致代码不能在服务器端运行。于是就会产生下述对话。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Anthony's Blog</title><link>https://sudrizzz.github.com/posts/</link><description>Recent content in Posts on Anthony's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 04 Sep 2020 19:02:11 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>CMU 15-213 位、字节与整数</title><link>https://sudrizzz.github.com/posts/cmu-15-213-lesson1/</link><pubDate>Fri, 04 Sep 2020 19:02:11 +0800</pubDate><guid>https://sudrizzz.github.com/posts/cmu-15-213-lesson1/</guid><description>简介 CSAPP 课程全程 Computer Systems: A Programmer’s Perspective，中文翻译为“从程序员的视角，看计算机系统！”或“深入理解计算机系统”。此课程是卡耐基梅隆大学开设的一门课程，官方网站 https://www.cs.cmu.edu/~213/index.html。
+内容简介节选自豆瓣
+https://book.douban.com/subject/1230413
+从程序员的视角，看计算机系统！
+本书适用于那些想要写出更快、更可靠程序的程序员。通过掌握程序是如何映射到系统上，以及程序是如何执行的，读者能够更好的理解程序的行为为什么是这样的，以及效率低下是如何造成的。粗略来看，计算机系统包括处理器和存储器硬件、编译器、操作系统和网络互连环境。而通过程序员的视角，读者可以清晰地明白学习计算机系统的内部工作原理会对他们今后作为计算机科学研究者和工程师的工作有进一步的帮助。它还有助于为进一步学习计算机体系结构、操作系统、编译器和网络互连做好准备。
+一切皆位 十进制 在计算机发展的早些时候，人们使用十进制进行计算机内部运算，需要手动插拔十个晶体管来表示 0-9，十分繁琐。
+二进制 随着计算机的发展，十进制逐渐演化为二进制。在计算机中，我们使用电学层面上的电压高低来存储位数据，如图所示，高电压（0.9v-1.1v）记作逻辑 1，而低电压（0.0v-0.2v）记作逻辑 0。
+之所以这么做，主要有两方面的原因：
+高低电压在电学上非常容易实现，且很容易维持； 通过区分高低电压，可以有效地过滤噪声和杂讯。 十六进制 二进制的成功运用也带来了一个问题，由于每一个位只能存储两种信号（即 0 和 1），对于人来说基本属于不可读的，所以我们将每四个二进制在位合并为一个十六进制位，这样大大缩减了数据的展示长度。例如
+具体数据类型实际所占空间 此处以 C 语言变量为例，因为在 32 位与 64 位机器上所占空间不尽相同，故列下表。
+C Data Type Typical 32-bit Typical 64-bit x86-64 char 1 1 1 short 2 2 2 int 4 4 4 long 4 8 8 float 4 4 4 double 8 8 8 pointer 4 8 8 位操作 与、或、非、异或 通俗的解释如下：</description></item><item><title>初识 Docker</title><link>https://sudrizzz.github.com/posts/getting-to-know-docker/</link><pubDate>Wed, 02 Sep 2020 18:37:11 +0800</pubDate><guid>https://sudrizzz.github.com/posts/getting-to-know-docker/</guid><description>Docker 出现以前 在过去的开发过程中，通常是先编写代码，然后在本地机器上进行测试，测试通过后提交到服务器。这个时候往往会因为服务器环境配置或者系统设置的原因，导致代码不能在服务器端运行。于是就会产生下述对话。
 测试：“你的代码在服务器上报错了，请马上处理下”； 开发：“啊？不会吧？我刚刚在本地测试好了才提交的呀。我马上处理。”
 又比如需要搭建多台相同环境的服务器集群时，导致时间大量浪费在环境配置上，劳神费心。此时 Docker 的出现极大地改善了这一窘境。
 Docker 简介 简介来自于 Docker 入门教程 - 阮一峰的网络日志
