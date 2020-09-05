@@ -457,6 +457,7 @@
   width: 100%; */
   overflow: auto;
   margin: auto;
+  margin-bottom: 2rem;
 }
 .markdown-body table th {
   font-weight: 600;
