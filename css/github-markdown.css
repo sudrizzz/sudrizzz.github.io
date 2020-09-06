@@ -453,8 +453,8 @@
   margin-bottom: 16px;
 }
 .markdown-body table {
-  /* display: block;
-  width: 100%; */
+  /* display: block; */
+  width: 100%;
   overflow: auto;
   margin: auto;
   margin-bottom: 2rem;

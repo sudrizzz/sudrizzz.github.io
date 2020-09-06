@@ -3,9 +3,11 @@
 开发：“啊？不会吧？我刚刚在本地测试好了才提交的呀。我马上处理。”
 又比如需要搭建多台相同环境的服务器集群时，导致时间大量浪费在环境配置上，劳神费心。此时 Docker 的出现极大地改善了这一窘境。
 Docker 简介 简介来自于 Docker 入门教程 - 阮一峰的网络日志
-Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。
+Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。
+Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。
+总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。
 安装 Docker 在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。
 设置 Docker 仓库 根据官方教程，执行以下两条命令：
 1sudo yum install -y yum-utils 2 3sudo yum-config-manager \ 4 --add-repo \ 5 http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo 由于国内直接连接 Docker 官方镜像源十分缓慢，所以在第二个命令中将官方镜像源替换为阿里云镜像源。
 安装 Docker 引擎 1sudo yum install docker-ce docker-ce-cli containerd.io 在执行这条命令时，极有可能会报错。比如作者遇到的报错如下：
-1Error: 2 Problem: package docker-ce-3:19.03.8-3.el7.x86_64 requires containerd.</description></item></channel></rss>
+1Error: 2 Problem: package docker-ce-3:19.</description></item></channel></rss>
