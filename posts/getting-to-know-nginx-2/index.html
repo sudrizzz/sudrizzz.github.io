@@ -17,13 +17,47 @@
 <span class=ln>11</span>drwx------.  2 nobody root    6 9月   6 15:26 uwsgi_temp
 </code></pre></div><h2 id=修改配置>修改配置</h2><p>编辑 <code>conf/nginx.conf</code>，将 <code>server</code> 中的 <code>location</code> 部分修改为如下配置。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>location / {
 <span class=ln>2</span>    alias dlib/;
-<span class=ln>3</span>    # root   html;
-<span class=ln>4</span>    # index  index.html index.htm;
-<span class=ln>5</span>}
-</code></pre></div><p>其中，<code>location</code> 后的 <code>/</code> 代表根域名指向括号中的目录配置。详见 <a href=http://nginx.org/en/docs/beginners_guide.html>Nginx Beginner’s Guide</a> 中 Serving Static Content 部分。</p><h2 id=重新加载>重新加载</h2><p>执行以下命令，以新加载 Nginx 服务。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>nginx -s reload
-</code></pre></div><h2 id=访问>访问</h2><p>执行完以上步骤后，访问 Nginx 的地址，即可看到 dlib 下的静态文件已经被正常加载了。如下图。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200911201740.png alt=20200911201740></p><h1 id=数据压缩>数据压缩</h1><p>根据以上的配置，我们已经可以正常访问部署好的静态网页，但是根据开发者工具我们可以看到，首页的大小是 26.4 kB。我们还可以进一步进行优化，将所需要加载的数据进行压缩，使其所需数据量大大减少。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200911203709.png alt=优化前></p><p>仍然是编辑 Nginx.conf 文件，在 http 部分中添加以下配置。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>gzip  on;
+<span class=ln>3</span>    #...
+<span class=ln>4</span>}
+</code></pre></div><p>其中，<code>location</code> 后的 <code>/</code> 代表根域名指向括号中的目录配置</p><blockquote><p>更多信息可以查看官方文档中 Serving Static Content 部分<br><a href=http://nginx.org/en/docs/beginners_guide.html>http://nginx.org/en/docs/beginners_guide.html</a></p></blockquote><h2 id=重新加载>重新加载</h2><p>执行以下命令，以新加载 Nginx 服务。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>nginx -s reload
+</code></pre></div><h2 id=访问>访问</h2><p>执行完以上步骤后，访问 Nginx 的地址，即可看到 dlib 下的静态文件已经被正常加载了。如下图。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200911201740.png alt=20200911201740></p><h1 id=常用配置>常用配置</h1><p>以下内容均在 nginx.conf 文件中进行配置。</p><h2 id=数据压缩>数据压缩</h2><p>根据以上的配置，我们已经可以正常访问部署好的静态网页，但是根据开发者工具我们可以看到，首页的大小是 26.4 kB。我们还可以进一步进行优化，将所需要加载的数据进行压缩，使其所需数据量大大减少。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200911203709.png alt=优化前></p><p>在 http 部分中添加以下配置。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>gzip  on;
 <span class=ln>2</span>gzip_min_length 1;
 <span class=ln>3</span>gzip_comp_level 2;
 <span class=ln>4</span>gzip_types text/plain application/x-javascript text/css application/xml text/javascript application/x- httpd- php image/jpeg image/gif image/png;
-</code></pre></div><p>其中，各项含义可以参照官方文档（http://nginx.org/en/docs/http/ngx_http_gzip_module.html ），本例中所涉及到的配置释义如下。</p><table><thead><tr><th>配置</th><th>释义</th></tr></thead><tbody><tr><td>gzip on | off</td><td>是否启用数据压缩</td></tr><tr><td>gzip_min_length</td><td>会被压缩的响应的最小长度（单位 kB），即返回内容大于此配置时才会被压缩</td></tr><tr><td>gzip_comp_level</td><td>设置 gzip 压缩等级，等级越小压缩速度越快、文件压缩比越小。压缩等级范围是 1-9，压缩等级越高对性能要求越高。</td></tr><tr><td>gzip_types</td><td>设置需要压缩的 MIME 类型，非设置值不进行压缩，即匹配压缩类型</td></tr></tbody></table><p>可以看到，开启 gzip 压缩后，加载的数据量大幅减少。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200911203017.png alt=优化后></p></div><div class="row middle-xs"><div class=col-xs-12><div class=post-category><a href=/categories/nginx>nginx</a></div></div></div><div class=row><div class=col-xs-12></div></div><div style=height:50px></div><div class=post-comments><div id=disqus_thread></div><script>window.addEventListener("load",()=>{(function(){var d=document,s=d.createElement("script");s.src="https://sudri.disqus.com/embed.js";s.setAttribute("data-timestamp",+new Date());(d.head||d.body).appendChild(s);})();});</script><noscript>Please enable JavaScript to view the
+</code></pre></div><p>本例中所涉及到的配置释义如下。</p><table><thead><tr><th>配置</th><th>释义</th></tr></thead><tbody><tr><td>gzip on | off</td><td>是否启用数据压缩</td></tr><tr><td>gzip_min_length</td><td>会被压缩的响应的最小长度（单位 kB），即返回内容大于此配置时才会被压缩</td></tr><tr><td>gzip_comp_level</td><td>设置 gzip 压缩等级，等级越小压缩速度越快、文件压缩比越小。压缩等级范围是 1-9，压缩等级越高对性能要求越高。</td></tr><tr><td>gzip_types</td><td>设置需要压缩的 MIME 类型，非设置值不进行压缩，即匹配压缩类型</td></tr></tbody></table><blockquote><p>更多信息可以查看官方文档<br><a href=http://nginx.org/en/docs/http/ngx_http_gzip_module.html>http://nginx.org/en/docs/http/ngx_http_gzip_module.html</a></p></blockquote><p>可以看到，开启 gzip 压缩后，加载的数据量大幅减少。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200911203017.png alt=优化后></p><h2 id=加载速度>加载速度</h2><p>使用 limit_rate 可以对网页加载速度进行控制，详细如下。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>server {
+<span class=ln>2</span>    #...
+<span class=ln>3</span>    set $limit_rate 1k;
+<span class=ln>4</span>    #...
+<span class=ln>5</span>}
+</code></pre></div><p>其中，<code>$limit_rate</code> 是控制访问速度的变量。后面紧跟的 <code>1k</code> 是需要限制的速度，此例中的单位为 <code>kB</code>，也可以设置其他单位，例如 <code>1M</code>。</p><blockquote><p>更多信息可以查看官方文档<br><a href=http://nginx.org/en/docs/http/ngx_http_core_module.html#var_limit_rate>http://nginx.org/en/docs/http/ngx_http_core_module.html#var_limit_rate</a></p></blockquote><h2 id=记录日志>记录日志</h2><p>在 <code>http</code> 模块中，可以配置日志记录的格式，以及日志记录的位置和文件名等等，配置如下。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>http {
+<span class=ln>2</span>    #...
+<span class=ln>3</span>    log_format  main  &#39;$remote_addr - $remote_user [$time_local] &#34;$request&#34; &#39;
+<span class=ln>4</span>                      &#39;$status $body_bytes_sent &#34;$http_referer&#34; &#39;
+<span class=ln>5</span>                      &#39;&#34;$http_user_agent&#34; &#34;$http_x_forwarded_for&#34;&#39;;
+<span class=ln>6</span>
+<span class=ln>7</span>    access_log  logs/sample.log  main;
+<span class=ln>8</span>    #...
+<span class=ln>9</span>}
+</code></pre></div><blockquote><p>更多信息可以查看官方文档<br><a href=http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log>http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log</a></p></blockquote><h1 id=反向代理>反向代理</h1><p>在此部分，我们使用两台 Nginx 服务器作为示例，分别是 <code>192.168.61.128</code> 和 <code>192.168.61.129</code>，简记为 CentOS_1 与 CentOS_2。</p><p>修改 CentOS_1 的 Nginx 配置文件，修改部分如下，此时直接访问 <code>192.168.61.128</code> 已经不能正常进行加载。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>server {
+<span class=ln>2</span>    listen       127.0.0.1:80;
+<span class=ln>3</span>    server_name  localhost;
+<span class=ln>4</span>    #...
+<span class=ln>5</span>}
+</code></pre></div><p>修改 CentOS_2 的 Nginx 配置文件，修改部分如下，我们将 <code>192.168.61.129:80</code> 指向了 <code>192.168.61.128:80</code>。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln> 1</span>upstream local {
+<span class=ln> 2</span>    server 192.168.61.128:80;
+<span class=ln> 3</span>}
+<span class=ln> 4</span>
+<span class=ln> 5</span>server {
+<span class=ln> 6</span>    listen       80;
+<span class=ln> 7</span>    server_name  192.168.61.129;
+<span class=ln> 8</span>    location / {
+<span class=ln> 9</span>        proxy_set_header Host $host:$server_port;
+<span class=ln>10</span>        proxy_set_header X-Real-IP $remote_addr;
+<span class=ln>11</span>        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+<span class=ln>12</span>
+<span class=ln>13</span>        proxy_pass http://local/;
+<span class=ln>14</span>    }
+<span class=ln>15</span>    #...
+<span class=ln>16</span>}
+</code></pre></div><p>分别在两台机器上重新加载 Nginx 配置文件，并访问 <code>192.168.61.129:80</code>，此时可以正常打开 <code>192.168.61.128:80</code> 上所配置的静态文件。</p><blockquote><p>上述配置可以参考官方文档<br><a href=http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header>http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header</a></p></blockquote></div><div class="row middle-xs"><div class=col-xs-12><div class=post-category><a href=/categories/nginx>nginx</a></div></div></div><div class=row><div class=col-xs-12></div></div><div style=height:50px></div><div class=post-comments><div id=disqus_thread></div><script>window.addEventListener("load",()=>{(function(){var d=document,s=d.createElement("script");s.src="https://sudri.disqus.com/embed.js";s.setAttribute("data-timestamp",+new Date());(d.head||d.body).appendChild(s);})();});</script><noscript>Please enable JavaScript to view the
 <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div><script type=text/javascript src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><div class=site-footer><div class=site-footer-item><a href=/ target=_self>Home</a></div><div class=site-footer-item><a href="https://music.163.com/song?id=356827" target=_blank>~</a></div></div></div></div></article><script src=/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script></body></html>
