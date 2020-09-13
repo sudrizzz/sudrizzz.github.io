@@ -19,7 +19,7 @@
 <span class=ln>2</span>    alias dlib/;
 <span class=ln>3</span>    #...
 <span class=ln>4</span>}
-</code></pre></div><p>其中，<code>location</code> 后的 <code>/</code> 代表根域名指向括号中的目录配置</p><blockquote><p>更多信息可以查看官方文档中 Serving Static Content 部分<br><a href=http://nginx.org/en/docs/beginners_guide.html>http://nginx.org/en/docs/beginners_guide.html</a></p></blockquote><h2 id=重新加载>重新加载</h2><p>执行以下命令，以新加载 Nginx 服务。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>nginx -s reload
+</code></pre></div><p>其中，<code>location</code> 后的 <code>/</code> 代表根域名指向括号中的目录配置，<code>alias</code> 指定一个目录替代默认目录。</p><blockquote><p>更多信息可以查看官方文档<br><a href=http://nginx.org/en/docs/http/ngx_http_core_module.html#alias>http://nginx.org/en/docs/http/ngx_http_core_module.html#alias</a></p></blockquote><h2 id=重新加载>重新加载</h2><p>执行以下命令，以新加载 Nginx 服务。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>nginx -s reload
 </code></pre></div><h2 id=访问>访问</h2><p>执行完以上步骤后，访问 Nginx 的地址，即可看到 dlib 下的静态文件已经被正常加载了。如下图。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200911201740.png alt=20200911201740></p><h1 id=常用配置>常用配置</h1><p>以下内容均在 nginx.conf 文件中进行配置。</p><h2 id=数据压缩>数据压缩</h2><p>根据以上的配置，我们已经可以正常访问部署好的静态网页，但是根据开发者工具我们可以看到，首页的大小是 26.4 kB。我们还可以进一步进行优化，将所需要加载的数据进行压缩，使其所需数据量大大减少。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200911203709.png alt=优化前></p><p>在 http 部分中添加以下配置。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>gzip  on;
 <span class=ln>2</span>gzip_min_length 1;
 <span class=ln>3</span>gzip_comp_level 2;
@@ -59,5 +59,42 @@
 <span class=ln>14</span>    }
 <span class=ln>15</span>    #...
 <span class=ln>16</span>}
-</code></pre></div><p>分别在两台机器上重新加载 Nginx 配置文件，并访问 <code>192.168.61.129:80</code>，此时可以正常打开 <code>192.168.61.128:80</code> 上所配置的静态文件。</p><blockquote><p>上述配置可以参考官方文档<br><a href=http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header>http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header</a></p></blockquote></div><div class="row middle-xs"><div class=col-xs-12><div class=post-category><a href=/categories/nginx>nginx</a></div></div></div><div class=row><div class=col-xs-12></div></div><div style=height:50px></div><div class=post-comments><div id=disqus_thread></div><script>window.addEventListener("load",()=>{(function(){var d=document,s=d.createElement("script");s.src="https://sudri.disqus.com/embed.js";s.setAttribute("data-timestamp",+new Date());(d.head||d.body).appendChild(s);})();});</script><noscript>Please enable JavaScript to view the
+</code></pre></div><p>分别在两台机器上重新加载 Nginx 配置文件，并访问 <code>192.168.61.129:80</code>，此时可以正常打开 <code>192.168.61.128:80</code> 上所配置的静态文件。</p><blockquote><p>上述配置可以参考官方文档<br><a href=http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header>http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header</a></p></blockquote><h1 id=日志可视化>日志可视化</h1><p>在本例中，我们使用 GoAccess 首先日志试试可视化。</p><h2 id=安装-goaccess>安装 GoAccess</h2><p>由于此例中使用的系统是 CentOS 8，安装 GoAccess 之前需要先配置 epel 源。</p><h3 id=配置-epel-源>配置 epel 源</h3><ol><li>安装 epel 配置包</li></ol><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>yum install -y https://mirrors.aliyun.com/epel/epel-release-latest-8.noarch.rpm
+</code></pre></div><ol start=2><li>将 repo 配置中的地址替换为阿里云镜像站地址</li></ol><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>sed -i &#39;s|^#baseurl=https://download.fedoraproject.org/pub|baseurl=https://mirrors.aliyun.com|&#39; /etc/yum.repos.d/epel*
+<span class=ln>2</span>sed -i &#39;s|^metalink|#metalink|&#39; /etc/yum.repos.d/epel*
+</code></pre></div><h3 id=安装-geoip>安装 GeoIP</h3><p>编译安装 GoAccess 需要用到 GeoIP。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>sudo yum -y --enablerepo=epel install geoip
+</code></pre></div><h3 id=安装-goaccess-1>安装 GoAccess</h3><p>根据官网的文档，我们顺序执行以下命令即可。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>wget https://tar.goaccess.io/goaccess-1.4.tar.gz
+<span class=ln>2</span>tar -xzvf goaccess-1.4.tar.gz
+<span class=ln>3</span><span class=nb>cd</span> goaccess-1.4/
+<span class=ln>4</span>./configure --enable-utf8 --enable-geoip<span class=o>=</span>legacy
+<span class=ln>5</span>make
+<span class=ln>6</span>make install
+</code></pre></div><p>安装完成后，使用以下命令，若得到类似结果则表明安装成功。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>goaccess -v
+</code></pre></div><div class=highlight><pre class=chroma><code class=language-text data-lang=text><span class=ln>1</span>GoAccess - 1.4.
+<span class=ln>2</span>For more details visit: http://goaccess.io
+<span class=ln>3</span>Copyright (C) 2009-2020 by Gerardo Orellana
+<span class=ln>4</span>
+<span class=ln>5</span>Build configure arguments:
+<span class=ln>6</span>  --enable-utf8
+<span class=ln>7</span>  --enable-geoip=legacy
+</code></pre></div><h2 id=配置-goaccess>配置 GoAccess</h2><p>在使用前，我们需要对 GoAccess 的配置文件进行一些修改，以方便后续使用。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>vim /usr/local/etc/goaccess/goaccess.conf
+</code></pre></div><p>在此配置文件中，将以下内容取消注释，其他内容则保持不变。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>#...
+<span class=ln>2</span>no-ip-validation true
+<span class=ln>3</span>log-format COMBINED
+<span class=ln>4</span>time-format %H:%M:%S
+<span class=ln>5</span>date-format %d/%b/%Y
+<span class=ln>6</span>real-time-html true
+<span class=ln>7</span>#...
+</code></pre></div><h2 id=启动监听>启动监听</h2><p>在 Nginx 的 logs 目录中，我们以 access 为源文件，启动 GoAccess 进程后，会产生一个 websocket 长连接，持续监听客户端的请求数据，进而实时展现在 report.html 页面上。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /usr/local/nginx/logs
+<span class=ln>2</span>goaccess access.log -o ../html/report.html
+</code></pre></div><p>此时我们还需要修改 nginx.conf 使报告页面可以直接访问，在 server 部分添加如下内容。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>location /report.html {
+<span class=ln>2</span>    alias html/report.html;
+<span class=ln>3</span>}
+</code></pre></div><p>然后重新加载配置即可。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>nginx -s reload
+</code></pre></div><p>至此，日志可视化已经配置完成，我们可以直接访问 Nginx <code>服务地址/report.html</code> 查看可视化页面，如下。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200913143610.png alt=20200913143610></p><h1 id=附录>附录</h1><p>Linux 查看端口占用状态</p><h2 id=查看占用>查看占用</h2><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>netstat -anp
+</code></pre></div><p>其中，参数 anp 分别表示：</p><ul><li><p>a：显示所有活动的 TCP 连接，以及正在监听的 TCP 和 UDP 端口</p></li><li><p>n：以数字形式表示地址和端口号，不试图去解析其名称（number），参数 <code>-n</code> 会将应用程序转为端口显示，即数字格式的地址，如：nfs->2049，ftp->21</p></li><li><p>p：列出与端口监听或连接相关的进程，即 pid</p></li></ul><h2 id=关闭占用>关闭占用</h2><p>在本例中，若要关闭 GoAccess 建立的连接，首先执行如下命令拿到其 pid。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>netstat -anp <span class=p>|</span> grep goaccess
+</code></pre></div><p>结果如下。</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text><span class=ln>1</span>tcp        0      0 0.0.0.0:7890            0.0.0.0:*               LISTEN      2323/goaccess
+<span class=ln>2</span>tcp        0      0 192.168.61.128:7890     192.168.61.1:56503      ESTABLISHED 2323/goaccess
+</code></pre></div><p>然后手动 kill 其进程即可。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>kill</span> <span class=m>2323</span>
+</code></pre></div></div><div class="row middle-xs"><div class=col-xs-12><div class=post-category><a href=/categories/nginx>nginx</a></div></div></div><div class=row><div class=col-xs-12></div></div><div style=height:50px></div><div class=post-comments><div id=disqus_thread></div><script>window.addEventListener("load",()=>{(function(){var d=document,s=d.createElement("script");s.src="https://sudri.disqus.com/embed.js";s.setAttribute("data-timestamp",+new Date());(d.head||d.body).appendChild(s);})();});</script><noscript>Please enable JavaScript to view the
 <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div><script type=text/javascript src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><div class=site-footer><div class=site-footer-item><a href=/ target=_self>Home</a></div><div class=site-footer-item><a href="https://music.163.com/song?id=356827" target=_blank>~</a></div></div></div></div></article><script src=/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script></body></html>
