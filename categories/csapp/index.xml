@@ -1,9 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CSAPP on Anthony's Blog</title><link>https://sudrizzz.github.com/categories/csapp/</link><description>Recent content in CSAPP on Anthony's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 04 Sep 2020 19:02:11 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.com/categories/csapp/index.xml" rel="self" type="application/rss+xml"/><item><title>CMU 15-213 位、字节与整数</title><link>https://sudrizzz.github.com/posts/cmu-15-213-lesson1/</link><pubDate>Fri, 04 Sep 2020 19:02:11 +0800</pubDate><guid>https://sudrizzz.github.com/posts/cmu-15-213-lesson1/</guid><description>简介 CSAPP 课程全程 Computer Systems: A Programmer’s Perspective，中文翻译为“从程序员的视角，看计算机系统！”或“深入理解计算机系统”。此课程是卡耐基梅隆大学开设的一门课程，官方网站 https://www.cs.cmu.edu/~213/index.html。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CSAPP on Anthony's Blog</title><link>https://sudrizzz.github.com/categories/csapp/</link><description>Recent content in CSAPP on Anthony's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 14 Sep 2020 18:57:11 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.com/categories/csapp/index.xml" rel="self" type="application/rss+xml"/><item><title>CMU 15-213 浮点数</title><link>https://sudrizzz.github.com/posts/cmu-15-213-lesson2/</link><pubDate>Mon, 14 Sep 2020 18:57:11 +0800</pubDate><guid>https://sudrizzz.github.com/posts/cmu-15-213-lesson2/</guid><description>前言 在 上一篇文章 中，我们了解了二进制有符号数、无符号数以及其相关的运算方法，在本篇中，我们将进一步了解浮点数在计算机中的相关知识。
+二进制小数 表示方法 二进制小数表达方式：在“二进制小数点”左侧的位表示 2 的 n 次幂，而在“二进制小数点”右侧的位则表示 2 的 -n 次幂。如下图：
+用公式表达如下：
+$$ a = \sum_{k=-j}^{i}b_{k} \times 2^{k} $$
+示例 例如，将十进制小数转换为二进制小数，有以下例子：
+十进制小数 二进制小数 $ 5\frac{3}{4} $ 101.11 $ 2\frac{7}{8} $ 10.111 $ 1\frac{7}{16} $ 1.0111 以第一个为例，我们可以注意到二进制小数按位进行求和的结果是：
+$$ 5\frac{3}{4} = 2^{2}+2^{0}+2^{-1}+2^{-2} $$
+通过上面三个例子，我们可以注意到，当二进制小数整体右移一位，即相当于将十进制小数除以 2（仅针对无符号数）。相应的，当二进制小数整体左移一位，即相当于将十进制小数乘以 2。
+同时我们应特别注意到，形如 $ 0.11111&amp;hellip;_{2} $ 的二进制小数，表示略比 1 小的十进制数。用公式表示如下：
+$$ 1/2 + 1/4 + 1/8 + \dots + 1/2^{i} + \dots \to 1.</description></item><item><title>CMU 15-213 位、字节与整数</title><link>https://sudrizzz.github.com/posts/cmu-15-213-lesson1/</link><pubDate>Fri, 04 Sep 2020 19:02:11 +0800</pubDate><guid>https://sudrizzz.github.com/posts/cmu-15-213-lesson1/</guid><description>简介 CSAPP 课程全程 Computer Systems: A Programmer’s Perspective，中文翻译为“从程序员的视角，看计算机系统！”或“深入理解计算机系统”。此课程是卡耐基梅隆大学开设的一门课程，官方网站 https://www.cs.cmu.edu/~213/index.html。
 内容简介节选自豆瓣
 https://book.douban.com/subject/1230413
 从程序员的视角，看计算机系统！
 本书适用于那些想要写出更快、更可靠程序的程序员。通过掌握程序是如何映射到系统上，以及程序是如何执行的，读者能够更好的理解程序的行为为什么是这样的，以及效率低下是如何造成的。粗略来看，计算机系统包括处理器和存储器硬件、编译器、操作系统和网络互连环境。而通过程序员的视角，读者可以清晰地明白学习计算机系统的内部工作原理会对他们今后作为计算机科学研究者和工程师的工作有进一步的帮助。它还有助于为进一步学习计算机体系结构、操作系统、编译器和网络互连做好准备。
-一切皆位 十进制 在计算机发展的早些时候，人们使用十进制进行计算机内部运算，需要手动插拔十个晶体管来表示 0-9，十分繁琐。
+一切皆位 十进制 在计算机发展历史上，实际上只有宾夕法尼亚大学建立的第一台计算机 ENIAC 使用了十进制进行了算术运算，他们使用 10 个电子管来表示每个数字。所以他们通过控制电子管的开关来表示 10 个数字中的其中一个。
 二进制 随着计算机的发展，十进制逐渐演化为二进制。在计算机中，我们使用电学层面上的电压高低来存储位数据，如图所示，高电压（0.9v-1.1v）记作逻辑 1，而低电压（0.0v-0.2v）记作逻辑 0。
 之所以这么做，主要有两方面的原因：
 高低电压在电学上非常容易实现，且很容易维持； 通过区分高低电压，可以有效地过滤噪声和杂讯。 十六进制 二进制的成功运用也带来了一个问题，由于每一个位只能存储两种信号（即 0 和 1），对于人来说基本属于不可读的，所以我们将每四个二进制在位合并为一个十六进制位，这样大大缩减了数据的展示长度。例如

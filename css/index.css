@@ -236,6 +236,6 @@ a:hover {
 
 /* 使公式居中 */
 p .MathJax {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
 }
