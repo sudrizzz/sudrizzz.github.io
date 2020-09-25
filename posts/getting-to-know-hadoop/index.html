@@ -1,0 +1,181 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=generator content="Hugo 0.75.1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Anthony"><meta property="og:url" content="https://sudrizzz.github.com/posts/getting-to-know-hadoop/"><link rel=canonical href=https://sudrizzz.github.com/posts/getting-to-know-hadoop/><link rel=alternate type=application/atom+xml href=https://sudrizzz.github.comindex.xml title="Anthony's Blog"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/sudrizzz.github.com"},"articleSection":"posts","name":"初识 Hadoop（一）","headline":"初识 Hadoop（一）","description":"前言 本系列文章是基于《大数据技术基础》与 10 小时入门大数据 课程，如果有兴趣可以先阅读该书并观看视频教程。本系列文章中所用到的软件版本及其下载地址如下：\n   名称 版本 下载地址     CentOS 8.2.2004 https:\/\/mirrors.tuna.tsinghua.edu.cn\/centos\/8.2.2004\/isos\/x86_64\/CentOS-8.2.2004-x86_64-minimal.iso   JDK 14.0.2 https:\/\/www.oracle.com\/java\/technologies\/javase\/jdk14-archive-downloads.html   Hadoop 2.10.1 https:\/\/www.apache.org\/dyn\/closer.cgi\/hadoop\/common\/hadoop-2.10.1\/hadoop-2.10.1-src.tar.gz    环境准备 配置网络 此篇文章所使用的 CentOS 环境均是使用 VMware 15 虚拟的，具体安装教程请查看 使用 VMware 15 安装虚拟机和使用 CentOS 8，此处不再赘述。安装好一个节点之后，我们可以采用“虚拟机克隆”的方式，直接完成另外两个节点系统的安装。\n虚拟机的网络配置采用 DHCP 自动分配模式，每台机器的 IP 地址可以通过命令 ip address 或 ifconfig 查看，其中 ifconfig 输出如下，第一组配置中 ens33 即为本机网络配置，inet 项对应的即为本机 ip（192.168.61.128）。\n1ens33: flags=4163\u0026lt;UP,BROADCAST,RUNNING,MULTICAST\u0026gt; mtu 1500 2 inet 192.168.61.128 netmask 255.255.255.0 broadcast 192.","inLanguage":"en-US","author":"Anthony","creator":"Anthony","publisher":"Anthony","accountablePerson":"Anthony","copyrightHolder":"Anthony","copyrightYear":"2020","datePublished":"2020-09-24 09:20:11 \u002b0800 \u002b0800","dateModified":"2020-09-24 09:20:11 \u002b0800 \u002b0800","url":"https:\/\/sudrizzz.github.com\/posts\/getting-to-know-hadoop\/","keywords":[]}</script><title>初识 Hadoop（一） - Anthony's Blog</title><meta property="og:title" content="初识 Hadoop（一） - Anthony's Blog"><meta property="og:type" content="article"><meta property="og:description" content="前言 本系列文章是基于《大数据技术基础》与 10 小时入门大数据 课程，如果有兴趣可以先阅读该书并观看视频教程。本系列文章中所用到的软件版本及其下载地址如下：
+   名称 版本 下载地址     CentOS 8.2.2004 https://mirrors.tuna.tsinghua.edu.cn/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso   JDK 14.0.2 https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html   Hadoop 2.10.1 https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-src.tar.gz    环境准备 配置网络 此篇文章所使用的 CentOS 环境均是使用 VMware 15 虚拟的，具体安装教程请查看 使用 VMware 15 安装虚拟机和使用 CentOS 8，此处不再赘述。安装好一个节点之后，我们可以采用“虚拟机克隆”的方式，直接完成另外两个节点系统的安装。
+虚拟机的网络配置采用 DHCP 自动分配模式，每台机器的 IP 地址可以通过命令 ip address 或 ifconfig 查看，其中 ifconfig 输出如下，第一组配置中 ens33 即为本机网络配置，inet 项对应的即为本机 ip（192.168.61.128）。
+1ens33: flags=4163<UP,BROADCAST,RUNNING,MULTICAST> mtu 1500 2 inet 192.168.61.128 netmask 255.255.255.0 broadcast 192."><meta name=description content="前言 本系列文章是基于《大数据技术基础》与 10 小时入门大数据 课程，如果有兴趣可以先阅读该书并观看视频教程。本系列文章中所用到的软件版本及其下载地址如下：
+   名称 版本 下载地址     CentOS 8.2.2004 https://mirrors.tuna.tsinghua.edu.cn/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso   JDK 14.0.2 https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html   Hadoop 2.10.1 https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-src.tar.gz    环境准备 配置网络 此篇文章所使用的 CentOS 环境均是使用 VMware 15 虚拟的，具体安装教程请查看 使用 VMware 15 安装虚拟机和使用 CentOS 8，此处不再赘述。安装好一个节点之后，我们可以采用“虚拟机克隆”的方式，直接完成另外两个节点系统的安装。
+虚拟机的网络配置采用 DHCP 自动分配模式，每台机器的 IP 地址可以通过命令 ip address 或 ifconfig 查看，其中 ifconfig 输出如下，第一组配置中 ens33 即为本机网络配置，inet 项对应的即为本机 ip（192.168.61.128）。
+1ens33: flags=4163<UP,BROADCAST,RUNNING,MULTICAST> mtu 1500 2 inet 192.168.61.128 netmask 255.255.255.0 broadcast 192."><meta property="og:locale" content="zh-cn"><link rel=stylesheet href=/css/flexboxgrid-6.3.1.min.css><link rel=stylesheet href=/css/github-markdown.css><link rel=stylesheet href=/css/highlight/tomorrow.min.css><link rel=stylesheet href=/css/index.css><link href=/index.xml rel=alternate type=application/rss+xml title="Anthony's Blog"><link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel=stylesheet></head><body><article class="post Chinese" id=article><div class=row><div class=col-xs-12><div class=site-header><header><div class="signatures site-title"><a href=/>Anthony</a></div></header><div class="row end-xs"></div><div class=header-line></div></div><header class=post-header><h1 class=post-title>初识 Hadoop（一）</h1><div class="row post-desc"><div class=col-xs-6><time class=post-date datetime="2020-09-24 09:20:11 +0800">2020.09.24</time></div><div class=col-xs-6><div class=post-author><a target=_blank href=https://github.com/sudrizzz/>@Anthony</a></div></div></div></header><div class="post-content markdown-body"><h1 id=前言>前言</h1><p>本系列文章是基于《大数据技术基础》与 <a href=https://coding.imooc.com/class/128.html>10 小时入门大数据</a> 课程，如果有兴趣可以先阅读该书并观看视频教程。本系列文章中所用到的软件版本及其下载地址如下：</p><table><thead><tr><th>名称</th><th>版本</th><th>下载地址</th></tr></thead><tbody><tr><td>CentOS</td><td>8.2.2004</td><td><a href=https://mirrors.tuna.tsinghua.edu.cn/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso>https://mirrors.tuna.tsinghua.edu.cn/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso</a></td></tr><tr><td>JDK</td><td>14.0.2</td><td><a href=https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html>https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html</a></td></tr><tr><td>Hadoop</td><td>2.10.1</td><td><a href=https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-src.tar.gz>https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-src.tar.gz</a></td></tr></tbody></table><h1 id=环境准备>环境准备</h1><h2 id=配置网络>配置网络</h2><p>此篇文章所使用的 CentOS 环境均是使用 VMware 15 虚拟的，具体安装教程请查看 <a href=https://www.cnblogs.com/bobo-pcb/p/11708459.html>使用 VMware 15 安装虚拟机和使用 CentOS 8</a>，此处不再赘述。安装好一个节点之后，我们可以采用“虚拟机克隆”的方式，直接完成另外两个节点系统的安装。</p><p>虚拟机的网络配置采用 DHCP 自动分配模式，每台机器的 IP 地址可以通过命令 <code>ip address</code> 或 <code>ifconfig</code> 查看，其中 <code>ifconfig</code> 输出如下，第一组配置中 <code>ens33</code> 即为本机网络配置，<code>inet</code> 项对应的即为本机 ip（192.168.61.128）。</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text><span class=ln> 1</span>ens33: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+<span class=ln> 2</span>        inet 192.168.61.128  netmask 255.255.255.0  broadcast 192.168.61.255
+<span class=ln> 3</span>        inet6 fe80::20c:29ff:fe65:9052  prefixlen 64  scopeid 0x20&lt;link&gt;
+<span class=ln> 4</span>        ether 00:0c:29:65:90:52  txqueuelen 1000  (Ethernet)
+<span class=ln> 5</span>        RX packets 38037  bytes 6542757 (6.2 MiB)
+<span class=ln> 6</span>        RX errors 0  dropped 0  overruns 0  frame 0
+<span class=ln> 7</span>        TX packets 30479  bytes 16809162 (16.0 MiB)
+<span class=ln> 8</span>        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+<span class=ln> 9</span>
+<span class=ln>10</span>lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
+<span class=ln>11</span>        inet 127.0.0.1  netmask 255.0.0.0
+<span class=ln>12</span>        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
+<span class=ln>13</span>        loop  txqueuelen 1000  (Local Loopback)
+<span class=ln>14</span>        RX packets 23656  bytes 13542580 (12.9 MiB)
+<span class=ln>15</span>        RX errors 0  dropped 0  overruns 0  frame 0
+<span class=ln>16</span>        TX packets 23656  bytes 13542580 (12.9 MiB)
+<span class=ln>17</span>        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+<span class=ln>18</span>
+<span class=ln>19</span>virbr0: flags=4099&lt;UP,BROADCAST,MULTICAST&gt;  mtu 1500
+<span class=ln>20</span>        ether 52:54:00:d2:b3:31  txqueuelen 1000  (Ethernet)
+<span class=ln>21</span>        RX packets 0  bytes 0 (0.0 B)
+<span class=ln>22</span>        RX errors 0  dropped 0  overruns 0  frame 0
+<span class=ln>23</span>        TX packets 0  bytes 0 (0.0 B)
+<span class=ln>24</span>        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+</code></pre></div><p>本篇文章中三台集群的 IP 分别如下，下文中不再赘述。</p><table><thead><tr><th style=text-align:center>主机名</th><th style=text-align:center>IP</th></tr></thead><tbody><tr><td style=text-align:center>master</td><td style=text-align:center>192.168.61.128</td></tr><tr><td style=text-align:center>slave1</td><td style=text-align:center>192.168.61.129</td></tr><tr><td style=text-align:center>slave2</td><td style=text-align:center>192.168.61.131</td></tr></tbody></table><h2 id=配置-host>配置 host</h2><p>以上三台机器要搭建成为集群，就需要让它们互相认识。这个认识的过程是通过 <code>/etc/hosts</code> 文件来实现的。这一步需要修改每一台机器的 hosts 文件，将以下内容分别粘贴到各个机器的 hosts 文件中。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim /etc/hosts
+</code></pre></div><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>192.168.61.128 master
+<span class=ln>2</span>192.168.61.129 slave1
+<span class=ln>3</span>192.168.61.131 slave2
+</code></pre></div><h2 id=配置-jdk>配置 JDK</h2><p>因为 Hadoop 的环境依赖于 Java JDK，所以需要确保虚拟机中已经正确安装了 JDK，除此之外我们还需要将 JDK 地址配置到环境变量中。在本例中，我的 JDK 安装位置是 <code>/usr/java/jdk-14.0.2</code>。</p><h3 id=修改-bash_profile>修改 bash_profile</h3><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/.bash_profile
+</code></pre></div><p>添加以下内容到 .bash_profile 文件末尾：</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>export JAVA_HOME=/usr/java/jdk-14.0.2
+<span class=ln>2</span>export PATH=$JAVA_HOME/bin:$PATH
+</code></pre></div><p>修改完成并保存后，还需要执行 <code>source</code> 命令使环境变量立即生效。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>source</span> ~/.bash_profile
+</code></pre></div><p>然后即可使用 <code>java -version</code> 检查环境变量是否配置成功，执行结果如下所示。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>java version &#34;14.0.2&#34; 2020-07-14
+<span class=ln>2</span>Java(TM) SE Runtime Environment (build 14.0.2+12-46)
+<span class=ln>3</span>Java HotSpot(TM) 64-Bit Server VM (build 14.0.2+12-46, mixed mode, sharing)
+</code></pre></div><h2 id=配置-ssh-免密钥登录>配置 SSH 免密钥登录</h2><p>在 Linux 集群间配置免密钥登录，是 Hadoop 集群运维的基础。以下操作在 master 节点进行，实现从 master 免密钥登录 slave1、slave2 节点。生成 ssh 密钥的命令如下：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>ssh-keygen
+</code></pre></div><p>生成过程中会有一些提示，一路回车即可。执行结果如下所示。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln> 1</span>root@master:/usr/local/software# ssh-keygen
+<span class=ln> 2</span>Generating public/private rsa key pair.
+<span class=ln> 3</span>Enter file in which to save the key (/root/.ssh/id_rsa):
+<span class=ln> 4</span>/root/.ssh/id_rsa already exists.
+<span class=ln> 5</span>Overwrite (y/n)? y
+<span class=ln> 6</span>Enter passphrase (empty for no passphrase):
+<span class=ln> 7</span>Enter same passphrase again:
+<span class=ln> 8</span>Your identification has been saved in /root/.ssh/id_rsa.
+<span class=ln> 9</span>Your public key has been saved in /root/.ssh/id_rsa.pub.
+<span class=ln>10</span>The key fingerprint is:
+<span class=ln>11</span>SHA256:DC7+sETaazn0f4OVgxozjdw2XM1Tb60cqoaQvDGXpg8 root@master
+<span class=ln>12</span>The key&#39;s randomart image is:
+<span class=ln>13</span>+---[RSA 3072]----+
+<span class=ln>14</span>|                 |
+<span class=ln>15</span>|              .  |
+<span class=ln>16</span>|      .    o . ..|
+<span class=ln>17</span>|     . o  . + . +|
+<span class=ln>18</span>|    oo.*S+ . + + |
+<span class=ln>19</span>|   =..% @ + . o  |
+<span class=ln>20</span>|  ..=oE# = o     |
+<span class=ln>21</span>|   .+==.o =      |
+<span class=ln>22</span>|   .o..ooo .     |
+<span class=ln>23</span>+----[SHA256]-----+
+<span class=ln>24</span>
+</code></pre></div><p>接下来需要将生成的公钥上传到 slave1 节点，命令如下：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>ssh-copy-id root@slave1
+</code></pre></div><p>首次通过 master 终端将公钥传给 salve 终端，需要输入 slave 节点的登录密码。上述命令中我们是传输到 slave1 的 root 账户下，所以需要输入 root 用户的密码，传送完毕即可实现免密码登录。执行结果如下。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln> 1</span>root@master:/usr/local/software# ssh-copy-id root@slave1
+<span class=ln> 2</span>/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: &#34;/root/.ssh/id_rsa.pub&#34;
+<span class=ln> 3</span>/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+<span class=ln> 4</span>/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+<span class=ln> 5</span>root@slave1&#39;s password:
+<span class=ln> 6</span>
+<span class=ln> 7</span>Number of key(s) added: 1
+<span class=ln> 8</span>
+<span class=ln> 9</span>Now try logging into the machine, with:   &#34;ssh &#39;root@slave1&#39;&#34;
+<span class=ln>10</span>and check to make sure that only the key(s) you wanted were added.
+</code></pre></div><p>slave2 节点命令同上，只需更改传送到的节点名称，执行结果如下。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln> 1</span>root@master:/usr/local/software# ssh-copy-id root@slave2
+<span class=ln> 2</span>/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: &#34;/root/.ssh/id_rsa.pub&#34;
+<span class=ln> 3</span>/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+<span class=ln> 4</span>/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+<span class=ln> 5</span>root@slave2&#39;s password:
+<span class=ln> 6</span>
+<span class=ln> 7</span>Number of key(s) added: 1
+<span class=ln> 8</span>
+<span class=ln> 9</span>Now try logging into the machine, with:   &#34;ssh &#39;root@slave2&#39;&#34;
+<span class=ln>10</span>and check to make sure that only the key(s) you wanted were added.
+</code></pre></div><p>现在可以尝试登录子节点 slave1 和 slave2。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>ssh root@slave1
+</code></pre></div><p>成功登录 salve1 节点的提示如下。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>root@master:/usr/local/software# ssh root@slave1
+<span class=ln>2</span>Web console: https://slave1:9090/ or https://192.168.61.129:9090/
+<span class=ln>3</span>
+<span class=ln>4</span>Last login: Fri Sep 24 14:56:46 2020 from 192.168.61.1
+</code></pre></div><h1 id=完善配置>完善配置</h1><p>以下配置均在 master 节点上完成，配置完成后可直接复制到 slave 节点，以免重复劳动。</p><h2 id=安装-hadoop>安装 Hadoop</h2><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /usr/local/software
+<span class=ln>2</span>wget http://mirror.cogentco.com/pub/apache/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-src.tar.gz
+<span class=ln>3</span>tar -zxvf hadoop-2.10.1-src.tar.gz
+<span class=ln>4</span><span class=nb>cd</span> hadoop-2.10.1-src
+<span class=ln>5</span>mv * ~/hadoop
+</code></pre></div><p>在正式使用 Hadoop 集群之前，我们还需要对其配置文件进行修改。本节中的配置内容请以 <a href=https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html>官方文档</a> 为准。</p><p>Hadoop 的配置文件均存放在 Hadoop 所在目录的 /etc/hadoop/ 文件夹下。</p><h2 id=修改配置文件>修改配置文件</h2><h3 id=core-sitexml>core-site.xml</h3><p>文件 core-site.xml 用来配置 Hadoop 集群的通用属性，包括指定 NameNode 的地址、指定使用 Hadoop 时临时文件的存放路径、指定检查点备份日志的最长时间等。</p><p>使用 vim 打开文件：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/hadoop-2.10.1/etc/hadoop/core-site.xml
+</code></pre></div><p>使用以下内容替换 core-site.xml 中的内容：</p><div class=highlight><pre class=chroma><code class=language-xml data-lang=xml><span class=ln> 1</span><span class=cp>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class=ln> 2</span><span class=cp>&lt;?xml-stylesheet type=&#34;text/xsl&#34; href=&#34;configuration.xsl&#34;?&gt;</span>
+<span class=ln> 3</span>
+<span class=ln> 4</span><span class=nt>&lt;configuration&gt;</span>
+<span class=ln> 5</span>    <span class=c>&lt;!-- 指定 namenode 的地址 --&gt;</span>
+<span class=ln> 6</span>    <span class=nt>&lt;property&gt;</span>
+<span class=ln> 7</span>        <span class=nt>&lt;name&gt;</span>fs.defaultFS<span class=nt>&lt;/name&gt;</span>
+<span class=ln> 8</span>        <span class=nt>&lt;value&gt;</span>hdfs://master:9000<span class=nt>&lt;/value&gt;</span>
+<span class=ln> 9</span>    <span class=nt>&lt;/property&gt;</span>
+<span class=ln>10</span>
+<span class=ln>11</span>    <span class=c>&lt;!-- 指定使用 Hadoop 时临时文件的存放路径 --&gt;</span>
+<span class=ln>12</span>    <span class=nt>&lt;property&gt;</span>
+<span class=ln>13</span>        <span class=nt>&lt;name&gt;</span>hadoop.tmp.dir<span class=nt>&lt;/name&gt;</span>
+<span class=ln>14</span>        <span class=nt>&lt;value&gt;</span>/home/hadoop/temp<span class=nt>&lt;/value&gt;</span>
+<span class=ln>15</span>    <span class=nt>&lt;/property&gt;</span>
+<span class=ln>16</span><span class=nt>&lt;/configuration&gt;</span>
+</code></pre></div><p>第 6~9 行配置 fs.defaultFS 的属性为 hdfs://master:9000，master 是主机名；第 12~15 行指定 Hadoop 的临时文件夹为 /home/hadoop/temp，此文件夹用户可以自己指定。</p><h3 id=hdfs-sitexml>hdfs-site.xml</h3><p>文件 hdfs-site.xml 用来配置分布式文件系统 HDFS 的属性，包括指定 HDFS 保存数据的副本数量，指定 HDFS 中 NameNode、DataNode 的存储位置等。</p><p>使用 vim 打开文件：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/hadoop-2.10.1/etc/hadoop/hdfs-site.xml
+</code></pre></div><p>使用以下内容替换 hdfs-site.xml 中的内容：</p><div class=highlight><pre class=chroma><code class=language-xml data-lang=xml><span class=ln> 1</span><span class=cp>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class=ln> 2</span><span class=cp>&lt;?xml-stylesheet type=&#34;text/xsl&#34; href=&#34;configuration.xsl&#34;?&gt;</span>
+<span class=ln> 3</span>
+<span class=ln> 4</span><span class=nt>&lt;configuration&gt;</span>
+<span class=ln> 5</span>    <span class=c>&lt;!-- 指定 HDFS 保存数据的副本数量 --&gt;</span>
+<span class=ln> 6</span>    <span class=nt>&lt;property&gt;</span>
+<span class=ln> 7</span>        <span class=nt>&lt;name&gt;</span>dfs.replication<span class=nt>&lt;/name&gt;</span>
+<span class=ln> 8</span>        <span class=nt>&lt;value&gt;</span>1<span class=nt>&lt;/value&gt;</span>
+<span class=ln> 9</span>    <span class=nt>&lt;/property&gt;</span>
+<span class=ln>10</span><span class=nt>&lt;/configuration&gt;</span>
+</code></pre></div><p>其中，第 7~8 行，指定 HDFS 文件快的副本数为 1。数据块副本一般为 3 以上，本文章仅作示例，故指定为 1。</p><h3 id=yarn-sitexml>yarn-site.xml</h3><p>YARN 是 MapReduce 的调度框架。文件 yarn-site.xml 用配置 YARN 的属性，包括指定 NameNodeManager 获取数据的方式，指定 ResourceManager 的地址，配置 YARN 打印工作日志等。</p><p>使用 vim 打开文件：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/hadoop-2.10.1/etc/hadoop/yarn-site.xml
+</code></pre></div><p>使用以下内容替换 yarn-site.xml 中的内容：</p><div class=highlight><pre class=chroma><code class=language-xml data-lang=xml><span class=ln> 1</span><span class=cp>&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+<span class=ln> 2</span>
+<span class=ln> 3</span><span class=nt>&lt;configuration&gt;</span>
+<span class=ln> 4</span>    <span class=c>&lt;!-- 指定 NameNodeManager 获取数据的方式是 shuffle --&gt;</span>
+<span class=ln> 5</span>    <span class=nt>&lt;property&gt;</span>
+<span class=ln> 6</span>        <span class=nt>&lt;name&gt;</span>yarn.nodemanager.aux-services<span class=nt>&lt;/name&gt;</span>
+<span class=ln> 7</span>        <span class=nt>&lt;value&gt;</span>mapreduce_shuffle<span class=nt>&lt;/value&gt;</span>
+<span class=ln> 8</span>    <span class=nt>&lt;/property&gt;</span>
+<span class=ln> 9</span>    <span class=nt>&lt;property&gt;</span>
+<span class=ln>10</span>        <span class=nt>&lt;name&gt;</span>yarn.nodemanager.env-whitelist<span class=nt>&lt;/name&gt;</span>
+<span class=ln>11</span>        <span class=nt>&lt;value&gt;</span>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME<span class=nt>&lt;/value&gt;</span>
+<span class=ln>12</span>    <span class=nt>&lt;/property&gt;</span>
+<span class=ln>13</span>
+<span class=ln>14</span>    <span class=c>&lt;!-- 指定 YARN 中 ResourceManager 所在的主机名 --&gt;</span>
+<span class=ln>15</span>    <span class=nt>&lt;property&gt;</span>
+<span class=ln>16</span>        <span class=nt>&lt;name&gt;</span>yarn.resourcemanager.hostname<span class=nt>&lt;/name&gt;</span>
+<span class=ln>17</span>        <span class=nt>&lt;value&gt;</span>master<span class=nt>&lt;/value&gt;</span>
+<span class=ln>18</span>    <span class=nt>&lt;/property&gt;</span>
+<span class=ln>19</span><span class=nt>&lt;/configuration&gt;</span>
+</code></pre></div><p>其中，第 15~19 行配置了 ResourceManager 所在的主机名，如果不进行配置，将会导致 MapReduce 不能获得资源，任务不能执行。</p><h3 id=mapred-sitexml>mapred-site.xml</h3><p>文件 mapred-site.xml 主要是配置 MapReduce 的属性，主要是 Hadoop 系统提交的 Map/Reduce 程序运行在 YARN 上。</p><p>首先复制一份 mapred-site.xml.template 文件为 mapred-site.xml，然后打开并进行修改。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/hadoop-2.10.1/etc/hadoop/mapred-site.xml
+</code></pre></div><p>使用以下内容替换 mapred-site.xml 中的内容：</p><div class=highlight><pre class=chroma><code class=language-xml data-lang=xml><span class=ln> 1</span><span class=cp>&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+<span class=ln> 2</span><span class=cp>&lt;?xml-stylesheet type=&#34;text/xsl&#34; href=&#34;configuration.xsl&#34;?&gt;</span>
+<span class=ln> 3</span>
+<span class=ln> 4</span><span class=nt>&lt;configuration&gt;</span>
+<span class=ln> 5</span>    <span class=nt>&lt;property&gt;</span>
+<span class=ln> 6</span>        <span class=nt>&lt;name&gt;</span>mapreduce.framework.name<span class=nt>&lt;/name&gt;</span>
+<span class=ln> 7</span>        <span class=nt>&lt;value&gt;</span>yarn<span class=nt>&lt;/value&gt;</span>
+<span class=ln> 8</span>    <span class=nt>&lt;/property&gt;</span>
+<span class=ln> 9</span>    <span class=nt>&lt;property&gt;</span>
+<span class=ln>10</span>        <span class=nt>&lt;name&gt;</span>mapreduce.application.classpath<span class=nt>&lt;/name&gt;</span>
+<span class=ln>11</span>        <span class=nt>&lt;value&gt;</span>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*<span class=nt>&lt;/value&gt;</span>
+<span class=ln>12</span>    <span class=nt>&lt;/property&gt;</span>
+<span class=ln>13</span><span class=nt>&lt;/configuration&gt;</span>
+</code></pre></div><p>其中，第 5~8 行为 MapReduce 指定任务调度框架为 YARN。</p><h3 id=slaves>slaves</h3><p>slaves 文件为 Hadoop 提供了子节点的主机名。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/hadoop-2.10.1/etc/hadoop/slaves
+</code></pre></div><p>使用以下内容替换 slaves 中的内容：</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>slave1
+<span class=ln>2</span>slave2
+</code></pre></div><h2 id=复制文件到子节点>复制文件到子节点</h2><p>使用下面的命令将 Hadoop 文件复制到其他节点，本文中为 slave1 和 slave2，命令如下：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> ~/hadoop
+<span class=ln>2</span>scp -r hadoop-2.10.1 root@slave1:~/hadoop/
+<span class=ln>3</span>scp -r hadoop-2.10.1 root@slave2:~/hadoop/
+</code></pre></div><h2 id=配置-hadoop-环境变量>配置 Hadoop 环境变量</h2><p>注意，此操作需要同时在所有节点（master，slave1，slave2）都执行一次，操作命令如下：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/.bash_profile
+</code></pre></div><p>将以下内容追加到 .bash_profile 文件末尾：</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>#HADOOP
+<span class=ln>2</span>export HADOOP_HOME=/root/hadoop/hadoop-2.10.1
+<span class=ln>3</span>export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
+</code></pre></div><p>然后执行下列命令使环境变量生效：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>source</span> ~/.bash_profile
+</code></pre></div><h2 id=创建临时文件存放目录>创建临时文件存放目录</h2><p>我们在 core-site.xml 文件中指定了 Hadoop 临时文件存放路径，但是文件夹并没有创建，此操作需要同时在所有节点（master，slave1，slave2）都执行一次，操作命令如下：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>mkdir /home/hadoop/temp
+</code></pre></div><h1 id=启动集群>启动集群</h1><h2 id=格式化文件系统>格式化文件系统</h2><p>注意，格式化仅需要在第一次使用 Hadoop 集群时进行，后续使用时无需格式化，并且在使用过程中进行格式化，所有文件将会丢失。此操作需要在 master 节点上进行，执行如下命令：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>hdfs namenode -format
+</code></pre></div><h2 id=启动-hadoop-集群>启动 Hadoop 集群</h2><p>Hadoop 启动或停止服务的脚本均存放在 sbin 目录中，所以切换到 /home/hadoop/hadoop-2.10.1/sbin 目录下，执行以下命令：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>start-all.sh
+</code></pre></div><p>需要注意的是，在启动过程中，Hadoop 会提示这样的启动方式已经过时，使用如下启动方式即可规避过时提示：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>start-dfs.sh
+<span class=ln>2</span>start-yarn.sh
+</code></pre></div><h2 id=查看进程是否启动成功>查看进程是否启动成功</h2><p>在 master 节点终端执行 jps 命令，在打印结果中会看到四个进程，分别是 结果如下：</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>root@slave1:~/hadoop/hadoop-2.10.1/sbin# jps
+<span class=ln>2</span>11589 NodeManager
+<span class=ln>3</span>11095 DataNode
+<span class=ln>4</span>11273 SecondaryNameNode
+<span class=ln>5</span>11706 Jps
+</code></pre></div></div><div class="row middle-xs"><div class=col-xs-12><div class=post-category><a href=/categories/hadoop>hadoop</a></div></div></div><div class=row><div class=col-xs-12></div></div><div style=height:50px></div><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"],],},};</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script><div class=site-footer><div class=site-footer-item><a href=/ target=_self>Home</a></div><div class=site-footer-item><a href=mailto:sudrizzz@google.com target=_blank>Mail</a></div><div class=site-footer-item><a href="https://music.163.com/song?id=356827" target=_blank>~</a></div></div></div></div></article><script src=/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script></body></html>
