@@ -95,7 +95,7 @@
 <span class=ln>3</span>tar -zxvf hadoop-2.10.1-src.tar.gz
 <span class=ln>4</span><span class=nb>cd</span> hadoop-2.10.1-src
 <span class=ln>5</span>mv * ~/hadoop
-</code></pre></div><p>在正式使用 Hadoop 集群之前，我们还需要对其配置文件进行修改。本节中的配置内容请以 <a href=https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html>官方文档</a> 为准。</p><p>Hadoop 的配置文件均存放在 Hadoop 所在目录的 /etc/hadoop/ 文件夹下。</p><h2 id=修改配置文件>修改配置文件</h2><h3 id=core-sitexml>core-site.xml</h3><p>文件 core-site.xml 用来配置 Hadoop 集群的通用属性，包括指定 NameNode 的地址、指定使用 Hadoop 时临时文件的存放路径、指定检查点备份日志的最长时间等。</p><p>使用 vim 打开文件：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/hadoop-2.10.1/etc/hadoop/core-site.xml
+</code></pre></div><p>在正式使用 Hadoop 集群之前，我们还需要对其配置文件进行修改。本节中的配置内容请以 <a href=https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html>官方文档</a> 为准。</p><p>Hadoop 的配置文件均存放在 Hadoop 所在目录的 /etc/hadoop/ 文件夹下。</p><h2 id=修改配置文件>修改配置文件</h2><h3 id=编辑-core-sitexml>编辑 core-site.xml</h3><p>文件 core-site.xml 用来配置 Hadoop 集群的通用属性，包括指定 NameNode 的地址、指定使用 Hadoop 时临时文件的存放路径、指定检查点备份日志的最长时间等。</p><p>使用 vim 打开文件：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/hadoop-2.10.1/etc/hadoop/core-site.xml
 </code></pre></div><p>使用以下内容替换 core-site.xml 中的内容：</p><div class=highlight><pre class=chroma><code class=language-xml data-lang=xml><span class=ln> 1</span><span class=cp>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
 <span class=ln> 2</span><span class=cp>&lt;?xml-stylesheet type=&#34;text/xsl&#34; href=&#34;configuration.xsl&#34;?&gt;</span>
 <span class=ln> 3</span>
@@ -112,7 +112,7 @@
 <span class=ln>14</span>        <span class=nt>&lt;value&gt;</span>/home/hadoop/temp<span class=nt>&lt;/value&gt;</span>
 <span class=ln>15</span>    <span class=nt>&lt;/property&gt;</span>
 <span class=ln>16</span><span class=nt>&lt;/configuration&gt;</span>
-</code></pre></div><p>第 6~9 行配置 fs.defaultFS 的属性为 hdfs://master:9000，master 是主机名；第 12~15 行指定 Hadoop 的临时文件夹为 /home/hadoop/temp，此文件夹用户可以自己指定。</p><h3 id=hdfs-sitexml>hdfs-site.xml</h3><p>文件 hdfs-site.xml 用来配置分布式文件系统 HDFS 的属性，包括指定 HDFS 保存数据的副本数量，指定 HDFS 中 NameNode、DataNode 的存储位置等。</p><p>使用 vim 打开文件：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/hadoop-2.10.1/etc/hadoop/hdfs-site.xml
+</code></pre></div><p>第 6~9 行配置 fs.defaultFS 的属性为 hdfs://master:9000，master 是主机名；第 12~15 行指定 Hadoop 的临时文件夹为 /home/hadoop/temp，此文件夹用户可以自己指定。</p><h3 id=编辑-hdfs-sitexml>编辑 hdfs-site.xml</h3><p>文件 hdfs-site.xml 用来配置分布式文件系统 HDFS 的属性，包括指定 HDFS 保存数据的副本数量，指定 HDFS 中 NameNode、DataNode 的存储位置等。</p><p>使用 vim 打开文件：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/hadoop-2.10.1/etc/hadoop/hdfs-site.xml
 </code></pre></div><p>使用以下内容替换 hdfs-site.xml 中的内容：</p><div class=highlight><pre class=chroma><code class=language-xml data-lang=xml><span class=ln> 1</span><span class=cp>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
 <span class=ln> 2</span><span class=cp>&lt;?xml-stylesheet type=&#34;text/xsl&#34; href=&#34;configuration.xsl&#34;?&gt;</span>
 <span class=ln> 3</span>
@@ -123,7 +123,7 @@
 <span class=ln> 8</span>        <span class=nt>&lt;value&gt;</span>1<span class=nt>&lt;/value&gt;</span>
 <span class=ln> 9</span>    <span class=nt>&lt;/property&gt;</span>
 <span class=ln>10</span><span class=nt>&lt;/configuration&gt;</span>
-</code></pre></div><p>其中，第 7~8 行，指定 HDFS 文件快的副本数为 1。数据块副本一般为 3 以上，本文章仅作示例，故指定为 1。</p><h3 id=yarn-sitexml>yarn-site.xml</h3><p>YARN 是 MapReduce 的调度框架。文件 yarn-site.xml 用配置 YARN 的属性，包括指定 NameNodeManager 获取数据的方式，指定 ResourceManager 的地址，配置 YARN 打印工作日志等。</p><p>使用 vim 打开文件：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/hadoop-2.10.1/etc/hadoop/yarn-site.xml
+</code></pre></div><p>其中，第 7~8 行，指定 HDFS 文件快的副本数为 1。数据块副本一般为 3 以上，本文章仅作示例，故指定为 1。</p><h3 id=编辑-yarn-sitexml>编辑 yarn-site.xml</h3><p>YARN 是 MapReduce 的调度框架。文件 yarn-site.xml 用配置 YARN 的属性，包括指定 NameNodeManager 获取数据的方式，指定 ResourceManager 的地址，配置 YARN 打印工作日志等。</p><p>使用 vim 打开文件：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/hadoop-2.10.1/etc/hadoop/yarn-site.xml
 </code></pre></div><p>使用以下内容替换 yarn-site.xml 中的内容：</p><div class=highlight><pre class=chroma><code class=language-xml data-lang=xml><span class=ln> 1</span><span class=cp>&lt;?xml version=&#34;1.0&#34;?&gt;</span>
 <span class=ln> 2</span>
 <span class=ln> 3</span><span class=nt>&lt;configuration&gt;</span>
@@ -143,7 +143,7 @@
 <span class=ln>17</span>        <span class=nt>&lt;value&gt;</span>master<span class=nt>&lt;/value&gt;</span>
 <span class=ln>18</span>    <span class=nt>&lt;/property&gt;</span>
 <span class=ln>19</span><span class=nt>&lt;/configuration&gt;</span>
-</code></pre></div><p>其中，第 15~19 行配置了 ResourceManager 所在的主机名，如果不进行配置，将会导致 MapReduce 不能获得资源，任务不能执行。</p><h3 id=mapred-sitexml>mapred-site.xml</h3><p>文件 mapred-site.xml 主要是配置 MapReduce 的属性，主要是 Hadoop 系统提交的 Map/Reduce 程序运行在 YARN 上。</p><p>首先复制一份 mapred-site.xml.template 文件为 mapred-site.xml，然后打开并进行修改。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/hadoop-2.10.1/etc/hadoop/mapred-site.xml
+</code></pre></div><p>其中，第 15~19 行配置了 ResourceManager 所在的主机名，如果不进行配置，将会导致 MapReduce 不能获得资源，任务不能执行。</p><h3 id=编辑-mapred-sitexml>编辑 mapred-site.xml</h3><p>文件 mapred-site.xml 主要是配置 MapReduce 的属性，主要是 Hadoop 系统提交的 Map/Reduce 程序运行在 YARN 上。</p><p>首先复制一份 mapred-site.xml.template 文件为 mapred-site.xml，然后打开并进行修改。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/hadoop-2.10.1/etc/hadoop/mapred-site.xml
 </code></pre></div><p>使用以下内容替换 mapred-site.xml 中的内容：</p><div class=highlight><pre class=chroma><code class=language-xml data-lang=xml><span class=ln> 1</span><span class=cp>&lt;?xml version=&#34;1.0&#34;?&gt;</span>
 <span class=ln> 2</span><span class=cp>&lt;?xml-stylesheet type=&#34;text/xsl&#34; href=&#34;configuration.xsl&#34;?&gt;</span>
 <span class=ln> 3</span>
@@ -157,7 +157,7 @@
 <span class=ln>11</span>        <span class=nt>&lt;value&gt;</span>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*<span class=nt>&lt;/value&gt;</span>
 <span class=ln>12</span>    <span class=nt>&lt;/property&gt;</span>
 <span class=ln>13</span><span class=nt>&lt;/configuration&gt;</span>
-</code></pre></div><p>其中，第 5~8 行为 MapReduce 指定任务调度框架为 YARN。</p><h3 id=slaves>slaves</h3><p>slaves 文件为 Hadoop 提供了子节点的主机名。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/hadoop-2.10.1/etc/hadoop/slaves
+</code></pre></div><p>其中，第 5~8 行为 MapReduce 指定任务调度框架为 YARN。</p><h3 id=编辑-slaves>编辑 slaves</h3><p>slaves 文件为 Hadoop 提供了子节点的主机名。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>vim ~/hadoop-2.10.1/etc/hadoop/slaves
 </code></pre></div><p>使用以下内容替换 slaves 中的内容：</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>slave1
 <span class=ln>2</span>slave2
 </code></pre></div><h2 id=复制文件到子节点>复制文件到子节点</h2><p>使用下面的命令将 Hadoop 文件复制到其他节点，本文中为 slave1 和 slave2，命令如下：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> ~/hadoop
@@ -173,9 +173,40 @@
 </code></pre></div><h2 id=启动-hadoop-集群>启动 Hadoop 集群</h2><p>Hadoop 启动或停止服务的脚本均存放在 sbin 目录中，所以切换到 /home/hadoop/hadoop-2.10.1/sbin 目录下，执行以下命令：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>start-all.sh
 </code></pre></div><p>需要注意的是，在启动过程中，Hadoop 会提示这样的启动方式已经过时，使用如下启动方式即可规避过时提示：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>start-dfs.sh
 <span class=ln>2</span>start-yarn.sh
-</code></pre></div><h2 id=查看进程是否启动成功>查看进程是否启动成功</h2><p>在 master 节点终端执行 jps 命令，在打印结果中会看到四个进程，分别是 结果如下：</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>root@slave1:~/hadoop/hadoop-2.10.1/sbin# jps
-<span class=ln>2</span>11589 NodeManager
-<span class=ln>3</span>11095 DataNode
-<span class=ln>4</span>11273 SecondaryNameNode
-<span class=ln>5</span>11706 Jps
+</code></pre></div><h2 id=查看进程是否启动成功>查看进程是否启动成功</h2><p>在 master 节点终端执行 jps 命令，在打印结果中会看到四个进程，分别是 NodeManager、SecondaryNameNode、ResourceManager、Jps。如果出现了这四个进程表示启动成功。结果如下：</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>root@master:~/hadoop/hadoop-2.10.1/sbin# jps
+<span class=ln>2</span>17874 NameNode
+<span class=ln>3</span>18070 SecondaryNameNode
+<span class=ln>4</span>18281 ResourceManager
+<span class=ln>5</span>18554 Jps
+</code></pre></div><p>此时在 slave1 和 slave2 的节点的终端执行 jps 命令，在输出结果中会看到三个进程，分别是 Jps、NodeManager、DataNode，如果出现了这三个进程表示子节点进程启动成功。结果如下：</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>root@slave1:~# jps
+<span class=ln>2</span>15776 NodeManager
+<span class=ln>3</span>15639 DataNode
+<span class=ln>4</span>16106 Jps
+</code></pre></div><h2 id=查看-webui>查看 WebUI</h2><h3 id=hadoop-页面>Hadoop 页面</h3><p>如果要在宿主机上访问虚拟机 master 节点的 WebUI，需要先将虚拟机的防火墙关闭（此处仅仅是做示例，生产环境不建议这么做），然后访问虚拟机 master 节点 IP:50070 即可。</p><p>防火墙相关命令如下：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># 暂时关闭防火墙</span>
+<span class=ln>2</span>systemctl stop firewalld
+<span class=ln>3</span>
+<span class=ln>4</span><span class=c1># 永久关闭防火墙</span>
+<span class=ln>5</span>systemctl disable firewalld
+<span class=ln>6</span>
+<span class=ln>7</span><span class=c1># 启用防火墙</span>
+<span class=ln>8</span>systemctl <span class=nb>enable</span> firewalld
+</code></pre></div><p>例如本例中 master 节点地址为 192.168.61.128，则访问 192.168.61.128:50070，页面如下图：</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200926201409.png alt=20200926201409></p><h3 id=yarn-页面>YARN 页面</h3><p>如上例，与 Hadoop 管理页面不同的是，YARN Web 页面地址端口是 8088，页面如下图：</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200926203912.png alt=20200926203912></p><h1 id=运行实例>运行实例</h1><p>在 Hadoop 自带的 examples 中有一种利用分布式系统计算圆周率的方法，采用的是拟蒙特卡罗（Quasi-Monte Carlo）算法来对 $ \pi $ 的值进行估算。下面通过运行该程序来检验 Hadoop 集群是否安装配置成功。</p><p>在 master 节点终端中执行下面的命令：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>hadoop jar hadoop-2.10.1/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.1.jar pi <span class=m>100</span> <span class=m>100000</span>
+</code></pre></div><p>Hadoop 的命令类似 Java 命令，通过 jar 指定要运行的程序所在的 jar 包 hadoop-mapreduce-examples-2.10.1.jar。参数 pi 表示需要计算的圆周率 $ \pi $。后面两个参数中，100 是指要运行 100 次 map，100000 表示每个 map 的任务次数，即每个节点要模拟飞镖 100000 次。执行过程及结果如下图：</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200926210747.png alt=20200926210747></p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master/images/20200926211331.png alt=20200926211331></p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>Job Finished in 131.634 seconds
+<span class=ln>2</span>Estimated value of Pi is 3.14158440000000000000
+</code></pre></div><p>至此，Hadoop 环境配置完成。</p><h1 id=备注>备注</h1><p>如果在执行 mapreduce 任务中报错如 <a href=https://stackoverflow.com/questions/21005643/container-is-running-beyond-memory-limits>此问题</a> 的描述，参考 <a href=https://web.archive.org/web/20170610145449/http://hortonworks.com/blog/how-to-plan-and-configure-yarn-in-hdp-2-0/>此篇文章</a>，需要在 mapred-site.xml 文件中添加下列配置：</p><div class=highlight><pre class=chroma><code class=language-xml data-lang=xml><span class=ln> 1</span><span class=nt>&lt;property&gt;</span>
+<span class=ln> 2</span>    <span class=nt>&lt;name&gt;</span>mapreduce.map.memory.mb<span class=nt>&lt;/name&gt;</span>
+<span class=ln> 3</span>    <span class=nt>&lt;value&gt;</span>4096<span class=nt>&lt;/value&gt;</span>
+<span class=ln> 4</span><span class=nt>&lt;/property&gt;</span>
+<span class=ln> 5</span><span class=nt>&lt;property&gt;</span>
+<span class=ln> 6</span>    <span class=nt>&lt;name&gt;</span>mapreduce.reduce.memory.mb<span class=nt>&lt;/name&gt;</span>
+<span class=ln> 7</span>    <span class=nt>&lt;value&gt;</span>8192<span class=nt>&lt;/value&gt;</span>
+<span class=ln> 8</span><span class=nt>&lt;/property&gt;</span>
+<span class=ln> 9</span><span class=nt>&lt;property&gt;</span>
+<span class=ln>10</span>    <span class=nt>&lt;name&gt;</span>mapreduce.map.java.opts<span class=nt>&lt;/name&gt;</span>
+<span class=ln>11</span>    <span class=nt>&lt;value&gt;</span>-Xmx3072m<span class=nt>&lt;/value&gt;</span>
+<span class=ln>12</span><span class=nt>&lt;/property&gt;</span>
+<span class=ln>13</span><span class=nt>&lt;property&gt;</span>
+<span class=ln>14</span>    <span class=nt>&lt;name&gt;</span>mapreduce.reduce.java.opts<span class=nt>&lt;/name&gt;</span>
+<span class=ln>15</span>    <span class=nt>&lt;value&gt;</span>-Xmx6144m<span class=nt>&lt;/value&gt;</span>
+<span class=ln>16</span><span class=nt>&lt;/property&gt;</span>
 </code></pre></div></div><div class="row middle-xs"><div class=col-xs-12><div class=post-category><a href=/categories/hadoop>hadoop</a></div></div></div><div class=row><div class=col-xs-12></div></div><div style=height:50px></div><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"],],},};</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script><div class=site-footer><div class=site-footer-item><a href=/ target=_self>Home</a></div><div class=site-footer-item><a href=mailto:sudrizzz@google.com target=_blank>Mail</a></div><div class=site-footer-item><a href="https://music.163.com/song?id=356827" target=_blank>~</a></div></div></div></div></article><script src=/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script></body></html>
