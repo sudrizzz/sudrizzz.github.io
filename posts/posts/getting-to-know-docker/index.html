@@ -1,0 +1,133 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=generator content="Hugo 0.74.3"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Anthony"><meta property="og:url" content="https://sudrizzz.github.com/posts/getting-to-know-docker/"><link rel=canonical href=https://sudrizzz.github.com/posts/getting-to-know-docker/><link rel=alternate type=application/atom+xml href=https://sudrizzz.github.comindex.xml title="Anthony's Blog"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/sudrizzz.github.com"},"articleSection":"posts","name":"初识 Docker","headline":"初识 Docker","description":"Docker 出现以前 在过去的开发过程中，通常是先编写代码，然后在本地机器上进行测试，测试通过后提交到服务器。这个时候往往会因为服务器环境配置或者系统设置的原因，导致代码不能在服务器端运行。于是就会产生下述对话。\n 测试：“你的代码在服务器上报错了，请马上处理下”；\n开发：“啊？不会吧？我刚刚在本地测试好了才提交的呀。我马上处理。”\n 又比如需要搭建多台相同环境的服务器集群时，导致时间大量浪费在环境配置上，劳神费心。此时 Docker 的出现极大地改善了这一窘境。\nDocker 简介 简介来自于 Docker 入门教程 - 阮一峰的网络日志\n Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。\nDocker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。\n总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。\n 安装 Docker 在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。\n设置 Docker 仓库 根据官方教程，执行以下两条命令：\n1sudo yum install -y yum-utils 2 3sudo yum-config-manager \\ 4 --add-repo \\ 5 http:\/\/mirrors.aliyun.com\/docker-ce\/linux\/centos\/docker-ce.repo 由于国内直接连接 Docker 官方镜像源十分缓慢，所以在第二个命令中将官方镜像源替换为阿里云镜像源。\n安装 Docker 引擎 1sudo yum install docker-ce docker-ce-cli containerd.io 在执行这条命令时，极有可能会报错。比如作者遇到的报错如下：\n1Error: 2 Problem: package docker-ce-3:19.","inLanguage":"en-US","author":"Anthony","creator":"Anthony","publisher":"Anthony","accountablePerson":"Anthony","copyrightHolder":"Anthony","copyrightYear":"2020","datePublished":"2020-09-02 18:37:11 \u002b0800 \u002b0800","dateModified":"2020-09-02 18:37:11 \u002b0800 \u002b0800","url":"https:\/\/sudrizzz.github.com\/posts\/getting-to-know-docker\/","keywords":[]}</script><title>初识 Docker - Anthony's Blog</title><meta property="og:title" content="初识 Docker - Anthony's Blog"><meta property="og:type" content="article"><meta property="og:description" content="Docker 出现以前 在过去的开发过程中，通常是先编写代码，然后在本地机器上进行测试，测试通过后提交到服务器。这个时候往往会因为服务器环境配置或者系统设置的原因，导致代码不能在服务器端运行。于是就会产生下述对话。
+ 测试：“你的代码在服务器上报错了，请马上处理下”；
+开发：“啊？不会吧？我刚刚在本地测试好了才提交的呀。我马上处理。”
+ 又比如需要搭建多台相同环境的服务器集群时，导致时间大量浪费在环境配置上，劳神费心。此时 Docker 的出现极大地改善了这一窘境。
+Docker 简介 简介来自于 Docker 入门教程 - 阮一峰的网络日志
+ Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。
+Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。
+总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。
+ 安装 Docker 在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。
+设置 Docker 仓库 根据官方教程，执行以下两条命令：
+1sudo yum install -y yum-utils 2 3sudo yum-config-manager \ 4 --add-repo \ 5 http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo 由于国内直接连接 Docker 官方镜像源十分缓慢，所以在第二个命令中将官方镜像源替换为阿里云镜像源。
+安装 Docker 引擎 1sudo yum install docker-ce docker-ce-cli containerd.io 在执行这条命令时，极有可能会报错。比如作者遇到的报错如下：
+1Error: 2 Problem: package docker-ce-3:19."><meta name=description content="Docker 出现以前 在过去的开发过程中，通常是先编写代码，然后在本地机器上进行测试，测试通过后提交到服务器。这个时候往往会因为服务器环境配置或者系统设置的原因，导致代码不能在服务器端运行。于是就会产生下述对话。
+ 测试：“你的代码在服务器上报错了，请马上处理下”；
+开发：“啊？不会吧？我刚刚在本地测试好了才提交的呀。我马上处理。”
+ 又比如需要搭建多台相同环境的服务器集群时，导致时间大量浪费在环境配置上，劳神费心。此时 Docker 的出现极大地改善了这一窘境。
+Docker 简介 简介来自于 Docker 入门教程 - 阮一峰的网络日志
+ Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。
+Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。
+总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。
+ 安装 Docker 在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。
+设置 Docker 仓库 根据官方教程，执行以下两条命令：
+1sudo yum install -y yum-utils 2 3sudo yum-config-manager \ 4 --add-repo \ 5 http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo 由于国内直接连接 Docker 官方镜像源十分缓慢，所以在第二个命令中将官方镜像源替换为阿里云镜像源。
+安装 Docker 引擎 1sudo yum install docker-ce docker-ce-cli containerd.io 在执行这条命令时，极有可能会报错。比如作者遇到的报错如下：
+1Error: 2 Problem: package docker-ce-3:19."><meta property="og:locale" content="zh-cn"><link rel=stylesheet href=/css/flexboxgrid-6.3.1.min.css><link rel=stylesheet href=/css/github-markdown.css><link rel=stylesheet href=/css/highlight/tomorrow.min.css><link rel=stylesheet href=/css/index.css><link href=/index.xml rel=alternate type=application/rss+xml title="Anthony's Blog"><link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel=stylesheet></head><body><article class="post Chinese" id=article><div class=row><div class=col-xs-12><div class=site-header><header><div class="signatures site-title"><a href=/>Anthony</a></div></header><div class="row end-xs"></div><div class=header-line></div></div><header class=post-header><h1 class=post-title>初识 Docker</h1><div class="row post-desc"><div class=col-xs-6><time class=post-date datetime="2020-09-02 18:37:11 +0800">2020.09.02</time></div><div class=col-xs-6><div class=post-author><a target=_blank href=https://github.com/sudrizzz/>@Anthony</a></div></div></div></header><div class="post-content markdown-body"><h1 id=docker-出现以前>Docker 出现以前</h1><p>在过去的开发过程中，通常是先编写代码，然后在本地机器上进行测试，测试通过后提交到服务器。这个时候往往会因为服务器环境配置或者系统设置的原因，导致代码不能在服务器端运行。于是就会产生下述对话。</p><blockquote><p>测试：“你的代码在服务器上报错了，请马上处理下”；<br>开发：“啊？不会吧？我刚刚在本地测试好了才提交的呀。我马上处理。”</p></blockquote><p>又比如需要搭建多台相同环境的服务器集群时，导致时间大量浪费在环境配置上，劳神费心。此时 Docker 的出现极大地改善了这一窘境。</p><h1 id=docker-简介>Docker 简介</h1><p>简介来自于 <a href=http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html>Docker 入门教程 - 阮一峰的网络日志</a></p><blockquote><p>Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。</p><p>Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。</p><p>总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。</p></blockquote><h1 id=安装-docker>安装 Docker</h1><p>在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。</p><h2 id=设置-docker-仓库>设置 Docker 仓库</h2><p>根据官方教程，执行以下两条命令：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo yum install -y yum-utils
+<span class=ln>2</span>
+<span class=ln>3</span>sudo yum-config-manager <span class=se>\
+</span><span class=ln>4</span><span class=se></span>    --add-repo <span class=se>\
+</span><span class=ln>5</span><span class=se></span>    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+</code></pre></div><p>由于国内直接连接 Docker 官方镜像源十分缓慢，所以在第二个命令中将官方镜像源替换为阿里云镜像源。</p><h2 id=安装-docker-引擎>安装 Docker 引擎</h2><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo yum install docker-ce docker-ce-cli containerd.io
+</code></pre></div><p>在执行这条命令时，极有可能会报错。比如作者遇到的报错如下：</p><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=ln> 1</span><span class=nx>Error</span><span class=p>:</span>
+<span class=ln> 2</span> <span class=nx>Problem</span><span class=p>:</span> <span class=kn>package</span> <span class=nx>docker</span><span class=o>-</span><span class=nx>ce</span><span class=o>-</span><span class=mi>3</span><span class=p>:</span><span class=mf>19.03.8</span><span class=o>-</span><span class=mf>3.</span><span class=nx>el7</span><span class=p>.</span><span class=nx>x86_64</span> <span class=nx>requires</span> <span class=nx>containerd</span><span class=p>.</span><span class=nx>io</span> <span class=o>&gt;=</span> <span class=mf>1.2.2</span><span class=o>-</span><span class=mi>3</span><span class=p>,</span> <span class=nx>but</span> <span class=nx>none</span> <span class=nx>of</span> <span class=nx>the</span> <span class=nx>providers</span> <span class=nx>can</span> <span class=nx>be</span> <span class=nx>installed</span>
+<span class=ln> 3</span>  <span class=o>-</span> <span class=nx>cannot</span> <span class=nx>install</span> <span class=nx>the</span> <span class=nx>best</span> <span class=nx>candidate</span> <span class=k>for</span> <span class=nx>the</span> <span class=nx>job</span>
+<span class=ln> 4</span>  <span class=o>-</span> <span class=kn>package</span> <span class=nx>containerd</span><span class=p>.</span><span class=nx>io</span><span class=o>-</span><span class=mf>1.2.10</span><span class=o>-</span><span class=mf>3.2</span><span class=p>.</span><span class=nx>el7</span><span class=p>.</span><span class=nx>x86_64</span> <span class=nx>is</span> <span class=nx>excluded</span>
+<span class=ln> 5</span>  <span class=o>-</span> <span class=kn>package</span> <span class=nx>containerd</span><span class=p>.</span><span class=nx>io</span><span class=o>-</span><span class=mf>1.2.13</span><span class=o>-</span><span class=mf>3.1</span><span class=p>.</span><span class=nx>el7</span><span class=p>.</span><span class=nx>x86_64</span> <span class=nx>is</span> <span class=nx>excluded</span>
+<span class=ln> 6</span>  <span class=o>-</span> <span class=kn>package</span> <span class=nx>containerd</span><span class=p>.</span><span class=nx>io</span><span class=o>-</span><span class=mf>1.2.2</span><span class=o>-</span><span class=mf>3.3</span><span class=p>.</span><span class=nx>el7</span><span class=p>.</span><span class=nx>x86_64</span> <span class=nx>is</span> <span class=nx>excluded</span>
+<span class=ln> 7</span>  <span class=o>-</span> <span class=kn>package</span> <span class=nx>containerd</span><span class=p>.</span><span class=nx>io</span><span class=o>-</span><span class=mf>1.2.2</span><span class=o>-</span><span class=mf>3.</span><span class=nx>el7</span><span class=p>.</span><span class=nx>x86_64</span> <span class=nx>is</span> <span class=nx>excluded</span>
+<span class=ln> 8</span>  <span class=o>-</span> <span class=kn>package</span> <span class=nx>containerd</span><span class=p>.</span><span class=nx>io</span><span class=o>-</span><span class=mf>1.2.4</span><span class=o>-</span><span class=mf>3.1</span><span class=p>.</span><span class=nx>el7</span><span class=p>.</span><span class=nx>x86_64</span> <span class=nx>is</span> <span class=nx>excluded</span>
+<span class=ln> 9</span>  <span class=o>-</span> <span class=kn>package</span> <span class=nx>containerd</span><span class=p>.</span><span class=nx>io</span><span class=o>-</span><span class=mf>1.2.5</span><span class=o>-</span><span class=mf>3.1</span><span class=p>.</span><span class=nx>el7</span><span class=p>.</span><span class=nx>x86_64</span> <span class=nx>is</span> <span class=nx>excluded</span>
+<span class=ln>10</span>  <span class=o>-</span> <span class=kn>package</span> <span class=nx>containerd</span><span class=p>.</span><span class=nx>io</span><span class=o>-</span><span class=mf>1.2.6</span><span class=o>-</span><span class=mf>3.3</span><span class=p>.</span><span class=nx>el7</span><span class=p>.</span><span class=nx>x86_64</span> <span class=nx>is</span> <span class=nx>excluded</span>
+</code></pre></div><p>为了解决这个报错，需要先执行下述命令安装好 containerd.io 组件。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo yum install -y <span class=se>\
+</span><span class=ln>2</span><span class=se></span>    https://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.13-3.2.el7.x86_64.rpm
+<span class=ln>3</span>
+<span class=ln>4</span>sudo yum -y install ./containerd.io-1.2.13-3.1.el7.x86_64.rpm
+</code></pre></div><p>至于为什么安装的 containerd.io 组件是 centos 7 目录下的，有两个原因：</p><ol><li>此版本在 centos 8 环境下也可以正常使用；</li><li>阿里云官方只提供了适配 centos 7 的 containerd.io 组件。</li></ol><p>然后重新执行上述命令即可完成 Docker 的安装。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo yum install docker-ce docker-ce-cli
+</code></pre></div><p>我们可以通过两个命令来验证 Docker 是否安装成功。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>docker version
+<span class=ln>2</span><span class=c1># 或</span>
+<span class=ln>3</span>docker info
+</code></pre></div><p>若输出类似于以下的内容，则配置正确。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln> 1</span>[root@localhost ~]# docker version
+<span class=ln> 2</span>Client: Docker Engine - Community
+<span class=ln> 3</span> Version:           19.03.12
+<span class=ln> 4</span> API version:       1.40
+<span class=ln> 5</span> Go version:        go1.13.10
+<span class=ln> 6</span> Git commit:        48a66213fe
+<span class=ln> 7</span> Built:             Mon Jun 22 15:46:54 2020
+<span class=ln> 8</span> OS/Arch:           linux/amd64
+<span class=ln> 9</span> Experimental:      false
+<span class=ln>10</span>
+<span class=ln>11</span>Server: Docker Engine - Community
+<span class=ln>12</span> Engine:
+<span class=ln>13</span>  Version:          19.03.12
+<span class=ln>14</span>  API version:      1.40 (minimum version 1.12)
+<span class=ln>15</span>  Go version:       go1.13.10
+<span class=ln>16</span>  Git commit:       48a66213fe
+<span class=ln>17</span>  Built:            Mon Jun 22 15:45:28 2020
+<span class=ln>18</span>  OS/Arch:          linux/amd64
+<span class=ln>19</span>  Experimental:     false
+<span class=ln>20</span> containerd:
+<span class=ln>21</span>  Version:          1.2.6
+<span class=ln>22</span>  GitCommit:        894b81a4b802e4eb2a91d1ce216b8817763c29fb
+<span class=ln>23</span> runc:
+<span class=ln>24</span>  Version:          1.0.0-rc8
+<span class=ln>25</span>  GitCommit:        425e105d5a03fabd737a126ad93d62a9eeede87f
+<span class=ln>26</span> docker-init:
+<span class=ln>27</span>  Version:          0.18.0
+<span class=ln>28</span>  GitCommit:        fec3683
+</code></pre></div><h1 id=配置-docker-仓库>配置 Docker 仓库</h1><p>由于在国内连接 Docker 官方仓库 <a href=https://hub.docker.com>https://hub.docker.com</a> 十分缓慢，故我们可以将仓库地址更换为国内的各种源，详细步骤如下。</p><ol><li>在 <code>/etc/docker</code> 目录中新增一个名为 <code>daemon.json</code> 的配置文件，如果已经存在这个文件，则只需要进行修改。</li><li>将该文件中的 <code>registry-mirrors</code> 项修改为如下形式。</li></ol><div class=highlight><pre class=chroma><code class=language-json data-lang=json><span class=ln>1</span><span class=p>{</span>
+<span class=ln>2</span>  <span class=nt>&#34;registry-mirrors&#34;</span><span class=p>:</span> <span class=p>[</span>
+<span class=ln>3</span>    <span class=s2>&#34;https://kuamavit.mirror.aliyuncs.com&#34;</span><span class=p>,</span>
+<span class=ln>4</span>    <span class=s2>&#34;https://docker.mirrors.ustc.edu.cn&#34;</span>
+<span class=ln>5</span>  <span class=p>]</span>
+<span class=ln>6</span><span class=p>}</span>
+</code></pre></div><p>到此就配置完毕了。</p><h1 id=启动并运行-docker>启动并运行 Docker</h1><h2 id=启动>启动</h2><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ sudo service docker start
+<span class=ln>2</span><span class=c1># 或</span>
+<span class=ln>3</span>$ sudo systemctl start docker
+</code></pre></div><h2 id=运行-hello-world>运行 hello-world</h2><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo docker run hello-world
+</code></pre></div><p>此时，由于本地尚未安装 hello-world 实例，Docker 会自动从上文中配置的镜像中拉取 hello-world 实例，然后运行这个实例。具体输出如下。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln> 1</span>[root@localhost docker]# docker run hello-world
+<span class=ln> 2</span>
+<span class=ln> 3</span># 这里提示未在本地找到 hello-world 实例，将从镜像中拉取最新版。
+<span class=ln> 4</span>Unable to find image &#39;hello-world:latest&#39; locally
+<span class=ln> 5</span>latest: Pulling from library/hello-world
+<span class=ln> 6</span>
+<span class=ln> 7</span>0e03bdcc26d7: Pull complete
+<span class=ln> 8</span>Digest: sha256:7f0a9f93b4aa3022c3a4c147a449bf11e0941a1fd0bf4a8e6c9408b2600777c5
+<span class=ln> 9</span>Status: Downloaded newer image for hello-world:latest
+<span class=ln>10</span>
+<span class=ln>11</span># 开始运行
+<span class=ln>12</span>Hello from Docker!
+<span class=ln>13</span>This message shows that your installation appears to be working correctly.
+<span class=ln>14</span>
+<span class=ln>15</span>To generate this message, Docker took the following steps:
+<span class=ln>16</span> 1. The Docker client contacted the Docker daemon.
+<span class=ln>17</span> 2. The Docker daemon pulled the &#34;hello-world&#34; image from the Docker Hub.
+<span class=ln>18</span>    (amd64)
+<span class=ln>19</span> 3. The Docker daemon created a new container from that image which runs the
+<span class=ln>20</span>    executable that produces the output you are currently reading.
+<span class=ln>21</span> 4. The Docker daemon streamed that output to the Docker client, which sent it
+<span class=ln>22</span>    to your terminal.
+<span class=ln>23</span>
+<span class=ln>24</span>To try something more ambitious, you can run an Ubuntu container with:
+<span class=ln>25</span> $ docker run -it ubuntu bash
+<span class=ln>26</span>
+<span class=ln>27</span>Share images, automate workflows, and more with a free Docker ID:
+<span class=ln>28</span> https://hub.docker.com/
+<span class=ln>29</span>
+<span class=ln>30</span>For more examples and ideas, visit:
+<span class=ln>31</span> https://docs.docker.com/get-started/
+</code></pre></div><h1 id=容器管理>容器管理</h1><p>当 image 文件开始运行之后，就会生成一个容器实例，容器实例实际上也是一个文件，故也称为实例文件。当容器实例停止运行时，容器文件并不会被删除。</p><ol><li>列出本机正在运行的容器</li></ol><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo docker container ls
+</code></pre></div><ol start=2><li>列出本机所有容器（包括已停止运行的）</li></ol><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo docker container ls -all
+</code></pre></div><p>输出结果如下。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
+<span class=ln>2</span>d3a382fde773        hello-world         &#34;/hello&#34;            8 minutes ago       Exited (0) 8 minutes ago                       romantic_proskuriakova
+</code></pre></div><p>其中 <code>CONTAINER ID</code> 就是该容器的唯一标识符，在后续的终止容器运行时需要用到。</p><ol start=3><li>终止容器运行</li></ol><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo docker container <span class=nb>kill</span> d3a382fde773
+</code></pre></div><p>当然本例中 hello-world 容器已经停止运行了，所以不能再次停止，此处仅做示例。
+即使一个容器文件已经停止运行，但是其依然会占据磁盘空间，可以使用下述命令进行删除。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo docker container rm d3a382fde773
+</code></pre></div><h1 id=镜像管理>镜像管理</h1><p>当我们拉取了多个镜像，其中某些又不需要使用了，则需要对镜像进行手动管理，详细操作如下。</p><ol><li>罗列所有本地已经安装的镜像</li></ol><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo docker image ls
+</code></pre></div><p>输出如下</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+<span class=ln>2</span>hello-world         latest              bf756fb1ae65        8 months ago        13.3kB
+</code></pre></div><ol start=2><li>移除不需要的镜像</li></ol><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo docker image rm hello-world
+</code></pre></div><p>注意，如果 image 在运行，或者已经生成了实例文件，是不能直接删除的，需要先将实例容器停止并删除实例文件，才可以正常删除。执行结果如下。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>Untagged: hello-world:latest
+<span class=ln>2</span>Untagged: hello-world@sha256:7f0a9f93b4aa3022c3a4c147a449bf11e0941a1fd0bf4a8e6c9408b2600777c5
+<span class=ln>3</span>Deleted: sha256:bf756fb1ae65adf866bd8c456593cd24beb6a0a061dedf42b26a993176745f6b
+<span class=ln>4</span>Deleted: sha256:9c27e219663c25e0f28493790cc0b88bc973ba3b1686355f221c38a36978ac63
+</code></pre></div></div><div class="row middle-xs"><div class=col-xs-12><div class=post-category><a href=/categories/docker>docker</a></div></div></div><div class=row><div class=col-xs-12></div></div><div style=height:50px></div><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"],],},};</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script><div class=site-footer><div class=site-footer-item><a href=/ target=_self>Home</a></div><div class=site-footer-item><a href=mailto:sudrizzz@google.com target=_blank>Mail</a></div><div class=site-footer-item><a href="https://music.163.com/song?id=356827" target=_blank>~</a></div></div></div></div></article><script src=/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script></body></html>
