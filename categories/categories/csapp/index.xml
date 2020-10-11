@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CSAPP on Anthony's Blog</title><link>https://sudrizzz.github.com/categories/csapp/</link><description>Recent content in CSAPP on Anthony's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Sep 2020 15:20:11 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.com/categories/csapp/index.xml" rel="self" type="application/rss+xml"/><item><title>CMU 15-213 存储器层次结构</title><link>https://sudrizzz.github.com/posts/cmu-15-213-lesson3/</link><pubDate>Sun, 20 Sep 2020 15:20:11 +0800</pubDate><guid>https://sudrizzz.github.com/posts/cmu-15-213-lesson3/</guid><description>前言 本课的第三、四章分别是程序的机器级表示和处理器体系结构，由于过于硬核，此处略过。第五章是优化程序性能，讲解了如何最大限度地提高程序执行效能，此处也略过。本文基于第六章存储器层级结构。
+存储技术 在本节中主要介绍 SRAM 存储器、DRAM 存储器、ROM 存储器以及机械和固态硬盘。
+随机访问存储器 随机访问存储器（Random Access Memory, RAM）分为两类：静态的和动态的。静态随机访问存储器（Static Random Access Memory, SRAM）比动态随机访问存储器（Dynamic Random Access Memory, DRAM）更快，但也贵得多。目前 CPU 中的三级缓存都是 SRAM。
+易失性存储器 需要注意的是，虽然 SRAM 是静态随机访问存储器，但是其“静态”是相对于动态随机访问存储器的，仍然属于“易失性存储器”，而非真正意义上的静态，同时 DRAM 也属于“易失性存储器”。通俗的说，就是断电之后保存的信息就会丢失。
+SRAM SRAM 将每个位存储在一个双稳态的存储器单元中，每个单元是用一个六晶体管来实现的，在通电的情况下，它可以无限期地保持在两个不同的电压配置或状态之一，其他任何状态都是不稳定的。当从不稳定状态开始，电路会迅速转换到两个稳定状态中的一个。这样的存储器单元类似于下图倒转的钟摆模型。
+由于上述的特性（SRAM 的双稳态特性），只要有电，它就会永远保持它的值。即使有干扰（例如电子噪音）来扰乱电压，当干扰消除后，电路就会恢复到稳定值。这样体现了上述表格中的持续性和不敏感性。
+DRAM DRAM 将每个位存储位对一个电容的充电，每个单元由一个电容和一个访问晶体管组成。但是与 SRAM 不同，DRAM 存储单元对抗干扰非常敏感。当电容的电压被扰乱之后，它就永远不会恢复了。
+小结 下表总结了 SRAM 和 DRAM 存储器的特性。只要有供电，SRAM 就会保持不变。与 DRAM 不同，它不需要刷新。SRAM 的存取比 DRAM 快。SRAM 对诸如光和电噪声这样的干扰不敏感。代价是 SRAM 单元比 DRAM 单元使用更多的晶体管，因而密集度低，而且更贵，功耗更大。
+每位晶体管数 相对访问时间 持续的？ 敏感的？ 相对花费 应用 SRAM 6 1X 是 否 1000x 高速缓存存储器 DRAM 1 10X 否 是 1X 主存，帧缓冲区 非易失性存储器 显然，非易失性存储器指即使断电也不会丢失数据的存储器，非易失性存储器包括以下几种：</description></item><item><title>CMU 15-213 浮点数</title><link>https://sudrizzz.github.com/posts/cmu-15-213-lesson2/</link><pubDate>Mon, 14 Sep 2020 18:57:11 +0800</pubDate><guid>https://sudrizzz.github.com/posts/cmu-15-213-lesson2/</guid><description>前言 在 上一篇文章 中，我们了解了二进制有符号数、无符号数以及其相关的运算方法，在本篇中，我们将进一步了解浮点数在计算机中的相关知识。
+二进制小数 表示方法 二进制小数表达方式：在“二进制小数点”左侧的位表示 2 的 n 次幂，而在“二进制小数点”右侧的位则表示 2 的 -n 次幂。如下图：
+用公式表达如下：
+$$ a = \sum_{k=-j}^{i}b_{k} \times 2^{k} $$
+示例 例如，将十进制小数转换为二进制小数，有以下例子：
+十进制小数 二进制小数 $ 5\frac{3}{4} $ 101.11 $ 2\frac{7}{8} $ 10.111 $ 1\frac{7}{16} $ 1.0111 以第一个为例，我们可以注意到二进制小数按位进行求和的结果是：
+$$ 5\frac{3}{4} = 2^{2}+2^{0}+2^{-1}+2^{-2} $$
+通过上面三个例子，我们可以注意到，当二进制小数整体右移一位，即相当于将十进制小数除以 2（仅针对无符号数）。相应的，当二进制小数整体左移一位，即相当于将十进制小数乘以 2。
+同时我们应特别注意到，形如 $ 0.11111&amp;hellip;_{2} $ 的二进制小数，表示略比 1 小的十进制数。用公式表示如下：
+$$ 1/2 + 1/4 + 1/8 + \dots + 1/2^{i} + \dots \to 1.</description></item><item><title>CMU 15-213 位、字节与整数</title><link>https://sudrizzz.github.com/posts/cmu-15-213-lesson1/</link><pubDate>Fri, 04 Sep 2020 19:02:11 +0800</pubDate><guid>https://sudrizzz.github.com/posts/cmu-15-213-lesson1/</guid><description>简介 CSAPP 课程全程 Computer Systems: A Programmer’s Perspective，中文翻译为“从程序员的视角，看计算机系统！”或“深入理解计算机系统”。此课程是卡耐基梅隆大学开设的一门课程，官方网站 https://www.cs.cmu.edu/~213/index.html。
+内容简介节选自豆瓣
+https://book.douban.com/subject/1230413
+从程序员的视角，看计算机系统！
+本书适用于那些想要写出更快、更可靠程序的程序员。通过掌握程序是如何映射到系统上，以及程序是如何执行的，读者能够更好的理解程序的行为为什么是这样的，以及效率低下是如何造成的。粗略来看，计算机系统包括处理器和存储器硬件、编译器、操作系统和网络互连环境。而通过程序员的视角，读者可以清晰地明白学习计算机系统的内部工作原理会对他们今后作为计算机科学研究者和工程师的工作有进一步的帮助。它还有助于为进一步学习计算机体系结构、操作系统、编译器和网络互连做好准备。
+一切皆位 十进制 在计算机发展历史上，实际上只有宾夕法尼亚大学建立的第一台计算机 ENIAC 使用了十进制进行了算术运算，他们使用 10 个电子管来表示每个数字。所以他们通过控制电子管的开关来表示 10 个数字中的其中一个。
+二进制 随着计算机的发展，十进制逐渐演化为二进制。在计算机中，我们使用电学层面上的电压高低来存储位数据，如图所示，高电压（0.9v-1.1v）记作逻辑 1，而低电压（0.0v-0.2v）记作逻辑 0。
+之所以这么做，是因为通过区分高低电压，可以有效地过滤噪声和杂讯。
+十六进制 二进制的成功运用也带来了一个问题，由于每一个位只能存储两种信号（即 0 和 1），对于人来说基本属于不可读的，所以我们将每四个二进制在位合并为一个十六进制位，这样大大缩减了数据的展示长度。例如
+具体数据类型实际所占空间 此处以 C 语言数据类型为例，因为在 32 位与 64 位机器上所占空间不尽相同，故列下表。
+C Data Type Typical 32-bit Typical 64-bit x86-64 char 1 1 1 short 2 2 2 int 4 4 4 long 4 8 8 float 4 4 4 double 8 8 8 pointer 4 8 8 位操作 与、或、非、异或 通俗的解释如下：</description></item></channel></rss>
