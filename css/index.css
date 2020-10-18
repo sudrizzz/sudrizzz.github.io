@@ -113,9 +113,9 @@ a:hover {
 /* post */
 
 @media screen and (max-width: 1000px) {
-  .site-header {
+  /* .site-header {
     display: none;
-  }
+  } */
   .post-content {
     padding: 0 12px;
   }
