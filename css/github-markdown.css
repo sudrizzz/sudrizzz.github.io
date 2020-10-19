@@ -189,6 +189,7 @@
 .markdown-body table {
   border-spacing: 0;
   border-collapse: collapse;
+  word-break: break-word;
 }
 .markdown-body td,
 .markdown-body th {
