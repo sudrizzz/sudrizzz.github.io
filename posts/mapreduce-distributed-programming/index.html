@@ -34,19 +34,19 @@ ApplicationMaster 负责向调度器申请、释放资源，清求 NodeManager �
 <span class=ln>9</span><span class=o>}</span>
 </code></pre></div><p>reduce 函数接收 Map 阶段传来的键值对，第 3~6 行遍历每一组记录，累加同一视频类型下的视频数量，第 7 行通过 context 输出计算结果。</p><h3 id=运行>运行</h3><ol><li>通过 IDEA-Build-Build Artifacts 功能将代码打包为 jar 文件，命名为 CategoryCount.jar</li><li>登录 Hadoop 集群，将数据集文件 YoutubeDataSets.txt 传到 HDFS 下 /tmp 目录下</li><li>执行如下命令，开始运行程序</li></ol><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>hadoop jar CategoryCount.jar CategoryCount /tmp/YoutubeDataSets.txt /tmp/output
 </code></pre></div><ol start=4><li>执行如下命令，查看各类别视频数量</li></ol><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>hadoop fs -cat /tmp/output/part-r-00000
-</code></pre></div><p>可以得到如下输出</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln> 1</span>UNA	32
-<span class=ln> 2</span>Autos &amp; Vehicles	77
-<span class=ln> 3</span>Comedy	420
-<span class=ln> 4</span>Education	65
-<span class=ln> 5</span>Entertainment	911
-<span class=ln> 6</span>Film &amp; Animation	261
-<span class=ln> 7</span>Howto &amp; Style	138
-<span class=ln> 8</span>Music	870
-<span class=ln> 9</span>News &amp; Politics	343
-<span class=ln>10</span>Nonprofits &amp; Activism	43
-<span class=ln>11</span>People &amp; Blogs	399
-<span class=ln>12</span>Pets &amp; Animals	95
-<span class=ln>13</span>Science &amp; Technology	80
-<span class=ln>14</span>Sports	253
-<span class=ln>15</span>Travel &amp; Events	113
-</code></pre></div></div><div class="row middle-xs"><div class=col-xs-12><div class=post-category><a href=/categories/hadoop>hadoop</a></div></div></div><div class=row><div class=col-xs-12></div></div><div style=height:50px></div><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"],],},};</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script><div class=site-footer><div class=site-footer-item><a href=https://github.com/sudrizzz/ target=_blank>Github</a></div><div class=site-footer-item><a href=mailto:sudrizzz@google.com target=_blank>Email</a></div><div class=site-footer-item><a href="https://music.163.com/song?id=356827" target=_blank>~</a></div></div></div></div></article><script src=/js/highlight.pack.js></script><script src=/js/lazyload.min.js></script><script>var lazyImage=new LazyLoad({container:document.getElementById('article')});</script><script>hljs.initHighlightingOnLoad();</script></body></html>
+</code></pre></div><p>可以得到如下输出</p><pre><code>UNA	32
+Autos &amp; Vehicles	77
+Comedy	420
+Education	65
+Entertainment	911
+Film &amp; Animation	261
+Howto &amp; Style	138
+Music	870
+News &amp; Politics	343
+Nonprofits &amp; Activism	43
+People &amp; Blogs	399
+Pets &amp; Animals	95
+Science &amp; Technology	80
+Sports	253
+Travel &amp; Events	113
+</code></pre></div><div class="row middle-xs"><div class=col-xs-12><div class=post-category><a href=/categories/hadoop>hadoop</a></div></div></div><div class=row><div class=col-xs-12></div></div><div style=height:50px></div><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"],],},};</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script><div class=site-footer><div class=site-footer-item><a href=https://github.com/sudrizzz/ target=_blank>Github</a></div><div class=site-footer-item><a href=mailto:sudrizzz@google.com target=_blank>Email</a></div><div class=site-footer-item><a href="https://music.163.com/song?id=356827" target=_blank>~</a></div></div></div></div></article><script src=/js/highlight.pack.js></script><script src=/js/lazyload.min.js></script><script>var lazyImage=new LazyLoad({container:document.getElementById('article')});</script><script>hljs.initHighlightingOnLoad();</script></body></html>
