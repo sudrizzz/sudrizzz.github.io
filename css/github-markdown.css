@@ -496,7 +496,7 @@
   word-break: break-word;
 }
 .markdown-body pre {
-  /* word-wrap: normal; */
+  word-wrap: normal;
 }
 .markdown-body pre > code {
   padding: 0;
@@ -528,7 +528,7 @@
   margin: 0;
   overflow: visible;
   line-height: inherit;
-  /* word-wrap: normal; */
+  word-wrap: normal;
   background-color: transparent;
   border: 0;
 }
