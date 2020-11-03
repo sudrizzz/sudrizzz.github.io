@@ -120,8 +120,8 @@ tcp        0      0 0.0.0.0:22122           0.0.0.0:*               LISTEN      
 <span class=ln>3</span>
 <span class=ln>4</span><span class=c1># 开机自启</span>
 <span class=ln>5</span>chkconfig fdfs_storaged on
-</code></pre></div><p>此时我们可以在 store_path0 目录下看到 Storage 服务自动创建的 N*N 个子目录</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>ls /home/fastdfs/file/data/
-<span class=ln>2</span>ls -l | grep &#34;^d&#34; | wc -l
+</code></pre></div><p>此时我们可以在 store_path0 目录下看到 Storage 服务自动创建的 N 个子目录</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>ls /home/fastdfs/file/data/
+<span class=ln>2</span>ls -l <span class=p>|</span> grep <span class=s2>&#34;^d&#34;</span> <span class=p>|</span> wc -l
 </code></pre></div><pre><code>00  0A  14  1E  28  32  3C  46  50  5A  64  6E  78  82  8C  96  A0  AA  B4  BE  C8  D2  DC  E6  F0  FA
 01  0B  15  1F  29  33  3D  47  51  5B  65  6F  79  83  8D  97  A1  AB  B5  BF  C9  D3  DD  E7  F1  FB
 02  0C  16  20  2A  34  3E  48  52  5C  66  70  7A  84  8E  98  A2  AC  B6  C0  CA  D4  DE  E8  F2  FC
