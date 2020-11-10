@@ -49,11 +49,7 @@ https://book.douban.com/subject/1230413
 之所以这么做，是因为通过区分高低电压，可以有效地过滤噪声和杂讯。
 十六进制 二进制的成功运用也带来了一个问题，由于每一个位只能存储两种信号（即 0 和 1），对于人来说基本属于不可读的，所以我们将每四个二进制在位合并为一个十六进制位，这样大大缩减了数据的展示长度。例如
 具体数据类型实际所占空间 此处以 C 语言数据类型为例，因为在 32 位与 64 位机器上所占空间不尽相同，故列下表。
-C Data Type Typical 32-bit Typical 64-bit x86-64 char 1 1 1 short 2 2 2 int 4 4 4 long 4 8 8 float 4 4 4 double 8 8 8 pointer 4 8 8 位操作 与、或、非、异或 通俗的解释如下：</description></item><item><title>初识 Docker</title><link>https://sudrizzz.github.io/posts/getting-to-know-docker/</link><pubDate>Wed, 02 Sep 2020 18:37:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-docker/</guid><description>Docker 出现以前 在过去的开发过程中，通常是先编写代码，然后在本地机器上进行测试，测试通过后提交到服务器。这个时候往往会因为服务器环境配置或者系统设置的原因，导致代码不能在服务器端运行。于是就会产生下述对话。
-测试：“你的代码在服务器上报错了，请马上处理下”；
-开发：“啊？不会吧？我刚刚在本地测试好了才提交的呀。我马上处理。”
-又比如需要搭建多台相同环境的服务器集群时，导致时间大量浪费在环境配置上，劳神费心。此时 Docker 的出现极大地改善了这一窘境。
-Docker 简介 简介来自于 Docker 入门教程 - 阮一峰的网络日志
+C Data Type Typical 32-bit Typical 64-bit x86-64 char 1 1 1 short 2 2 2 int 4 4 4 long 4 8 8 float 4 4 4 double 8 8 8 pointer 4 8 8 位操作 与、或、非、异或 通俗的解释如下：</description></item><item><title>初识 Docker</title><link>https://sudrizzz.github.io/posts/getting-to-know-docker/</link><pubDate>Wed, 02 Sep 2020 18:37:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-docker/</guid><description>Docker 简介 简介来自于 Docker 入门教程 - 阮一峰的网络日志
 Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。
 Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。
 总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。
@@ -61,7 +57,7 @@ Docker 将应用程序与该程序的依赖，打包在一个文件里面。运�
 设置 Docker 仓库 根据官方教程，执行以下两条命令：
 1sudo yum install -y yum-utils 2 3sudo yum-config-manager \ 4 --add-repo \ 5 http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo 由于国内直接连接 Docker 官方镜像源十分缓慢，所以在第二个命令中将官方镜像源替换为阿里云镜像源。
 安装 Docker 引擎 1sudo yum install docker-ce docker-ce-cli containerd.io 在执行这条命令时，极有可能会报错。比如作者遇到的报错如下：
-1Error: 2 Problem: package docker-ce-3:19.</description></item><item><title>Github 自动部署与图床</title><link>https://sudrizzz.github.io/posts/integrating-with-github-action/</link><pubDate>Sun, 09 Aug 2020 15:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/integrating-with-github-action/</guid><description>前情提要 在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。
+1Error: 2 Problem: package docker-ce-3:19.03.8-3.el7.x86_64 requires containerd.io &amp;gt;= 1.2.2-3, but none of the providers can be installed 3 - cannot install the best candidate for the job 4 - package containerd.</description></item><item><title>Github 自动部署与图床</title><link>https://sudrizzz.github.io/posts/integrating-with-github-action/</link><pubDate>Sun, 09 Aug 2020 15:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/integrating-with-github-action/</guid><description>前情提要 在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。
 创建仓库 注意：
 由于 username 不方便叙述，故下文中均以 sudrizzz 为例替代 username，
 请根据实际情况进行更改。
