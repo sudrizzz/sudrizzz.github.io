@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>parallelcomputing on Anthony's Blog</title><link>https://sudrizzz.github.io/categories/parallelcomputing/</link><description>Recent content in parallelcomputing on Anthony's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 24 Nov 2020 10:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/categories/parallelcomputing/index.xml" rel="self" type="application/rss+xml"/><item><title>并行计算</title><link>https://sudrizzz.github.io/posts/parallelcomputing/</link><pubDate>Tue, 24 Nov 2020 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/parallelcomputing/</guid><description>本文的代码均存放在 Github，地址 https://github.com/sudrizzz/ParallelComputing
 矩阵相加 上传文件 在命令行中使用 rz 命令开始上传文件，选中相应文件之后点击打开即可开始上传。
 编译 执行 nvcc 命令编译上述文件，生成可执行文件。
-1nvcc -o matrixaddition matrixaddition.cu 其中，-o matrixaddition 表示为可执行文件的文件名指定为 matrixaddition，否则默认为 a.out。
+1nvcc -o matrixaddition matrixaddition.cu 其中，-o matrixaddition 表示将可执行文件的文件名指定为 matrixaddition，否则默认为 a.out。
 执行完上述操作之后，使用 ll 命令可以查看现有的所有文件，输出如下。
 1-rwxrwxr-x. 1 cuda01 cuda01 569416 11 月 24 09:50 matrixaddition 2-rw-r--r--. 1 cuda01 cuda01 2023 11 月 24 09:49 matrixaddition.cu 运行 上述过程中生成了 matrixaddition 可执行文件，故直接执行下述命令即可开始运行。
 1./matrixaddition 输出结果如下：
