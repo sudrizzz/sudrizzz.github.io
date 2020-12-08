@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GAN on Anthony's Blog</title><link>https://sudrizzz.github.io/categories/gan/</link><description>Recent content in GAN on Anthony's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 08 Dec 2020 10:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/categories/gan/index.xml" rel="self" type="application/rss+xml"/><item><title>GAN 网络手写数字生成</title><link>https://sudrizzz.github.io/posts/gan-for-hand-written-digits/</link><pubDate>Tue, 08 Dec 2020 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/gan-for-hand-written-digits/</guid><description>环境搭建 本例中，所涉及的系统与软件版本列表如下：
+名称 版本 操作系统 Windows 20H2 Anaconda Anaconda3-2020.11 python 3.6 tensorflow 1.8.0 Anaconda 安装 通过清华大学开源软件镜像站，我们可以直接下载最新版本的 Anaconda，本例中使用的 Anaconda 下载链接： https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe
+Anaconda 安装教程网络上已经有很多，故此处不再赘述。
+安装完成后，我们需要手动配置 Anaconda 的环境变量，在用户变量的 Path 中添加 Anaconda 的安装路径以及其子文件夹，具体内容如下。
+1C:\Users\xvyn\anaconda3 2C:\Users\xvyn\anaconda3\Scripts 3C:\Users\xvyn\anaconda3\Library\bin 上述配置请根据 Anaconda 实际安装路径进行调整，配置完成的效果如下图所示。
+完成后打开 cmd 输入下列命令，如果输出内容与下列内容类似，则表示配置正确，可继续后面的步骤。
+1conda --version 输出 conda 4.9.2 创建虚拟环境 通过如下命令进行创建一个虚拟环境。
+1conda create -n handwrittendigits -n handwrittendigits 的作用是指定虚拟环境的名称，本例中指定为 handwrittendigits。</description></item></channel></rss>

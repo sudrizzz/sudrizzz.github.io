@@ -1,0 +1,207 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=generator content="Hugo 0.79.0"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Anthony"><meta property="og:url" content="https://sudrizzz.github.io/posts/gan-for-hand-written-digits/"><link rel=canonical href=https://sudrizzz.github.io/posts/gan-for-hand-written-digits/><link rel=alternate type=application/atom+xml href=https://sudrizzz.github.ioindex.xml title="Anthony's Blog"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/sudrizzz.github.io"},"articleSection":"posts","name":"GAN 网络手写数字生成","headline":"GAN 网络手写数字生成","description":"环境搭建 本例中，所涉及的系统与软件版本列表如下：\n   名称 版本     操作系统 Windows 20H2   Anaconda Anaconda3-2020.11   python 3.6   tensorflow 1.8.0    Anaconda 安装 通过清华大学开源软件镜像站，我们可以直接下载最新版本的 Anaconda，本例中使用的 Anaconda 下载链接： https:\/\/mirrors.tuna.tsinghua.edu.cn\/anaconda\/archive\/Anaconda3-2020.11-Windows-x86_64.exe\nAnaconda 安装教程网络上已经有很多，故此处不再赘述。\n安装完成后，我们需要手动配置 Anaconda 的环境变量，在用户变量的 Path 中添加 Anaconda 的安装路径以及其子文件夹，具体内容如下。\n1C:\\Users\\xvyn\\anaconda3 2C:\\Users\\xvyn\\anaconda3\\Scripts 3C:\\Users\\xvyn\\anaconda3\\Library\\bin 上述配置请根据 Anaconda 实际安装路径进行调整，配置完成的效果如下图所示。\n完成后打开 cmd 输入下列命令，如果输出内容与下列内容类似，则表示配置正确，可继续后面的步骤。\n1conda --version 输出 conda 4.9.2  创建虚拟环境 通过如下命令进行创建一个虚拟环境。\n1conda create -n handwrittendigits -n handwrittendigits 的作用是指定虚拟环境的名称，本例中指定为 handwrittendigits。","inLanguage":"en-US","author":"Anthony","creator":"Anthony","publisher":"Anthony","accountablePerson":"Anthony","copyrightHolder":"Anthony","copyrightYear":"2020","datePublished":"2020-12-08 10:00:00 \u002b0800 \u002b0800","dateModified":"2020-12-08 10:00:00 \u002b0800 \u002b0800","url":"https:\/\/sudrizzz.github.io\/posts\/gan-for-hand-written-digits\/","keywords":[]}</script><title>GAN 网络手写数字生成 - Anthony's Blog</title><meta property="og:title" content="GAN 网络手写数字生成 - Anthony's Blog"><meta property="og:type" content="article"><meta property="og:description" content="环境搭建 本例中，所涉及的系统与软件版本列表如下：
+   名称 版本     操作系统 Windows 20H2   Anaconda Anaconda3-2020.11   python 3.6   tensorflow 1.8.0    Anaconda 安装 通过清华大学开源软件镜像站，我们可以直接下载最新版本的 Anaconda，本例中使用的 Anaconda 下载链接： https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe
+Anaconda 安装教程网络上已经有很多，故此处不再赘述。
+安装完成后，我们需要手动配置 Anaconda 的环境变量，在用户变量的 Path 中添加 Anaconda 的安装路径以及其子文件夹，具体内容如下。
+1C:\Users\xvyn\anaconda3 2C:\Users\xvyn\anaconda3\Scripts 3C:\Users\xvyn\anaconda3\Library\bin 上述配置请根据 Anaconda 实际安装路径进行调整，配置完成的效果如下图所示。
+完成后打开 cmd 输入下列命令，如果输出内容与下列内容类似，则表示配置正确，可继续后面的步骤。
+1conda --version 输出 conda 4.9.2  创建虚拟环境 通过如下命令进行创建一个虚拟环境。
+1conda create -n handwrittendigits -n handwrittendigits 的作用是指定虚拟环境的名称，本例中指定为 handwrittendigits。"><meta name=description content="环境搭建 本例中，所涉及的系统与软件版本列表如下：
+   名称 版本     操作系统 Windows 20H2   Anaconda Anaconda3-2020.11   python 3.6   tensorflow 1.8.0    Anaconda 安装 通过清华大学开源软件镜像站，我们可以直接下载最新版本的 Anaconda，本例中使用的 Anaconda 下载链接： https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe
+Anaconda 安装教程网络上已经有很多，故此处不再赘述。
+安装完成后，我们需要手动配置 Anaconda 的环境变量，在用户变量的 Path 中添加 Anaconda 的安装路径以及其子文件夹，具体内容如下。
+1C:\Users\xvyn\anaconda3 2C:\Users\xvyn\anaconda3\Scripts 3C:\Users\xvyn\anaconda3\Library\bin 上述配置请根据 Anaconda 实际安装路径进行调整，配置完成的效果如下图所示。
+完成后打开 cmd 输入下列命令，如果输出内容与下列内容类似，则表示配置正确，可继续后面的步骤。
+1conda --version 输出 conda 4.9.2  创建虚拟环境 通过如下命令进行创建一个虚拟环境。
+1conda create -n handwrittendigits -n handwrittendigits 的作用是指定虚拟环境的名称，本例中指定为 handwrittendigits。"><meta property="og:locale" content="zh-cn"><link rel=stylesheet href=/css/flexboxgrid-6.3.1.min.css><link rel=stylesheet href=/css/github-markdown.css><link rel=stylesheet href=/css/highlight/tomorrow.min.css><link rel=stylesheet href=/css/index.css><link href=/index.xml rel=alternate type=application/rss+xml title="Anthony's Blog"><link href="https://fonts.loli.net/css?family=Arvo|Permanent+Marker|Bree+Serif" rel=stylesheet></head><body><article class="post Chinese" id=article><div class=row><div class=col-xs-12><div class=site-header><header><div class="signatures site-title"><a href=/>Anthony</a></div></header><div class="row end-xs"></div><div class=header-line></div></div><header class=post-header><h1 class=post-title>GAN 网络手写数字生成</h1><div class="row post-desc"><div class=col-xs-6><time class=post-date datetime="2020-12-08 10:00:00 +0800">2020.12.08</time></div><div class=col-xs-6><div class=post-author><a target=_blank href=https://github.com/sudrizzz/>@Anthony</a></div></div></div></header><div class="post-content markdown-body"><h1 id=环境搭建>环境搭建</h1><p>本例中，所涉及的系统与软件版本列表如下：</p><table><thead><tr><th>名称</th><th>版本</th></tr></thead><tbody><tr><td>操作系统</td><td>Windows 20H2</td></tr><tr><td>Anaconda</td><td>Anaconda3-2020.11</td></tr><tr><td>python</td><td>3.6</td></tr><tr><td>tensorflow</td><td>1.8.0</td></tr></tbody></table><h2 id=anaconda-安装>Anaconda 安装</h2><p>通过清华大学开源软件镜像站，我们可以直接下载最新版本的 Anaconda，本例中使用的 Anaconda 下载链接：
+<a href=https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe>https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe</a></p><p>Anaconda 安装教程网络上已经有很多，故此处不再赘述。</p><p>安装完成后，我们需要手动配置 Anaconda 的环境变量，在用户变量的 Path 中添加 Anaconda 的安装路径以及其子文件夹，具体内容如下。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>C:\Users\xvyn\anaconda3
+<span class=ln>2</span>C:\Users\xvyn\anaconda3\Scripts
+<span class=ln>3</span>C:\Users\xvyn\anaconda3\Library\bin
+</code></pre></div><p>上述配置请根据 Anaconda 实际安装路径进行调整，配置完成的效果如下图所示。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208152533.png alt=20201208152533></p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208152633.png alt=20201208152633></p><p>完成后打开 cmd 输入下列命令，如果输出内容与下列内容类似，则表示配置正确，可继续后面的步骤。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>conda --version
+</code></pre></div><pre><code>输出
+conda 4.9.2
+</code></pre><h2 id=创建虚拟环境>创建虚拟环境</h2><p>通过如下命令进行创建一个虚拟环境。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>conda create -n handwrittendigits
+</code></pre></div><p><code>-n handwrittendigits</code> 的作用是指定虚拟环境的名称，本例中指定为 <code>handwrittendigits</code>。</p><p>执行结束后，可通过下列命令查看 Anaconda 中所有的虚拟环境。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>conda info --evns
+</code></pre></div><p>输出如下</p><pre><code>(base) PS C:\Users\xvyn&gt; conda info --envs
+conda environments:
+base                  *  C:\Users\xvyn\anaconda3
+handwrittendigits        C:\Users\xvyn\anaconda3\envs\handwrittendigits
+</code></pre><p>其中，标记 * 的表示目前已启用，命令行前半部分的 (base) 也表示目前启用的是哪个虚拟环境，此例中为 base 环境。</p><h2 id=切换虚拟环境>切换虚拟环境</h2><p>如果使用 PowerShell 进行 Anaconda 的一些操作，需要以 <strong>管理员</strong> 身份运行 PowerShell，然后执行下列命令。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>set-executionpolicy remotesigned
+</code></pre></div><p>执行完成后可通过下列命令进行切换虚拟环境。若使用其他 Shell 工具进行操作，则可直接执行下列命令。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>conda activate handwrittendigits
+</code></pre></div><p>如果执行时报错如下，则可以通过 <a href=https://github.com/conda/conda/issues/7980>https://github.com/conda/conda/issues/7980</a> 来解决。</p><pre><code>Can't execute `conda activate` from bash script
+</code></pre><p>详细操作为：</p><ol><li>安装并打开 Git Bash</li><li>执行 <code>source ~/anaconda3/etc/profile.d/conda.sh</code></li><li>执行 <code>conda init</code></li><li>重启 PowerShell</li></ol><p>切换环境操作结束后，可以注意到命令行左侧的括号内容由 (base) 变为 (handwrittendigits)，表明切换成功，后面的操作均在此虚拟环境中进行。</p><pre><code>实际操作过程
+(base) PS C:\Users\xvyn&gt; conda activate handwrittendigits
+(handwrittendigits) PS C:\Users\xvyn&gt;
+
+再次查看所有虚拟环境
+(handwrittendigits) PS C:\Users\xvyn&gt; conda info --envs
+conda environments:
+base                     C:\Users\xvyn\anaconda3
+handwrittendigits     *  C:\Users\xvyn\anaconda3\envs\handwrittendigits
+</code></pre><h2 id=更换镜像源>更换镜像源</h2><p>由于 Anaconda 和 pip 官方镜像源访问缓慢，故需要将镜像源更换为国内镜像源，例如清华大学、中科大与阿里云镜像源。使用下列命令可以查看当前 Anaconda 镜像源。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>conda config --show
+</code></pre></div><p>在输出中找到 channel 部分，有如下内容。</p><pre><code>channels:
+- defaults
+default_channels:
+- https://repo.anaconda.com/pkgs/main
+- https://repo.anaconda.com/pkgs/r
+- https://repo.anaconda.com/pkgs/msys2
+</code></pre><h3 id=更换-anaconda-镜像源>更换 Anaconda 镜像源</h3><p>以中科大镜像源为例，执行下列命令即可完成更换。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+<span class=ln>2</span>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+<span class=ln>3</span>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+<span class=ln>4</span>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+<span class=ln>5</span>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
+<span class=ln>6</span>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/
+<span class=ln>7</span>conda config --set show_channel_urls yes
+</code></pre></div><p>恢复默认源</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>conda config --remove-key channels
+</code></pre></div><p>除了上述命令行操作方式外，也可以直接修改 C:\Users&lt;USER>\.condarc 文件来实现换源。参考 <a href=https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/>Anaconda 镜像使用帮助</a> 修改后的文件内容如下所示。</p><pre><code>ssl_verify: false
+show_channel_urls: true
+channels:
+- defaults
+default_channels:
+- https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+- https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
+- https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+- https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/pro
+- https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
+custom_channels:
+conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+</code></pre><h3 id=更换-pip-镜像源>更换 pip 镜像源</h3><p>以中科大镜像源为例，执行下列命令即可完成更换。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>pip config <span class=nb>set</span> global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+</code></pre></div><h2 id=tensorflow-安装>tensorflow 安装</h2><p>手写数字生成例子所需要的 tensorflow 版本为 1.x，本例中我们使用的实际版本为 1.8.0。将虚拟环境切换到 handwrittendigits 后，执行以下命令开始安装。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>conda install tensorflow-gpu<span class=o>=</span>1.8.0
+</code></pre></div><p>上述命令中 <code>tensorflow-gpu</code> 表示安装的 tensorflow 为 GPU 版本，<code>=1.8.0</code> 指定了安装的版本号。若需要安装 CPU 版 tensorflow 1.8.0，执行以下命令即可。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>conda install <span class=nv>tensorflow</span><span class=o>=</span>1.8.0
+</code></pre></div><h1 id=测试-demo>测试 Demo</h1><h2 id=使用-pycharm-创建项目>使用 PyCharm 创建项目</h2><p>在创建项目时，需要将虚拟环境（图中 Location 项）配置为前文中创建的虚拟环境所在目录，然后点击创建项目。</p><p><em>由于此前作者已经创建过项目，故创建窗口下方会提示虚拟环境目录不为空，忽略即可。</em></p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208194401.png alt=20201208194401></p><h2 id=运行项目>运行项目</h2><p>将以下代码置于项目 <code>main.py</code> 中，运行。</p><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=ln>  1</span><span class=kn>import</span> <span class=nn>tensorflow</span> <span class=kn>as</span> <span class=nn>tf</span>
+<span class=ln>  2</span><span class=kn>from</span> <span class=nn>tensorflow.examples.tutorials.mnist</span> <span class=kn>import</span> <span class=n>input_data</span>
+<span class=ln>  3</span><span class=kn>import</span> <span class=nn>numpy</span> <span class=kn>as</span> <span class=nn>np</span>
+<span class=ln>  4</span><span class=kn>import</span> <span class=nn>matplotlib.pyplot</span> <span class=kn>as</span> <span class=nn>plt</span>
+<span class=ln>  5</span><span class=kn>import</span> <span class=nn>matplotlib.gridspec</span> <span class=kn>as</span> <span class=nn>gridspec</span>
+<span class=ln>  6</span><span class=kn>import</span> <span class=nn>logging</span>
+<span class=ln>  7</span><span class=kn>import</span> <span class=nn>os</span>
+<span class=ln>  8</span>
+<span class=ln>  9</span><span class=k>if</span> <span class=ow>not</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=s1>&#39;./log&#39;</span><span class=p>):</span>
+<span class=ln> 10</span>    <span class=n>os</span><span class=o>.</span><span class=n>mkdir</span><span class=p>(</span><span class=s1>&#39;./log&#39;</span><span class=p>)</span>
+<span class=ln> 11</span><span class=k>if</span> <span class=ow>not</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=s1>&#39;./out&#39;</span><span class=p>):</span>
+<span class=ln> 12</span>    <span class=n>os</span><span class=o>.</span><span class=n>mkdir</span><span class=p>(</span><span class=s1>&#39;./out&#39;</span><span class=p>)</span>
+<span class=ln> 13</span>
+<span class=ln> 14</span>
+<span class=ln> 15</span><span class=k>def</span> <span class=nf>get_logger</span><span class=p>(</span><span class=n>filepath</span><span class=p>,</span> <span class=n>level</span><span class=o>=</span><span class=n>logging</span><span class=o>.</span><span class=n>INFO</span><span class=p>):</span>
+<span class=ln> 16</span>    <span class=n>logger</span> <span class=o>=</span> <span class=n>logging</span><span class=o>.</span><span class=n>getLogger</span><span class=p>(</span><span class=vm>__name__</span><span class=p>)</span>
+<span class=ln> 17</span>    <span class=n>logger</span><span class=o>.</span><span class=n>setLevel</span><span class=p>(</span><span class=n>level</span><span class=p>)</span>
+<span class=ln> 18</span>
+<span class=ln> 19</span>    <span class=c1># create a file handler</span>
+<span class=ln> 20</span>    <span class=n>handler</span> <span class=o>=</span> <span class=n>logging</span><span class=o>.</span><span class=n>FileHandler</span><span class=p>(</span><span class=n>filepath</span><span class=p>)</span>
+<span class=ln> 21</span>    <span class=n>handler</span><span class=o>.</span><span class=n>setLevel</span><span class=p>(</span><span class=n>logging</span><span class=o>.</span><span class=n>INFO</span><span class=p>)</span>
+<span class=ln> 22</span>
+<span class=ln> 23</span>    <span class=c1># create a logging format</span>
+<span class=ln> 24</span>    <span class=c1># formatter = logging.Formatter(&#39;%(asctime)s - %(name)s - %(levelname)s - %(message)s&#39;)</span>
+<span class=ln> 25</span>    <span class=c1># handler.setFormatter(formatter)</span>
+<span class=ln> 26</span>
+<span class=ln> 27</span>    <span class=c1># add the handlers to the logger</span>
+<span class=ln> 28</span>    <span class=n>logger</span><span class=o>.</span><span class=n>addHandler</span><span class=p>(</span><span class=n>handler</span><span class=p>)</span>
+<span class=ln> 29</span>    <span class=k>return</span> <span class=n>logger</span>
+<span class=ln> 30</span>
+<span class=ln> 31</span>
+<span class=ln> 32</span><span class=k>def</span> <span class=nf>plot</span><span class=p>(</span><span class=n>samples</span><span class=p>):</span>
+<span class=ln> 33</span>    <span class=n>fig</span> <span class=o>=</span> <span class=n>plt</span><span class=o>.</span><span class=n>figure</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span> <span class=mi>4</span><span class=p>))</span>
+<span class=ln> 34</span>    <span class=n>gs</span> <span class=o>=</span> <span class=n>gridspec</span><span class=o>.</span><span class=n>GridSpec</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span> <span class=mi>4</span><span class=p>)</span>
+<span class=ln> 35</span>    <span class=n>gs</span><span class=o>.</span><span class=n>update</span><span class=p>(</span><span class=n>wspace</span><span class=o>=</span><span class=mf>0.05</span><span class=p>,</span> <span class=n>hspace</span><span class=o>=</span><span class=mf>0.05</span><span class=p>)</span>
+<span class=ln> 36</span>
+<span class=ln> 37</span>    <span class=k>for</span> <span class=n>i</span><span class=p>,</span> <span class=n>sample</span> <span class=ow>in</span> <span class=nb>enumerate</span><span class=p>(</span><span class=n>samples</span><span class=p>):</span>
+<span class=ln> 38</span>        <span class=n>ax</span> <span class=o>=</span> <span class=n>plt</span><span class=o>.</span><span class=n>subplot</span><span class=p>(</span><span class=n>gs</span><span class=p>[</span><span class=n>i</span><span class=p>])</span>
+<span class=ln> 39</span>        <span class=n>plt</span><span class=o>.</span><span class=n>axis</span><span class=p>(</span><span class=s1>&#39;off&#39;</span><span class=p>)</span>
+<span class=ln> 40</span>        <span class=n>ax</span><span class=o>.</span><span class=n>set_xticklabels</span><span class=p>([])</span>
+<span class=ln> 41</span>        <span class=n>ax</span><span class=o>.</span><span class=n>set_yticklabels</span><span class=p>([])</span>
+<span class=ln> 42</span>        <span class=n>ax</span><span class=o>.</span><span class=n>set_aspect</span><span class=p>(</span><span class=s1>&#39;equal&#39;</span><span class=p>)</span>
+<span class=ln> 43</span>        <span class=n>plt</span><span class=o>.</span><span class=n>imshow</span><span class=p>(</span><span class=n>sample</span><span class=o>.</span><span class=n>reshape</span><span class=p>(</span><span class=mi>28</span><span class=p>,</span> <span class=mi>28</span><span class=p>),</span> <span class=n>cmap</span><span class=o>=</span><span class=s1>&#39;Greys_r&#39;</span><span class=p>)</span>
+<span class=ln> 44</span>
+<span class=ln> 45</span>    <span class=k>return</span> <span class=n>fig</span>
+<span class=ln> 46</span>
+<span class=ln> 47</span>
+<span class=ln> 48</span><span class=k>def</span> <span class=nf>random_data</span><span class=p>(</span><span class=n>row</span><span class=p>,</span> <span class=n>column</span><span class=p>):</span>
+<span class=ln> 49</span>    <span class=k>return</span> <span class=n>np</span><span class=o>.</span><span class=n>random</span><span class=o>.</span><span class=n>uniform</span><span class=p>(</span><span class=o>-</span><span class=mf>1.</span><span class=p>,</span> <span class=mf>1.</span><span class=p>,</span> <span class=n>size</span><span class=o>=</span><span class=p>[</span><span class=n>row</span><span class=p>,</span> <span class=n>column</span><span class=p>])</span>
+<span class=ln> 50</span>
+<span class=ln> 51</span>
+<span class=ln> 52</span><span class=k>def</span> <span class=nf>weight_variable</span><span class=p>(</span><span class=n>shape</span><span class=p>,</span> <span class=n>stddev</span><span class=o>=</span><span class=mf>0.1</span><span class=p>):</span>
+<span class=ln> 53</span>    <span class=n>initial</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>truncated_normal</span><span class=p>(</span><span class=n>shape</span><span class=p>,</span> <span class=n>stddev</span><span class=o>=</span><span class=n>stddev</span><span class=p>)</span>
+<span class=ln> 54</span>    <span class=k>return</span> <span class=n>tf</span><span class=o>.</span><span class=n>Variable</span><span class=p>(</span><span class=n>initial</span><span class=p>)</span>
+<span class=ln> 55</span>
+<span class=ln> 56</span>
+<span class=ln> 57</span><span class=k>def</span> <span class=nf>bias_variable</span><span class=p>(</span><span class=n>shape</span><span class=p>,</span> <span class=n>bais</span><span class=o>=</span><span class=mf>0.1</span><span class=p>):</span>
+<span class=ln> 58</span>    <span class=n>initial</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>constant</span><span class=p>(</span><span class=n>bais</span><span class=p>,</span> <span class=n>shape</span><span class=o>=</span><span class=n>shape</span><span class=p>)</span>
+<span class=ln> 59</span>    <span class=k>return</span> <span class=n>tf</span><span class=o>.</span><span class=n>Variable</span><span class=p>(</span><span class=n>initial</span><span class=p>)</span>
+<span class=ln> 60</span>
+<span class=ln> 61</span>
+<span class=ln> 62</span><span class=c1># 鉴别网络weights</span>
+<span class=ln> 63</span><span class=n>d_w1</span> <span class=o>=</span> <span class=n>weight_variable</span><span class=p>([</span><span class=mi>784</span><span class=p>,</span> <span class=mi>128</span><span class=p>])</span>
+<span class=ln> 64</span><span class=n>d_b1</span> <span class=o>=</span> <span class=n>bias_variable</span><span class=p>([</span><span class=mi>128</span><span class=p>])</span>
+<span class=ln> 65</span>
+<span class=ln> 66</span><span class=n>d_w2</span> <span class=o>=</span> <span class=n>weight_variable</span><span class=p>([</span><span class=mi>128</span><span class=p>,</span> <span class=mi>1</span><span class=p>])</span>
+<span class=ln> 67</span><span class=n>d_b2</span> <span class=o>=</span> <span class=n>bias_variable</span><span class=p>([</span><span class=mi>1</span><span class=p>])</span>
+<span class=ln> 68</span>
+<span class=ln> 69</span><span class=n>param_d</span> <span class=o>=</span> <span class=p>[</span><span class=n>d_w1</span><span class=p>,</span> <span class=n>d_w2</span><span class=p>,</span> <span class=n>d_b1</span><span class=p>,</span> <span class=n>d_b2</span><span class=p>]</span>
+<span class=ln> 70</span>
+<span class=ln> 71</span><span class=c1># 生成网络weights</span>
+<span class=ln> 72</span><span class=n>g_w1</span> <span class=o>=</span> <span class=n>weight_variable</span><span class=p>([</span><span class=mi>100</span><span class=p>,</span> <span class=mi>128</span><span class=p>])</span>
+<span class=ln> 73</span><span class=n>g_b1</span> <span class=o>=</span> <span class=n>bias_variable</span><span class=p>([</span><span class=mi>128</span><span class=p>])</span>
+<span class=ln> 74</span>
+<span class=ln> 75</span><span class=n>g_w2</span> <span class=o>=</span> <span class=n>weight_variable</span><span class=p>([</span><span class=mi>128</span><span class=p>,</span> <span class=mi>784</span><span class=p>])</span>
+<span class=ln> 76</span><span class=n>g_b2</span> <span class=o>=</span> <span class=n>bias_variable</span><span class=p>([</span><span class=mi>784</span><span class=p>])</span>
+<span class=ln> 77</span>
+<span class=ln> 78</span><span class=n>param_g</span> <span class=o>=</span> <span class=p>[</span><span class=n>g_w1</span><span class=p>,</span> <span class=n>g_w2</span><span class=p>,</span> <span class=n>g_b1</span><span class=p>,</span> <span class=n>g_b2</span><span class=p>]</span>
+<span class=ln> 79</span>
+<span class=ln> 80</span>
+<span class=ln> 81</span><span class=c1># 鉴别网络</span>
+<span class=ln> 82</span><span class=k>def</span> <span class=nf>d_network</span><span class=p>(</span><span class=n>x</span><span class=p>):</span>
+<span class=ln> 83</span>    <span class=n>d1</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>nn</span><span class=o>.</span><span class=n>relu</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>matmul</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=n>d_w1</span><span class=p>)</span> <span class=o>+</span> <span class=n>d_b1</span><span class=p>)</span>
+<span class=ln> 84</span>    <span class=n>d_out</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>matmul</span><span class=p>(</span><span class=n>d1</span><span class=p>,</span> <span class=n>d_w2</span><span class=p>)</span> <span class=o>+</span> <span class=n>d_b2</span>
+<span class=ln> 85</span>    <span class=k>return</span> <span class=n>tf</span><span class=o>.</span><span class=n>nn</span><span class=o>.</span><span class=n>sigmoid</span><span class=p>(</span><span class=n>d_out</span><span class=p>)</span>
+<span class=ln> 86</span>
+<span class=ln> 87</span>
+<span class=ln> 88</span><span class=c1># 生成网络</span>
+<span class=ln> 89</span><span class=k>def</span> <span class=nf>g_network</span><span class=p>(</span><span class=n>x</span><span class=p>):</span>
+<span class=ln> 90</span>    <span class=n>g1</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>nn</span><span class=o>.</span><span class=n>relu</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>matmul</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=n>g_w1</span><span class=p>)</span> <span class=o>+</span> <span class=n>g_b1</span><span class=p>)</span>
+<span class=ln> 91</span>    <span class=n>g_out</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>matmul</span><span class=p>(</span><span class=n>g1</span><span class=p>,</span> <span class=n>g_w2</span><span class=p>)</span> <span class=o>+</span> <span class=n>g_b2</span>
+<span class=ln> 92</span>    <span class=k>return</span> <span class=n>tf</span><span class=o>.</span><span class=n>nn</span><span class=o>.</span><span class=n>sigmoid</span><span class=p>(</span><span class=n>g_out</span><span class=p>)</span>
+<span class=ln> 93</span>
+<span class=ln> 94</span>
+<span class=ln> 95</span><span class=n>x</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>placeholder</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>float32</span><span class=p>,</span> <span class=n>shape</span><span class=o>=</span><span class=p>[</span><span class=bp>None</span><span class=p>,</span> <span class=mi>784</span><span class=p>])</span>
+<span class=ln> 96</span><span class=n>z</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>placeholder</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>float32</span><span class=p>,</span> <span class=n>shape</span><span class=o>=</span><span class=p>[</span><span class=bp>None</span><span class=p>,</span> <span class=mi>100</span><span class=p>])</span>
+<span class=ln> 97</span>
+<span class=ln> 98</span><span class=n>d_out_real</span> <span class=o>=</span> <span class=n>d_network</span><span class=p>(</span><span class=n>x</span><span class=p>)</span>
+<span class=ln> 99</span>
+<span class=ln>100</span><span class=n>g_out</span> <span class=o>=</span> <span class=n>g_network</span><span class=p>(</span><span class=n>z</span><span class=p>)</span>
+<span class=ln>101</span><span class=n>d_out_fake</span> <span class=o>=</span> <span class=n>d_network</span><span class=p>(</span><span class=n>g_out</span><span class=p>)</span>
+<span class=ln>102</span>
+<span class=ln>103</span><span class=n>d_loss</span> <span class=o>=</span> <span class=o>-</span><span class=n>tf</span><span class=o>.</span><span class=n>reduce_mean</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>log</span><span class=p>(</span><span class=n>d_out_real</span><span class=p>)</span> <span class=o>+</span> <span class=n>tf</span><span class=o>.</span><span class=n>log</span><span class=p>(</span><span class=mf>1.</span> <span class=o>-</span> <span class=n>d_out_fake</span><span class=p>))</span>
+<span class=ln>104</span><span class=n>g_loss</span> <span class=o>=</span> <span class=o>-</span><span class=n>tf</span><span class=o>.</span><span class=n>reduce_mean</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>log</span><span class=p>(</span><span class=n>d_out_fake</span><span class=p>))</span>
+<span class=ln>105</span>
+<span class=ln>106</span><span class=n>d_optimizer</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>train</span><span class=o>.</span><span class=n>AdamOptimizer</span><span class=p>()</span><span class=o>.</span><span class=n>minimize</span><span class=p>(</span><span class=n>d_loss</span><span class=p>,</span> <span class=n>var_list</span><span class=o>=</span><span class=n>param_d</span><span class=p>)</span>
+<span class=ln>107</span><span class=n>g_optimizer</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>train</span><span class=o>.</span><span class=n>AdamOptimizer</span><span class=p>()</span><span class=o>.</span><span class=n>minimize</span><span class=p>(</span><span class=n>g_loss</span><span class=p>,</span> <span class=n>var_list</span><span class=o>=</span><span class=n>param_g</span><span class=p>)</span>
+<span class=ln>108</span>
+<span class=ln>109</span><span class=n>batch_size</span> <span class=o>=</span> <span class=mi>256</span>
+<span class=ln>110</span><span class=n>max_step</span> <span class=o>=</span> <span class=mi>1000000</span>
+<span class=ln>111</span><span class=n>mnist</span> <span class=o>=</span> <span class=n>input_data</span><span class=o>.</span><span class=n>read_data_sets</span><span class=p>(</span><span class=s1>&#39;../mnist&#39;</span><span class=p>,</span> <span class=n>one_hot</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
+<span class=ln>112</span><span class=n>logger</span> <span class=o>=</span> <span class=n>get_logger</span><span class=p>(</span><span class=s2>&#34;./log/info.log&#34;</span><span class=p>)</span>
+<span class=ln>113</span>
+<span class=ln>114</span><span class=k>with</span> <span class=n>tf</span><span class=o>.</span><span class=n>Session</span><span class=p>()</span> <span class=k>as</span> <span class=n>sess</span><span class=p>:</span>
+<span class=ln>115</span>    <span class=n>sess</span><span class=o>.</span><span class=n>run</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>global_variables_initializer</span><span class=p>())</span>
+<span class=ln>116</span>    <span class=k>print</span><span class=p>(</span><span class=s2>&#34;training&#34;</span><span class=p>)</span>
+<span class=ln>117</span>    <span class=n>i</span> <span class=o>=</span> <span class=mi>0</span>
+<span class=ln>118</span>    <span class=k>for</span> <span class=n>step</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>max_step</span><span class=p>):</span>
+<span class=ln>119</span>        <span class=n>batch_real</span><span class=p>,</span> <span class=n>_</span> <span class=o>=</span> <span class=n>mnist</span><span class=o>.</span><span class=n>train</span><span class=o>.</span><span class=n>next_batch</span><span class=p>(</span><span class=n>batch_size</span><span class=p>)</span>
+<span class=ln>120</span>        <span class=n>_</span><span class=p>,</span> <span class=n>d_loss_train</span> <span class=o>=</span> <span class=n>sess</span><span class=o>.</span><span class=n>run</span><span class=p>([</span><span class=n>d_optimizer</span><span class=p>,</span> <span class=n>d_loss</span><span class=p>],</span> <span class=n>feed_dict</span><span class=o>=</span><span class=p>{</span><span class=n>x</span><span class=p>:</span> <span class=n>batch_real</span><span class=p>,</span> <span class=n>z</span><span class=p>:</span> <span class=n>random_data</span><span class=p>(</span><span class=n>batch_size</span><span class=p>,</span> <span class=mi>100</span><span class=p>)})</span>
+<span class=ln>121</span>        <span class=n>_</span><span class=p>,</span> <span class=n>g_loss_train</span> <span class=o>=</span> <span class=n>sess</span><span class=o>.</span><span class=n>run</span><span class=p>([</span><span class=n>g_optimizer</span><span class=p>,</span> <span class=n>g_loss</span><span class=p>],</span> <span class=n>feed_dict</span><span class=o>=</span><span class=p>{</span><span class=n>z</span><span class=p>:</span> <span class=n>random_data</span><span class=p>(</span><span class=n>batch_size</span><span class=p>,</span> <span class=mi>100</span><span class=p>)})</span>
+<span class=ln>122</span>
+<span class=ln>123</span>        <span class=k>if</span> <span class=n>step</span> <span class=o>%</span> <span class=mi>1000</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
+<span class=ln>124</span>            <span class=n>samples</span> <span class=o>=</span> <span class=n>sess</span><span class=o>.</span><span class=n>run</span><span class=p>(</span><span class=n>g_out</span><span class=p>,</span> <span class=n>feed_dict</span><span class=o>=</span><span class=p>{</span><span class=n>z</span><span class=p>:</span> <span class=n>random_data</span><span class=p>(</span><span class=mi>16</span><span class=p>,</span> <span class=mi>100</span><span class=p>)})</span>
+<span class=ln>125</span>
+<span class=ln>126</span>            <span class=n>fig</span> <span class=o>=</span> <span class=n>plot</span><span class=p>(</span><span class=n>samples</span><span class=p>)</span>
+<span class=ln>127</span>            <span class=n>plt</span><span class=o>.</span><span class=n>savefig</span><span class=p>(</span><span class=s1>&#39;out/{}.png&#39;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=n>i</span><span class=p>)</span><span class=o>.</span><span class=n>zfill</span><span class=p>(</span><span class=mi>4</span><span class=p>)),</span> <span class=n>bbox_inches</span><span class=o>=</span><span class=s1>&#39;tight&#39;</span><span class=p>)</span>
+<span class=ln>128</span>            <span class=n>i</span> <span class=o>+=</span> <span class=mi>1</span>
+<span class=ln>129</span>            <span class=n>plt</span><span class=o>.</span><span class=n>close</span><span class=p>(</span><span class=n>fig</span><span class=p>)</span>
+<span class=ln>130</span>
+<span class=ln>131</span>            <span class=n>logger</span><span class=o>.</span><span class=n>info</span><span class=p>(</span><span class=s2>&#34;step </span><span class=si>%s</span><span class=s2>: d_loss is </span><span class=si>%s</span><span class=s2>, gan_loss is </span><span class=si>%s</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=n>step</span><span class=p>,</span> <span class=n>d_loss_train</span><span class=p>,</span> <span class=n>g_loss_train</span><span class=p>))</span>
+<span class=ln>132</span>            <span class=k>print</span><span class=p>(</span><span class=s2>&#34;step </span><span class=si>%s</span><span class=s2>: d_loss is </span><span class=si>%s</span><span class=s2>, g_loss is </span><span class=si>%s</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=n>step</span><span class=p>,</span> <span class=n>d_loss_train</span><span class=p>,</span> <span class=n>g_loss_train</span><span class=p>))</span>
+</code></pre></div><p>运行时的截图如下，可以看到已经生成了多张手写数字的图片。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208201913.png alt=20201208201913></p><p>至此，GAN 网络手写数字生成环境搭建已经完成，后续将进行更加深入的学习。</p><h1 id=参考文章>参考文章</h1><ol><li><a href=https://mirrors.tuna.tsinghua.edu.cn/help/anaconda.html>Anaconda 源使用帮助</a></li><li><a href=https://github.com/yang1688899/gan_practice/blob/master/gan_mnist/gan_mnist.py>gan_practice</a></li><li><a href=https://github.com/conda/conda/issues/7980#issuecomment-515887073>Can&rsquo;t execute <code>conda activate</code> from bash script</a></li><li><a href=https://www.jianshu.com/p/c845bfd09582>python 安装 TensorFlow 吐血整理</a></li><li><a href=https://zhuanlan.zhihu.com/p/103134466>conda 安装指定版本的指定包</a></li><li><a href=https://luanlengli.github.io/2019/12/19/Python-pip%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AE%BE%E7%BD%AE%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90.html>Python pip 命令行设置国内镜像源</a></li></ol></div><div class="row middle-xs"><div class=col-xs-12><div class=post-category><a href=/categories/gan>GAN</a></div></div></div><div class=row><div class=col-xs-12></div></div><div style=height:50px></div><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"],],},};</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script><div class=site-footer><div class=site-footer-item><a href=https://github.com/sudrizzz/ target=_blank>Github</a></div><div class=site-footer-item><a href=mailto:sudrizzz@google.com target=_blank>Email</a></div><div class=site-footer-item><a href="https://music.163.com/song?id=356827" target=_blank>~</a></div></div></div></div></article><script src=/js/highlight.pack.js></script><script src=/js/lazyload.min.js></script><script>var lazyImage=new LazyLoad({container:document.getElementById('article')});</script><script>hljs.initHighlightingOnLoad();</script></body></html>
