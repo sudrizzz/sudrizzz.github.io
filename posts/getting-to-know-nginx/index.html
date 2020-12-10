@@ -1,28 +1,30 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=generator content="Hugo 0.79.0"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Anthony"><meta property="og:url" content="https://sudrizzz.github.io/posts/getting-to-know-nginx/"><link rel=canonical href=https://sudrizzz.github.io/posts/getting-to-know-nginx/><link rel=alternate type=application/atom+xml href=https://sudrizzz.github.ioindex.xml title="Anthony's Blog"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/sudrizzz.github.io"},"articleSection":"posts","name":"初识 Nginx","headline":"初识 Nginx","description":"Nginx 简介  简介内容来自 Nginx 官网 http:\/\/nginx.org\/en\nnginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP\/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress.","inLanguage":"en-US","author":"Anthony","creator":"Anthony","publisher":"Anthony","accountablePerson":"Anthony","copyrightHolder":"Anthony","copyrightYear":"2020","datePublished":"2020-09-07 15:47:11 \u002b0800 \u002b0800","dateModified":"2020-09-07 15:47:11 \u002b0800 \u002b0800","url":"https:\/\/sudrizzz.github.io\/posts\/getting-to-know-nginx\/","keywords":[]}</script><title>初识 Nginx - Anthony's Blog</title><meta property="og:title" content="初识 Nginx - Anthony's Blog"><meta property="og:type" content="article"><meta property="og:description" content="Nginx 简介  简介内容来自 Nginx 官网 http://nginx.org/en
-nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress."><meta name=description content="Nginx 简介  简介内容来自 Nginx 官网 http://nginx.org/en
-nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress."><meta property="og:locale" content="zh-cn"><link rel=stylesheet href=/css/flexboxgrid-6.3.1.min.css><link rel=stylesheet href=/css/github-markdown.css><link rel=stylesheet href=/css/highlight/tomorrow.min.css><link rel=stylesheet href=/css/index.css><link href=/index.xml rel=alternate type=application/rss+xml title="Anthony's Blog"><link href="https://fonts.loli.net/css?family=Arvo|Permanent+Marker|Bree+Serif" rel=stylesheet></head><body><article class="post Chinese" id=article><div class=row><div class=col-xs-12><div class=site-header><header><div class="signatures site-title"><a href=/>Anthony</a></div></header><div class="row end-xs"></div><div class=header-line></div></div><header class=post-header><h1 class=post-title>初识 Nginx</h1><div class="row post-desc"><div class=col-xs-6><time class=post-date datetime="2020-09-07 15:47:11 +0800">2020.09.07</time></div><div class=col-xs-6><div class=post-author><a target=_blank href=https://github.com/sudrizzz/>@Anthony</a></div></div></div></header><div class="post-content markdown-body"><h1 id=nginx-简介>Nginx 简介</h1><blockquote><p>简介内容来自 Nginx 官网 <a href=http://nginx.org/en>http://nginx.org/en</a></p><p>nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress.com, FastMail.FM.</p><p>The sources and documentation are distributed under the 2-clause BSD-like license.<br>Commercial support is available from Nginx, Inc.</p></blockquote><p>简而言之，Nginx 是一个高性能的 HTTP 和反向代理服务器，特点是占有内存少，并发能力强。详细信息请查看 <a href=http://nginx.org/en>Nginx 官网介绍页面</a>。</p><blockquote><p>以下两种安装方式，任意选择一种进行安装即可。</p></blockquote><h1 id=在线安装-nginx>在线安装 Nginx</h1><p>注意，本篇文章基于 CentOS 8.2 版本，如使用其他系统，操作可能有一些变化，一切以<a href=http://nginx.org/en/linux_packages.html>官方网站安装教程</a>为准。</p><p>首先我们需要先安装 yum-utils 包，执行以下命令即可。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo yum install yum-utils
-</code></pre></div><p>然后配置 Nginx 仓库，我们需要在 <code>/etc/yum.repo.d/</code> 中创建一个名为 <code>nginx.repo</code> 的文件，并填入以下内容。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln> 1</span>[nginx-stable]
-<span class=ln> 2</span>name=nginx stable repo
-<span class=ln> 3</span>baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
-<span class=ln> 4</span>gpgcheck=1
-<span class=ln> 5</span>enabled=1
-<span class=ln> 6</span>gpgkey=https://nginx.org/keys/nginx_signing.key
-<span class=ln> 7</span>module_hotfixes=true
-<span class=ln> 8</span>
-<span class=ln> 9</span>[nginx-mainline]
-<span class=ln>10</span>name=nginx mainline repo
-<span class=ln>11</span>baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/
-<span class=ln>12</span>gpgcheck=1
-<span class=ln>13</span>enabled=0
-<span class=ln>14</span>gpgkey=https://nginx.org/keys/nginx_signing.key
-<span class=ln>15</span>module_hotfixes=true
-</code></pre></div><p>默认情况下使用的是 Nginx 稳定版仓库，即配置中的 <code>nginx-stable</code>。如果需要使用主线版仓库，可以执行下面的命令进行手动指定。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo yum-config-manager --enable nginx-mainline
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Nginx 简介  简介内容来自 Nginx 官网 http://nginx.org/en
+nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress."><title>初识 Nginx</title><link rel=canonical href=https://sudrizzz.github.io/posts/getting-to-know-nginx/><link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="初识 Nginx"><meta property="og:description" content="Nginx 简介  简介内容来自 Nginx 官网 http://nginx.org/en
+nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress."><meta property="og:url" content="https://sudrizzz.github.io/posts/getting-to-know-nginx/"><meta property="og:site_name" content="Anthony's blog"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2020-09-07T15:47:11+08:00"><meta property="article:modified_time" content="2020-09-07T15:47:11+08:00"><meta name=twitter:title content="初识 Nginx"><meta name=twitter:description content="Nginx 简介  简介内容来自 Nginx 官网 http://nginx.org/en
+nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress."></head><body><div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header class=site-info><figure class=site-avatar><img src=/img/avatar_hu275e4bab890ad53f8b467a21c6984a95_383962_300x300_resize_box_2.png width=300 height=300 class=site-logo loading=lazy alt=Avatar></figure><h1 class=site-name><a href=https://sudrizzz.github.io>Anthony's blog</a></h1><h2 class=site-description>I'm doing good, I’m on some new shit. Been saying "Yes" instead of "No".</h2></header><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/search><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li></ol></aside><main class="main full-width"><div id=article-toolbar><a href=https://sudrizzz.github.io class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg><span>Back</span></a></div><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/nginx/>nginx</a></header><h2 class=article-title><a href=/posts/getting-to-know-nginx/>初识 Nginx</a></h2><footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--published>Sep 07, 2020</time></footer></div></header><section class=article-content><h1 id=nginx-简介>Nginx 简介</h1><blockquote><p>简介内容来自 Nginx 官网 <a href=http://nginx.org/en>http://nginx.org/en</a></p><p>nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress.com, FastMail.FM.</p><p>The sources and documentation are distributed under the 2-clause BSD-like license.<br>Commercial support is available from Nginx, Inc.</p></blockquote><p>简而言之，Nginx 是一个高性能的 HTTP 和反向代理服务器，特点是占有内存少，并发能力强。详细信息请查看 <a class=link href=http://nginx.org/en target=_blank rel=noopener>Nginx 官网介绍页面</a>。</p><blockquote><p>以下两种安装方式，任意选择一种进行安装即可。</p></blockquote><h1 id=在线安装-nginx>在线安装 Nginx</h1><p>注意，本篇文章基于 CentOS 8.2 版本，如使用其他系统，操作可能有一些变化，一切以<a class=link href=http://nginx.org/en/linux_packages.html target=_blank rel=noopener>官方网站安装教程</a>为准。</p><p>首先我们需要先安装 yum-utils 包，执行以下命令即可。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo yum install yum-utils
+</code></pre></div><p>然后配置 Nginx 仓库，我们需要在 <code>/etc/yum.repo.d/</code> 中创建一个名为 <code>nginx.repo</code> 的文件，并填入以下内容。</p><pre><code class=language-properties data-lang=properties>[nginx-stable]
+name=nginx stable repo
+baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+gpgcheck=1
+enabled=1
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
+
+[nginx-mainline]
+name=nginx mainline repo
+baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/
+gpgcheck=1
+enabled=0
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
+</code></pre><p>默认情况下使用的是 Nginx 稳定版仓库，即配置中的 <code>nginx-stable</code>。如果需要使用主线版仓库，可以执行下面的命令进行手动指定。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo yum-config-manager --enable nginx-mainline
 </code></pre></div><p>上述准备工作完成后，就可以开始安装 Nginx 了，执行下面这条命令即可。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo yum install nginx
 </code></pre></div><p>稍等片刻完成安装后，可使用下述命令来验证是否安装成功。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>nginx -v
 <span class=ln>2</span>whereis nginx
-</code></pre></div><p>得到类似于下面的输出，即代表安装成功。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>nginx version: nginx/1.18.0
-<span class=ln>2</span>nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz
-</code></pre></div><h1 id=离线安装-nginx>离线安装 Nginx</h1><h2 id=下载并解压>下载并解压</h2><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /usr/local/software
+</code></pre></div><p>得到类似于下面的输出，即代表安装成功。</p><pre><code>nginx version: nginx/1.18.0
+nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz
+</code></pre><h1 id=离线安装-nginx>离线安装 Nginx</h1><h2 id=下载并解压>下载并解压</h2><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /usr/local/software
 <span class=ln>2</span>
 <span class=ln>3</span><span class=c1># 下载</span>
 <span class=ln>4</span>sudo wget http://nginx.org/download/nginx-1.18.0.tar.gz
@@ -31,90 +33,90 @@ nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a
 <span class=ln>7</span>tar -zxvf nginx-1.18.0.tar.gz -C ./
 </code></pre></div><h2 id=编译>编译</h2><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> nginx-1.18.0
 <span class=ln>2</span>sudo ./configure --prefix<span class=o>=</span>/usr/local/nginx
-</code></pre></div><p>其中 <code>--prefix</code> 的作用是指定编译后的文件存放位置，可以根据实际情况自由确定。<br>编译过程中可能会遇到一些报错，详细信息和解决方案如下。</p><blockquote><p>此部分内容参照文章 <a href=https://www.cnblogs.com/crazylqy/p/6891929.html>Nginx 教程(一) Nginx 入门教程</a></p></blockquote><ol><li><p>./configure: error: C compiler cc is not found<br>错误原因：缺少编译环境，安装编译源码所需要的工具和库：<br>执行命令：sudo yum install gcc gcc-c++ ncurses-devel perl</p></li><li><p>./configure: error: the HTTP rewrite module requires the PCRE library<br>错误原因：缺少 HTTP rewrite module 模块<br>执行命令：sudo yum install pcre pcre-devel</p></li><li><p>./configure: error: the HTTP gzip module requires the zlib library<br>错误原因：缺少 HTTP zlib 类库，我们选择安装模块：<br>执行命令：sudo yum install zlib gzip zlib-devel</p></li></ol><p>上述报错都解决了之后，再次执行编译命令，可以得到如下输出。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln> 1</span>Configuration summary
-<span class=ln> 2</span>  + using system PCRE library
-<span class=ln> 3</span>  + OpenSSL library is not used
-<span class=ln> 4</span>  + using system zlib library
-<span class=ln> 5</span>
-<span class=ln> 6</span>  nginx path prefix: &#34;/usr/local/nginx&#34;
-<span class=ln> 7</span>  nginx binary file: &#34;/usr/local/nginx/sbin/nginx&#34;
-<span class=ln> 8</span>  nginx modules path: &#34;/usr/local/nginx/modules&#34;
-<span class=ln> 9</span>  nginx configuration prefix: &#34;/usr/local/nginx/conf&#34;
-<span class=ln>10</span>  nginx configuration file: &#34;/usr/local/nginx/conf/nginx.conf&#34;
-<span class=ln>11</span>  nginx pid file: &#34;/usr/local/nginx/logs/nginx.pid&#34;
-<span class=ln>12</span>  nginx error log file: &#34;/usr/local/nginx/logs/error.log&#34;
-<span class=ln>13</span>  nginx http access log file: &#34;/usr/local/nginx/logs/access.log&#34;
-<span class=ln>14</span>  nginx http client request body temporary files: &#34;client_body_temp&#34;
-<span class=ln>15</span>  nginx http proxy temporary files: &#34;proxy_temp&#34;
-<span class=ln>16</span>  nginx http fastcgi temporary files: &#34;fastcgi_temp&#34;
-<span class=ln>17</span>  nginx http uwsgi temporary files: &#34;uwsgi_temp&#34;
-<span class=ln>18</span>  nginx http scgi temporary files: &#34;scgi_temp&#34;
-<span class=ln>19</span>
-</code></pre></div><h2 id=安装>安装</h2><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /usr/local/software/nginx-1.18.0
+</code></pre></div><p>其中 <code>--prefix</code> 的作用是指定编译后的文件存放位置，可以根据实际情况自由确定。<br>编译过程中可能会遇到一些报错，详细信息和解决方案如下。</p><blockquote><p>此部分内容参照文章 <a class=link href=https://www.cnblogs.com/crazylqy/p/6891929.html target=_blank rel=noopener>Nginx 教程(一) Nginx 入门教程</a></p></blockquote><ol><li><p>./configure: error: C compiler cc is not found<br>错误原因：缺少编译环境，安装编译源码所需要的工具和库：<br>执行命令：sudo yum install gcc gcc-c++ ncurses-devel perl</p></li><li><p>./configure: error: the HTTP rewrite module requires the PCRE library<br>错误原因：缺少 HTTP rewrite module 模块<br>执行命令：sudo yum install pcre pcre-devel</p></li><li><p>./configure: error: the HTTP gzip module requires the zlib library<br>错误原因：缺少 HTTP zlib 类库，我们选择安装模块：<br>执行命令：sudo yum install zlib gzip zlib-devel</p></li></ol><p>上述报错都解决了之后，再次执行编译命令，可以得到如下输出。</p><pre><code>Configuration summary
+  + using system PCRE library
+  + OpenSSL library is not used
+  + using system zlib library
+
+  nginx path prefix: &quot;/usr/local/nginx&quot;
+  nginx binary file: &quot;/usr/local/nginx/sbin/nginx&quot;
+  nginx modules path: &quot;/usr/local/nginx/modules&quot;
+  nginx configuration prefix: &quot;/usr/local/nginx/conf&quot;
+  nginx configuration file: &quot;/usr/local/nginx/conf/nginx.conf&quot;
+  nginx pid file: &quot;/usr/local/nginx/logs/nginx.pid&quot;
+  nginx error log file: &quot;/usr/local/nginx/logs/error.log&quot;
+  nginx http access log file: &quot;/usr/local/nginx/logs/access.log&quot;
+  nginx http client request body temporary files: &quot;client_body_temp&quot;
+  nginx http proxy temporary files: &quot;proxy_temp&quot;
+  nginx http fastcgi temporary files: &quot;fastcgi_temp&quot;
+  nginx http uwsgi temporary files: &quot;uwsgi_temp&quot;
+  nginx http scgi temporary files: &quot;scgi_temp&quot;
+
+</code></pre><h2 id=安装>安装</h2><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /usr/local/software/nginx-1.18.0
 <span class=ln>2</span>sudo make <span class=p>&amp;</span> make install
-</code></pre></div><p>得到如下输出时，即表明 Nginx 已经安装成功。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>...
-<span class=ln>2</span>test -d &#39;/usr/local/nginx/logs&#39; \
-<span class=ln>3</span>	|| mkdir -p &#39;/usr/local/nginx/logs&#39;
-<span class=ln>4</span>make[1]: 离开目录“/usr/local/software/nginx-1.18.0”
-<span class=ln>5</span>[1]+  已完成               make
-</code></pre></div><h1 id=在线安装-nginx-的启动方式>在线安装 Nginx 的启动方式</h1><blockquote><p>如果是采用手动编译安装 Nginx 的方式，请跳过本节查看下一节内容。</p></blockquote><h2 id=配置-nginxconf>配置 nginx.conf</h2><p>首先编辑 <code>/etc/nginx/nginx.conf</code> 文件，配置 Nginx 端口与访问地址（即 server 部分）。在配置端口时，不建议设置为 <code>80</code>，以免与其他服务冲突。具体配置如下。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln> 1</span>user  nginx;
-<span class=ln> 2</span>worker_processes  1;
-<span class=ln> 3</span>
-<span class=ln> 4</span>error_log  /var/log/nginx/error.log warn;
-<span class=ln> 5</span>pid        /var/run/nginx.pid;
-<span class=ln> 6</span>
-<span class=ln> 7</span>events {
-<span class=ln> 8</span>    worker_connections  1024;
-<span class=ln> 9</span>}
-<span class=ln>10</span>
-<span class=ln>11</span>
-<span class=ln>12</span>http {
-<span class=ln>13</span>    include       /etc/nginx/mime.types;
-<span class=ln>14</span>    default_type  application/octet-stream;
-<span class=ln>15</span>
-<span class=ln>16</span>    log_format  main  &#39;$remote_addr - $remote_user [$time_local] &#34;$request&#34; &#39;
-<span class=ln>17</span>                      &#39;$status $body_bytes_sent &#34;$http_referer&#34; &#39;
-<span class=ln>18</span>                      &#39;&#34;$http_user_agent&#34; &#34;$http_x_forwarded_for&#34;&#39;;
-<span class=ln>19</span>
-<span class=ln>20</span>    access_log  /var/log/nginx/access.log  main;
-<span class=ln>21</span>
-<span class=ln>22</span>    sendfile        on;
-<span class=ln>23</span>    #tcp_nopush     on;
-<span class=ln>24</span>
-<span class=ln>25</span>    keepalive_timeout  65;
-<span class=ln>26</span>
-<span class=ln>27</span>    #gzip  on;
-<span class=ln>28</span>
-<span class=ln>29</span>    include /etc/nginx/conf.d/*.conf;
-<span class=ln>30</span>
-<span class=ln>31</span>    # 在这里新增 server 配置
-<span class=ln>32</span>    server {
-<span class=ln>33</span>        listen 8090;
-<span class=ln>34</span>        server_name localhost;
-<span class=ln>35</span>        location / {
-<span class=ln>36</span>            root   html;
-<span class=ln>37</span>            index  index.html index.htm;
-<span class=ln>38</span>        }
-<span class=ln>39</span>    }
-<span class=ln>40</span>}
-</code></pre></div><h2 id=系统防火墙>系统防火墙</h2><p>由于我的 CentOS 是安装在虚拟机中，未安装图形界面，故需要在宿主机上进行测试并访问虚拟机地址，所以需要增加一步禁用 CentOS 防火墙的操作，具体命令如下。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># 关闭防火墙</span>
+</code></pre></div><p>得到如下输出时，即表明 Nginx 已经安装成功。</p><pre><code>...
+test -d '/usr/local/nginx/logs' \
+	|| mkdir -p '/usr/local/nginx/logs'
+make[1]: 离开目录“/usr/local/software/nginx-1.18.0”
+[1]+  已完成               make
+</code></pre><h1 id=在线安装-nginx-的启动方式>在线安装 Nginx 的启动方式</h1><blockquote><p>如果是采用手动编译安装 Nginx 的方式，请跳过本节查看下一节内容。</p></blockquote><h2 id=配置-nginxconf>配置 nginx.conf</h2><p>首先编辑 <code>/etc/nginx/nginx.conf</code> 文件，配置 Nginx 端口与访问地址（即 server 部分）。在配置端口时，不建议设置为 <code>80</code>，以免与其他服务冲突。具体配置如下。</p><pre><code>user  nginx;
+worker_processes  1;
+
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] &quot;$request&quot; '
+                      '$status $body_bytes_sent &quot;$http_referer&quot; '
+                      '&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    include /etc/nginx/conf.d/*.conf;
+
+    # 在这里新增 server 配置
+    server {
+        listen 8090;
+        server_name localhost;
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+    }
+}
+</code></pre><h2 id=系统防火墙>系统防火墙</h2><p>由于我的 CentOS 是安装在虚拟机中，未安装图形界面，故需要在宿主机上进行测试并访问虚拟机地址，所以需要增加一步禁用 CentOS 防火墙的操作，具体命令如下。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># 关闭防火墙</span>
 <span class=ln>2</span>systemctl stop firewalld.service
 <span class=ln>3</span>
 <span class=ln>4</span><span class=c1># 禁止防火墙开机自启</span>
 <span class=ln>5</span>systemctl disable firewalld.service
 </code></pre></div><p>现在可以正式启动 Nginx 服务了，执行下述命令即可。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo nginx
 </code></pre></div><p>执行之后，可以使用下面命令检查是否启动成功，以及访问地址和端口是否生效。</p><h2 id=查看包含-nginx-关键词的进程>查看包含 nginx 关键词的进程</h2><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>ps -ef <span class=p>|</span> grep nginx
-</code></pre></div><p>结果如下，可以看到已经成功启动了。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>root        4781       1  0 14:31 ?        00:00:00 nginx: master process nginx
-<span class=ln>2</span>nginx       5055    4781  0 14:36 ?        00:00:00 nginx: worker process
-</code></pre></div><h2 id=查看本机所有暴露的端口>查看本机所有暴露的端口</h2><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>netstat -ntlp
-</code></pre></div><p>结果如下，可以看到此前配置的 <code>8090</code> 端口已经是 <code>listen</code> 状态，接下来就可以在浏览器中访问了。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>Active Internet connections (only servers)
-<span class=ln>2</span>Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
-<span class=ln>3</span>...
-<span class=ln>4</span>tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
-<span class=ln>5</span>tcp        0      0 0.0.0.0:8090            0.0.0.0:*               LISTEN      -
-<span class=ln>6</span>tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN      -
-<span class=ln>7</span>...
-</code></pre></div><p>在浏览器中访问 <code>虚拟机ip:8090</code>，即可看到 Nginx 的欢迎页面。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906154034.png alt=20200906154034></p><blockquote><p>此时返回 404 是因为 Nginx 目录中并没有欢迎页面的 html 文件，但依然可以说明已经 Nginx 服务已经配置正确并启动成功。</p></blockquote><h1 id=离线安装-nginx-的启动方式>离线安装 Nginx 的启动方式</h1><p>首先执行下述命令来启动 Nginx。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /usr/local/nginx/sbin
+</code></pre></div><p>结果如下，可以看到已经成功启动了。</p><pre><code>root        4781       1  0 14:31 ?        00:00:00 nginx: master process nginx
+nginx       5055    4781  0 14:36 ?        00:00:00 nginx: worker process
+</code></pre><h2 id=查看本机所有暴露的端口>查看本机所有暴露的端口</h2><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>netstat -ntlp
+</code></pre></div><p>结果如下，可以看到此前配置的 <code>8090</code> 端口已经是 <code>listen</code> 状态，接下来就可以在浏览器中访问了。</p><pre><code>Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+...
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:8090            0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN      -
+...
+</code></pre><p>在浏览器中访问 <code>虚拟机ip:8090</code>，即可看到 Nginx 的欢迎页面。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906154034.png alt=20200906154034></p><blockquote><p>此时返回 404 是因为 Nginx 目录中并没有欢迎页面的 html 文件，但依然可以说明已经 Nginx 服务已经配置正确并启动成功。</p></blockquote><h1 id=离线安装-nginx-的启动方式>离线安装 Nginx 的启动方式</h1><p>首先执行下述命令来启动 Nginx。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /usr/local/nginx/sbin
 <span class=ln>2</span>sudo ./nginx
 </code></pre></div><p>同样的，我们可以按照上一节中介绍的方法，来验证 Nginx 是否启动成功，以及端口是否开放。<br>Nginx 服务默认的端口是 <code>80</code>，如果需要修改端口，也可以参照上一节中的内容进行手动修改，略有不同的是，通过手动编译安装的 Nginx，配置文件地址在 <code>/usr/local/nginx/conf/nginx.conf</code>，也就是编译时我们手动指定的路径下。
 其余内容此处皆不再赘述。</p><p>打开宿主机浏览器，访问 <code>虚拟机ip:80</code>，就可以看到 Nginx 的欢迎页面。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906153613.png alt=20200906153613></p><h1 id=修改-nginxconf>修改 nginx.conf</h1><p>如果后续需要修改 <code>nginx.conf</code> 中的内容，例如更改 Nginx 服务端口号，请务必在修改完成后重启服务。常用的 Nginx 命令如下。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># 检查 nginx.conf 是否配置正确</span>
@@ -126,7 +128,11 @@ nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a
 <span class=ln>7</span><span class=c1># 停止 Nginx 服务</span>
 <span class=ln>8</span>sudo nginx -s stop
 </code></pre></div><h1 id=附录>附录</h1><p>在 Linux 中查找某一个具体文件路径时，可以使用以下命令。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo find / -name filename
-</code></pre></div><ul><li><code>/</code> 代表查找的目录，此例是根目录</li><li><code>-name</code> 代表按照文件名进行查找</li><li><code>filename</code> 代表具体的文件名，例如 <code>nginx.conf</code></li></ul><p>以本文章为例，在根目录中查找 <code>nginx.conf</code> 的结果如下。</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback><span class=ln>1</span>/etc/nginx/nginx.conf
-<span class=ln>2</span>/usr/local/software/nginx-1.18.0/conf/nginx.conf
-<span class=ln>3</span>/usr/local/nginx/conf/nginx.conf
-</code></pre></div></div><div class="row middle-xs"><div class=col-xs-12><div class=post-category><a href=/categories/nginx>nginx</a></div></div></div><div class=row><div class=col-xs-12></div></div><div style=height:50px></div><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"],],},};</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script><div class=site-footer><div class=site-footer-item><a href=https://github.com/sudrizzz/ target=_blank>Github</a></div><div class=site-footer-item><a href=mailto:sudrizzz@google.com target=_blank>Email</a></div><div class=site-footer-item><a href="https://music.163.com/song?id=356827" target=_blank>~</a></div></div></div></div></article><script src=/js/highlight.pack.js></script><script src=/js/lazyload.min.js></script><script>var lazyImage=new LazyLoad({container:document.getElementById('article')});</script><script>hljs.initHighlightingOnLoad();</script></body></html>
+</code></pre></div><ul><li><code>/</code> 代表查找的目录，此例是根目录</li><li><code>-name</code> 代表按照文件名进行查找</li><li><code>filename</code> 代表具体的文件名，例如 <code>nginx.conf</code></li></ul><p>以本文章为例，在根目录中查找 <code>nginx.conf</code> 的结果如下。</p><pre><code>/etc/nginx/nginx.conf
+/usr/local/software/nginx-1.18.0/conf/nginx.conf
+/usr/local/nginx/conf/nginx.conf
+</code></pre></section><footer class=article-footer><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous onload="renderMathInElement(document.querySelector(`.article-content`));"></script></article><aside class=related-contents--wrapper><h2 class=section-title>Related contents</h2><div class=related-contents><div class="flex article-list--tile"><article><a href=/posts/getting-to-know-nginx-2/><div class=article-details><h2 class=article-title>初识 Nginx（二）</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy; 2020 Anthony's blog</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=1.1.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true style=display:none><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script><link rel=stylesheet href=/css/highlight/light.min.css media="(prefers-color-scheme: light)"><link rel=stylesheet href=/css/highlight/dark.min.css media="(prefers-color-scheme: dark)"></body></html>
