@@ -62,7 +62,7 @@ handwrittendigits C:\Users\xvyn\anaconda3\envs\handwrittendigits
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>执行完成后可通过下列命令进行切换虚拟环境。若使用其他 Shell 工具进行操作，则可直接执行下列命令。&lt;/p>
 &lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda activate handwrittendigits
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>如果执行时报错如下，则可以通过 &lt;a href="https://github.com/conda/conda/issues/7980">https://github.com/conda/conda/issues/7980&lt;/a> 来解决。&lt;/p>
-&lt;pre>&lt;code>Can't execute `conda activate` from bash script
+&lt;pre>&lt;code>Can't execute `conda activate` from batch script
 &lt;/code>&lt;/pre>
 &lt;p>详细操作为：&lt;/p>
 &lt;ol>

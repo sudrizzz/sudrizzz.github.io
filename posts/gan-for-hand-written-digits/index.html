@@ -38,7 +38,7 @@ base                  *  C:\Users\xvyn\anaconda3
 handwrittendigits        C:\Users\xvyn\anaconda3\envs\handwrittendigits
 </code></pre><p>其中，标记 * 的表示目前已启用，命令行前半部分的 (base) 也表示目前启用的是哪个虚拟环境，此例中为 base 环境。</p><h2 id=切换虚拟环境>切换虚拟环境</h2><p>如果使用 PowerShell 进行 Anaconda 的一些操作，需要以 <strong>管理员</strong> 身份运行 PowerShell，然后执行下列命令。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>set-executionpolicy remotesigned
 </code></pre></div><p>执行完成后可通过下列命令进行切换虚拟环境。若使用其他 Shell 工具进行操作，则可直接执行下列命令。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>conda activate handwrittendigits
-</code></pre></div><p>如果执行时报错如下，则可以通过 <a href=https://github.com/conda/conda/issues/7980>https://github.com/conda/conda/issues/7980</a> 来解决。</p><pre><code>Can't execute `conda activate` from bash script
+</code></pre></div><p>如果执行时报错如下，则可以通过 <a href=https://github.com/conda/conda/issues/7980>https://github.com/conda/conda/issues/7980</a> 来解决。</p><pre><code>Can't execute `conda activate` from batch script
 </code></pre><p>详细操作为：</p><ol><li>安装并打开 Git Bash</li><li>执行 <code>source ~/anaconda3/etc/profile.d/conda.sh</code></li><li>执行 <code>conda init</code></li><li>重启 PowerShell</li></ol><p>切换环境操作结束后，可以注意到命令行左侧的括号内容由 (base) 变为 (handwrittendigits)，表明切换成功，后面的操作均在此虚拟环境中进行。</p><pre><code>实际操作过程
 (base) PS C:\Users\xvyn&gt; conda activate handwrittendigits
 (handwrittendigits) PS C:\Users\xvyn&gt;
