@@ -3192,15 +3192,37 @@ Deleted: sha256:9c27e219663c25e0f28493790cc0b88bc973ba3b1686355f221c38a36978ac63
 &lt;blockquote>
 &lt;p>注意：&lt;br>
 由于 &lt;code>username&lt;/code> 不方便叙述，故下文中均以 &lt;code>sudrizzz&lt;/code> 为例替代 &lt;code>username&lt;/code>，&lt;br>
-请根据实际情况进行更改。&lt;/p>
+请读者根据实际情况进行更改。&lt;/p>
 &lt;/blockquote>
-&lt;p>在上文中我们已经创建了一个名为 &lt;code>&amp;lt;username&amp;gt;.github.io&lt;/code> 的仓库，现在还需要创建另一个仓库来存放文章管理文件。仓库名任意，公有与私有均可。&lt;/p>
-&lt;ul>
-&lt;li>文章管理仓库：&lt;code>sudrizzz/blog_workflow&lt;/code>&lt;/li>
-&lt;li>文章编译输出仓库：&lt;code>sudrizzz/sudrizzz.github.io&lt;/code>&lt;/li>
-&lt;/ul>
+&lt;p>在上文中我们已经创建了一个名为 &lt;code>&amp;lt;username&amp;gt;.github.io&lt;/code> 的仓库，现在还需要创建另一个仓库来存放文章管理文件。仓库名任意，公有与私有均可。另外，还需要创建一个仓库来存储文章中涉及到的图片，仓库名任意，但必须是&lt;strong>公有&lt;/strong>的。本例中，我们所用到的仓库名如下。&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>仓库名&lt;/th>
+&lt;th>用途&lt;/th>
+&lt;th>公有或私有&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>blog_workflow&lt;/td>
+&lt;td>存储博客中文章或者主题等原始文件&lt;/td>
+&lt;td>私有&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>sudrizzz.github.io&lt;/td>
+&lt;td>存储 Hugo 生成的静态文件&lt;/td>
+&lt;td>公有&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>blog_images&lt;/td>
+&lt;td>存储图片文件&lt;/td>
+&lt;td>公有&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
 &lt;h1 id="拆分文件">拆分文件&lt;/h1>
-&lt;p>上文中我们只是将 &lt;code>/public&lt;/code> 文件夹提交到了 &lt;code>sudrizzz.github.io&lt;/code> 仓库，现在我们还需要将除了 &lt;code>/public&lt;/code> 以外的文件全部提交到 &lt;code>blog_workflow&lt;/code>，实现这一步可以再本地建立两个对应的文件夹，分别进行提交，操作步骤不再赘述，拆分后的目录结构如下。&lt;/p>
+&lt;p>上文中我们只是将 &lt;code>/public&lt;/code> 文件夹提交到了 &lt;code>sudrizzz.github.io&lt;/code> 仓库，现在我们还需要将除了 &lt;code>/public&lt;/code> 以外的文件全部提交到 &lt;code>blog_workflow&lt;/code>，实现这一步可以再本地建立两个对应的文件夹，分别进行提交，操作步骤不再赘述。拆分后的目录结构如下。&lt;/p>
 &lt;pre>&lt;code>blog_workflow 仓库
 ├─archetypes
 ├─content
@@ -3298,35 +3320,34 @@ The key's randomart image is:
 &lt;span class="ln">32&lt;/span> deploy_key: &lt;span class="si">${&lt;/span>&lt;span class="p">{ secrets.ACTIONS_DEPLOY_KEY &lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="o">}&lt;/span> &lt;span class="c1"># 上面配置的私钥名称&lt;/span>
 &lt;span class="ln">33&lt;/span> external_repository: sudrizzz/sudrizzz.github.io &lt;span class="c1"># Pages 发布到远程仓库&lt;/span>
 &lt;span class="ln">34&lt;/span> publish_dir: ./public &lt;span class="c1"># hugo 编译生成的 public 目录下的文件&lt;/span>
-&lt;span class="ln">35&lt;/span> keep_files: &lt;span class="nb">true&lt;/span> &lt;span class="c1"># 保留远程仓库已存在的文件&lt;/span>
+&lt;span class="ln">35&lt;/span> keep_files: &lt;span class="nb">false&lt;/span> &lt;span class="c1"># 不保留 *.github.io 仓库中已有的文件&lt;/span>
 &lt;span class="ln">36&lt;/span> publish_branch: master &lt;span class="c1"># 远程仓库分支&lt;/span>
 &lt;span class="ln">37&lt;/span> commit_message: &lt;span class="si">${&lt;/span>&lt;span class="p">{ github.event.head_commit.message &lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="o">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>注意修改第 33 行 &lt;code>external_repository&lt;/code> 中的用户名，该配置的文件名任意，例如 &lt;code>main.yml&lt;/code>。&lt;br>
-保存后即可在 Actions 界面查看脚本执行情况。每当 &lt;code>blog_workflow&lt;/code> 仓库有新的 push 操作时，就会自动执行该脚本，然后将执行后生成的文件自动提交到 &lt;code>sudrizzz.github.io&lt;/code>。&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>注意修改第 33 行 &lt;code>external_repository&lt;/code> 中的用户名。
+该配置的文件名任意，例如 &lt;code>main.yml&lt;/code>。保存后即可在 Actions 界面查看脚本执行情况。每当 &lt;code>blog_workflow&lt;/code> 仓库有新的 push 操作时，就会自动执行该脚本，然后将执行后生成的文件自动提交到 &lt;code>sudrizzz.github.io&lt;/code>。&lt;/p>
 &lt;p>至此，利用 Github Actions 实现自动部署就已经完成了，写作步骤简化为：&lt;/p>
 &lt;ol>
 &lt;li>在 &lt;code>content/posts/cn/&lt;/code> 目录中新增文章，修改相关头信息，完成内容创作并保存；&lt;/li>
-&lt;li>执行 &lt;code>hugo server&lt;/code> 并访问 &lt;code>localhost:1313&lt;/code> 查看文章显示效果，酌情修改；&lt;/li>
+&lt;li>执行 &lt;code>hugo server&lt;/code> 并访问 &lt;code>localhost:1313&lt;/code> 查看文章显示效果；&lt;/li>
 &lt;li>提交新文章到 &lt;code>blog_workflow&lt;/code>；&lt;/li>
 &lt;li>上述 Action 自动编译并将生成的静态文件部署到 &lt;code>sudrizzz.github.io&lt;/code>。&lt;/li>
 &lt;/ol>
-&lt;p>创作流程得到了极大的简化。&lt;/p>
-&lt;p>下面将介绍使用 Github 作为图床的相关配置。&lt;/p>
+&lt;p>创作流程得到了极大的简化。下面将介绍使用 Github 作为图床的相关配置。&lt;/p>
 &lt;h1 id="安装并配置-picgo">安装并配置 PicGo&lt;/h1>
-&lt;p>本文使用的方案是 VSCode + PicGo 扩展，所以首先打开 VSCode 安装好 PicGo，此处不再赘述。如果需要使用 PicGo Windows 客户端，请&lt;a class="link" href="https://github.com/Molunerfinn/PicGo/releases" target="_blank" rel="noopener"
->点击这里&lt;/a>下载，并跳过本节配置说明。&lt;/p>
+&lt;p>本文使用的方案是 VSCode + PicGo 扩展，所以首先打开 VSCode 安装好 PicGo，此处不再赘述。&lt;/p>
+&lt;p>如果需要使用 PicGo Windows 客户端，请点击 &lt;a href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases&lt;/a> 下载，并跳过本节配置说明。&lt;/p>
 &lt;h2 id="生成-token">生成 Token&lt;/h2>
 &lt;p>点击 Github 右上角个人头像，进入 &lt;code>Settings&lt;/code> -&amp;gt; &lt;code>Developer settings&lt;/code> -&amp;gt; &lt;code>Personal access tokens&lt;/code>，点击 &lt;code>Generate new token&lt;/code>。&lt;br>
 Note 中可以任意填写，勾选下方的 &lt;code>repo&lt;/code> 复选框，点击页面最下方的 &lt;code>Generate token&lt;/code>，复制生成的 token 字符串。
 &lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809161038.png" alt="20200809161038" />&lt;/p>
 &lt;h2 id="配置-picgo">配置 PicGo&lt;/h2>
 &lt;p>在 VSCode 中打开 PicGo 的设置界面，将复制的 token 字符串填到 &lt;code>picgo.picBed.github.token&lt;/code> 中，具体配置见下图。
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809162036.png" alt="20200809162036" />&lt;/p>
+&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201221163830.png" alt="20201221163830" />&lt;/p>
 &lt;ul>
 &lt;li>&lt;code>picgo.picBed.github.customUrl&lt;/code>&lt;br>
-此项是利用 jsDelivr CDN 为图片进行加速服务，填写时只需将 &lt;code>sudrizzz/sudrizzz.github.io&lt;/code> 更改为自己的用户名与仓库即可，具体如下。&lt;/li>
+此项是利用 jsDelivr CDN 为图片进行加速服务，填写时只需将 &lt;code>sudrizzz/blog_images&lt;/code> 更改为自己的用户名与仓库即可，具体如下。&lt;/li>
 &lt;/ul>
-&lt;pre>&lt;code>https://cdn.jsdelivr.net/gh/sudrizzz/sudrizzz.github.io@master
+&lt;pre>&lt;code>https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main
 &lt;/code>&lt;/pre>&lt;ul>
 &lt;li>&lt;code>picgo.picBed.github.path&lt;/code>&lt;br>
 此项是配置图片的存储路径，根目录为 &lt;code>picgo.picBed.github.repo&lt;/code> 中设置的仓库。&lt;/li>
@@ -3340,9 +3361,6 @@ OSX：Cmd + Opt + U
 从资源管理器上传图像
 Windows / Unix：Ctrl + Alt + E
 OSX：Cmd + Opt + E
-从输入框上传图像
-Windows / Unix：Ctrl + Alt + O
-OSX：Cmd + Opt + O
 &lt;/code>&lt;/pre>&lt;h1 id="结语">结语&lt;/h1>
 &lt;p>至此，搭建 Github Pages 系列文章就到此结束了，作者的需求基本得到了满足，感谢您的阅读。&lt;/p></description></item><item><title>从零搭建 Github Pages</title><link>https://sudrizzz.github.io/posts/build-blog-from-scratch/</link><pubDate>Sun, 09 Aug 2020 12:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/build-blog-from-scratch/</guid><description>&lt;h1 id="创建仓库">创建仓库&lt;/h1>
 &lt;p>首先需要在 Github 中创建一个名为 &lt;code>&amp;lt;username&amp;gt;.github.io&lt;/code> 的仓库，其中 &lt;code>&amp;lt;username&amp;gt;&lt;/code> 为你的 Github 用户名。&lt;/p>
@@ -3518,33 +3536,7 @@ Total in 29 ms
 &lt;span class="ln">3&lt;/span>git commit -m &lt;span class="s2">&amp;#34;&amp;lt;commit_info&amp;gt;&amp;#34;&lt;/span>
 &lt;span class="ln">4&lt;/span>git push origin master
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>这样博客的所有内容就都已经推送到了 Github，稍等片刻，即可访问 sudrizzz.github.io 查看部署结果。&lt;/p>
-&lt;h1 id="为代码块添加行号显示">为代码块添加行号显示&lt;/h1>
-&lt;p>本文中使用的主题 &lt;code>yinyang&lt;/code> 并未支持代码块行号显示，所以需要手动进行配置。&lt;/p>
-&lt;h2 id="添加配置">添加配置&lt;/h2>
-&lt;p>编辑项目根目录中的 config.toml，添加如下内容。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="ln"> 1&lt;/span>&lt;span class="nx">pygmentsUseClasses&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
-&lt;span class="ln"> 2&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">markup&lt;/span>&lt;span class="p">]&lt;/span>
-&lt;span class="ln"> 3&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nx">markup&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">highlight&lt;/span>&lt;span class="p">]&lt;/span>
-&lt;span class="ln"> 4&lt;/span> &lt;span class="nx">codeFences&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
-&lt;span class="ln"> 5&lt;/span> &lt;span class="nx">guessSyntax&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
-&lt;span class="ln"> 6&lt;/span> &lt;span class="nx">hl_Lines&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>
-&lt;span class="ln"> 7&lt;/span> &lt;span class="nx">lineNoStart&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">1&lt;/span>
-&lt;span class="ln"> 8&lt;/span> &lt;span class="nx">lineNos&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
-&lt;span class="ln"> 9&lt;/span> &lt;span class="nx">lineNumbersInTable&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">false&lt;/span>
-&lt;span class="ln">10&lt;/span> &lt;span class="nx">noClasses&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
-&lt;span class="ln">11&lt;/span> &lt;span class="nx">style&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;github&amp;#34;&lt;/span>
-&lt;span class="ln">12&lt;/span> &lt;span class="nx">tabWidth&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">4&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="添加行号样式">添加行号样式&lt;/h2>
-&lt;p>编辑 &lt;code>/themes/yinyang/static/css/index.css&lt;/code>，添加如下内容。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="ln">1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nc">highlight&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nc">ln&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="ln">2&lt;/span> &lt;span class="k">display&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">block&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="ln">3&lt;/span> &lt;span class="k">float&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">left&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="ln">4&lt;/span> &lt;span class="k">text-align&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">right&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="ln">5&lt;/span> &lt;span class="k">user-select&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">none&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="ln">6&lt;/span> &lt;span class="k">padding-right&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">12&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="ln">7&lt;/span> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#ccc&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="ln">8&lt;/span>&lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="总结">总结&lt;/h1>
+&lt;h1 id="总结">总结&lt;/h1>
 &lt;p>前文搭建的博客是由 Github Pages + Hugo 实现的，具体的新增文章步骤可以总结为以下几点。&lt;/p>
 &lt;ol>
 &lt;li>在 &lt;code>content/posts/cn/&lt;/code> 目录中新增文章，修改相关头信息，完成内容创作并保存；&lt;/li>

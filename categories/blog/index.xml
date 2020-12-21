@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog on Anthony's blog</title><link>https://sudrizzz.github.io/categories/blog/</link><description>Recent content in blog on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 09 Aug 2020 15:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Github 自动部署与图床</title><link>https://sudrizzz.github.io/posts/integrating-with-github-action/</link><pubDate>Sun, 09 Aug 2020 15:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/integrating-with-github-action/</guid><description>前情提要 在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。
 创建仓库 注意：
 由于 username 不方便叙述，故下文中均以 sudrizzz 为例替代 username，
-请根据实际情况进行更改。
-在上文中我们已经创建了一个名为 &amp;lt;username&amp;gt;.github.io 的仓库，现在还需要创建另一个仓库来存放文章管理文件。仓库名任意，公有与私有均可。
-文章管理仓库：sudrizzz/blog_workflow 文章编译输出仓库：sudrizzz/sudrizzz.github.io 拆分文件 上文中我们只是将 /public 文件夹提交到了 sudrizzz.github.io 仓库，现在我们还需要将除了 /public 以外的文件全部提交到 blog_workflow，实现这一步可以再本地建立两个对应的文件夹，分别进行提交，操作步骤不再赘述，拆分后的目录结构如下。
-blog_workflow 仓库 ├─archetypes ├─content │ └─cn │ └─posts ├─layouts ├─resources │ └─_gen └─themes └─yinyang ├─... sudrizzz.github.io 仓库 ├─categories │ └─test ├─css │ └─highlight ├─fonts ├─images ├─js ├─posts │ └─test └─tags 配置公私密钥 生成密钥 打开 Git Bash，执行如下命令
-1ssh-keygen -t rsa -b 4096 -C &amp;#34;sudrizzz.</description></item><item><title>从零搭建 Github Pages</title><link>https://sudrizzz.github.io/posts/build-blog-from-scratch/</link><pubDate>Sun, 09 Aug 2020 12:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/build-blog-from-scratch/</guid><description>创建仓库 首先需要在 Github 中创建一个名为 &amp;lt;username&amp;gt;.github.io 的仓库，其中 &amp;lt;username&amp;gt; 为你的 Github 用户名。
+请读者根据实际情况进行更改。
+在上文中我们已经创建了一个名为 &amp;lt;username&amp;gt;.github.io 的仓库，现在还需要创建另一个仓库来存放文章管理文件。仓库名任意，公有与私有均可。另外，还需要创建一个仓库来存储文章中涉及到的图片，仓库名任意，但必须是公有的。本例中，我们所用到的仓库名如下。
+仓库名 用途 公有或私有 blog_workflow 存储博客中文章或者主题等原始文件 私有 sudrizzz.github.io 存储 Hugo 生成的静态文件 公有 blog_images 存储图片文件 公有 拆分文件 上文中我们只是将 /public 文件夹提交到了 sudrizzz.github.io 仓库，现在我们还需要将除了 /public 以外的文件全部提交到 blog_workflow，实现这一步可以再本地建立两个对应的文件夹，分别进行提交，操作步骤不再赘述。拆分后的目录结构如下。
+blog_workflow 仓库 ├─archetypes ├─content │ └─cn │ └─posts ├─layouts ├─resources │ └─_gen └─themes └─yinyang ├─... sudrizzz.</description></item><item><title>从零搭建 Github Pages</title><link>https://sudrizzz.github.io/posts/build-blog-from-scratch/</link><pubDate>Sun, 09 Aug 2020 12:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/build-blog-from-scratch/</guid><description>创建仓库 首先需要在 Github 中创建一个名为 &amp;lt;username&amp;gt;.github.io 的仓库，其中 &amp;lt;username&amp;gt; 为你的 Github 用户名。
 注意：
 由于 username 不方便叙述，故下文中均以 sudrizzz 为例替代 username，
 请根据实际情况进行更改。
