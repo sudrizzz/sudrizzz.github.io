@@ -1,4 +1,138 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 08 Dec 2020 10:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GAN 网络之手写数字生成</title><link>https://sudrizzz.github.io/posts/gan-for-hand-written-digits/</link><pubDate>Tue, 08 Dec 2020 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/gan-for-hand-written-digits/</guid><description>&lt;h1 id="环境搭建">环境搭建&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 22 Dec 2020 09:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>《机器学习》笔记（一）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-1/</link><pubDate>Tue, 22 Dec 2020 09:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-1/</guid><description>&lt;p>《机器学习》笔记系列文章内容按照《机器学习》书本章节进行排布，节号与书中节号一一对应。&lt;/p>
+&lt;h1 id="1-绪论">1 绪论&lt;/h1>
+&lt;h2 id="12-基本术语">1.2 基本术语&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>术语&lt;/th>
+&lt;th>英语原意&lt;/th>
+&lt;th>释义&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>数据集&lt;/td>
+&lt;td>data set&lt;/td>
+&lt;td>一组关于一个事件或对象的描述的集合&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>样本 / 示例&lt;/td>
+&lt;td>sample / instance&lt;/td>
+&lt;td>数据集中的每条记录&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>属性 / 特征&lt;/td>
+&lt;td>attribute / feature&lt;/td>
+&lt;td>反映样本在某方面的表现或性质的事项&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>训练数据&lt;/td>
+&lt;td>training data&lt;/td>
+&lt;td>用于训练的数据&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>训练样本&lt;/td>
+&lt;td>training sample&lt;/td>
+&lt;td>训练数据中的每个样本&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>假设&lt;/td>
+&lt;td>hypothesis&lt;/td>
+&lt;td>通过训练学得数据的某种规律&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>真实&lt;/td>
+&lt;td>ground-truth&lt;/td>
+&lt;td>潜在规律本身&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>预测&lt;/td>
+&lt;td>prediction&lt;/td>
+&lt;td>训练结果生成的模型&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>分类&lt;/td>
+&lt;td>classification&lt;/td>
+&lt;td>预测离散值&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>二分类&lt;/td>
+&lt;td>binary classification&lt;/td>
+&lt;td>只涉及两个特征的分类&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>多分类&lt;/td>
+&lt;td>multi-class classification&lt;/td>
+&lt;td>涉及多个特征的分类&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>回归&lt;/td>
+&lt;td>regression&lt;/td>
+&lt;td>预测连续纸&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>聚类&lt;/td>
+&lt;td>clustering&lt;/td>
+&lt;td>对训练样本进行分组&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>簇&lt;/td>
+&lt;td>cluster&lt;/td>
+&lt;td>聚类后的每一个组&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>监督学习&lt;/td>
+&lt;td>supervised learning&lt;/td>
+&lt;td>训练数据有标记信息的训练（分类与回归）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>无监督学习&lt;/td>
+&lt;td>unsupervised learning&lt;/td>
+&lt;td>训练数据没有标记信息的训练（聚类）&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h1 id="2-模型评估与选择">2 模型评估与选择&lt;/h1>
+&lt;h2 id="21-经验误差与过拟合">2.1 经验误差与过拟合&lt;/h2>
+&lt;h3 id="误差">误差&lt;/h3>
+&lt;p>通常我们把分类错误的样本数占样本总数的比例称为“错误率”（error rate），即如果在 m 个样本中有 a 个样本分类错误，则错误率 $ E = \frac{a}{m} $； 相应的，$ 1 - \frac{a}{m} $ 称为“精度”（accuracy），即“精度 = 1 - 错误率”。&lt;/p>
+&lt;p>更一般地，我们把学习器的实际预测输出与样本的真实输出之间的差异称为“误差”（error），学习器在训练集上的误差称为”训练误差“（training error） 或“经验误差”（empirical error）, 在新样本上的误差称为“泛化误差”（generalization errorr）。&lt;/p>
+&lt;h3 id="过拟合与欠拟合">过拟合与欠拟合&lt;/h3>
+&lt;p>为了达到更好的学习效果，应该从训练样本中尽可能学出适用于所有潜在样本的“普遍规律”，这样才能在遇到新样本时做出正确的判别。然而，当学习器把训练样本学得“太好”了的时候，很可能已经把训练样本自身的一些特点当作了所有潜在样本都会具有的一般性质，这样就会导致泛化性能下降。这种现象在机器学习中称为“过拟合”（overfitting）。 与“过拟合”相对的是“欠拟合”（underfitting），这是指对训练样本的一般性质尚未学好。&lt;/p>
+&lt;p>下图展示了欠拟合与过拟合，蓝色点为训练数据，橙色点为测试数据，红色曲线为拟合曲线。&lt;/p>
+&lt;p>最优拟合
+&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201222151854.png" alt="20201222151854" />&lt;/p>
+&lt;p>欠拟合（underfitting）
+&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201222153133.png" alt="20201222153133" />&lt;/p>
+&lt;p>过拟合（overfitting）
+&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201222152022.png" alt="20201222152022" />&lt;/p>
+&lt;p>过拟合的训练误差（蓝色）与泛化误差（红色）
+&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201222152706.png" alt="20201222152706" />&lt;/p>
+&lt;h2 id="22-评估方法">2.2 评估方法&lt;/h2>
+&lt;h3 id="221-留出法">2.2.1 留出法&lt;/h3>
+&lt;p>留出法（hold-out）直接将数据集 $D$ 划分为两个互斥的集合，其中一个集合作为训练集 $S$，另一个作为测试集 $T$，即&lt;/p>
+&lt;p>$$ D = S \cup T , S \cap T=\varnothing $$&lt;/p>
+&lt;p>需要注意的是训练/测试集的划分要尽可能保持数据分布的一致性，避免因数据划分过程引入额外的偏差而对最终结果产生影响。&lt;/p>
+&lt;h3 id="222-交叉验证法">2.2.2 交叉验证法&lt;/h3>
+&lt;p>交叉验证法（cross validation）先将数据集 $D$ 划分为 $k$ 个大小相似的互斥子集，即&lt;/p>
+&lt;p>$$ D = D_1 \cup D_2 \cup \dots \cup D_k , D_i \cap D_j = \varnothing (i \ne j)$$&lt;/p>
+&lt;p>每个子集 $D_{i}$ 都尽可能保持数据分布的一致性，即从 $D$ 中通过分层采样得到。然后每次用 $k - 1$ 个子集的并集作为训练集，余下的那个子集作为测试集；这样就可以获得 $k$ 组训练/测试集，从而可进行 $k$ 次训练和测试，最终返回的是这 $k$ 个测试结果得得得均值。显然，交叉验证法评估结果的稳定性和保真性在很大程度上取决于 $k$ 的取值，为强调这一点，通常把交叉验证法称为 ”$k$ 折交叉验证“（$k$-fold cross validation）。$k$ 最常用的取值是 10，此时成为 10 折交叉验证。下图为 10 折交叉验证的示意图。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201222174250.png" alt="20201222174250" />&lt;/p>
+&lt;h2 id="23-性能度量">2.3 性能度量&lt;/h2>
+&lt;p>在预测任务中，给定样例集 $D = {(x_1, y_1), (x_2, y_2), \dots , (x_m, y_m)}$ ，其中 $y_i$ 是 $x_i$ 的真实标记。要评估学习器 $f$ 的性能，就要把学习器预测结果 $f(x)$ 与真实标记 $y$ 进行比较。&lt;/p>
+&lt;p>回归任务最常用的性能度量是”均方误差“（mean squared error），即 Loss function&lt;/p>
+&lt;p>$$ L(f) = E(f; D) = \frac{1}{m} \sum_{i=1}^{m}(f(x_i) - y_i)^2 $$&lt;/p>
+&lt;p>则最优学习器 $f^*$ 可以表示为&lt;/p>
+&lt;p>$$ f^* = arg \min_f L(f) $$&lt;/p>
+&lt;h1 id="参考文献">参考文献&lt;/h1>
+&lt;ol>
+&lt;li>&lt;a class="link" href="https://zh.wikipedia.org/wiki/%E9%81%8E%E9%81%A9" target="_blank" rel="noopener"
+>过拟合-维基百科&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://zh.wikipedia.org/wiki/%E5%88%86%E5%B1%82%E6%8A%BD%E6%A0%B7" target="_blank" rel="noopener"
+>分层抽样&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://datawhalechina.github.io/leeml-notes/" target="_blank" rel="noopener"
+>李宏毅机器学习笔记(LeeML-Notes)&lt;/a>&lt;/li>
+&lt;/ol></description></item><item><title>GAN 网络之手写数字生成</title><link>https://sudrizzz.github.io/posts/gan-for-hand-written-digits/</link><pubDate>Tue, 08 Dec 2020 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/gan-for-hand-written-digits/</guid><description>&lt;h1 id="环境搭建">环境搭建&lt;/h1>
 &lt;p>本例中，所涉及的系统与软件版本列表如下。&lt;/p>
 &lt;table>
 &lt;thead>
