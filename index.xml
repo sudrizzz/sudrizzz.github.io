@@ -6,7 +6,7 @@
 &lt;p>$$ f(\boldsymbol{x}) = \boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b $$&lt;/p>
 &lt;p>其中 $\boldsymbol{w} = (w_1; w_2; \cdots; w_d)$，$\boldsymbol{w}$ 和 $b$ 学得之后，模型就得以确定。&lt;/p>
 &lt;h2 id="32-线性回归">3.2 线性回归&lt;/h2>
-&lt;p>给定数据集 $D={(x_1, y_1,), (x_2, y_2), \cdots, (x_m, y_m)}$，其中 $\boldsymbol{x}_i = (x_{i1}; x_{i2}, \cdots, x_{id})$，$y_i \in \mathbb{R}$。“线性回归（linear regression）”试图学得一个线性模型以尽可能准确地预测实值输出标记。&lt;/p>
+&lt;p>给定数据集 $D=\{(x_1, y_1,), (x_2, y_2), \cdots, (x_m, y_m)\}$，其中 $\boldsymbol{x}_i = (x_{i1}; x_{i2}, \cdots, x_{id})$，$y_i \in \mathbb{R}$。“线性回归（linear regression）”试图学得一个线性模型以尽可能准确地预测实值输出标记。&lt;/p>
 &lt;p>线性回归试图学得 $f(x_i) = wx_i + b$，使得 $f(x_i) \simeq y_i$。&lt;/p>
 &lt;p>2.3 节中的均方误差是回归任务中最常用的性能度量，因此我们可试图让均方误差最小化，即&lt;/p>
 &lt;p>$$
@@ -23,15 +23,93 @@ w=\frac{\sum_{i=1}^{m} y_{i}\left(x_{i}-\bar{x}\right)}{\sum_{i=1}^{m} x_{i}^{2}
 $$&lt;/p>
 &lt;p>$$ b=\frac{1}{m}\sum_{i=1}^m(y_i-wx_i) $$&lt;/p>
 &lt;p>其中，$\bar{x}=\frac{1}{m}\sum_{i=1}^mx_i$ 为 $x$ 均值。&lt;/p>
+&lt;p>线性模型虽简单，却有丰富的变化。例如对于样例 $(\boldsymbol{x}, y)$，$y\in \mathbb{R}$，当我们希望线性模型 $ f(\boldsymbol{x}) = \boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b $ 的预测值逼近真实标记 $y$ 时，就得到了线性回归模型。为便于观察，我们把线性回归模型简写为&lt;/p>
+&lt;p>$$ y = \boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b $$&lt;/p>
+&lt;p>可否令模型预测值逼近 $y$ 的衍生物呢？譬如说，假设我们认为示例所对应的输出标记是在指数尺度上变化，那就可将输出标记的对数作为线性模型逼近的目标，即&lt;/p>
+&lt;p>$$ \ln y = \boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b $$&lt;/p>
+&lt;p>这就是“对数线性回归”（log-linear regression），它实际上是在试图让 $e^{\boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b}$ 逼近 $y$。上式在形式上仍是线性回归，但实质上已是在求取输入空间到输出空间的非线性函数映射，如下图所示，这里的对数函数起到了将线性回归模型的预测值与真实标记联系起来的作用。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231150756.png" alt="20201231150756" />&lt;/p>
+&lt;p>更一般地，考虑单调可微函数 $g(\cdot)$，令&lt;/p>
+&lt;p>$$ y=g^{-1}(\boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b) $$&lt;/p>
+&lt;p>这样得到的模型称为“广义线性模型”（generalized linear model），其中函数 $g(\cdot)$ 称为“联系函数”（link function）。显然，对数线性回归是广义线性模型在 $g(\cdot) = \ln (\cdot)$ 时的特例。&lt;/p>
 &lt;h2 id="33-对数几率回归">3.3 对数几率回归&lt;/h2>
 &lt;p>考虑二分类任务，其输出标记 $y\in\{0,1\}$，而线性回归模型产生的预测值 $z = \boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b $ 是实值，于是我们需将实值 $z$ 转换为 0/1 值。最理想的是“单位阶跃函数”（unit-step function）&lt;/p>
 &lt;p>$$
-x = \begin{cases}
-a &amp;amp;\text{if } b \&lt;br>
-c &amp;amp;\text{if } d
+y = \begin{cases}
+0, &amp;amp;z&amp;lt;0; \\ 0.5, &amp;amp;z=0; \\ 1, &amp;amp;z&amp;gt;0;
 \end{cases}
 $$&lt;/p>
-&lt;h1 id="参考文献">参考文献&lt;/h1></description></item><item><title>《机器学习》笔记（一）</title><link>https://example.com/posts/machine-learning-note-1/</link><pubDate>Tue, 22 Dec 2020 09:00:00 +0800</pubDate><guid>https://example.com/posts/machine-learning-note-1/</guid><description>&lt;p>《机器学习》笔记系列文章内容按照《机器学习》书本章节进行排布，节号与书中节号一一对应。&lt;/p>
+&lt;p>即若预测值 $z$ 大于零就判为正例，小于零则判为反例，预测值为临界值零则可任意判别，如下图所示。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231140318.png" alt="20201231140318" />&lt;/p>
+&lt;p>如果我们希望找到在一定程度上近似单位阶跃函数的“替代函数”（surrogate function），并希望它单调可微。对数几率函数（logistic function）正是这样一个常用的替代函数。&lt;/p>
+&lt;p>$$ y = \frac{1}{1+e^{-z}} $$&lt;/p>
+&lt;p>从上图可看出，对数几率函数是一种“Sigmoid 函数”，它将 $z$ 值转化为一个接近 0 或 1 的 $y$ 值，并且其输出值在 $z=0$ 附近变化很陡。将对数几率函数作为 $g^{-1}(\cdot)$ 代入 $ y=g^{-1}(\boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b) $，得到&lt;/p>
+&lt;p>$$ y = \frac{1}{1+e^{-(\boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b)}} $$&lt;/p>
+&lt;p>对上式两边同时取对数，并进行适当变形可得&lt;/p>
+&lt;p>$$ \ln \frac{y}{1-y} = \boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b $$&lt;/p>
+&lt;p>若将 $y$ 视为样本 $\boldsymbol{x}$ 作为正例的可能性，则 $1-y$ 是其反例可能性，两者的比值&lt;/p>
+&lt;p>$$ \frac{y}{1-y} $$&lt;/p>
+&lt;p>称为“几率”（odds），反映了 $\boldsymbol{x}$ 作为正例的相对可能性。对几率取对数则得到“对数几率”（log odds，亦称 logit）&lt;/p>
+&lt;p>$$ \ln\frac{y}{1-y} $$&lt;/p>
+&lt;p>由此可看出，式 $y = \frac{1}{1+e^{-(\boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b)}}$ 实际上是在用线性回归模型的预测结果去逼近真实标记的对数几率，因此，其对应的模型称为“对数几率回归”（logisticregression，亦称 logit regression）。&lt;/p>
+&lt;p>&lt;strong>特别需注意到，虽然对数几率回归的名字是“回归”，但实际却是一种分类学习方法&lt;/strong>。这种方法有很多优点，例如它是直接对分类可能性进行建模，无需事先假设数据分布，这样就避免了假设分布不准确所带来的问题；它不是仅预测出“类别”，而是可得到近似概率预测，这对许多需利用概率辅助决策的任务很有用；此外，对率函数是任意阶可导的凸函数，有很好的数学性质，现有的许多数值优化算法都可直接用于求取最优解。&lt;/p>
+&lt;h2 id="34-线性判别分析">3.4 线性判别分析&lt;/h2>
+&lt;p>线性判别分析（Linear Discriminant Analysis，简称 LDA）是一种经典的线性学习方法，在二分类问题上因为最早由 [Fisher，1936] 提出，亦称“Fisher 判别分析”。&lt;/p>
+&lt;p>LDA 的思想非常朴素：给定训练样例集，设法将样例投影到一条直线上，使得同类样例的投影点尽可能接近、异类样例的投影点尽可能远离；在对新样本进行分类时，将其投影到同样的这条直线上，再根据投影点的位置来确定新样本的类别。下图给出了一个二维示意图。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231154207.png" alt="20201231154207" />&lt;/p>
+&lt;p>图中 “+”、“-” 分别代表正例和反例，椭圆表示数据簇的外轮廓，虛线表示投影，红色实心圆和实心三角形分别表示两类样本投影后的中心点。&lt;/p>
+&lt;h2 id="35-多分类学习">3.5 多分类学习&lt;/h2>
+&lt;p>现实中常遇到多分类学习任务。有些二分类学习方法可直接推广到多分类，但在更多情形下，我们是基于一些基本策略，利用二分类学习器来解决多分类问题。&lt;/p>
+&lt;p>不失一般性，考虑 N 个类别 $C_1, C_2, \cdots, C_N$ 多分类学习的基本思路是“拆解法”，即将多分类任务拆为若干个二分类任务求解。具体来说，先对问题进行拆分，然后为拆出的每个二分类任务训练一个分类器；在测试时，对这些分类器的预测结果进行集成以获得最终的多分类结果。这里的关键是如何对多分类任务进行拆分，以及如何对多个分类器进行集成。&lt;/p>
+&lt;p>最经典的拆分策略有三种；“一对一”（One vs. One，简称 OvO）、“一对其余”（One vs. Rest，简称 OvR）和“多对多”（Many vs. Many，简称 MvM）。&lt;/p>
+&lt;p>给定数据集 $D=\{(\boldsymbol{x}_1, y_1,), (\boldsymbol{x}_2, y_2), \cdots, (\boldsymbol{x}_m, y_m)\}$，$y_i \in \{C_1, C_2, \cdots, C_N\}$。OvO 将这 $N$ 个类别两两配对，从而产生 $N(N-1)/2$ 个二分类任务，例如 OvO 将为区分类别 $C_i$ 和 $C_j$；训练一个分类器，该分类器把 $D$ 中的 $C_i$ 类样例作为正例, $C_j$ 类样例作为反例。在测试阶段，新样本将同时提交给所有分类器，于是我们将得到 $N(N-1)/2$ 个分类结果，最终结果可通过投票产生：即把被预测得最多的类别作为最终分类结果。下图是 OvO 与 OvR 的示意图。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231161216.png" alt="20201231161216" />&lt;/p>
+&lt;p>OvR 则是每次将一个类的样例作为正例、所有其他类的样例作为反例来训练 N 个分类器。在测试时若仅有一个分类器预测为正类，则对应的类别标记作为最终分类结果，如上图所示，若有多个分类器预测为正类，则通常考虑各
+分类器的预测置信度，选择置信度最大的类别标记作为分类结果。&lt;/p>
+&lt;p>容易看出，OvR 只需训练 $N$ 个分类器,而 OvO 需训练 $N(N-1)/2$ 个分类器，因此，OvO 的存储开销和测试时间开销通常比 OvR 更大。但在训练时，OvR 的每个分类器均使用全部训练样例，而 OvO 的每个分类器仅用到两个类的样例，因此，在类别很多时，OvO 的训练时间开销通常比 OvR 更小。至于预测性能，则取决于具体的数据分布，在多数情形下两者差不多。&lt;/p>
+&lt;p>MvM 是每次将若干个类作为正类，若干个其他类作为反类。显然, OvO 和 OvR 是 MvM 的特例。MvM 的正、反类构造必须有特殊的设计，不能随意选取。这里我们介绍一种最常用的 MvM 技术：“纠错输出码”（Error Correcting Output Codes，简称 ECOC）。&lt;/p>
+&lt;p>ECOC [Dietterich and Bakiri，1995] 是将编码的思想引入类别拆分，并尽可能在解码过程中具有容错性。ECOC 工作过程主要分为两步:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>编码：对 $N$ 个类别做 $M$ 次划分，每次划分将一部分类别划为正类，一部分划为反类，从而形成一个二分类训练集；这样一共产生 $M$ 个训练集，可训练出 $M$ 个分类器。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>解码：$M$ 个分类器分别对测试样本进行预测，这些预测标记组成一个编码。将这个预测编码与每个类别各自的编码进行比较，返回其中距离最小的类别作为最终预测结果。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>类别划分通过“编码矩阵”（coding matrix）指定。编码矩阵有多种形式，常见的主要有二元码 [Dietterich and Bakiri，1995] 和三元码 [Allwein et al，2000]。前者将每个类别分别指定为正类和反类，后者在正、反类之外，还可指定“停用类”。下图为二元码和三元码的示意图。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231162236.png" alt="20201231162236" />&lt;/p>
+&lt;p>上图中，“+1”、“-1”分别表示学习器 $f_i$ 将该类样本作为正、反例；三元码中“0”表示 $f_i$ 不使用该类样本。&lt;/p>
+&lt;blockquote>
+&lt;p>海明距离：两个等长编码序列中对应位置的不同字符的个数&lt;/p>
+&lt;/blockquote>
+&lt;p>对同等长度的编码，理论上来说，任意两个类别之间的编码距离越远，则纠错能力越强，也即单个错误不会引起结果剧烈变化。&lt;/p>
+&lt;h2 id="36-类别不平衡问题">3.6 类别不平衡问题&lt;/h2>
+&lt;p>类别不平衡（class-imbalance）就是指分类任务中不同类别的训练样例数目差别很大的情况，例如又 998 个反例，但正例只有 2 个，那么学习方法只需返回一个永远将新样本预测为反例的学习器，就能达到 99.8% 对的京单独；然而这样的学习器往往没有价值，因为它不能预测出任何正例。&lt;/p>
+&lt;p>从线性分类器的角度讨论容易理解，在我们用 $y = \boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b$ 对新样本 $\boldsymbol{x}$ 进行分类时，事实上是在用预测出的 $y$ 值与一个阈值进行比较，例如通常在 $y&amp;gt;0.5$ 时判别为正例，否则为反例。$y$ 实际上表达了正例的可能性，几率 $\frac{y}{1-y}$ 则反映了正例可能性与反例可能性之比值，阈值设置为 0.5 恰表明分类器认为真实正、反例可能性相同，即分类器决策规则为&lt;/p>
+&lt;p>$$ 若 \frac{y}{1-y} &amp;gt; 1 则预测为正例 （式 1）$$&lt;/p>
+&lt;p>然而，当训练集中正、反例的数目不同时，令 $m^+$ 表示正例数目，$m^-$ 表示反例数目，则观测几率是 $\frac{m^+}{m^-}$，由于我们通常假设训练集是真实样本总体的无偏采样，因此观测几率就代表了真实几率。于是，只要分类器的预测几率高于观测几率就应判定为正例，即&lt;/p>
+&lt;p>$$ 若 \frac{y}{1-y} &amp;gt; \frac{m^+}{m^-} 则预测为正例 （式 2）$$&lt;/p>
+&lt;p>但是，我们的分类器是基于式 1 进行决策，因此，需对其预测值进行调整，使其在基于式(3.46)决策时,实际是在执行式 1。要做到这一点很容易，只需令&lt;/p>
+&lt;p>$$ \frac{y'}{1-y'} = \frac{y}{1-y} \times \frac{m^-}{m^+} （式 3）$$&lt;/p>
+&lt;p>其中，$\frac{m^-}{m^+}$ 表示&lt;strong>观测反例几率&lt;/strong>，$\frac{y}{1-y}$ 表示&lt;strong>预测正例几率&lt;/strong>，这两项相乘得到&lt;strong>再缩放预测正例几率&lt;/strong>。这就是类别不平衡学习的一个基本策略——“再缩放”（rescaling）。&lt;/p>
+&lt;p>再缩放的思想虽简单，但实际操作却并不平凡，主要因为“训练集是真实样本总体的无偏采样”这个假设往往并不成立，也就是说，我们未必能有效地基于训练集观测几率来推断出真实几率。现有技术大体上有三类做法：&lt;/p>
+&lt;ol>
+&lt;li>欠采样（undersampling）&lt;br>
+直接对训练集里的反类样例进行“欠采样”（undersampling），即去除一些反例使得正、反例数目接近，然后再进行学习；&lt;/li>
+&lt;li>过采样（oversampling）&lt;br>
+即增加一些正例使得正、反例数目接近,然后再进行学习;&lt;/li>
+&lt;li>阈值移动（threshold-moving）&lt;br>
+直接基于原始训练集进行学习，但在用训练好的分类器进行预测时，将式 3 嵌入到其决策过程中。&lt;/li>
+&lt;/ol>
+&lt;p>欠采样法的时间开销通常远小于过采样法，因为前者丢弃了很多反例，使得分类器训练集远小于初始训练集，而过采样法增加了很多正例，其训练集大于初始训练集。&lt;/p>
+&lt;p>需注意的是，过采样法不能简单地对初始正例样本进行重复采样，否则会招致严重的过拟合；过采样法的代表性算法 SMOTE[Chawlaetal.,2002] 是通过对训练集里的正例进行插值来产生额外的正例。另一方面，欠采样法若随机丢弃反例，可能丢失一些重要信息；欠采样法的代表性算法 Easy Ensemble[Liu et al.,2009] 则是利用集成学习机制，将反例划分为若干个集合供不同学习器使用，这样对每个学习器来看都进行了欠采样，但在全局来看却不会丢失重要信息。&lt;/p>
+&lt;p>值得一提的是，“再缩放”也是“代价敏感学习”（cost-sensitive learning）的基础。在代价敏感学习中将式 3 中的 $m^-/m^+$ 用 $cost^+/cost^-$ 代替即可，其中 $cost^+$ 是将正例误分为反例的代价，$cost^-$ 是将反例误分为正例的代价。&lt;/p>
+&lt;h1 id="参考文献">参考文献&lt;/h1>
+&lt;ol>
+&lt;li>&lt;a class="link" href="https://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB" target="_blank" rel="noopener"
+>海明距离&lt;/a>&lt;/li>
+&lt;/ol></description></item><item><title>《机器学习》笔记（一）</title><link>https://example.com/posts/machine-learning-note-1/</link><pubDate>Tue, 22 Dec 2020 09:00:00 +0800</pubDate><guid>https://example.com/posts/machine-learning-note-1/</guid><description>&lt;p>《机器学习》笔记系列文章内容按照《机器学习》书本章节进行排布，节号与书中节号一一对应。&lt;/p>
 &lt;h1 id="1-绪论">1 绪论&lt;/h1>
 &lt;h2 id="12-基本术语">1.2 基本术语&lt;/h2>
 &lt;table>
