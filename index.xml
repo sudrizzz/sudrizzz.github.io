@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://example.com/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 30 Dec 2020 17:00:00 +0800</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml"/><item><title>《机器学习》笔记（二）</title><link>https://example.com/posts/machine-learning-note-2/</link><pubDate>Wed, 30 Dec 2020 17:00:00 +0800</pubDate><guid>https://example.com/posts/machine-learning-note-2/</guid><description>&lt;h1 id="3-线性模型">3 线性模型&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 30 Dec 2020 17:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>《机器学习》笔记（二）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-2/</link><pubDate>Wed, 30 Dec 2020 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-2/</guid><description>&lt;h1 id="3-线性模型">3 线性模型&lt;/h1>
 &lt;h2 id="31-基本形式">3.1 基本形式&lt;/h2>
 &lt;p>给定由 $d$ 个属性描述的示例 $\boldsymbol{x}={x_1; x_2;\cdots;x_d}$，其中 $x_i$ 是 $\boldsymbol{x}$ 在第 $i$ 个属性上的取值，线性模型（linear model）试图学得一个通过属性的线性组合来进行预测的函数，即&lt;/p>
 &lt;p>$$ f(\boldsymbol{x}) = w_1x_1 + w_2x_2 + \cdots + w_dx_d + b $$&lt;/p>
@@ -109,7 +109,7 @@ $$&lt;/p>
 &lt;ol>
 &lt;li>&lt;a class="link" href="https://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB" target="_blank" rel="noopener"
 >海明距离&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>《机器学习》笔记（一）</title><link>https://example.com/posts/machine-learning-note-1/</link><pubDate>Tue, 22 Dec 2020 09:00:00 +0800</pubDate><guid>https://example.com/posts/machine-learning-note-1/</guid><description>&lt;p>《机器学习》笔记系列文章内容按照《机器学习》书本章节进行排布，节号与书中节号一一对应。&lt;/p>
+&lt;/ol></description></item><item><title>《机器学习》笔记（一）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-1/</link><pubDate>Tue, 22 Dec 2020 09:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-1/</guid><description>&lt;p>《机器学习》笔记系列文章内容按照《机器学习》书本章节进行排布，节号与书中节号一一对应。&lt;/p>
 &lt;h1 id="1-绪论">1 绪论&lt;/h1>
 &lt;h2 id="12-基本术语">1.2 基本术语&lt;/h2>
 &lt;table>
@@ -289,7 +289,7 @@ $$&lt;/p>
 >分层抽样&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://datawhalechina.github.io/leeml-notes/" target="_blank" rel="noopener"
 >李宏毅机器学习笔记(LeeML-Notes)&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>GAN 网络之手写数字生成</title><link>https://example.com/posts/gan-for-hand-written-digits/</link><pubDate>Tue, 08 Dec 2020 10:00:00 +0800</pubDate><guid>https://example.com/posts/gan-for-hand-written-digits/</guid><description>&lt;h1 id="环境搭建">环境搭建&lt;/h1>
+&lt;/ol></description></item><item><title>GAN 网络之手写数字生成</title><link>https://sudrizzz.github.io/posts/gan-for-hand-written-digits/</link><pubDate>Tue, 08 Dec 2020 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/gan-for-hand-written-digits/</guid><description>&lt;h1 id="环境搭建">环境搭建&lt;/h1>
 &lt;p>本例中，所涉及的系统与软件版本列表如下。&lt;/p>
 &lt;table>
 &lt;thead>
@@ -585,7 +585,7 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 >conda 安装指定版本的指定包&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://luanlengli.github.io/2019/12/19/Python-pip%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AE%BE%E7%BD%AE%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90.html" target="_blank" rel="noopener"
 >Python pip 命令行设置国内镜像源&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>并行计算课程实践</title><link>https://example.com/posts/parallel-computing/</link><pubDate>Tue, 24 Nov 2020 10:00:00 +0800</pubDate><guid>https://example.com/posts/parallel-computing/</guid><description>&lt;h1 id="写在前面">写在前面&lt;/h1>
+&lt;/ol></description></item><item><title>并行计算课程实践</title><link>https://sudrizzz.github.io/posts/parallel-computing/</link><pubDate>Tue, 24 Nov 2020 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/parallel-computing/</guid><description>&lt;h1 id="写在前面">写在前面&lt;/h1>
 &lt;h2 id="vim-基本操作">Vim 基本操作&lt;/h2>
 &lt;h3 id="简介">简介&lt;/h3>
 &lt;p>vim 共分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode）和底线命令模式（Last line mode）。 详见 &lt;a class="link" href="https://www.runoob.com/linux/linux-vim.html" target="_blank" rel="noopener"
@@ -727,7 +727,7 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 1410.82 1162.53 1229.82 1926.65 1632.43 1203.22 978.71 1790.40 1080.38 1510.35
 1338.49 1253.85 1171.30 1826.25 1491.70 1298.11 1020.23 1856.90 1107.89 1567.99
 1901.57 1436.10 1636.91 2460.80 2242.40 1747.59 1161.72 2187.99 1521.42 1855.17
-&lt;/code>&lt;/pre></description></item><item><title>FastDFS 搭建分布式文件管理系统</title><link>https://example.com/posts/getting-to-know-fastdfs/</link><pubDate>Wed, 04 Nov 2020 17:00:00 +0800</pubDate><guid>https://example.com/posts/getting-to-know-fastdfs/</guid><description>&lt;h1 id="fastdfs-简介">FastDFS 简介&lt;/h1>
+&lt;/code>&lt;/pre></description></item><item><title>FastDFS 搭建分布式文件管理系统</title><link>https://sudrizzz.github.io/posts/getting-to-know-fastdfs/</link><pubDate>Wed, 04 Nov 2020 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-fastdfs/</guid><description>&lt;h1 id="fastdfs-简介">FastDFS 简介&lt;/h1>
 &lt;p>FastDFS 是一个开源的高性能分布式文件系统（Distributed File System）。它的主要功能包括：文件存储、文件同步和文件访问以及高容量和负载平衡。主要解决了海量数据存储问题，特别适合以中小文件（建议范围：4KB &amp;lt; file_size &amp;lt; 500MB）为载体的在线服务。&lt;/p>
 &lt;p>FastDFS 开源地址：https://github.com/happyfish100/fastdfs&lt;/p>
 &lt;p>由于网络上已有很多详细的关于 FastDFS 的介绍，故此处不再赘述。请查看参考文章中的第 1、2 条。&lt;/p>
@@ -1006,7 +1006,7 @@ ngx_http_fastdfs_set pid=11648
 >初识 Nginx&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://github.com/happyfish100/fastdfs-nginx-module/blob/master/INSTALL" target="_blank" rel="noopener"
 >fastdfs nginx module installation introduction&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>Spark 分布式内存计算框架</title><link>https://example.com/posts/spark-distributed-programming/</link><pubDate>Fri, 23 Oct 2020 20:00:00 +0800</pubDate><guid>https://example.com/posts/spark-distributed-programming/</guid><description>&lt;h1 id="spark-简介">Spark 简介&lt;/h1>
+&lt;/ol></description></item><item><title>Spark 分布式内存计算框架</title><link>https://sudrizzz.github.io/posts/spark-distributed-programming/</link><pubDate>Fri, 23 Oct 2020 20:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/spark-distributed-programming/</guid><description>&lt;h1 id="spark-简介">Spark 简介&lt;/h1>
 &lt;p>Spark 是一种基于内存的、用以实现高效集群计算的平台。准确地讲，Spark 是一个大数据并行计算框架，是对广泛使用的 MapReduce 计算模型的扩展。Spark 有着自己的生态系统，但同时兼容
 HDFS、Hive 等分布式存储系统，可以完美融入 Hadoop 的生态圈中，代替 MapReduce 去执行更为高效的分布式计算。两者的区别在于：基于 MapReduce 的计算引擎通常会将中间结果输出到磁盘上进行存储和容错；而 Spark 则是将中间结果尽量保存在内存中以减少底层存储系统的 I/O，以提高计算速度。&lt;/p>
 &lt;h1 id="spark-编程模型">Spark 编程模型&lt;/h1>
@@ -1301,7 +1301,7 @@ User: davidisbetterthenyou, Number of videos: 16
 >RDD Aggregate in spark&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="http://dblab.xmu.edu.cn/blog/1327/" target="_blank" rel="noopener"
 >利用开发工具 IntelliJ IDEA 编写 Spark 应用程序（Scala+Maven）&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>MapReduce 分布式编程</title><link>https://example.com/posts/mapreduce-distributed-programming/</link><pubDate>Sat, 17 Oct 2020 20:00:00 +0800</pubDate><guid>https://example.com/posts/mapreduce-distributed-programming/</guid><description>&lt;h1 id="词频统计程序示例">词频统计程序示例&lt;/h1>
+&lt;/ol></description></item><item><title>MapReduce 分布式编程</title><link>https://sudrizzz.github.io/posts/mapreduce-distributed-programming/</link><pubDate>Sat, 17 Oct 2020 20:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/mapreduce-distributed-programming/</guid><description>&lt;h1 id="词频统计程序示例">词频统计程序示例&lt;/h1>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014180000.png" alt="20201014180000" />&lt;/p>
 &lt;p>假设将一个英文文本大文件作为输入，统计文件中单词出现的频数。最基本的操作是把输入文件的每一行传递给 map 函数完成对单词的拆分并输出中间结果，中间结果为 &amp;lt;word, 1&amp;gt; 的形式， 表示程序对一个单词，都对应一个计数 1。使用 reduce 函数收集 map 函数的结果作为输入值，并生成最终 &amp;lt;word, count&amp;gt; 形式的结果，完成对每个单词的词频统计。它们对应 MapReduce 处理数据流程如上图所示。&lt;/p>
 &lt;h1 id="mapreduce-程序的运行过程">MapReduce 程序的运行过程&lt;/h1>
@@ -1522,7 +1522,7 @@ Pets &amp;amp; Animals 95
 Science &amp;amp; Technology 80
 Sports 253
 Travel &amp;amp; Events 113
-&lt;/code>&lt;/pre></description></item><item><title>HDFS 文件管理</title><link>https://example.com/posts/hdfs-file-system/</link><pubDate>Mon, 12 Oct 2020 15:20:11 +0800</pubDate><guid>https://example.com/posts/hdfs-file-system/</guid><description>&lt;blockquote>
+&lt;/code>&lt;/pre></description></item><item><title>HDFS 文件管理</title><link>https://sudrizzz.github.io/posts/hdfs-file-system/</link><pubDate>Mon, 12 Oct 2020 15:20:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/hdfs-file-system/</guid><description>&lt;blockquote>
 &lt;p>本文所有代码均可在 &lt;a href="https://github.com/sudrizzz/HDFSOperations">https://github.com/sudrizzz/HDFSOperations&lt;/a> 查看。&lt;/p>
 &lt;/blockquote>
 &lt;h1 id="通过命令行访问-hdfs">通过命令行访问 HDFS&lt;/h1>
@@ -1737,7 +1737,7 @@ Travel &amp;amp; Events 113
 &lt;p>以上漫画版权均归原图作者所有&lt;/p>
 &lt;/blockquote>
 &lt;h1 id="参考文章">参考文章&lt;/h1>
-&lt;p>&lt;a href="https://www.cnblogs.com/qingyunzong/p/8548806.html">https://www.cnblogs.com/qingyunzong/p/8548806.html&lt;/a>&lt;/p></description></item><item><title>初识 Hadoop</title><link>https://example.com/posts/getting-to-know-hadoop/</link><pubDate>Thu, 24 Sep 2020 09:20:11 +0800</pubDate><guid>https://example.com/posts/getting-to-know-hadoop/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>&lt;a href="https://www.cnblogs.com/qingyunzong/p/8548806.html">https://www.cnblogs.com/qingyunzong/p/8548806.html&lt;/a>&lt;/p></description></item><item><title>初识 Hadoop</title><link>https://sudrizzz.github.io/posts/getting-to-know-hadoop/</link><pubDate>Thu, 24 Sep 2020 09:20:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-hadoop/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>本系列文章是基于《大数据技术基础》与 &lt;a class="link" href="https://coding.imooc.com/class/128.html" target="_blank" rel="noopener"
 >10 小时入门大数据&lt;/a> 课程，如果有兴趣可以先阅读该书并观看视频教程。本系列文章中所用到的软件版本及其下载地址如下：&lt;/p>
 &lt;table>
@@ -2076,7 +2076,7 @@ Estimated value of Pi is 3.14158440000000000000
 &lt;span class="ln">14&lt;/span> &lt;span class="nt">&amp;lt;name&amp;gt;&lt;/span>mapreduce.reduce.java.opts&lt;span class="nt">&amp;lt;/name&amp;gt;&lt;/span>
 &lt;span class="ln">15&lt;/span> &lt;span class="nt">&amp;lt;value&amp;gt;&lt;/span>-Xmx6144m&lt;span class="nt">&amp;lt;/value&amp;gt;&lt;/span>
 &lt;span class="ln">16&lt;/span>&lt;span class="nt">&amp;lt;/property&amp;gt;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>CMU 15-213 存储器层次结构</title><link>https://example.com/posts/cmu-15-213-lesson3/</link><pubDate>Sun, 20 Sep 2020 15:20:11 +0800</pubDate><guid>https://example.com/posts/cmu-15-213-lesson3/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>CMU 15-213 存储器层次结构</title><link>https://sudrizzz.github.io/posts/cmu-15-213-lesson3/</link><pubDate>Sun, 20 Sep 2020 15:20:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/cmu-15-213-lesson3/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>本课的第三、四章分别是程序的机器级表示和处理器体系结构，由于过于硬核，此处略过。第五章是优化程序性能，讲解了如何最大限度地提高程序执行效能，此处也略过。本文基于第六章存储器层级结构。&lt;/p>
 &lt;h1 id="存储技术">存储技术&lt;/h1>
 &lt;p>在本节中主要介绍 SRAM 存储器、DRAM 存储器、ROM 存储器以及机械和固态硬盘。&lt;/p>
@@ -2223,7 +2223,7 @@ $$&lt;/p>
 &lt;ol>
 &lt;li>&lt;a href="https://zh.wikipedia.org/wiki/%E9%97%AA%E5%AD%98">https://zh.wikipedia.org/wiki/%E9%97%AA%E5%AD%98&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.bilibili.com/video/av61437877">https://www.bilibili.com/video/av61437877&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>CMU 15-213 浮点数</title><link>https://example.com/posts/cmu-15-213-lesson2/</link><pubDate>Mon, 14 Sep 2020 18:57:11 +0800</pubDate><guid>https://example.com/posts/cmu-15-213-lesson2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+&lt;/ol></description></item><item><title>CMU 15-213 浮点数</title><link>https://sudrizzz.github.io/posts/cmu-15-213-lesson2/</link><pubDate>Mon, 14 Sep 2020 18:57:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/cmu-15-213-lesson2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>在 &lt;a class="link" href="https://sudrizzz.github.io/posts/cmu-15-213-lesson1/" target="_blank" rel="noopener"
 >上一篇文章&lt;/a> 中，我们了解了二进制有符号数、无符号数以及其相关的运算方法，在本篇中，我们将进一步了解浮点数在计算机中的相关知识。&lt;/p>
 &lt;h1 id="二进制小数">二进制小数&lt;/h1>
@@ -2451,7 +2451,7 @@ $$&lt;/p>
 &lt;h1 id="参考文献">参考文献&lt;/h1>
 &lt;ol>
 &lt;li>&lt;a href="https://qiankun214.github.io/2019/05/28/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%A4%84%E7%90%86/">https://qiankun214.github.io/2019/05/28/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%A4%84%E7%90%86/&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>初识 Nginx（二）</title><link>https://example.com/posts/getting-to-know-nginx-2/</link><pubDate>Fri, 11 Sep 2020 19:51:07 +0800</pubDate><guid>https://example.com/posts/getting-to-know-nginx-2/</guid><description>&lt;h1 id="应用示例">应用示例&lt;/h1>
+&lt;/ol></description></item><item><title>初识 Nginx（二）</title><link>https://sudrizzz.github.io/posts/getting-to-know-nginx-2/</link><pubDate>Fri, 11 Sep 2020 19:51:07 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-nginx-2/</guid><description>&lt;h1 id="应用示例">应用示例&lt;/h1>
 &lt;blockquote>
 &lt;p>本篇文章中所使用的 Nginx 是通过下载软件包手动编译安装的，详见 &lt;a class="link" href="https://sudrizzz.github.io/posts/getting-to-know-nginx" target="_blank" rel="noopener"
 >上一篇文章&lt;/a> 离线安装部分。&lt;/p>
@@ -2665,7 +2665,7 @@ alias html/report.html;
 &lt;span class="ln">2&lt;/span>tcp 0 0 192.168.61.128:7890 192.168.61.1:56503 ESTABLISHED 2323/goaccess
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>然后手动 kill 其进程即可。&lt;/p>
 &lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">kill&lt;/span> &lt;span class="m">2323&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>初识 Nginx</title><link>https://example.com/posts/getting-to-know-nginx/</link><pubDate>Mon, 07 Sep 2020 15:47:11 +0800</pubDate><guid>https://example.com/posts/getting-to-know-nginx/</guid><description>&lt;h1 id="nginx-简介">Nginx 简介&lt;/h1>
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>初识 Nginx</title><link>https://sudrizzz.github.io/posts/getting-to-know-nginx/</link><pubDate>Mon, 07 Sep 2020 15:47:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-nginx/</guid><description>&lt;h1 id="nginx-简介">Nginx 简介&lt;/h1>
 &lt;blockquote>
 &lt;p>简介内容来自 Nginx 官网 &lt;a href="http://nginx.org/en">http://nginx.org/en&lt;/a>&lt;/p>
 &lt;p>nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress.com, FastMail.FM.&lt;/p>
@@ -2865,7 +2865,7 @@ Nginx 服务默认的端口是 &lt;code>80&lt;/code>，如果需要修改端口�
 &lt;pre>&lt;code>/etc/nginx/nginx.conf
 /usr/local/software/nginx-1.18.0/conf/nginx.conf
 /usr/local/nginx/conf/nginx.conf
-&lt;/code>&lt;/pre></description></item><item><title>CMU 15-213 位、字节与整数</title><link>https://example.com/posts/cmu-15-213-lesson1/</link><pubDate>Fri, 04 Sep 2020 19:02:11 +0800</pubDate><guid>https://example.com/posts/cmu-15-213-lesson1/</guid><description>&lt;h1 id="简介">简介&lt;/h1>
+&lt;/code>&lt;/pre></description></item><item><title>CMU 15-213 位、字节与整数</title><link>https://sudrizzz.github.io/posts/cmu-15-213-lesson1/</link><pubDate>Fri, 04 Sep 2020 19:02:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/cmu-15-213-lesson1/</guid><description>&lt;h1 id="简介">简介&lt;/h1>
 &lt;p>CSAPP 课程全程 Computer Systems: A Programmer’s Perspective，中文翻译为“从程序员的视角，看计算机系统！”或“深入理解计算机系统”。此课程是卡耐基梅隆大学开设的一门课程，官方网站 &lt;a href="https://www.cs.cmu.edu/~213/index.html">https://www.cs.cmu.edu/~213/index.html&lt;/a>。&lt;/p>
 &lt;blockquote>
 &lt;p>内容简介节选自豆瓣&lt;br>
@@ -3318,7 +3318,7 @@ $$ B2T(X) = -x_{w-1}\cdot 2^{w-1}+\sum_{i=0}^{w-2}x_{i}\cdot 2^{i} $$&lt;/p>
 &lt;td>&lt;em>11111111&lt;/em> 11000100&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>初识 Docker</title><link>https://example.com/posts/getting-to-know-docker/</link><pubDate>Wed, 02 Sep 2020 18:37:11 +0800</pubDate><guid>https://example.com/posts/getting-to-know-docker/</guid><description>&lt;h1 id="docker-简介">Docker 简介&lt;/h1>
+&lt;/table></description></item><item><title>初识 Docker</title><link>https://sudrizzz.github.io/posts/getting-to-know-docker/</link><pubDate>Wed, 02 Sep 2020 18:37:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-docker/</guid><description>&lt;h1 id="docker-简介">Docker 简介&lt;/h1>
 &lt;p>简介来自于 &lt;a class="link" href="http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html" target="_blank" rel="noopener"
 >Docker 入门教程 - 阮一峰的网络日志&lt;/a>&lt;/p>
 &lt;blockquote>
@@ -3477,7 +3477,7 @@ hello-world latest bf756fb1ae65 8 months ago 13.3kB
 Untagged: hello-world@sha256:7f0a9f93b4aa3022c3a4c147a449bf11e0941a1fd0bf4a8e6c9408b2600777c5
 Deleted: sha256:bf756fb1ae65adf866bd8c456593cd24beb6a0a061dedf42b26a993176745f6b
 Deleted: sha256:9c27e219663c25e0f28493790cc0b88bc973ba3b1686355f221c38a36978ac63
-&lt;/code>&lt;/pre></description></item><item><title>Github 自动部署与图床</title><link>https://example.com/posts/integrating-with-github-action/</link><pubDate>Sun, 09 Aug 2020 15:00:00 +0800</pubDate><guid>https://example.com/posts/integrating-with-github-action/</guid><description>&lt;h1 id="前情提要">前情提要&lt;/h1>
+&lt;/code>&lt;/pre></description></item><item><title>Github 自动部署与图床</title><link>https://sudrizzz.github.io/posts/integrating-with-github-action/</link><pubDate>Sun, 09 Aug 2020 15:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/integrating-with-github-action/</guid><description>&lt;h1 id="前情提要">前情提要&lt;/h1>
 &lt;p>在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。&lt;/p>
 &lt;h1 id="创建仓库">创建仓库&lt;/h1>
 &lt;blockquote>
@@ -3653,7 +3653,7 @@ OSX：Cmd + Opt + U
 Windows / Unix：Ctrl + Alt + E
 OSX：Cmd + Opt + E
 &lt;/code>&lt;/pre>&lt;h1 id="结语">结语&lt;/h1>
-&lt;p>至此，搭建 Github Pages 系列文章就到此结束了，作者的需求基本得到了满足，感谢您的阅读。&lt;/p></description></item><item><title>从零搭建 Github Pages</title><link>https://example.com/posts/build-blog-from-scratch/</link><pubDate>Sun, 09 Aug 2020 12:00:00 +0800</pubDate><guid>https://example.com/posts/build-blog-from-scratch/</guid><description>&lt;h1 id="创建仓库">创建仓库&lt;/h1>
+&lt;p>至此，搭建 Github Pages 系列文章就到此结束了，作者的需求基本得到了满足，感谢您的阅读。&lt;/p></description></item><item><title>从零搭建 Github Pages</title><link>https://sudrizzz.github.io/posts/build-blog-from-scratch/</link><pubDate>Sun, 09 Aug 2020 12:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/build-blog-from-scratch/</guid><description>&lt;h1 id="创建仓库">创建仓库&lt;/h1>
 &lt;p>首先需要在 Github 中创建一个名为 &lt;code>&amp;lt;username&amp;gt;.github.io&lt;/code> 的仓库，其中 &lt;code>&amp;lt;username&amp;gt;&lt;/code> 为你的 Github 用户名。&lt;/p>
 &lt;blockquote>
 &lt;p>注意：&lt;br>
@@ -3835,7 +3835,7 @@ Total in 29 ms
 &lt;li>执行 &lt;code>hugo --minify --cleanDestinationDir&lt;/code>；&lt;/li>
 &lt;li>进入 &lt;code>/public&lt;/code> 目录，将新生成或编辑过的内容推送到 Github，此处不再赘述。&lt;/li>
 &lt;/ol>
-&lt;p>此时我们的博客就创建好了，但是创建文章内容的操作有一些复杂和繁琐，且本文中并未讲解关于 markdown 中插入图片的相关问题。所以在下文中，我们将简化操作步骤，并实现将图片也托管到 Github 的操作。&lt;/p></description></item><item><title>The meaning of life</title><link>https://example.com/posts/the-meaning-of-life/</link><pubDate>Fri, 21 Jun 2019 00:00:00 +0800</pubDate><guid>https://example.com/posts/the-meaning-of-life/</guid><description>&lt;p>  ……我细读来书，终觉得你不免作茧自缚。你自己去寻出一个本不成问题的问题，“人生有何意义？”其实这个问题是容易解答的。人生的意义全是各人自己寻出来、造出来的：高尚、卑劣、清贵、污浊、有用、无用，……全靠自己的作为。&lt;/p>
+&lt;p>此时我们的博客就创建好了，但是创建文章内容的操作有一些复杂和繁琐，且本文中并未讲解关于 markdown 中插入图片的相关问题。所以在下文中，我们将简化操作步骤，并实现将图片也托管到 Github 的操作。&lt;/p></description></item><item><title>The meaning of life</title><link>https://sudrizzz.github.io/posts/the-meaning-of-life/</link><pubDate>Fri, 21 Jun 2019 00:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/the-meaning-of-life/</guid><description>&lt;p>  ……我细读来书，终觉得你不免作茧自缚。你自己去寻出一个本不成问题的问题，“人生有何意义？”其实这个问题是容易解答的。人生的意义全是各人自己寻出来、造出来的：高尚、卑劣、清贵、污浊、有用、无用，……全靠自己的作为。&lt;/p>
 &lt;p>  生命本身不过是一件生物学的事实，有什么意义可说？一个人与一只猎，一只狗，有什么分别？人生的意义不在于何以有生，而在自己怎样生活。你若情愿把这六尺之躯葬送在白昼作梦之上二那就是你这一生的意义。你若发愤振作起来，决心去寻求生命的意义，去创造自己的生命的意义，那么，你活一日便有一日的意义，作一事便添一事的意义，生命无穷，生命的意义也无穷了。&lt;/p>
 &lt;p>  总之，生命本没有意义，你要能给他什么意义，他就有什么意义。与其终日冥想人生有何意义，不如试用此生作点有意义的事……&lt;/p>
 &lt;p>  &lt;em>节选自《答某君书》—— 胡适&lt;/em>&lt;/p></description></item></channel></rss>
