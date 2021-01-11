@@ -1,4 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Anthony's blog</title><link>https://sudrizzz.github.io/post/</link><description>Recent content in Posts on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 30 Dec 2020 17:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>《机器学习》笔记（二）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-2/</link><pubDate>Wed, 30 Dec 2020 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-2/</guid><description>3 线性模型 3.1 基本形式 给定由 $d$ 个属性描述的示例 $\boldsymbol{x}={x_1; x_2;\cdots;x_d}$，其中 $x_i$ 是 $\boldsymbol{x}$ 在第 $i$ 个属性上的取值，线性模型（linear model）试图学得一个通过属性的线性组合来进行预测的函数，即
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Anthony's blog</title><link>https://sudrizzz.github.io/post/</link><description>Recent content in Posts on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 11 Jan 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>并行计算总结</title><link>https://sudrizzz.github.io/posts/parallel-computing-summary/</link><pubDate>Mon, 11 Jan 2021 15:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/parallel-computing-summary/</guid><description>1. 概念 1.1 摩尔定律（Moore&amp;rsquo;s law） 摩尔定律是由英特尔（Intel）创始人之一戈登·摩尔提出的。其内容为：集成电路上可容纳的晶体管数目，约每隔两年便会增加一倍；经常被引用的“18 个月”，是由英特尔首席执行官大卫·豪斯（David House）提出：预计 18 个月会将芯片的性能提高一倍（即更多的晶体管使其更快），是一种以倍数增长的观测。
+通常认为摩尔定律具体的内容：每 18 个月，芯片的性能将提高一倍。
+1.2 新摩尔定律（存疑） 由于单个核心性能提升有着严重的瓶颈问题，未来的计算机硬件不会更快，但会更“宽”。
+1.3 常见并行模式 进程 + 线程 硬件组织通常是多机+多核，编程环境 MPI+OpenMP
+线程 + GPU 线程 硬件组织通常是多核+多 GPU，编程环境 OpenMP+CUDA/OpenCL
+进程 + 线程 + GPU 线程 硬件组织通常是多机+多核+多 GPU，编程环境 MPI+OpenMP+CUDA/OpenCL
+1.4 CPU 与 GPU 区别 上图中，绿色的是计算单元，橙红色的是存储单元，橙黄色的是控制单元。其中，各个部件详细释义：
+ALU：算术逻辑单元（Arithmetic Logic Unit），是一种可对二进制整数执行算术运算或位运算的组合逻辑数字电路； Control：控制单元，负责指挥 CPU 工作，控制其他设备的活动； Cache：用于减少处理器访问内存所需平均时间的部件； DRAM：动态随机存取存储器（Dynamic Random Access Memory），即内存。 简而言之，CPU 擅长于复杂逻辑控制，GPU 擅长于简单重复运算。
+2. CUDA 简介及架构 CUDA（Compute Unified Device Architecture）是 NVIDIA 推出的的通用并行计算架构，该架构使 GPU 能够解决大量重复性的计算问题。</description></item><item><title>《机器学习》笔记（三）（未完待续）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-3/</link><pubDate>Wed, 06 Jan 2021 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-3/</guid><description>4 决策树 4.1 基本流程 一般的，一棵决策树包含一个根结点、若干个内部结点和若干个叶结点；叶结点对应于决策结果，其他每个结点则对应于一个属性测试；每个结点包含的样本集合根据属性测试的结果被划分到子结点中；根结点包含样本全集。从根结点到每个叶结点的路径对应了一个判定测试序列。决策树学习的目的是为了产生一棵泛化能力强，即处理未见示例能力强的决策树，其基本流程遵循简单且直观的“分而治之”（divide-and-conquer）策略。
+4.2 划分选择 一般而言，随着划分过程不断进行，我们希望决策树的分支结点所包含的样本尽可能属于同一类别，即结点的纯度（purity）越来越高。
+4.2.1 信息增益 信息熵定义为信息的期望值。如果待分类的事物可能划分在多个分类之中，则符号 $x_i$ 的信息定义为
+$$ l(x_i) = -\log_{2} p(x_i) $$
+其中，$p(x_i)$ 是选择该分类的概率。
+则 $D$ 的信息熵定义为
+$$ Ent(D) = -\sum_{i=1}^{n} p(x_i) \log_{2} p(x_i) $$
+其中，$n$ 是分类的数目。$Ent(D)$ 的值越小，则 $D$ 的纯度越高。</description></item><item><title>《机器学习》笔记（二）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-2/</link><pubDate>Wed, 30 Dec 2020 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-2/</guid><description>3 线性模型 3.1 基本形式 给定由 $d$ 个属性描述的示例 $\boldsymbol{x}=\{x_1; x_2;\cdots;x_d\}$，其中 $x_i$ 是 $\boldsymbol{x}$ 在第 $i$ 个属性上的取值，线性模型（linear model）试图学得一个通过属性的线性组合来进行预测的函数，即
 $$ f(\boldsymbol{x}) = w_1x_1 + w_2x_2 + \cdots + w_dx_d + b $$
 一般用向量形式写成
 $$ f(\boldsymbol{x}) = \boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b $$

@@ -1,6 +1,174 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 30 Dec 2020 17:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>《机器学习》笔记（二）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-2/</link><pubDate>Wed, 30 Dec 2020 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-2/</guid><description>&lt;h1 id="3-线性模型">3 线性模型&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 11 Jan 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>并行计算总结</title><link>https://sudrizzz.github.io/posts/parallel-computing-summary/</link><pubDate>Mon, 11 Jan 2021 15:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/parallel-computing-summary/</guid><description>&lt;h1 id="1-概念">1. 概念&lt;/h1>
+&lt;h2 id="11-摩尔定律moores-law">1.1 摩尔定律（Moore&amp;rsquo;s law）&lt;/h2>
+&lt;p>摩尔定律是由英特尔（Intel）创始人之一戈登·摩尔提出的。其内容为：集成电路上可容纳的晶体管数目，约每隔两年便会增加一倍；经常被引用的“18 个月”，是由英特尔首席执行官大卫·豪斯（David House）提出：预计 18 个月会将芯片的性能提高一倍（即更多的晶体管使其更快），是一种以倍数增长的观测。&lt;/p>
+&lt;p>&lt;strong>通常认为摩尔定律具体的内容：每 18 个月，芯片的性能将提高一倍&lt;/strong>。&lt;/p>
+&lt;h2 id="12-新摩尔定律存疑">1.2 新摩尔定律（存疑）&lt;/h2>
+&lt;p>由于单个核心性能提升有着严重的瓶颈问题，未来的计算机硬件不会更快，但会更“宽”。&lt;/p>
+&lt;h2 id="13-常见并行模式">1.3 常见并行模式&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>进程 + 线程
+硬件组织通常是多机+多核，编程环境 MPI+OpenMP&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>线程 + GPU 线程
+硬件组织通常是多核+多 GPU，编程环境 OpenMP+CUDA/OpenCL&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>进程 + 线程 + GPU 线程
+硬件组织通常是多机+多核+多 GPU，编程环境 MPI+OpenMP+CUDA/OpenCL&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="14-cpu-与-gpu-区别">1.4 CPU 与 GPU 区别&lt;/h2>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210111155959.png" alt="20210111155959" />&lt;/p>
+&lt;p>上图中，绿色的是计算单元，橙红色的是存储单元，橙黄色的是控制单元。其中，各个部件详细释义：&lt;/p>
+&lt;ul>
+&lt;li>ALU：算术逻辑单元（&lt;strong>A&lt;/strong>rithmetic &lt;strong>L&lt;/strong>ogic &lt;strong>U&lt;/strong>nit），是一种可对二进制整数执行算术运算或位运算的组合逻辑数字电路；&lt;/li>
+&lt;li>Control：控制单元，负责指挥 CPU 工作，控制其他设备的活动；&lt;/li>
+&lt;li>Cache：用于减少处理器访问内存所需平均时间的部件；&lt;/li>
+&lt;li>DRAM：动态随机存取存储器（&lt;strong>D&lt;/strong>ynamic &lt;strong>R&lt;/strong>andom &lt;strong>A&lt;/strong>ccess &lt;strong>M&lt;/strong>emory），即内存。&lt;/li>
+&lt;/ul>
+&lt;p>简而言之，CPU 擅长于复杂逻辑控制，GPU 擅长于简单重复运算。&lt;/p>
+&lt;h1 id="2-cuda-简介及架构">2. CUDA 简介及架构&lt;/h1>
+&lt;p>CUDA（&lt;strong>C&lt;/strong>ompute &lt;strong>U&lt;/strong>nified &lt;strong>D&lt;/strong>evice &lt;strong>A&lt;/strong>rchitecture）是 NVIDIA 推出的的通用并行计算架构，该架构使 GPU 能够解决大量重复性的计算问题。&lt;/p>
+&lt;h2 id="21-物理架构">2.1 物理架构&lt;/h2>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210111162222.png" alt="20210111162222" />&lt;/p>
+&lt;h2 id="22-kernel-函数启动参数">2.2 kernel 函数启动参数&lt;/h2>
+&lt;h3 id="221-blockspergrid">2.2.1 blocksPerGrid&lt;/h3>
+&lt;p>用于定义 kernel 函数使用的 block 数量，可以定义为一、二与三维结构，示例如下；&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="c1">// 使用 8 个 block
+&lt;/span>&lt;span class="ln">2&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">blocksPerGrid&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">8&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="ln">3&lt;/span>
+&lt;span class="ln">4&lt;/span>&lt;span class="c1">// 使用 2 * 2 个 block
+&lt;/span>&lt;span class="ln">5&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">dim3&lt;/span> &lt;span class="nf">blocksPerGrid&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln">6&lt;/span>
+&lt;span class="ln">7&lt;/span>&lt;span class="c1">// 使用 2 * 2 * 2 个 block
+&lt;/span>&lt;span class="ln">8&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">dim3&lt;/span> &lt;span class="nf">blocksPerGrid&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="222-threadsperblock">2.2.2 threadsPerBlock&lt;/h3>
+&lt;p>用于定义每个 block 中使用的线程数量，与 block 类似，同样可以定义为一、二与三维结构。在目前的 GPU 上，一个线程块可以包含多达 &lt;strong>1024&lt;/strong> 个线程。示例如下；&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="c1">// 使用 1024 个线程
+&lt;/span>&lt;span class="ln">2&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">threadsPerBlock&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1024&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="ln">3&lt;/span>
+&lt;span class="ln">4&lt;/span>&lt;span class="c1">// 使用 32 * 32 个线程
+&lt;/span>&lt;span class="ln">5&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">dim3&lt;/span> &lt;span class="nf">threadsPerBlock&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">32&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">32&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln">6&lt;/span>
+&lt;span class="ln">7&lt;/span>&lt;span class="c1">// 使用 8 * 8 * 8 个线程
+&lt;/span>&lt;span class="ln">8&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">dim3&lt;/span> &lt;span class="nf">threadsPerBlock&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">8&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">8&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="223-调用-kernel-函数">2.2.3 调用 kernel 函数&lt;/h3>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="c1">// 官方示例，sharedMemBytes 表示指定共享内存大小，单位为字节
+&lt;/span>&lt;span class="ln">2&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">kernelFunction&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">dimGrid&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">dimBlock&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">sharedMemBytes&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;&amp;gt;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="err">参数&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">参数&lt;/span> &lt;span class="mf">2.&lt;/span>&lt;span class="p">..);&lt;/span>
+&lt;span class="ln">3&lt;/span>
+&lt;span class="ln">4&lt;/span>&lt;span class="c1">// 实际调用示例，sharedMemBytes 参数可省略
+&lt;/span>&lt;span class="ln">5&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">kernelFunction&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">blocksPerGrid&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">threadsPerBlock&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;&amp;gt;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="err">参数&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">参数&lt;/span> &lt;span class="mf">2.&lt;/span>&lt;span class="p">..);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="23-常用-cuda-关键字">2.3 常用 CUDA 关键字&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>函数定义方式&lt;/th>
+&lt;th>执行方&lt;/th>
+&lt;th>调用方&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;strong>__device__&lt;/strong> float DeviceFunc()&lt;/td>
+&lt;td>GPU&lt;/td>
+&lt;td>GPU&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>__global__&lt;/strong> void KernelFunc()&lt;/td>
+&lt;td>GPU&lt;/td>
+&lt;td>CPU&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>__host__&lt;/strong> float HostFunc()&lt;/td>
+&lt;td>CPU&lt;/td>
+&lt;td>CPU&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="231-__shared__">2.3.1 __shared__&lt;/h3>
+&lt;ul>
+&lt;li>存储于 GPU 上的 thread block 内的共享存储器；&lt;/li>
+&lt;li>和 thread block 具有相同的生命期；&lt;/li>
+&lt;li>只能被 thread block 内的线程存取。&lt;/li>
+&lt;/ul>
+&lt;p>常用于声明变量，声明后的变量将会存储在 shared memory 中，例如&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="c1">// 存储在 shared memory 中
+&lt;/span>&lt;span class="ln">2&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">__shared__&lt;/span> &lt;span class="kt">float&lt;/span> &lt;span class="n">array&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">N&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="ln">3&lt;/span>
+&lt;span class="ln">4&lt;/span>&lt;span class="c1">// 存储在 global memory 中
+&lt;/span>&lt;span class="ln">5&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="kt">float&lt;/span> &lt;span class="n">array&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">N&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="24-内存类型">2.4 内存类型&lt;/h2>
+&lt;h3 id="241-register-与-local-memory">2.4.1 Register 与 Local Memory&lt;/h3>
+&lt;ul>
+&lt;li>对每个线程来说，寄存器都是线程私有的；&lt;/li>
+&lt;li>如果寄存器被消耗完，数据将被存储在 local memory。Local memory 是私有的，但是 local memory 中的数据是被保存在显存中，速度很慢；&lt;/li>
+&lt;li>输入和中间输出变量将被保存在 register 或者 local memory 中。&lt;/li>
+&lt;/ul>
+&lt;h3 id="242-shared-memory">2.4.2 Shared Memory&lt;/h3>
+&lt;ul>
+&lt;li>用于线程间通信的 shared memory。shared memory 是一块可以被同一 block 中的所有 thread 访问的可读写存储器；&lt;/li>
+&lt;li>访问 shared memory 几乎和访问 register 一样快，是实现线程间通信的延迟最小的方法；&lt;/li>
+&lt;li>shared memory 可以实现许多不同的功能，如用于保存公用的计数器或者 block 的公用结构。&lt;/li>
+&lt;/ul>
+&lt;h2 id="25-内存分配">2.5 内存分配&lt;/h2>
+&lt;p>通过如下语句可以实现 CUDA 内存分配，分配显存中的 global memory。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="n">cudaMalloc&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="o">**&lt;/span> &lt;span class="n">devPtr&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">size_t&lt;/span> &lt;span class="n">size&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>其中&lt;/p>
+&lt;ul>
+&lt;li>devPtr：对象指针；&lt;/li>
+&lt;li>size：分配的内存大小。&lt;/li>
+&lt;/ul>
+&lt;p>例如&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="n">cudaMalloc&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="o">**&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">device_array&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">N&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="k">sizeof&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">float&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>通过如下语句可以实现 CUDA 释放 global memory 中分配出的内存。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="n">cudaFree&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">devPtr&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="26-数据交换">2.6 数据交换&lt;/h2>
+&lt;p>通过如下语句可以实现 CUDA 显存中数据与 CPU 内存端数据的交换。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="n">cudaMemcpy&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">dst&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">src&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">size_t&lt;/span> &lt;span class="n">count&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">enum&lt;/span> &lt;span class="n">cudaMemcpyKind&lt;/span> &lt;span class="n">kind&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>其中&lt;/p>
+&lt;ul>
+&lt;li>dst：目的存储器地址；&lt;/li>
+&lt;li>src：源存储器地址；&lt;/li>
+&lt;li>count：拷贝数据的大小；&lt;/li>
+&lt;li>kind：数据传输类型，常用的包括以下两种：
+cudaMemcpyDeviceToHost：将显存中的数据拷贝到内存中；
+cudaMemcpyHostToDevice：将内存中的数据拷贝到显存中。&lt;/li>
+&lt;/ul>
+&lt;p>例如&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="n">cudaMemcpy&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">device_array&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">host_array&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">N&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="k">sizeof&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">float&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">cudaMemcpyHostToDevice&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="27-线程同步">2.7 线程同步&lt;/h2>
+&lt;h3 id="271-block-内线程同步">2.7.1 block 内线程同步&lt;/h3>
+&lt;p>通过调用以下方法，实现同一个 block 内所有线程同步。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="n">__syncthreads&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>例如&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="n">__global__&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">function&lt;/span>&lt;span class="p">(...)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">2&lt;/span> &lt;span class="p">...&lt;/span>
+&lt;span class="ln">3&lt;/span> &lt;span class="n">__syncthreads&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="ln">4&lt;/span> &lt;span class="p">...&lt;/span>
+&lt;span class="ln">5&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="272-cpu-与-gpu-线程同步">2.7.2 CPU 与 GPU 线程同步&lt;/h3>
+&lt;p>通常情况下，CPU 端调用 kernel 函数，并不会阻塞后续 CPU 端的代码执行，也即调用 kernel 函数是异步的。若要实现同步的效果，只需在调用 kernel 函数后调用以下方法，进行线程同步即可。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="n">cudaDeviceSynchronize&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="ln">2&lt;/span>&lt;span class="n">cudaThreadSynchronize&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="c1">// 已过时，应避免使用
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>例如&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="n">kernel&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">blocksPerGrid&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">threadsPerBlock&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;&amp;gt;&lt;/span> &lt;span class="p">(...);&lt;/span>
+&lt;span class="ln">2&lt;/span>&lt;span class="n">cudaDeviceSynchronize&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>《机器学习》笔记（三）（未完待续）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-3/</link><pubDate>Wed, 06 Jan 2021 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-3/</guid><description>&lt;h1 id="4-决策树">4 决策树&lt;/h1>
+&lt;h2 id="41-基本流程">4.1 基本流程&lt;/h2>
+&lt;p>一般的，一棵决策树包含一个根结点、若干个内部结点和若干个叶结点；叶结点对应于决策结果，其他每个结点则对应于一个属性测试；每个结点包含的样本集合根据属性测试的结果被划分到子结点中；根结点包含样本全集。从根结点到每个叶结点的路径对应了一个判定测试序列。决策树学习的目的是为了产生一棵泛化能力强，即处理未见示例能力强的决策树，其基本流程遵循简单且直观的“分而治之”（divide-and-conquer）策略。&lt;/p>
+&lt;h2 id="42-划分选择">4.2 划分选择&lt;/h2>
+&lt;p>一般而言，随着划分过程不断进行，我们希望决策树的分支结点所包含的样本尽可能属于同一类别，即结点的纯度（purity）越来越高。&lt;/p>
+&lt;h3 id="421-信息增益">4.2.1 信息增益&lt;/h3>
+&lt;p>信息熵定义为信息的期望值。如果待分类的事物可能划分在多个分类之中，则符号 $x_i$ 的信息定义为&lt;/p>
+&lt;p>$$ l(x_i) = -\log_{2} p(x_i) $$&lt;/p>
+&lt;p>其中，$p(x_i)$ 是选择该分类的概率。&lt;/p>
+&lt;p>则 $D$ 的信息熵定义为&lt;/p>
+&lt;p>$$ Ent(D) = -\sum_{i=1}^{n} p(x_i) \log_{2} p(x_i) $$&lt;/p>
+&lt;p>其中，$n$ 是分类的数目。$Ent(D)$ 的值越小，则 $D$ 的纯度越高。&lt;/p></description></item><item><title>《机器学习》笔记（二）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-2/</link><pubDate>Wed, 30 Dec 2020 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-2/</guid><description>&lt;h1 id="3-线性模型">3 线性模型&lt;/h1>
 &lt;h2 id="31-基本形式">3.1 基本形式&lt;/h2>
-&lt;p>给定由 $d$ 个属性描述的示例 $\boldsymbol{x}={x_1; x_2;\cdots;x_d}$，其中 $x_i$ 是 $\boldsymbol{x}$ 在第 $i$ 个属性上的取值，线性模型（linear model）试图学得一个通过属性的线性组合来进行预测的函数，即&lt;/p>
+&lt;p>给定由 $d$ 个属性描述的示例 $\boldsymbol{x}=\{x_1; x_2;\cdots;x_d\}$，其中 $x_i$ 是 $\boldsymbol{x}$ 在第 $i$ 个属性上的取值，线性模型（linear model）试图学得一个通过属性的线性组合来进行预测的函数，即&lt;/p>
 &lt;p>$$ f(\boldsymbol{x}) = w_1x_1 + w_2x_2 + \cdots + w_dx_d + b $$&lt;/p>
 &lt;p>一般用向量形式写成&lt;/p>
 &lt;p>$$ f(\boldsymbol{x}) = \boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b $$&lt;/p>
