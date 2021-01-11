@@ -56,10 +56,10 @@
 &lt;/span>&lt;span class="ln">8&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">dim3&lt;/span> &lt;span class="nf">threadsPerBlock&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">8&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">8&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="223-调用-kernel-函数">2.2.3 调用 kernel 函数&lt;/h3>
 &lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="c1">// 官方示例，sharedMemBytes 表示指定共享内存大小，单位为字节
-&lt;/span>&lt;span class="ln">2&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">kernelFunction&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">dimGrid&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">dimBlock&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">sharedMemBytes&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;&amp;gt;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="err">参数&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">参数&lt;/span> &lt;span class="mf">2.&lt;/span>&lt;span class="p">..);&lt;/span>
+&lt;/span>&lt;span class="ln">2&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">kernelFunction&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">dimGrid&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">dimBlock&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">sharedMemBytes&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;&amp;gt;&lt;/span> &lt;span class="p">(...);&lt;/span>
 &lt;span class="ln">3&lt;/span>
 &lt;span class="ln">4&lt;/span>&lt;span class="c1">// 实际调用示例，sharedMemBytes 参数可省略
-&lt;/span>&lt;span class="ln">5&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">kernelFunction&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">blocksPerGrid&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">threadsPerBlock&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;&amp;gt;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="err">参数&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">参数&lt;/span> &lt;span class="mf">2.&lt;/span>&lt;span class="p">..);&lt;/span>
+&lt;/span>&lt;span class="ln">5&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">kernelFunction&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">blocksPerGrid&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">threadsPerBlock&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;&amp;gt;&lt;/span> &lt;span class="p">(...);&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="23-常用-cuda-关键字">2.3 常用 CUDA 关键字&lt;/h2>
 &lt;table>
 &lt;thead>
@@ -87,6 +87,12 @@
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;p>__device__函数没有函数地址，也没有指向它的函数指针。在 device 端执行的函数有下面的限制:&lt;/p>
+&lt;ol>
+&lt;li>没有递归；&lt;/li>
+&lt;li>函数内部没有静态变量；&lt;/li>
+&lt;li>参数的数量是固定的。&lt;/li>
+&lt;/ol>
 &lt;h3 id="231-__shared__">2.3.1 __shared__&lt;/h3>
 &lt;ul>
 &lt;li>存储于 GPU 上的 thread block 内的共享存储器；&lt;/li>
@@ -149,13 +155,19 @@ cudaMemcpyHostToDevice：将内存中的数据拷贝到显存中。&lt;/li>
 &lt;span class="ln">4&lt;/span> &lt;span class="p">...&lt;/span>
 &lt;span class="ln">5&lt;/span>&lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="272-cpu-与-gpu-线程同步">2.7.2 CPU 与 GPU 线程同步&lt;/h3>
-&lt;p>通常情况下，CPU 端调用 kernel 函数，并不会阻塞后续 CPU 端的代码执行，也即调用 kernel 函数是异步的。若要实现同步的效果，只需在调用 kernel 函数后调用以下方法，进行线程同步即可。&lt;/p>
+&lt;p>通常情况下，CPU 端调用 kernel 函数，并不会阻塞后续 CPU 端的代码执行，也即调用 kernel 函数是&lt;strong>异步&lt;/strong>的。若要实现同步的效果，只需在调用 kernel 函数后调用以下方法，进行线程同步即可。&lt;/p>
 &lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="n">cudaDeviceSynchronize&lt;/span>&lt;span class="p">()&lt;/span>
 &lt;span class="ln">2&lt;/span>&lt;span class="n">cudaThreadSynchronize&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="c1">// 已过时，应避免使用
 &lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>例如&lt;/p>
 &lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="n">kernel&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">blocksPerGrid&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">threadsPerBlock&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;&amp;gt;&lt;/span> &lt;span class="p">(...);&lt;/span>
 &lt;span class="ln">2&lt;/span>&lt;span class="n">cudaDeviceSynchronize&lt;/span>&lt;span class="p">();&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>《机器学习》笔记（三）（未完待续）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-3/</link><pubDate>Wed, 06 Jan 2021 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-3/</guid><description>&lt;h1 id="4-决策树">4 决策树&lt;/h1>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="3-cuda-编程">3 CUDA 编程&lt;/h1>
+&lt;h2 id="31-矩阵相加">3.1 矩阵相加&lt;/h2>
+&lt;p>&lt;a href="https://github.com/sudrizzz/ParallelComputing/blob/main/classwork/01/matrix_addition.cu">https://github.com/sudrizzz/ParallelComputing/blob/main/classwork/01/matrix_addition.cu&lt;/a>&lt;/p>
+&lt;h2 id="32-矩阵相乘">3.2 矩阵相乘&lt;/h2>
+&lt;p>&lt;a href="https://github.com/sudrizzz/ParallelComputing/blob/main/classwork/02/matrix_multiplication.cu">https://github.com/sudrizzz/ParallelComputing/blob/main/classwork/02/matrix_multiplication.cu&lt;/a>&lt;/p>
+&lt;h2 id="33-并行规约">3.3 并行规约&lt;/h2>
+&lt;p>&lt;a href="https://github.com/sudrizzz/ParallelComputing#%E4%BA%8C%E8%8E%B7%E5%8F%96%E7%9F%A9%E9%98%B5%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC">https://github.com/sudrizzz/ParallelComputing#%E4%BA%8C%E8%8E%B7%E5%8F%96%E7%9F%A9%E9%98%B5%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC&lt;/a>&lt;/p></description></item><item><title>《机器学习》笔记（三）（未完待续）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-3/</link><pubDate>Wed, 06 Jan 2021 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-3/</guid><description>&lt;h1 id="4-决策树">4 决策树&lt;/h1>
 &lt;h2 id="41-基本流程">4.1 基本流程&lt;/h2>
 &lt;p>一般的，一棵决策树包含一个根结点、若干个内部结点和若干个叶结点；叶结点对应于决策结果，其他每个结点则对应于一个属性测试；每个结点包含的样本集合根据属性测试的结果被划分到子结点中；根结点包含样本全集。从根结点到每个叶结点的路径对应了一个判定测试序列。决策树学习的目的是为了产生一棵泛化能力强，即处理未见示例能力强的决策树，其基本流程遵循简单且直观的“分而治之”（divide-and-conquer）策略。&lt;/p>
 &lt;h2 id="42-划分选择">4.2 划分选择&lt;/h2>
