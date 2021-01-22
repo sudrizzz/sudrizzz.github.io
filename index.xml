@@ -79,10 +79,10 @@
 &lt;span class="ln">62&lt;/span>
 &lt;span class="ln">63&lt;/span>
 &lt;span class="ln">64&lt;/span>&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s1">&amp;#39;__main__&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;span class="ln">65&lt;/span> &lt;span class="c1"># 加载数据，训练数据 60000 条，测试数据 10000 条，数据灰度值 (0-255)&lt;/span>
+&lt;span class="ln">65&lt;/span> &lt;span class="c1"># 加载数据，训练数据 60000 条，测试数据 10000 条，数据灰度值 [0, 255]&lt;/span>
 &lt;span class="ln">66&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">x_train&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">_&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">x_test&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">_&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">mnist&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">load_data&lt;/span>&lt;span class="p">()&lt;/span>
 &lt;span class="ln">67&lt;/span>
-&lt;span class="ln">68&lt;/span> &lt;span class="c1"># 正则化数据，将灰度值区间转换为 (0-1)&lt;/span>
+&lt;span class="ln">68&lt;/span> &lt;span class="c1"># 正则化数据，将灰度值区间转换为 [0, 1]&lt;/span>
 &lt;span class="ln">69&lt;/span> &lt;span class="n">x_train&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">x_train&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">astype&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;float32&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="mi">255&lt;/span>
 &lt;span class="ln">70&lt;/span> &lt;span class="n">x_test&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">x_test&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">astype&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;float32&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="mi">255&lt;/span>
 &lt;span class="ln">71&lt;/span>
@@ -103,9 +103,9 @@
 &lt;span class="ln">86&lt;/span> &lt;span class="n">plot&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">encoded_imgs&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">decoded_imgs&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>运行上述代码，可以从输出内容中得到以下信息：&lt;/p>
 &lt;ol>
-&lt;li>输入数据是 60000 张手写数字的灰度图像，灰度取值范围是 [0-255]，我们将其灰度值按行依次存储到一个 1 * 784 的数组中；&lt;/li>
-&lt;li>输入数据形如 [0, 0, 0,&amp;hellip;, 84, 185, 159,&amp;hellip;, 170, 52,&amp;hellip;, 0, 0]，我们可以将每张图片（每个向量）理解为一个 784 维空间的中向量；&lt;/li>
-&lt;li>通过正则化后，输入数据每个维度区间变为 [0-1]；&lt;/li>
+&lt;li>输入数据是 60000 张手写数字的灰度图像，灰度取值范围是 [0, 255]，我们将其灰度值按行依次存储到一个 1 * 784 的数组中；&lt;/li>
+&lt;li>输入数据形如 (0, 0, 0,&amp;hellip;, 84, 185, 159,&amp;hellip;, 170, 52,&amp;hellip;, 0, 0)，我们可以将每张图片（每个向量）理解为一个 784 维空间的中向量；&lt;/li>
+&lt;li>通过正则化后，输入数据每个维度区间变为 [0, 1]；&lt;/li>
 &lt;li>编码层将输入的 784 维向量抽象为 128、64、32 维向量（dense，dense_1，dense_2）；&lt;/li>
 &lt;/ol>
 &lt;pre>&lt;code>Model: &amp;quot;functional_3&amp;quot;

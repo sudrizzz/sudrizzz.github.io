@@ -91,10 +91,10 @@ Stacked Autoencoder 简介 Stacked Autoencoder 简写作 SAE。SAE 与 AE 的主
 <span class=ln>62</span>
 <span class=ln>63</span>
 <span class=ln>64</span><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
-<span class=ln>65</span>    <span class=c1># 加载数据，训练数据 60000 条，测试数据 10000 条，数据灰度值 (0-255)</span>
+<span class=ln>65</span>    <span class=c1># 加载数据，训练数据 60000 条，测试数据 10000 条，数据灰度值 [0, 255]</span>
 <span class=ln>66</span>    <span class=p>(</span><span class=n>x_train</span><span class=p>,</span> <span class=n>_</span><span class=p>),</span> <span class=p>(</span><span class=n>x_test</span><span class=p>,</span> <span class=n>_</span><span class=p>)</span> <span class=o>=</span> <span class=n>mnist</span><span class=o>.</span><span class=n>load_data</span><span class=p>()</span>
 <span class=ln>67</span>
-<span class=ln>68</span>    <span class=c1># 正则化数据，将灰度值区间转换为 (0-1)</span>
+<span class=ln>68</span>    <span class=c1># 正则化数据，将灰度值区间转换为 [0, 1]</span>
 <span class=ln>69</span>    <span class=n>x_train</span> <span class=o>=</span> <span class=n>x_train</span><span class=o>.</span><span class=n>astype</span><span class=p>(</span><span class=s1>&#39;float32&#39;</span><span class=p>)</span> <span class=o>/</span> <span class=mi>255</span>
 <span class=ln>70</span>    <span class=n>x_test</span> <span class=o>=</span> <span class=n>x_test</span><span class=o>.</span><span class=n>astype</span><span class=p>(</span><span class=s1>&#39;float32&#39;</span><span class=p>)</span> <span class=o>/</span> <span class=mi>255</span>
 <span class=ln>71</span>
@@ -113,7 +113,7 @@ Stacked Autoencoder 简介 Stacked Autoencoder 简写作 SAE。SAE 与 AE 的主
 <span class=ln>84</span>
 <span class=ln>85</span>    <span class=c1># 绘制图像</span>
 <span class=ln>86</span>    <span class=n>plot</span><span class=p>(</span><span class=n>encoded_imgs</span><span class=p>,</span> <span class=n>decoded_imgs</span><span class=p>)</span>
-</code></pre></div><p>运行上述代码，可以从输出内容中得到以下信息：</p><ol><li>输入数据是 60000 张手写数字的灰度图像，灰度取值范围是 [0-255]，我们将其灰度值按行依次存储到一个 1 * 784 的数组中；</li><li>输入数据形如 [0, 0, 0,&mldr;, 84, 185, 159,&mldr;, 170, 52,&mldr;, 0, 0]，我们可以将每张图片（每个向量）理解为一个 784 维空间的中向量；</li><li>通过正则化后，输入数据每个维度区间变为 [0-1]；</li><li>编码层将输入的 784 维向量抽象为 128、64、32 维向量（dense，dense_1，dense_2）；</li></ol><pre><code>Model: &quot;functional_3&quot;
+</code></pre></div><p>运行上述代码，可以从输出内容中得到以下信息：</p><ol><li>输入数据是 60000 张手写数字的灰度图像，灰度取值范围是 [0, 255]，我们将其灰度值按行依次存储到一个 1 * 784 的数组中；</li><li>输入数据形如 (0, 0, 0,&mldr;, 84, 185, 159,&mldr;, 170, 52,&mldr;, 0, 0)，我们可以将每张图片（每个向量）理解为一个 784 维空间的中向量；</li><li>通过正则化后，输入数据每个维度区间变为 [0, 1]；</li><li>编码层将输入的 784 维向量抽象为 128、64、32 维向量（dense，dense_1，dense_2）；</li></ol><pre><code>Model: &quot;functional_3&quot;
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #
 =================================================================
