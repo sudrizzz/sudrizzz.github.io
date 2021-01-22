@@ -1,4 +1,174 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 06 Jan 2021 17:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>《机器学习》笔记（三）（未完待续）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-3/</link><pubDate>Wed, 06 Jan 2021 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-3/</guid><description>&lt;h1 id="4-决策树">4 决策树&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 20 Jan 2021 18:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>SAE 入门（一）</title><link>https://sudrizzz.github.io/posts/sae-1/</link><pubDate>Wed, 20 Jan 2021 18:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/sae-1/</guid><description>&lt;h1 id="autoencoder-简介">Autoencoder 简介&lt;/h1>
+&lt;p>自编码器（Autoencoder，AE），是一种利用反向传播（backpropagation，BP）算法&lt;strong>使得输出值等于输入值&lt;/strong>的神经网络，它先将输入压缩成潜在空间表征，然后通过这种表征来重构输出。其中，空间表征可以看作是输入数据的高级抽象，通常是将高维度的数据抽象为低维度的数据。&lt;/p>
+&lt;p>自编码器由两部分组成：&lt;br>
+编码器：这部分能将输入压缩成潜在空间表征，可以用编码函数 $h=f(x)$ 表示;&lt;br>
+解码器：这部分能重构来自潜在空间表征的输入，可以用解码函数 $r=g(h)$ 表示。&lt;/p>
+&lt;p>因此，整个自编码器可以用函数 $g(f(x)) = r$ 来描述，其中输出 $r$ 与原始输入 $x$ 相近。&lt;/p>
+&lt;p>自动编码器的目标是最大程度地减少输入和输出之间的重构误差。这有助于自动编码器学习数据中存在的重要功能。当表征很好地重建其输入时，则表示这个表征很好地保留了输入中存在的许多信息。整个过程如下图。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210122142001.png" alt="20210122142001" />&lt;/p>
+&lt;h1 id="stacked-autoencoder-简介">Stacked Autoencoder 简介&lt;/h1>
+&lt;p>Stacked Autoencoder 简写作 SAE。SAE 与 AE 的主要区别在于编码器与解码器的层数，栈式自编码器包含多层隐藏层。具体网络结构如下图所示，图中有两层编码层，两层解码层。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210122154135.png" alt="20210122154135" />&lt;/p>
+&lt;h1 id="代码实现">代码实现&lt;/h1>
+&lt;blockquote>
+&lt;p>代码环境配置，请参考 &lt;a class="link" href="https://sudrizzz.github.io/posts/gan-for-hand-written-digits/" target="_blank" rel="noopener"
+>GAN 网络之手写数字生成&lt;/a> 第一小节——环境搭建。&lt;/p>
+&lt;/blockquote>
+&lt;p>自编码器只是一种思想，在具体实现中，编码器和解码器可以由多种深度学习模型构成，例如全连接层、卷积层和 LSTM 等，以下使用 Keras 来实现栈式自编码器。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ln"> 1&lt;/span>&lt;span class="kn">from&lt;/span> &lt;span class="nn">keras.datasets&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">mnist&lt;/span>
+&lt;span class="ln"> 2&lt;/span>&lt;span class="kn">from&lt;/span> &lt;span class="nn">keras.layers&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Input&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Dense&lt;/span>
+&lt;span class="ln"> 3&lt;/span>&lt;span class="kn">from&lt;/span> &lt;span class="nn">keras.models&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Model&lt;/span>
+&lt;span class="ln"> 4&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">numpy&lt;/span> &lt;span class="kn">as&lt;/span> &lt;span class="nn">np&lt;/span>
+&lt;span class="ln"> 5&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">matplotlib.pyplot&lt;/span> &lt;span class="kn">as&lt;/span> &lt;span class="nn">plt&lt;/span>
+&lt;span class="ln"> 6&lt;/span>
+&lt;span class="ln"> 7&lt;/span>&lt;span class="n">EPOCHS&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">50&lt;/span>
+&lt;span class="ln"> 8&lt;/span>&lt;span class="n">BATCH_SIZE&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">256&lt;/span>
+&lt;span class="ln"> 9&lt;/span>
+&lt;span class="ln">10&lt;/span>
+&lt;span class="ln">11&lt;/span>&lt;span class="k">def&lt;/span> &lt;span class="nf">train&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x_train&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">x_test&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="ln">12&lt;/span> &lt;span class="n">input_img&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Input&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">shape&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">784&lt;/span>&lt;span class="p">,))&lt;/span>
+&lt;span class="ln">13&lt;/span> &lt;span class="n">encoded&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Dense&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">units&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">128&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">activation&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;relu&amp;#39;&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="n">input_img&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">14&lt;/span> &lt;span class="n">encoded&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Dense&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">units&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">64&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">activation&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;relu&amp;#39;&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="n">encoded&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">15&lt;/span> &lt;span class="n">encoded&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Dense&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">units&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">32&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">activation&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;relu&amp;#39;&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="n">encoded&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">16&lt;/span> &lt;span class="n">decoded&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Dense&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">units&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">64&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">activation&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;relu&amp;#39;&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="n">encoded&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">17&lt;/span> &lt;span class="n">decoded&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Dense&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">units&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">128&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">activation&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;relu&amp;#39;&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="n">decoded&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">18&lt;/span> &lt;span class="n">decoded&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Dense&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">units&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">784&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">activation&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;sigmoid&amp;#39;&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="n">decoded&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">19&lt;/span> &lt;span class="n">autoencoder&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Model&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_img&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">decoded&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">20&lt;/span> &lt;span class="n">encoder&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Model&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_img&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoded&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">21&lt;/span>
+&lt;span class="ln">22&lt;/span> &lt;span class="n">autoencoder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">summary&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="ln">23&lt;/span> &lt;span class="n">encoder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">summary&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="ln">24&lt;/span>
+&lt;span class="ln">25&lt;/span> &lt;span class="n">autoencoder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">compile&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">optimizer&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;adam&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">loss&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;binary_crossentropy&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">metrics&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;accuracy&amp;#39;&lt;/span>&lt;span class="p">])&lt;/span>
+&lt;span class="ln">26&lt;/span> &lt;span class="n">autoencoder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">fit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x_train&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">x_train&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">27&lt;/span> &lt;span class="n">epochs&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">EPOCHS&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">28&lt;/span> &lt;span class="n">batch_size&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">BATCH_SIZE&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">29&lt;/span> &lt;span class="n">shuffle&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">30&lt;/span> &lt;span class="n">validation_data&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x_test&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">x_test&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="ln">31&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="n">encoder&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">autoencoder&lt;/span>
+&lt;span class="ln">32&lt;/span>
+&lt;span class="ln">33&lt;/span>
+&lt;span class="ln">34&lt;/span>&lt;span class="k">def&lt;/span> &lt;span class="nf">plot&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">encoded_imgs&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">decoded_imgs&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="ln">35&lt;/span> &lt;span class="n">plt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">figure&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">figsize&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">40&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="ln">36&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="ln">37&lt;/span> &lt;span class="c1"># 展示原始输入图像&lt;/span>
+&lt;span class="ln">38&lt;/span> &lt;span class="n">ax&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">plt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">subplot&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">20&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">39&lt;/span> &lt;span class="n">plt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">imshow&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x_test&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">reshape&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">28&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">28&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="ln">40&lt;/span> &lt;span class="n">plt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">gray&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="ln">41&lt;/span> &lt;span class="n">ax&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_xaxis&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_visible&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">42&lt;/span> &lt;span class="n">ax&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_yaxis&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_visible&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">43&lt;/span>
+&lt;span class="ln">44&lt;/span> &lt;span class="c1"># 展示编码后的图像&lt;/span>
+&lt;span class="ln">45&lt;/span> &lt;span class="n">ax&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">plt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">subplot&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">20&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">20&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">46&lt;/span> &lt;span class="n">plt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">imshow&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">encoded_imgs&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">reshape&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="ln">47&lt;/span> &lt;span class="n">plt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">gray&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="ln">48&lt;/span> &lt;span class="n">ax&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_xaxis&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_visible&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">49&lt;/span> &lt;span class="n">ax&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_yaxis&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_visible&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">50&lt;/span>
+&lt;span class="ln">51&lt;/span> &lt;span class="c1"># 展示解码后的输入图像&lt;/span>
+&lt;span class="ln">52&lt;/span> &lt;span class="n">ax&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">plt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">subplot&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">20&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="mi">20&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">53&lt;/span> &lt;span class="n">plt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">imshow&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">decoded_imgs&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">reshape&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">28&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">28&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="ln">54&lt;/span> &lt;span class="n">plt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">gray&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="ln">55&lt;/span> &lt;span class="n">ax&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_xaxis&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_visible&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">56&lt;/span> &lt;span class="n">ax&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_yaxis&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_visible&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">57&lt;/span> &lt;span class="n">plt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">show&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="ln">58&lt;/span>
+&lt;span class="ln">59&lt;/span>
+&lt;span class="ln">60&lt;/span>&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s1">&amp;#39;__main__&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="ln">61&lt;/span> &lt;span class="c1"># 加载数据，训练数据 60000 条，测试数据 10000 条，数据灰度值 (0-255)&lt;/span>
+&lt;span class="ln">62&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">x_train&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">_&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">x_test&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">_&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">mnist&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">load_data&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="ln">63&lt;/span>
+&lt;span class="ln">64&lt;/span> &lt;span class="c1"># 正则化数据，将灰度值区间转换为 (0-1)&lt;/span>
+&lt;span class="ln">65&lt;/span> &lt;span class="n">x_train&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">x_train&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">astype&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;float32&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="mi">255&lt;/span>
+&lt;span class="ln">66&lt;/span> &lt;span class="n">x_test&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">x_test&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">astype&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;float32&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="mi">255&lt;/span>
+&lt;span class="ln">67&lt;/span>
+&lt;span class="ln">68&lt;/span> &lt;span class="c1"># 将数据集从二维 (28, 28) 矩阵转换为长度为 784 的一维向量&lt;/span>
+&lt;span class="ln">69&lt;/span> &lt;span class="n">x_train&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">x_train&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">reshape&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x_train&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">prod&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x_train&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">shape&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">:]))&lt;/span>
+&lt;span class="ln">70&lt;/span> &lt;span class="n">x_test&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">x_test&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">reshape&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x_test&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">prod&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x_test&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">shape&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">:]))&lt;/span>
+&lt;span class="ln">71&lt;/span> &lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x_train&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">shape&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">72&lt;/span> &lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x_test&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">shape&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">73&lt;/span>
+&lt;span class="ln">74&lt;/span> &lt;span class="c1"># 训练数据&lt;/span>
+&lt;span class="ln">75&lt;/span> &lt;span class="n">encoder&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">autoencoder&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">train&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x_train&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">x_test&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">76&lt;/span>
+&lt;span class="ln">77&lt;/span> &lt;span class="c1"># 获取编码后和解码后的图像&lt;/span>
+&lt;span class="ln">78&lt;/span> &lt;span class="n">encoded_imgs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">encoder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">predict&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x_test&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">79&lt;/span> &lt;span class="n">decoded_imgs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">autoencoder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">predict&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x_test&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">80&lt;/span>
+&lt;span class="ln">81&lt;/span> &lt;span class="c1"># 绘制图像&lt;/span>
+&lt;span class="ln">82&lt;/span> &lt;span class="n">plot&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">encoded_imgs&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">decoded_imgs&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>运行上述代码，可以从输出内容中得到以下信息：&lt;/p>
+&lt;ol>
+&lt;li>输入数据是 60000 张手写数字的灰度图像，灰度取值范围是 [0-255]，我们将其灰度值按行依次存储到一个 1 * 784 的数组中；&lt;/li>
+&lt;li>输入数据形如 [0, 0, 0,&amp;hellip;, 84, 185, 159,&amp;hellip;, 170, 52,&amp;hellip;, 0, 0]，我们可以将每张图片（每个向量）理解为一个 784 维空间的中向量；&lt;/li>
+&lt;li>通过正则化后，输入数据每个维度区间变为 [0-1]；&lt;/li>
+&lt;li>编码层将输入的 784 维向量抽象为 128、64、32 维向量（dense，dense_1，dense_2）；&lt;/li>
+&lt;/ol>
+&lt;pre>&lt;code>Model: &amp;quot;functional_3&amp;quot;
+_________________________________________________________________
+Layer (type) Output Shape Param #
+=================================================================
+input_1 (InputLayer) [(None, 784)] 0
+_________________________________________________________________
+dense (Dense) (None, 128) 100480
+_________________________________________________________________
+dense_1 (Dense) (None, 64) 8256
+_________________________________________________________________
+dense_2 (Dense) (None, 32) 2080
+=================================================================
+Total params: 110,816
+Trainable params: 110,816
+Non-trainable params: 0
+_________________________________________________________________
+&lt;/code>&lt;/pre>&lt;ol start="4">
+&lt;li>解码层将抽象后的 32 维向量还原维 64、128、784 维向量（dense_3，dense_4，dense_5）；&lt;/li>
+&lt;/ol>
+&lt;pre>&lt;code>Model: &amp;quot;functional_1&amp;quot;
+_________________________________________________________________
+Layer (type) Output Shape Param #
+=================================================================
+input_1 (InputLayer) [(None, 784)] 0
+_________________________________________________________________
+dense (Dense) (None, 128) 100480
+_________________________________________________________________
+dense_1 (Dense) (None, 64) 8256
+_________________________________________________________________
+dense_2 (Dense) (None, 32) 2080
+_________________________________________________________________
+dense_3 (Dense) (None, 64) 2112
+_________________________________________________________________
+dense_4 (Dense) (None, 128) 8320
+_________________________________________________________________
+dense_5 (Dense) (None, 784) 101136
+=================================================================
+Total params: 222,384
+Trainable params: 222,384
+Non-trainable params: 0
+_________________________________________________________________
+&lt;/code>&lt;/pre>&lt;p>训练完成之后，可以在输出内容中看到详细的训练数据，在 50 次训练之后，loss 已经降低到了 0.08。得到的输出图像如下图所示。&lt;/p>
+&lt;pre>&lt;code>......
+Epoch 48/50
+235/235 [==============================] - 3s 12ms/step - loss: 0.0848 - accuracy: 0.0130 - val_loss: 0.0844 - val_accuracy: 0.0147
+Epoch 49/50
+235/235 [==============================] - 3s 12ms/step - loss: 0.0846 - accuracy: 0.0130 - val_loss: 0.0845 - val_accuracy: 0.0115
+Epoch 50/50
+235/235 [==============================] - 3s 12ms/step - loss: 0.0845 - accuracy: 0.0139 - val_loss: 0.0840 - val_accuracy: 0.0165
+&lt;/code>&lt;/pre>&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210122160643.png" alt="20210122160643" />&lt;/p>
+&lt;h1 id="参考文献">参考文献&lt;/h1>
+&lt;ol>
+&lt;li>&lt;a class="link" href="https://medium.com/@venkatakrishna.jonnalagadda/sparse-stacked-and-variational-autoencoder-efe5bfe73b64" target="_blank" rel="noopener"
+>Sparse, Stacked and Variational Autoencoder&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://medium.com/datadriveninvestor/deep-learning-autoencoders-db265359943e" target="_blank" rel="noopener"
+>Deep Learning Autoencoders&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://medium.com/datadriveninvestor/deep-autoencoder-using-keras-b77cd3e8be95" target="_blank" rel="noopener"
+>Deep Autoencoder using Keras&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://zhuanlan.zhihu.com/p/34238979" target="_blank" rel="noopener"
+>自编码器是什么？有什么用？这里有一份入门指南（附代码）&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://zh.wikipedia.org/wiki/%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95" target="_blank" rel="noopener"
+>反向传播算法 - 维基百科&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://github.com/Nana0606/autoencoder" target="_blank" rel="noopener"
+>Autoencoder - Github&lt;/a>&lt;/li>
+&lt;/ol></description></item><item><title>《机器学习》笔记（三）（未完待续）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-3/</link><pubDate>Wed, 06 Jan 2021 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-3/</guid><description>&lt;h1 id="4-决策树">4 决策树&lt;/h1>
 &lt;h2 id="41-基本流程">4.1 基本流程&lt;/h2>
 &lt;p>一般的，一棵决策树包含一个根结点、若干个内部结点和若干个叶结点；叶结点对应于决策结果，其他每个结点则对应于一个属性测试；每个结点包含的样本集合根据属性测试的结果被划分到子结点中；根结点包含样本全集。从根结点到每个叶结点的路径对应了一个判定测试序列。决策树学习的目的是为了产生一棵泛化能力强，即处理未见示例能力强的决策树，其基本流程遵循简单且直观的“分而治之”（divide-and-conquer）策略。&lt;/p>
 &lt;h2 id="42-划分选择">4.2 划分选择&lt;/h2>
