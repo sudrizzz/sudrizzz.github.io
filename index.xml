@@ -41,7 +41,20 @@
 &lt;p>$$ T_a = {\frac{a^i + a^{i+1}}{2} | 1 \leq i \leq n-1} $$&lt;/p>
 &lt;p>即把区间 $[a^i, a^{i+1})$ 的中位点 $\frac{a^i+a^{i+1}}{2}$ 作为候选划分点。然后，我们就可像离散属性值一样来考察这些划分点，选取最优的划分点进行样本集合的划分。&lt;/p>
 &lt;p>$$ Gain(D, a) = \max_{t \in T_a} Gain(D, a, t) \\ = \max_{t \in T_a}Ent(D) - \sum_{\lambda \in {-, +}} \frac{|D_t^\lambda|}{D} Ent(D_t^\lambda) $$&lt;/p>
-&lt;p>其中 $Gain(D, a, t)$ 是样本集 $D$ 基于划分点 $t$ 二分后的信息增益。于是，我们就可选择使 $Gain(D, a, t)$ 最大化的划分点。&lt;/p></description></item><item><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title><link>https://sudrizzz.github.io/posts/sae-2/</link><pubDate>Thu, 28 Jan 2021 18:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/sae-2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>其中 $Gain(D, a, t)$ 是样本集 $D$ 基于划分点 $t$ 二分后的信息增益。于是，我们就可选择使 $Gain(D, a, t)$ 最大化的划分点。&lt;/p>
+&lt;h3 id="442-缺失值处理">4.4.2 缺失值处理&lt;/h3>
+&lt;p>书中对于属性缺失值的样本仅仅介绍了 C4.5 算法中的处理方法，具体如下：&lt;/p>
+&lt;ol>
+&lt;li>将属性无缺失值的样本挑选出来形成一个样例子集 $\tilde{D}$&lt;/li>
+&lt;li>对 $\tilde{D}$ 做信息熵计算，计算各属性的信息增益&lt;/li>
+&lt;li>将各个信息增益还原到全体样本，即 $Gain(D, 属性) = \rho \times Gain(\tilde{D}, 属性)$，其中 $\rho$ 指 $\tilde{D}$ 与 $D$ 的比例&lt;/li>
+&lt;li>选择信息增益最大的属性进行划分，并重复上述步骤&lt;/li>
+&lt;/ol>
+&lt;p>另外，还有其他方法来处理属性缺失值这一情况。&lt;/p>
+&lt;p>对于离散值属性，可以采用&lt;strong>众数填充&lt;/strong>或&lt;strong>相关性最高的列填充&lt;/strong>的方式，来填充缺失值。&lt;/p>
+&lt;p>对于连续值属性，可以对使用&lt;strong>中位数填充&lt;/strong>，也可以对&lt;strong>相关性最高的列做线性回归进行估计&lt;/strong>。&lt;/p>
+&lt;h2 id="45-多变量决策树">4.5 多变量决策树&lt;/h2>
+&lt;p>简而言之，单变量决策树（上述决策树）非叶节点，只针对某个属性取值进行测试分类；而多变量决策树非叶节点，不仅仅局限于单个属性取值，而是对&lt;strong>多个属性取值的线性组合&lt;/strong>进行测试分类。&lt;/p></description></item><item><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title><link>https://sudrizzz.github.io/posts/sae-2/</link><pubDate>Thu, 28 Jan 2021 18:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/sae-2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>在&lt;a class="link" href="https://sudrizzz.github.io/posts/sae-1/" target="_blank" rel="noopener"
 >上一篇文章&lt;/a>中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。&lt;/p>
 &lt;h1 id="tiny_dnn-简介">tiny_dnn 简介&lt;/h1>
