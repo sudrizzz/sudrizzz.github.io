@@ -54,7 +54,7 @@
 &lt;p>对于离散值属性，可以采用&lt;strong>众数填充&lt;/strong>或&lt;strong>相关性最高的列填充&lt;/strong>的方式，来填充缺失值。&lt;/p>
 &lt;p>对于连续值属性，可以对使用&lt;strong>中位数填充&lt;/strong>，也可以对&lt;strong>相关性最高的列做线性回归进行估计&lt;/strong>。&lt;/p>
 &lt;h2 id="45-多变量决策树">4.5 多变量决策树&lt;/h2>
-&lt;p>简而言之，单变量决策树（上述决策树）非叶节点，只针对某个属性取值进行测试分类；而多变量决策树非叶节点，不仅仅局限于单个属性取值，而是对&lt;strong>多个属性取值的线性组合&lt;/strong>进行测试分类。&lt;/p></description></item><item><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title><link>https://sudrizzz.github.io/posts/sae-2/</link><pubDate>Thu, 28 Jan 2021 18:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/sae-2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>简而言之，单变量决策树（上述决策树）非叶节点，只针对某个（单个）属性取值进行测试分类；而多变量决策树非叶节点，不仅仅局限于单个属性取值，而是对&lt;strong>多个属性取值的线性组合&lt;/strong>进行测试分类。&lt;/p></description></item><item><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title><link>https://sudrizzz.github.io/posts/sae-2/</link><pubDate>Thu, 28 Jan 2021 18:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/sae-2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>在&lt;a class="link" href="https://sudrizzz.github.io/posts/sae-1/" target="_blank" rel="noopener"
 >上一篇文章&lt;/a>中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。&lt;/p>
 &lt;h1 id="tiny_dnn-简介">tiny_dnn 简介&lt;/h1>
