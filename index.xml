@@ -11,7 +11,7 @@
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218142053.png" alt="20210218142053" />&lt;/p>
 &lt;p>$$
 f(x) = \begin{cases}
-0, &amp;amp;x&amp;lt;0; \\ 1, &amp;amp;x=0;
+0, &amp;amp;x&amp;lt;0; \\ 1, &amp;amp;x \geq 0;
 \end{cases}
 $$&lt;/p>
 &lt;ol start="2">
@@ -25,7 +25,7 @@ $$&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218142335.png" alt="20210218142335" />&lt;/p>
 &lt;p>$$
 f(x) = \begin{cases}
-0, &amp;amp;x&amp;lt;0; \\ x, &amp;amp;x&amp;gt;0;
+0, &amp;amp;x&amp;lt;0; \\ x, &amp;amp;x \geq 0;
 \end{cases}
 $$&lt;/p>
 &lt;h2 id="52-感知机与多层网络">5.2 感知机与多层网络&lt;/h2>
