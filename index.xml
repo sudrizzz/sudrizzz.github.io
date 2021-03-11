@@ -1,4 +1,105 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 16 Feb 2021 08:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>《机器学习》笔记（第五章）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-4/</link><pubDate>Tue, 16 Feb 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-4/</guid><description>&lt;h1 id="5-神经网络">5 神经网络&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 11 Mar 2021 08:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Docker 搭建 ShareLaTeX</title><link>https://sudrizzz.github.io/posts/docker-host-sharelatex/</link><pubDate>Thu, 11 Mar 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/docker-host-sharelatex/</guid><description>&lt;h1 id="安装-sharelatex">安装 ShareLaTeX&lt;/h1>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo su
+&lt;span class="ln">2&lt;/span>docker pull kingsleyluoxin/sharelatex:full
+&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="编辑配置">编辑配置&lt;/h1>
+&lt;p>在 &lt;code>~/sharelatex&lt;/code> 中放入配置文件 &lt;code>docker-compose.yml&lt;/code>，并进行编辑。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> ~/sharelatex
+&lt;span class="ln">2&lt;/span>vim docker-compose.yml
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>完整配置如下&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="ln"> 1&lt;/span>&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;2.2&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 2&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">services&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 3&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">sharelatex&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 4&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">restart&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">always&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 5&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">kingsleyluoxin/sharelatex:full&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 6&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">container_name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">sharelatex&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 7&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">depends_on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 8&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">mongo&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 9&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">condition&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">service_healthy&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">10&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">redis&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">11&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">condition&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">service_started&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">12&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ports&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">13&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="m">80&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">80&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">14&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">links&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">15&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">mongo&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">16&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">redis&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">17&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">volumes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">18&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">~/sharelatex_data:/var/lib/sharelatex&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">19&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">environment&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">20&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">SHARELATEX_APP_NAME&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Overleaf Community Edition&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">21&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">22&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">SHARELATEX_MONGO_URL&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">mongodb://mongo/sharelatex&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">23&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">24&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">SHARELATEX_REDIS_HOST&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">redis&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">25&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">REDIS_HOST&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">redis&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">26&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">27&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ENABLED_LINKED_FILE_TYPES&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;url,project_file&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">28&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">29&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ENABLE_CONVERSIONS&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;true&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">30&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">31&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Disables email confirmation requirement&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">32&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">EMAIL_CONFIRMATION_DISABLED&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;true&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">33&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">34&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">TEXMFVAR&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">/var/lib/sharelatex/tmp/texmf-var&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">35&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">36&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c">## Set for SSL via nginx-proxy&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">37&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c">#VIRTUAL_HOST: 103.112.212.22&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">38&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">39&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">SHARELATEX_SITE_URL&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">http://172.23.253.113&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">40&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">SHARELATEX_ADMIN_EMAIL&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">username@qq.com&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">41&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">42&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">SHARELATEX_EMAIL_FROM_ADDRESS&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;username@qq.com&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">43&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">44&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">SHARELATEX_EMAIL_SMTP_HOST&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">smtp.qq.com&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">45&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">SHARELATEX_EMAIL_SMTP_PORT&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">465&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">46&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">SHARELATEX_EMAIL_SMTP_SECURE&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;true&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">47&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">SHARELATEX_EMAIL_SMTP_USER&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">username@qq.com&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">48&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">SHARELATEX_EMAIL_SMTP_PASS&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">SMTP 授权码&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">49&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">SHARELATEX_EMAIL_SMTP_TLS_REJECT_UNAUTH&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;true&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">50&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">SHARELATEX_EMAIL_SMTP_IGNORE_TLS&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;false&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">51&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># SHARELATEX_CUSTOM_EMAIL_FOOTER: &amp;#34;This system is run by department x&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">52&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">53&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">mongo&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">54&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">restart&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">always&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">55&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">mongo:4.0&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">56&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">container_name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">mongo&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">57&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">expose&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">58&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="m">27017&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">59&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">volumes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">60&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">~/mongo_data:/data/db&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">61&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">healthcheck&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">62&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">test&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">echo &amp;#39;db.stats().ok&amp;#39; | mongo localhost:27017/test --quiet&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">63&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">interval&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">10s&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">64&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">timeout&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">10s&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">65&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">retries&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">5&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">66&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">67&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">redis&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">68&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">restart&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">always&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">69&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">redis:5&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">70&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">container_name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">redis&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">71&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">expose&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">72&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="m">6379&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">73&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">volumes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">74&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">~/redis_data:/data&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="初始化容器">初始化容器&lt;/h1>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> ~/sharelatex
+&lt;span class="ln">2&lt;/span>docker-compose up -d
+&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="停止重启服务">停止、重启服务&lt;/h1>
+&lt;p>可以先使用以下命令查看正在运行的 docker 服务&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>docker ps -a
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>输出如下&lt;/p>
+&lt;pre>&lt;code>CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
+471e68a315b9 kingsleyluoxin/sharelatex:full &amp;quot;/sbin/my_init&amp;quot; 2 hours ago Up 2 hours 0.0.0.0:80-&amp;gt;80/tcp sharelatex
+86213089675e redis:5 &amp;quot;docker-entrypoint.s…&amp;quot; 2 hours ago Up 2 hours 6379/tcp redis
+2ae87df3ecc0 mongo:4.0 &amp;quot;docker-entrypoint.s…&amp;quot; 2 hours ago Up 2 hours (healthy) 27017/tcp mongo
+&lt;/code>&lt;/pre>&lt;p>使用以下命令可以停止服务&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>docker stop sharelatex
+&lt;span class="ln">2&lt;/span>docker stop redis
+&lt;span class="ln">3&lt;/span>docker stop mongo
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用以下命令可以重启服务&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>docker restart sharelatex
+&lt;span class="ln">2&lt;/span>docker restart redis
+&lt;span class="ln">3&lt;/span>docker restart mongo
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>《机器学习》笔记（第五章）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-4/</link><pubDate>Tue, 16 Feb 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-4/</guid><description>&lt;h1 id="5-神经网络">5 神经网络&lt;/h1>
 &lt;h2 id="51-神经元模型">5.1 神经元模型&lt;/h2>
 &lt;p>神经网络是由具有适应性的简单单元组成的广泛并行互连的网络，它的组织能够模拟生物神经系统对真实世界物体所作出的交互反应。我们在机器学习中谈论神经网络时指的是“神经网络学习”。&lt;/p>
 &lt;p>神经网络中最基本的成分是神经元（neuron）模型，即上述定义中的“简单单元”。在生物神经网络中，每个神经元与其他神经元相连，当它“兴奋”时，就会向相连的神经元发送化学物质，从而改变这些神经元内的电位；如果某神经元的电位超过了一个“阈值”（threshold），那么它就会被激活。即“兴奋”起来，向其他神经元发送化学物质。&lt;/p>
