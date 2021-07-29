@@ -1,8 +1,177 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 22 Apr 2021 08:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>飞机结冰论文阅读 2</title><link>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-2/</link><pubDate>Thu, 22 Apr 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-2/</guid><description>&lt;h1 id="文章简介">文章简介&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 28 Jul 2021 19:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>基于 Isight 的实验设计</title><link>https://sudrizzz.github.io/posts/isight-doe/</link><pubDate>Wed, 28 Jul 2021 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/isight-doe/</guid><description>&lt;h1 id="实验设计">实验设计&lt;/h1>
+&lt;p>实验设计（Design Of Experiments，DOE），一种安排实验和分析实验数据的数理统计方法。通过实验，研究并确定影响因子，通过改变因子设置以使输出达到最佳值；要严格按照计划进行实验，并进行分析，从而找到改进的途径。&lt;/p>
+&lt;ul>
+&lt;li>通过有效的实验方案的设计，找到可行的工艺方法和产品指标。&lt;/li>
+&lt;li>筛选重要因子，确定真正的影响因素，从而有目标地进行质量改进。&lt;/li>
+&lt;/ul>
+&lt;h1 id="isight">Isight&lt;/h1>
+&lt;h2 id="版本">版本&lt;/h2>
+&lt;p>本文采用 Isight 2016 版本，下载链接：https://dl.downloadly.ir/Files/Software2/DS_SIMULIA_Isight_2016_HF4_Downloadly.ir.rar。&lt;/p>
+&lt;h2 id="安装">安装&lt;/h2>
+&lt;p>安装过程不再赘述，值得一提的是，在设置 Isight FlexNet License 时，&lt;strong>首选 License 服务器名&lt;/strong>应填写 &lt;code>27011@localhost&lt;/code>，其余留空即可。
+完成安装后，启动 Isight 2016.HF4 Design Gateway。&lt;/p>
+&lt;h1 id="实验">实验&lt;/h1>
+&lt;h2 id="数据准备">数据准备&lt;/h2>
+&lt;p>如下图所示，定义了三个输入参数以及两个输出参数，并在 excel 中使用名称管理器为这 5 个变量设置了名称。两个输出参数的计算方法分别如下。&lt;/p>
+&lt;p>$$ volume = length \times height \times width $$
+$$ costs = 2 \times length^2 + 3 \times width^2 + 0.05 \times height^3 $$&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729094237.png" alt="20210729094237" />&lt;/p>
+&lt;h2 id="新建任务">新建任务&lt;/h2>
+&lt;p>打开 Isight 任务界面，将 Application Components 中的 Excel 组件拖拽到如下图所示的位置。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728195651.png" alt="20210728195651" />&lt;/p>
+&lt;p>此时会发现底部有一黄色警告，这是因为我们还没有正确配置 Excel 文件地址。双击刚刚添加的 Excel 组件即可打开配置界面，在顶部选中数据文件。由于我们在 Excel 文件中提前对变量进行命名，故此时 Isight 会提示并自动生成变量，如下图所示。确认无误后点击下方 OK 即可回到任务界面。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728200028.png" alt="20210728200028" />&lt;/p>
+&lt;h2 id="配置-doe">配置 DOE&lt;/h2>
+&lt;p>将 Process Components 选项组中的 DOE 组件拖拽到如下图所示的位置上。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728200342.png" alt="20210728200342" />&lt;/p>
+&lt;p>双击 DOE 组件进行详细配置。首先配置 Factors，我们选中所有的输入参数，并将这些参数的实验区间调整为基数 -20%~20%。配置如下所示。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728200648.png" alt="20210728200648" />&lt;/p>
+&lt;p>切换到 General 选项卡，实验技术选择拉丁方，实验点数输入 50，点击下方的 Apply 生成实验次序，此时可以在 Design Matrix 中查看样本矩阵。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728200807.png" alt="20210728200807" />&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728201214.png" alt="20210728201214" />&lt;/p>
+&lt;p>切换到 Postprocessing 选项卡，在这里配置两个输出参数的目标，即 costs 最小化，volume 最大化，如下图所示。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728201336.png" alt="20210728201336" />&lt;/p>
+&lt;h2 id="进行实验">进行实验&lt;/h2>
+&lt;p>在实验之前，首先在 Graph Templates 选项卡中添加图标，方便后续的数据可视化。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728201658.png" alt="20210728201658" />&lt;/p>
+&lt;p>在此例中，我们选择添加 Main Effect Graph 用来观察各个输入参数都两个输出参数的影响权重。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729080918.png" alt="20210729080918" />&lt;/p>
+&lt;p>点击菜单栏中的三角形按钮，运行实验。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728201456.png" alt="20210728201456" />&lt;/p>
+&lt;h2 id="结果分析">结果分析&lt;/h2>
+&lt;p>在 Isight Runtime Gateway 中的 History 选项卡中，如下图所示，表格中的绿色行表示最优解。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729081901.png" alt="20210729081901" />&lt;/p>
+&lt;p>在 Graphs 选项卡中，可以看到之前添加的图表已经填充了本次运行的结果。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729085526.png" alt="20210729085526" />&lt;/p>
+&lt;h2 id="代理模型">代理模型&lt;/h2>
+&lt;p>代理模型是工程问题中常用的一个优化方法。当实际问题（高精度模型）计算量很大、不容易求解时，可以使用计算量较小、求解迅速的简化模型来替代原模型，加速优化过程。在 Isight Runtime Gateway 中，我们切换到 Visual Design 选项卡，点击 Create Approximation 创建一个代理模型。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729085720.png" alt="20210729085720" />&lt;/p>
+&lt;h3 id="一阶响应曲面模型">一阶响应曲面模型&lt;/h3>
+&lt;p>由于 volume 项是由三个输入参数相乘得到，故我们可以先创建一阶（线性）响应曲面模型对 volume 进行拟合。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729093344.png" alt="20210729093344" />&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729093420.png" alt="20210729093420" />&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Polynomial term&lt;/th>
+&lt;th>Coefficient&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Constant&lt;/td>
+&lt;td>-8061.40938210593&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x01&lt;/td>
+&lt;td>273.292484060334&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x02&lt;/td>
+&lt;td>398.117601806449&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x03&lt;/td>
+&lt;td>149.130521907&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>即拟合曲线如下，R Square = 0.8935。&lt;/p>
+&lt;p>$$ costs = 273.292484060334 \times length + 398.117601806449 \times width + 149.130521907 \times height $$&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729093515.png" alt="20210729093515" />&lt;/p>
+&lt;h3 id="三阶响应曲面模型">三阶响应曲面模型&lt;/h3>
+&lt;p>由于 costs 项是由三个输入参数高阶相乘得到，最高为 height 三阶，故我们创建一个三阶响应曲面模型对 costs 进行拟合。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729094418.png" alt="20210729094418" />&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729091411.png" alt="20210729091411" />&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Polynomial term&lt;/th>
+&lt;th>Coefficient&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Constant&lt;/td>
+&lt;td>-4.23710301832585e-010&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x01&lt;/td>
+&lt;td>-2.10336177869166e-010&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x02&lt;/td>
+&lt;td>3.51571404416191e-010&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x03&lt;/td>
+&lt;td>3.616047694285e-011&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x01**2&lt;/td>
+&lt;td>1.44086437819406e-011&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x02**2&lt;/td>
+&lt;td>1.99999999996241&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x03**2&lt;/td>
+&lt;td>2.99999999999869&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x01*x02&lt;/td>
+&lt;td>3.92239176204056e-013&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x01*x03&lt;/td>
+&lt;td>-1.74648188795555e-013&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x02*x03&lt;/td>
+&lt;td>3.35578146664684e-013&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x01**3&lt;/td>
+&lt;td>0.0499999999996755&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x02**3&lt;/td>
+&lt;td>1.27267233735159e-012&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x03**3&lt;/td>
+&lt;td>1.52574123633321e-014&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>即拟合曲线如下，R Square = 1。&lt;/p>
+&lt;p>$$ costs = 1.99999999996241 \times length^2 + 2.99999999999869 \times width^2 \\ + 0.0499999999996755 \times height^3 $$&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729092059.png" alt="20210729092059" />&lt;/p>
+&lt;h1 id="参考文献">参考文献&lt;/h1>
+&lt;ol>
+&lt;li>&lt;a class="link" href="https://zh.wikipedia.org/wiki/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%9E%8B" target="_blank" rel="noopener"
+>代理模型&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://mp.weixin.qq.com/s/GQ8zvKV4ngMEP6_GahsOlQ" target="_blank" rel="noopener"
+>近似模型之响应面建模&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://downloadly.net/2020/19/7856/03/isight/23/?#/7856-ds-simul-062109072929.html" target="_blank" rel="noopener"
+>DS SIMULIA Isight 2020 Windows/Linux&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://zhuanlan.zhihu.com/p/265914617" target="_blank" rel="noopener"
+>DOE 实验设计必备基础知识理解&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://zhuanlan.zhihu.com/p/349344651" target="_blank" rel="noopener"
+>半导体工业软件（八）：DOE（实验设计）&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.jianshu.com/p/c67a3c1edefb" target="_blank" rel="noopener"
+>常用实验设计方法（DOE）介绍&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.bilibili.com/video/BV1xW411q7YY" target="_blank" rel="noopener"
+>【YouTube 转载】Isight 参数优化（士盟科技出品）（中文讲解）&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.bilibili.com/video/BV1a4411v7gf" target="_blank" rel="noopener"
+>Abaqus Isight 视频合集&lt;/a>&lt;/li>
+&lt;/ol></description></item><item><title>飞机结冰论文阅读 2</title><link>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-2/</link><pubDate>Thu, 22 Apr 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-2/</guid><description>&lt;h1 id="文章简介">文章简介&lt;/h1>
 &lt;h2 id="来源">来源&lt;/h2>
 &lt;p>卷积神经网络在机翼升力系数预测中的应用&lt;br>
 Application of Convolutional Neural Network to Predict Airfoil Lift Coefficient&lt;br>
-&lt;a href="https://arxiv.org/abs/1712.10082">https://arxiv.org/abs/1712.10082&lt;/a>&lt;/p>
+&lt;a class="link" href="https://arxiv.org/abs/1712.10082" target="_blank" rel="noopener"
+>https://arxiv.org/abs/1712.10082&lt;/a>&lt;/p>
 &lt;h2 id="摘要">摘要&lt;/h2>
 &lt;p>本文主要介绍了 CNN 网络结构，通过 CNN 网络学习预测多种形状翼型在多种流动马赫数、雷诺数和不同攻角下的升力系数，同时使用 MLP 网络进行结果对比。实验结果表明，CNN 网络的预测结果，相比于 MLP 网络的预测结果，有更高的精度。&lt;/p>
 &lt;h1 id="网络结构">网络结构&lt;/h1>
@@ -43,7 +212,8 @@ Application of Convolutional Neural Network to Predict Airfoil Lift Coefficient&
 &lt;h2 id="来源">来源&lt;/h2>
 &lt;p>深度神经网络在用于飞机结冰检测和特征化的飞行中参数识别中的应用&lt;br>
 An application of Deep Neural Networks to the in-flight parameter identification for detection and characterization of aircraft icing&lt;br>
-&lt;a href="https://www.sciencedirect.com/science/article/pii/S1270963817318242">https://www.sciencedirect.com/science/article/pii/S1270963817318242&lt;/a>&lt;/p>
+&lt;a class="link" href="https://www.sciencedirect.com/science/article/pii/S1270963817318242" target="_blank" rel="noopener"
+>https://www.sciencedirect.com/science/article/pii/S1270963817318242&lt;/a>&lt;/p>
 &lt;h2 id="摘要">摘要&lt;/h2>
 &lt;p>本文将深度神经网络应用于飞行器结冰的检测和表征的飞行参数识别。作者为预处理输入的飞行状态数据，设计了一种类似于真实图片的“状态图像（state-image）”，然后作者设计了一个 DNN 网络结构，该结构可对飞行状态的本地连通性（local connectivity，使用 CNN）和时间特征（temporal characteristics，使用 RNN）进行建模。在文中，作者对以下几种情形进行了实验，分别是：未结冰（clean）、不同部位结冰（机翼、尾翼、机翼与尾翼）以及结冰严重程度（中等结冰、严重结冰）。同时，作者还提供了基于 DNN 的方法与基于基线 $H_{\infty}$ 的识别算法（飞机结冰的最新技术）的比较。基于测试和比较结果，基于 DNN 的方法对多参数输入数据能产生更准确的预测性能。&lt;/p>
 &lt;h1 id="实验说明">实验说明&lt;/h1>
@@ -85,14 +255,14 @@ An application of Deep Neural Networks to the in-flight parameter identification
 &lt;h2 id="误差定量分析">误差定量分析&lt;/h2>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210421171746.png" alt="20210421171746" />&lt;/p>
 &lt;p>当我们将参数识别问题建模为状态跟踪问题时；跟踪误差的 RMSE 值越低，表明跟踪越准确且更及时。因此，基于 DNN 的框架的参数识别性能被认为优于基于基线 $H_{\infty}$ 的方法。&lt;/p></description></item><item><title>Docker 搭建 ShareLaTeX</title><link>https://sudrizzz.github.io/posts/docker-host-sharelatex/</link><pubDate>Thu, 11 Mar 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/docker-host-sharelatex/</guid><description>&lt;h1 id="安装-sharelatex">安装 ShareLaTeX&lt;/h1>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo su
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo su
 &lt;span class="ln">2&lt;/span>docker pull kingsleyluoxin/sharelatex:full
 &lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="编辑配置">编辑配置&lt;/h1>
 &lt;p>在 &lt;code>~/sharelatex&lt;/code> 中放入配置文件 &lt;code>docker-compose.yml&lt;/code>，并进行编辑。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> ~/sharelatex
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> ~/sharelatex
 &lt;span class="ln">2&lt;/span>vim docker-compose.yml
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>完整配置如下&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="ln"> 1&lt;/span>&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;2.2&amp;#34;&lt;/span>&lt;span class="w">
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="ln"> 1&lt;/span>&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;2.2&amp;#34;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;span class="ln"> 2&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">services&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;span class="ln"> 3&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">sharelatex&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;span class="ln"> 4&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">restart&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">always&lt;/span>&lt;span class="w">
@@ -167,22 +337,22 @@ An application of Deep Neural Networks to the in-flight parameter identification
 &lt;/span>&lt;span class="ln">73&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">volumes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;span class="ln">74&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">~/redis_data:/data&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="初始化容器">初始化容器&lt;/h1>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> ~/sharelatex
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> ~/sharelatex
 &lt;span class="ln">2&lt;/span>docker-compose up -d
 &lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="停止重启服务">停止、重启服务&lt;/h1>
 &lt;p>可以先使用以下命令查看正在运行的 docker 服务&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>docker ps -a
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>docker ps -a
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>输出如下&lt;/p>
 &lt;pre>&lt;code>CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
 471e68a315b9 kingsleyluoxin/sharelatex:full &amp;quot;/sbin/my_init&amp;quot; 2 hours ago Up 2 hours 0.0.0.0:80-&amp;gt;80/tcp sharelatex
 86213089675e redis:5 &amp;quot;docker-entrypoint.s…&amp;quot; 2 hours ago Up 2 hours 6379/tcp redis
 2ae87df3ecc0 mongo:4.0 &amp;quot;docker-entrypoint.s…&amp;quot; 2 hours ago Up 2 hours (healthy) 27017/tcp mongo
 &lt;/code>&lt;/pre>&lt;p>使用以下命令可以停止服务&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>docker stop sharelatex
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>docker stop sharelatex
 &lt;span class="ln">2&lt;/span>docker stop redis
 &lt;span class="ln">3&lt;/span>docker stop mongo
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>使用以下命令可以重启服务&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>docker restart sharelatex
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>docker restart sharelatex
 &lt;span class="ln">2&lt;/span>docker restart redis
 &lt;span class="ln">3&lt;/span>docker restart mongo
 &lt;/code>&lt;/pre>&lt;/div></description></item><item><title>《机器学习》笔记（第五章）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-4/</link><pubDate>Tue, 16 Feb 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-4/</guid><description>&lt;h1 id="5-神经网络">5 神经网络&lt;/h1>
@@ -324,7 +494,7 @@ $$&lt;/p>
 &lt;ol>
 &lt;li>编辑 &lt;code>config.h&lt;/code> 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln">1&lt;/span>&lt;span class="cm">/**
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln">1&lt;/span>&lt;span class="cm">/**
 &lt;/span>&lt;span class="ln">2&lt;/span>&lt;span class="cm"> * Enable Image API support.
 &lt;/span>&lt;span class="ln">3&lt;/span>&lt;span class="cm"> * Currently we use stb by default.
 &lt;/span>&lt;span class="ln">4&lt;/span>&lt;span class="cm"> **/&lt;/span>
@@ -332,10 +502,10 @@ $$&lt;/p>
 &lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
 &lt;li>编辑 &lt;code>image.h&lt;/code> 文件第 378 行，将 &lt;code>border_width&lt;/code> 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下：&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln">1&lt;/span>&lt;span class="k">const&lt;/span> &lt;span class="n">size_t&lt;/span> &lt;span class="n">border_width&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln">1&lt;/span>&lt;span class="k">const&lt;/span> &lt;span class="n">size_t&lt;/span> &lt;span class="n">border_width&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="编写代码">编写代码&lt;/h2>
 &lt;p>打开 &lt;code>testTinyDNN.cpp&lt;/code> 文件，将下列代码粘贴进去。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln"> 1&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln"> 1&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span class="cp">
 &lt;/span>&lt;span class="ln"> 2&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;string&amp;gt;&lt;/span>&lt;span class="cp">
 &lt;/span>&lt;span class="ln"> 3&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;#34;tiny_dnn/tiny_dnn.h&amp;#34;&lt;/span>&lt;span class="cp">
 &lt;/span>&lt;span class="ln"> 4&lt;/span>&lt;span class="cp">&lt;/span>&lt;span class="k">using&lt;/span> &lt;span class="k">namespace&lt;/span> &lt;span class="n">tiny_dnn&lt;/span>&lt;span class="p">;&lt;/span>
@@ -471,7 +641,7 @@ $$&lt;/p>
 >GAN 网络之手写数字生成&lt;/a> 第一小节——环境搭建。&lt;/p>
 &lt;/blockquote>
 &lt;p>自编码器只是一种思想，在具体实现中，编码器和解码器可以由多种深度学习模型构成，例如全连接层、卷积层和 LSTM 等，以下使用 Keras 来实现栈式自编码器。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ln"> 1&lt;/span>&lt;span class="kn">from&lt;/span> &lt;span class="nn">keras.datasets&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">mnist&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ln"> 1&lt;/span>&lt;span class="kn">from&lt;/span> &lt;span class="nn">keras.datasets&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">mnist&lt;/span>
 &lt;span class="ln"> 2&lt;/span>&lt;span class="kn">from&lt;/span> &lt;span class="nn">keras.layers&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Input&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Dense&lt;/span>
 &lt;span class="ln"> 3&lt;/span>&lt;span class="kn">from&lt;/span> &lt;span class="nn">keras.models&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Model&lt;/span>
 &lt;span class="ln"> 4&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">numpy&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nn">np&lt;/span>
@@ -947,10 +1117,12 @@ $$&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;p>本例代码存放于 &lt;a href="https://github.com/sudrizzz/MachineLearning">https://github.com/sudrizzz/MachineLearning&lt;/a>。&lt;/p>
+&lt;p>本例代码存放于 &lt;a class="link" href="https://github.com/sudrizzz/MachineLearning" target="_blank" rel="noopener"
+>https://github.com/sudrizzz/MachineLearning&lt;/a>。&lt;/p>
 &lt;h2 id="anaconda-安装">Anaconda 安装&lt;/h2>
 &lt;p>通过清华大学开源软件镜像站，我们可以直接下载最新版本的 Anaconda，本例中使用的 Anaconda 下载链接：
-&lt;a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe">https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe&lt;/a>&lt;/p>
+&lt;a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe" target="_blank" rel="noopener"
+>https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe&lt;/a>&lt;/p>
 &lt;p>Anaconda 安装教程网络上已经有很多，故此处不再赘述。&lt;/p>
 &lt;p>安装完成后，我们需要手动配置 Anaconda 的环境变量，在用户变量的 Path 中添加 Anaconda 的安装路径以及其子文件夹，具体内容如下。&lt;/p>
 &lt;pre>&lt;code>C:\Users\xvyn\anaconda3
@@ -960,16 +1132,16 @@ C:\Users\xvyn\anaconda3\Library\bin
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208152533.png" alt="20201208152533" />&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208152633.png" alt="20201208152633" />&lt;/p>
 &lt;p>完成后打开 cmd 输入下列命令，如果输出内容与下列内容类似，则表示配置正确，可继续后面的步骤。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda --version
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda --version
 &lt;/code>&lt;/pre>&lt;/div>&lt;pre>&lt;code>输出
 conda 4.9.2
 &lt;/code>&lt;/pre>
 &lt;h2 id="创建虚拟环境">创建虚拟环境&lt;/h2>
 &lt;p>通过如下命令进行创建一个虚拟环境。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda create -n handwrittendigits
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda create -n handwrittendigits
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>-n handwrittendigits&lt;/code> 的作用是指定虚拟环境的名称，本例中指定为 &lt;code>handwrittendigits&lt;/code>。&lt;/p>
 &lt;p>执行结束后，可通过下列命令查看 Anaconda 中所有的虚拟环境。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda info --evns
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda info --evns
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>输出如下&lt;/p>
 &lt;pre>&lt;code>(base) PS C:\Users\xvyn&amp;gt; conda info --envs
 conda environments:
@@ -979,10 +1151,11 @@ handwrittendigits C:\Users\xvyn\anaconda3\envs\handwrittendigits
 &lt;p>其中，标记 * 的表示目前已启用，命令行前半部分的 (base) 也表示目前启用的是哪个虚拟环境，此例中为 base 环境。&lt;/p>
 &lt;h2 id="切换虚拟环境">切换虚拟环境&lt;/h2>
 &lt;p>如果使用 PowerShell 进行 Anaconda 的一些操作，需要以 &lt;strong>管理员&lt;/strong> 身份运行 PowerShell，然后执行下列命令。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>set-executionpolicy remotesigned
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>set-executionpolicy remotesigned
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>执行完成后可通过下列命令进行切换虚拟环境。若使用其他 Shell 工具进行操作，则可直接执行下列命令。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda activate handwrittendigits
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果执行时报错如下，则可以通过 &lt;a href="https://github.com/conda/conda/issues/7980">https://github.com/conda/conda/issues/7980&lt;/a> 来解决。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda activate handwrittendigits
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果执行时报错如下，则可以通过 &lt;a class="link" href="https://github.com/conda/conda/issues/7980" target="_blank" rel="noopener"
+>https://github.com/conda/conda/issues/7980&lt;/a> 来解决。&lt;/p>
 &lt;pre>&lt;code>Can't execute `conda activate` from batch script
 &lt;/code>&lt;/pre>
 &lt;p>详细操作为：&lt;/p>
@@ -1004,7 +1177,7 @@ handwrittendigits * C:\Users\xvyn\anaconda3\envs\handwrittendigits
 &lt;/code>&lt;/pre>
 &lt;h2 id="更换镜像源">更换镜像源&lt;/h2>
 &lt;p>由于 Anaconda 和 pip 官方镜像源访问缓慢，故需要将镜像源更换为国内镜像源，例如清华大学、中科大与阿里云镜像源。使用下列命令可以查看当前 Anaconda 镜像源。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda config --show
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda config --show
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>在输出中找到 channel 部分，有如下内容。&lt;/p>
 &lt;pre>&lt;code>channels:
 - defaults
@@ -1015,7 +1188,7 @@ default_channels:
 &lt;/code>&lt;/pre>
 &lt;h3 id="更换-anaconda-镜像源">更换 Anaconda 镜像源&lt;/h3>
 &lt;p>以清华大学镜像源为例，执行下列命令即可完成更换。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
 &lt;span class="ln">2&lt;/span>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 &lt;span class="ln">3&lt;/span>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
 &lt;span class="ln">4&lt;/span>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
@@ -1023,7 +1196,7 @@ default_channels:
 &lt;span class="ln">6&lt;/span>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/
 &lt;span class="ln">7&lt;/span>conda config --set show_channel_urls yes
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>恢复默认源&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda config --remove-key channels
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda config --remove-key channels
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>除了上述命令行操作方式外，也可以直接修改 C:\Users&amp;lt;USER&amp;gt;\.condarc 文件来实现换源。参考 &lt;a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/" target="_blank" rel="noopener"
 >Anaconda 镜像使用帮助&lt;/a> 修改后的文件内容如下所示。&lt;/p>
 &lt;pre>&lt;code>ssl_verify: false
@@ -1046,15 +1219,15 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;/code>&lt;/pre>
 &lt;h3 id="更换-pip-镜像源">更换 pip 镜像源&lt;/h3>
 &lt;p>以清华大学镜像源为例，执行下列命令即可完成更换。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>pip config &lt;span class="nb">set&lt;/span> global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>pip config &lt;span class="nb">set&lt;/span> global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装-tensorflow">安装 tensorflow&lt;/h2>
 &lt;p>手写数字生成例子所需要的 tensorflow 版本为 1.x，本例中我们使用的实际版本为 1.8.0。将虚拟环境切换到 handwrittendigits 后，执行以下命令开始安装。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda install tensorflow-gpu&lt;span class="o">=&lt;/span>1.8.0
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda install tensorflow-gpu&lt;span class="o">=&lt;/span>1.8.0
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>上述命令中 &lt;code>tensorflow-gpu&lt;/code> 表示安装的 tensorflow 为 GPU 版本，&lt;code>=1.8.0&lt;/code> 指定了安装的版本号。若需要安装 CPU 版 tensorflow 1.8.0，执行以下命令即可。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda install &lt;span class="nv">tensorflow&lt;/span>&lt;span class="o">=&lt;/span>1.8.0
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda install &lt;span class="nv">tensorflow&lt;/span>&lt;span class="o">=&lt;/span>1.8.0
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装-python">安装 Python&lt;/h2>
 &lt;p>由于需要 1.8.0 版本的 tensorflow，此版本仅兼容 3.5 到 3.7 版本的 Python，故需要先删除 conda 环境中默认安装的 Python，并安装 3.6 版本。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># 移除自带 Python&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># 移除自带 Python&lt;/span>
 &lt;span class="ln">2&lt;/span>conda remove python
 &lt;span class="ln">3&lt;/span>
 &lt;span class="ln">4&lt;/span>&lt;span class="c1"># 安装 3.6 版本&lt;/span>
@@ -1066,7 +1239,7 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208194401.png" alt="20201208194401" />&lt;/p>
 &lt;h2 id="运行项目">运行项目&lt;/h2>
 &lt;p>将以下代码置于项目 &lt;code>main.py&lt;/code> 中，运行。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ln"> 1&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">tensorflow&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nn">tf&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ln"> 1&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">tensorflow&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nn">tf&lt;/span>
 &lt;span class="ln"> 2&lt;/span>&lt;span class="kn">from&lt;/span> &lt;span class="nn">tensorflow.examples.tutorials.mnist&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">input_data&lt;/span>
 &lt;span class="ln"> 3&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">numpy&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nn">np&lt;/span>
 &lt;span class="ln"> 4&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">matplotlib.pyplot&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nn">plt&lt;/span>
@@ -1228,7 +1401,7 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;h1 id="安装-fastdfs">安装 FastDFS&lt;/h1>
 &lt;h2 id="配置防火墙">配置防火墙&lt;/h2>
 &lt;p>本篇文章是基于 CentOS v8.2.2004 版本，以下操作均为单机环境，单机 IP 地址为 192.168.61.128。在安装 FastDFS 之前，需要先进行防火墙的设置。防火墙的相关命令如下：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># 暂时关闭防火墙&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># 暂时关闭防火墙&lt;/span>
 &lt;span class="ln">2&lt;/span>systemctl stop firewalld
 &lt;span class="ln">3&lt;/span>
 &lt;span class="ln">4&lt;/span>&lt;span class="c1"># 永久关闭防火墙&lt;/span>
@@ -1238,7 +1411,7 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;span class="ln">8&lt;/span>systemctl &lt;span class="nb">enable&lt;/span> firewalld
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="下载安装-libfastcommon">下载安装 libfastcommon&lt;/h2>
 &lt;p>libfastcommon 是从 FastDFS 抽取出来的公共 c 函数库。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln"> 1&lt;/span>&lt;span class="c1"># 下载&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln"> 1&lt;/span>&lt;span class="c1"># 下载&lt;/span>
 &lt;span class="ln"> 2&lt;/span>wget https://github.com/happyfish100/libfastcommon/archive/V1.0.43.tar.gz
 &lt;span class="ln"> 3&lt;/span>
 &lt;span class="ln"> 4&lt;/span>&lt;span class="c1"># 解压&lt;/span>
@@ -1249,12 +1422,12 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;span class="ln"> 9&lt;/span>./make.sh
 &lt;span class="ln">10&lt;/span>./make.sh install
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>libfastcommon.so 安装到了 &lt;code>/usr/lib64/libfastcommon.so&lt;/code>，但是 FastDFS 主程序设置的 lib 目录是 &lt;code>/usr/local/lib&lt;/code>，所以需要创建软链接。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>ln -s /usr/lib64/libfastcommon.so /usr/local/lib/libfastcommon.so
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>ln -s /usr/lib64/libfastcommon.so /usr/local/lib/libfastcommon.so
 &lt;span class="ln">2&lt;/span>ln -s /usr/lib64/libfastcommon.so /usr/lib/libfastcommon.so
 &lt;span class="ln">3&lt;/span>ln -s /usr/lib64/libfdfsclient.so /usr/local/lib/libfdfsclient.so
 &lt;span class="ln">4&lt;/span>ln -s /usr/lib64/libfdfsclient.so /usr/lib/libfdfsclient.so
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="下载安装-fastdfs">下载安装 FastDFS&lt;/h2>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln"> 1&lt;/span>&lt;span class="c1"># 下载&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln"> 1&lt;/span>&lt;span class="c1"># 下载&lt;/span>
 &lt;span class="ln"> 2&lt;/span>wget https://github.com/happyfish100/fastdfs/archive/V6.06.tar.gz
 &lt;span class="ln"> 3&lt;/span>
 &lt;span class="ln"> 4&lt;/span>&lt;span class="c1"># 解压&lt;/span>
@@ -1295,7 +1468,7 @@ restart.sh
 &lt;h1 id="配置-fastdfs-tracker-服务">配置 FastDFS Tracker 服务&lt;/h1>
 &lt;h2 id="修改配置文件">修改配置文件&lt;/h2>
 &lt;p>从上文可知，配置文件在 &lt;code>/etc/fdfs/&lt;/code> 中，我们需要拷贝一份并进行一些修改。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /etc/fdfs
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /etc/fdfs
 &lt;span class="ln">2&lt;/span>cp tracker.conf.sample tracker.conf
 &lt;span class="ln">3&lt;/span>vim tracker.conf
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>需要修改的部分如下：&lt;/p>
@@ -1304,19 +1477,19 @@ base_path = /home/fastdfs/tracker
 # HTTP 服务端口
 http.server_port = 80
 &lt;/code>&lt;/pre>&lt;p>根据上述配置，创建配置中的目录&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>mkdir -p /home/fastdfs/tracker
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>mkdir -p /home/fastdfs/tracker
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="启动-tracker-服务">启动 Tracker 服务&lt;/h2>
 &lt;p>初次成功启动，会在 base_path 即 &lt;code>/home/fastdfs/tracker&lt;/code> 下创建 data、logs 两个目录。启动命令如下：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>/etc/init.d/fdfs_trackerd start
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>/etc/init.d/fdfs_trackerd start
 &lt;span class="ln">2&lt;/span>&lt;span class="c1"># 或&lt;/span>
 &lt;span class="ln">3&lt;/span>service fdfs_trackerd start
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>启动后，可以通过 netstat 命令查看是都启动成功，若得到以下类似输出，22122 端口处于监听状态，则表示 Tracker 服务安装并启动成功。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>netstat -unltp &lt;span class="p">|&lt;/span> grep fdfs
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>netstat -unltp &lt;span class="p">|&lt;/span> grep fdfs
 &lt;/code>&lt;/pre>&lt;/div>&lt;pre>&lt;code># 输出内容
 tcp 0 0 0.0.0.0:22122 0.0.0.0:* LISTEN 6220/fdfs_trackerd
 &lt;/code>&lt;/pre>
 &lt;p>同理，可以通过下列命令关闭 Tracker 服务或者设置 Tracker 开机自启：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># 关闭服务&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># 关闭服务&lt;/span>
 &lt;span class="ln">2&lt;/span>service fdfs_trackerd stop
 &lt;span class="ln">3&lt;/span>
 &lt;span class="ln">4&lt;/span>&lt;span class="c1"># 开机自启&lt;/span>
@@ -1324,7 +1497,7 @@ tcp 0 0 0.0.0.0:22122 0.0.0.0:* LISTEN 6220/fdfs_trackerd
 &lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="配置-fastdfs-storage-服务">配置 FastDFS Storage 服务&lt;/h1>
 &lt;h2 id="修改配置文件-1">修改配置文件&lt;/h2>
 &lt;p>与配置 Tracker 服务类似，首先我们也需要拷贝样例配置文件并进行相应修改。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /etc/fdfs
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /etc/fdfs
 &lt;span class="ln">2&lt;/span>cp storage.conf.sample storage.conf
 &lt;span class="ln">3&lt;/span>vim storage.conf
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>需要修改的部分如下：&lt;/p>
@@ -1344,30 +1517,30 @@ tracker_server=192.168.61.128:22122
 # HTTP 服务端口
 http.server_port = 80
 &lt;/code>&lt;/pre>&lt;p>根据上述配置，创建配置中的目录&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># base_path&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># base_path&lt;/span>
 &lt;span class="ln">2&lt;/span>mkdir -p /home/fastdfs/storage
 &lt;span class="ln">3&lt;/span>
 &lt;span class="ln">4&lt;/span>&lt;span class="c1"># store_path0&lt;/span>
 &lt;span class="ln">5&lt;/span>mkdir -p /home/fastdfs/file
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="启动-storage-服务">启动 Storage 服务&lt;/h2>
 &lt;p>启动 Storage 前确保 Tracker 是启动的。初次启动成功，会在 base_path 即 &lt;code>/home/fastdfs/storage/&lt;/code> 目录下创建 data、logs 两个目录。启动命令如下：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>/etc/init.d/fdfs_storaged start
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>/etc/init.d/fdfs_storaged start
 &lt;span class="ln">2&lt;/span>&lt;span class="c1"># 或&lt;/span>
 &lt;span class="ln">3&lt;/span>service fdfs_storaged start
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>启动后，可以通过下列命令查看 Storage 服务是否启动成功。若输出结果与下列输出类似，23000 端口正处于监听状态，则 Storage 服务启动成功。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>netstat -unltp &lt;span class="p">|&lt;/span> grep fdfs
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>netstat -unltp &lt;span class="p">|&lt;/span> grep fdfs
 &lt;/code>&lt;/pre>&lt;/div>&lt;pre>&lt;code># 输出内容
 tcp 0 0 0.0.0.0:23000 0.0.0.0:* LISTEN 6257/fdfs_storaged
 tcp 0 0 0.0.0.0:22122 0.0.0.0:* LISTEN 6220/fdfs_trackerd
 &lt;/code>&lt;/pre>
 &lt;p>同理，可以通过下列命令关闭 Tracker 服务或者设置 Tracker 开机自启：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># 关闭服务&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># 关闭服务&lt;/span>
 &lt;span class="ln">2&lt;/span>service fdfs_storaged stop
 &lt;span class="ln">3&lt;/span>
 &lt;span class="ln">4&lt;/span>&lt;span class="c1"># 开机自启&lt;/span>
 &lt;span class="ln">5&lt;/span>chkconfig fdfs_storaged on
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>此时我们可以在 store_path0 目录下看到 Storage 服务自动创建的 N*N 个子目录&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>ls /home/fastdfs/file/data/
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>ls /home/fastdfs/file/data/
 &lt;span class="ln">2&lt;/span>
 &lt;span class="ln">3&lt;/span>&lt;span class="c1"># 统计文件夹数量&lt;/span>
 &lt;span class="ln">4&lt;/span>ls -l &lt;span class="p">|&lt;/span> grep &lt;span class="s2">&amp;#34;^d&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> wc -l
@@ -1391,7 +1564,7 @@ tcp 0 0 0.0.0.0:22122 0.0.0.0:* LISTEN 6220/fdfs_trackerd
 &lt;h1 id="文件上传测试">文件上传测试&lt;/h1>
 &lt;h2 id="修改配置文件-2">修改配置文件&lt;/h2>
 &lt;p>与配置 Storage 服务类似，首先我们也需要拷贝客户端样例配置文件并进行相应修改。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /etc/fdfs
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /etc/fdfs
 &lt;span class="ln">2&lt;/span>cp client.conf.sample client.conf
 &lt;span class="ln">3&lt;/span>vim client.conf
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>需要修改的部分如下：&lt;/p>
@@ -1401,7 +1574,7 @@ base_path=/home/fastdfs/client
 tracker_server=192.168.61.128:22122
 &lt;/code>&lt;/pre>&lt;h2 id="上传图片测试">上传图片测试&lt;/h2>
 &lt;p>执行下列命令，尝试上传一张图片到 FastDFS 中：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>fdfs_upload_file /home/Pictures/1989.jpg
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>fdfs_upload_file /home/Pictures/1989.jpg
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>上传成功后，会输出文件 ID：group1/M00/00/00/wKg9gF-f0aKAUJAlAARra4mLMhc390.jpg&lt;/p>
 &lt;p>返回的文件 ID 由 group、存储目录、两级子目录、fileid、文件后缀名（由客户端指定，主要用于区分文件类型）拼接而成。&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104093640.png" alt="20201104093640" />&lt;/p>
@@ -1425,12 +1598,12 @@ alias /home/fastdfs/file/data;
 &lt;h2 id="模块简介">模块简介&lt;/h2>
 &lt;p>fastdfs-nginx-module 可以重定向文件链接到源服务器，避免由于 Storage 服务器复制延迟导致文件无法访问而产生的错误。&lt;/p>
 &lt;h2 id="下载解压">下载解压&lt;/h2>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>wget https://github.com/happyfish100/fastdfs-nginx-module/archive/V1.22.tar.gz
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>wget https://github.com/happyfish100/fastdfs-nginx-module/archive/V1.22.tar.gz
 &lt;span class="ln">2&lt;/span>tar -zxvf V1.22.tar.gz
 &lt;span class="ln">3&lt;/span>&lt;span class="nb">cd&lt;/span> fastdfs-nginx-module
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="为-nginx-添加模块">为 Nginx 添加模块&lt;/h2>
 &lt;p>首先进入 Nginx 源目录，然后执行 &lt;code>./configure&lt;/code> 命令，具体命令如下：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>nginx -s stop
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>nginx -s stop
 &lt;span class="ln">2&lt;/span>&lt;span class="nb">cd&lt;/span> /usr/local/software/nginx-1.18.0
 &lt;span class="ln">3&lt;/span>./configure --prefix&lt;span class="o">=&lt;/span>/usr/local/nginx/ --add-module&lt;span class="o">=&lt;/span>&lt;span class="nv">$YOUR_PATH&lt;/span>/fastdfs-nginx-module/src
 &lt;span class="ln">4&lt;/span>make &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> make install
@@ -1458,7 +1631,7 @@ ngx_fastdfs_module;
 }
 &lt;/code>&lt;/pre>&lt;h2 id="修改-fastdfs-nginx-module-配置">修改 fastdfs-nginx-module 配置&lt;/h2>
 &lt;p>复制 fastdfs-nginx-module 源码中的配置文件到 &lt;code>/etc/fdfs&lt;/code> 目录，兵做以下修改。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /usr/local/software/fastdfs-nginx-module/src
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /usr/local/software/fastdfs-nginx-module/src
 &lt;span class="ln">2&lt;/span>cp mod_fastdfs.conf /etc/fdfs/
 &lt;/code>&lt;/pre>&lt;/div>&lt;pre>&lt;code class="language-config" data-lang="config"># Tracker Server
 tracker_server=192.168.61.128:22122
@@ -1469,11 +1642,11 @@ url_have_group_name = true
 # Storage 配置的 store_path0 路径，必须和 storage.conf 中的一致
 store_path0=/home/fastdfs/file
 &lt;/code>&lt;/pre>&lt;p>复制 FastDFS 的部分配置文件到 &lt;code>/etc/fdfs&lt;/code> 目录&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /usr/local/software/fastdfs-5.05/conf/
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /usr/local/software/fastdfs-5.05/conf/
 &lt;span class="ln">2&lt;/span>cp anti-steal.jpg http.conf mime.types /etc/fdfs/
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="测试">测试&lt;/h2>
 &lt;p>配置完成之后，我们先启动 Nginx 服务，并观察输出内容，如果与下列输出类似，则表示配置成功。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>nginx
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>nginx
 &lt;/code>&lt;/pre>&lt;/div>&lt;pre>&lt;code># 输出内容
 ngx_http_fastdfs_set pid=11648
 &lt;/code>&lt;/pre>
@@ -1633,14 +1806,15 @@ HDFS、Hive 等分布式存储系统，可以完美融入 Hadoop 的生态圈中
 &lt;/table>
 &lt;h1 id="示例">示例&lt;/h1>
 &lt;p>以下两个示例的数据集与源代码均可以在下述链接中进行下载
-&lt;a href="https://github.com/sudrizzz/BigDataTechnologyFoundation_SourceCodeAndDataSet/tree/main/ch08">https://github.com/sudrizzz/BigDataTechnologyFoundation_SourceCodeAndDataSet/tree/main/ch08&lt;/a>&lt;/p>
+&lt;a class="link" href="https://github.com/sudrizzz/BigDataTechnologyFoundation_SourceCodeAndDataSet/tree/main/ch08" target="_blank" rel="noopener"
+>https://github.com/sudrizzz/BigDataTechnologyFoundation_SourceCodeAndDataSet/tree/main/ch08&lt;/a>&lt;/p>
 &lt;h2 id="一分词">一、分词&lt;/h2>
 &lt;p>WordCount（单词统计程序）是大数据领域经典的例子，与 Hadoop 实现的 WordCount 程序相比，Spark 实现的版本要显得更加简洁。&lt;/p>
 &lt;h3 id="从-mapreduce-到-spark">从 MapReduce 到 Spark&lt;/h3>
 &lt;p>在经典的计算框架 MapReduce 中，问题会被拆成两个主要阶段: map 阶段和 reduce 阶段。对单词计数来说，MapReduce 程序从 HDFS 中读取一行字符串。在 map 阶段，将字符串分割成单词，并生成 &amp;lt;word, 1&amp;gt; 这样的键值对；在 reduce 阶段，将单词对应的计数值（初始为 1）全部累加起来，最后得到单词的总出现次数。&lt;/p>
 &lt;p>在 Spark 中，并没有 map/reduce 这样的划分，而是以 RDD 的转换来呈现程序的逻辑。首先，Spark 程序将从 HDFS 中按行读取的文本作为初始 RDD（即集合的每一个元素都是一行字符串）；然后，通过 flatMap 操作将每一行字符串分割成单词，并收集起来作为新的单词 RDD；接着，使用 map 操作将每一个单词映射成 &amp;lt;word, 1&amp;gt;这样的键值对，转换成新的键值对 RDD；最后，通过 reduceByKey 操作将相同单词的计数值累加起来，得到单词的总出现次数。&lt;/p>
 &lt;h3 id="java-实现">Java 实现&lt;/h3>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.apache.spark.SparkConf&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.apache.spark.SparkConf&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="ln"> 2&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.apache.spark.api.java.JavaPairRDD&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="ln"> 3&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.apache.spark.api.java.JavaRDD&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="ln"> 4&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.apache.spark.api.java.JavaSparkContext&lt;/span>&lt;span class="o">;&lt;/span>
@@ -1686,7 +1860,7 @@ HDFS、Hive 等分布式存储系统，可以完美融入 Hadoop 的生态圈中
 &lt;/ol>
 &lt;h3 id="执行">执行&lt;/h3>
 &lt;p>将上述代码生成 Jar 包之后，将其放到服务器中，执行下面的命令即可开始运行。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>./bin/spark-submit --class SparkDemo ~/Documents/SparkDemo.jar ~/Documents/sample.txt
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>./bin/spark-submit --class SparkDemo ~/Documents/SparkDemo.jar ~/Documents/sample.txt
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>其中&lt;/p>
 &lt;ul>
 &lt;li>&amp;ndash;class SparkDemo 用来指定主类名&lt;/li>
@@ -1719,7 +1893,7 @@ start : 10
 &lt;p>接下来使用 Spark 来统计 Youtube 的测试数据集中每个用户的视频上传数量。稍加分析，会发现统计每个用户的视频数量其实与 WordCount 中统计每个单词出现的次数的逻辑几乎一致，区别在于处理 Youtube 测试数据集的格式略为复杂些。将给定的数据集按行划分，每行代表一条记录，除了视频类别这一字段中间有可能出现空格之外，其他的字段都是用空格分割。可以考虑使用正则表达式来匹配记录，并提取所需要的信息。&lt;/p>
 &lt;p>在测试数据集中，假定每行所代表的视频都是唯一的，所以仅仅需要用户 ID 这一条信息。在提取到用户 ID 之后，可以像 WordCount 一样，组成 &amp;lt;ID, 1&amp;gt; 这样的用来计数的键值对，这步之后的逻辑便与 WordCount 相似了。&lt;/p>
 &lt;h3 id="java-实现-1">Java 实现&lt;/h3>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.apache.spark.SparkConf&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.apache.spark.SparkConf&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="ln"> 2&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.apache.spark.api.java.JavaPairRDD&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="ln"> 3&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.apache.spark.api.java.JavaRDD&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="ln"> 4&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.apache.spark.api.java.JavaSparkContext&lt;/span>&lt;span class="o">;&lt;/span>
@@ -1761,7 +1935,7 @@ start : 10
 &lt;span class="ln">40&lt;/span>&lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="执行-1">执行&lt;/h3>
 &lt;p>将上述代码生成 Jar 包之后，将其放到服务器中，执行下面的命令即可开始运行。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>./bin/spark-submit --class SparkDemo ~/Documents/SparkDemo.jar ~/Documents/YoutubeDataSets.txt
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>./bin/spark-submit --class SparkDemo ~/Documents/SparkDemo.jar ~/Documents/YoutubeDataSets.txt
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>执行结果如下所示&lt;/p>
 &lt;pre>&lt;code>User: machinima, Number of videos: 21
 User: hotforwords, Number of videos: 19
@@ -1861,7 +2035,8 @@ ApplicationMaster 负责向调度器申请、释放资源，清求 NodeManager �
 &lt;/ol>
 &lt;h1 id="youtube-数据集统计分析">Youtube 数据集统计分析&lt;/h1>
 &lt;p>本例的数据来自于 Youtube 的数据集，完整的数据集以及源代码下载地址请点击以下链接
-&lt;a href="https://github.com/sudrizzz/BigDataTechnologyFoundation-SourceCodeAndDataSet/blob/main/ch04">https://github.com/sudrizzz/BigDataTechnologyFoundation-SourceCodeAndDataSet/blob/main/ch04&lt;/a>&lt;/p>
+&lt;a class="link" href="https://github.com/sudrizzz/BigDataTechnologyFoundation-SourceCodeAndDataSet/blob/main/ch04" target="_blank" rel="noopener"
+>https://github.com/sudrizzz/BigDataTechnologyFoundation-SourceCodeAndDataSet/blob/main/ch04&lt;/a>&lt;/p>
 &lt;p>该数据集各字段的具体含义如表所示：&lt;/p>
 &lt;table>
 &lt;thead>
@@ -1958,7 +2133,7 @@ ApplicationMaster 负责向调度器申请、释放资源，清求 NodeManager �
 &lt;/tbody>
 &lt;/table>
 &lt;h3 id="mapper-类代码实现">Mapper 类代码实现&lt;/h3>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Map&lt;/span> &lt;span class="kd">extends&lt;/span> &lt;span class="n">Mapper&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">LongWritable&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Text&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Text&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">IntWritable&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Map&lt;/span> &lt;span class="kd">extends&lt;/span> &lt;span class="n">Mapper&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">LongWritable&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Text&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Text&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">IntWritable&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;span class="ln"> 2&lt;/span> &lt;span class="kd">private&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">IntWritable&lt;/span> &lt;span class="n">ONE&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">IntWritable&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="ln"> 3&lt;/span> &lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">Text&lt;/span> &lt;span class="n">tx&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Text&lt;/span>&lt;span class="o">();&lt;/span>
 &lt;span class="ln"> 4&lt;/span>
@@ -1973,7 +2148,7 @@ ApplicationMaster 负责向调度器申请、释放资源，清求 NodeManager �
 &lt;span class="ln">13&lt;/span>&lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>第 2 行构造 IntWritable 可持久化对象并赋值为 1；第 8~10 行过滤字段，将一条记录中的分类 category 作为 map 函数的 value 输出。&lt;/p>
 &lt;h3 id="reduce-类代码实现">Reduce 类代码实现&lt;/h3>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln">1&lt;/span>&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Reduce&lt;/span> &lt;span class="kd">extends&lt;/span> &lt;span class="n">Reducer&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Text&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">IntWritable&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Text&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">IntWritable&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln">1&lt;/span>&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Reduce&lt;/span> &lt;span class="kd">extends&lt;/span> &lt;span class="n">Reducer&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Text&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">IntWritable&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Text&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">IntWritable&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;span class="ln">2&lt;/span> &lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">reduce&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Text&lt;/span> &lt;span class="n">key&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Iterable&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">IntWritable&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">values&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Context&lt;/span> &lt;span class="n">context&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">IOException&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">InterruptedException&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;span class="ln">3&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">sum&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="ln">4&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">IntWritable&lt;/span> &lt;span class="n">v&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">values&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
@@ -1989,11 +2164,11 @@ ApplicationMaster 负责向调度器申请、释放资源，清求 NodeManager �
 &lt;li>登录 Hadoop 集群，将数据集文件 YoutubeDataSets.txt 传到 HDFS 下 /tmp 目录下&lt;/li>
 &lt;li>执行如下命令，开始运行程序&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>hadoop jar CategoryCount.jar CategoryCount /tmp/YoutubeDataSets.txt /tmp/output
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>hadoop jar CategoryCount.jar CategoryCount /tmp/YoutubeDataSets.txt /tmp/output
 &lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
 &lt;li>执行如下命令，查看各类别视频数量&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>hadoop fs -cat /tmp/output/part-r-00000
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>hadoop fs -cat /tmp/output/part-r-00000
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>可以得到如下输出&lt;/p>
 &lt;pre>&lt;code>UNA 32
 Autos &amp;amp; Vehicles 77
@@ -2011,13 +2186,14 @@ Science &amp;amp; Technology 80
 Sports 253
 Travel &amp;amp; Events 113
 &lt;/code>&lt;/pre></description></item><item><title>HDFS 文件管理</title><link>https://sudrizzz.github.io/posts/hdfs-file-system/</link><pubDate>Mon, 12 Oct 2020 15:20:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/hdfs-file-system/</guid><description>&lt;blockquote>
-&lt;p>本文所有代码均可在 &lt;a href="https://github.com/sudrizzz/HDFSOperations">https://github.com/sudrizzz/HDFSOperations&lt;/a> 查看。&lt;/p>
+&lt;p>本文所有代码均可在 &lt;a class="link" href="https://github.com/sudrizzz/HDFSOperations" target="_blank" rel="noopener"
+>https://github.com/sudrizzz/HDFSOperations&lt;/a> 查看。&lt;/p>
 &lt;/blockquote>
 &lt;h1 id="通过命令行访问-hdfs">通过命令行访问 HDFS&lt;/h1>
 &lt;p>命令行是最简单、最直接操作文件的方式。这里介绍通过诸如读取文件、新建目录、移动文件、删除数据、列出目录等命令来进一步认识 HDFS。也可以输入 hadoop fs -help 命令获取每个命令的详细帮助。若熟悉 Linux 命令，Hadoop 命令看起来非常直观且易于使用。&lt;/p>
 &lt;h2 id="对文件和目录的操作">对文件和目录的操作&lt;/h2>
 &lt;p>通过命令行对 HDFS 文件和目录的操作主要包括：创建、浏览、删除文件和目录，以及从本地文件系统与 HDFS 文件系统互相拷贝等。常用命令格式如下。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln"> 1&lt;/span>hadoop fs -ls &amp;lt;path&amp;gt; &lt;span class="c1"># 列出 path 目录下的所有内容（文件和目录）&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln"> 1&lt;/span>hadoop fs -ls &amp;lt;path&amp;gt; &lt;span class="c1"># 列出 path 目录下的所有内容（文件和目录）&lt;/span>
 &lt;span class="ln"> 2&lt;/span>hadoop fs -lsr &amp;lt;path&amp;gt; &lt;span class="c1"># 递归列出 path 下的所有内容（文件或目录）&lt;/span>
 &lt;span class="ln"> 3&lt;/span>hadoop fs -df &amp;lt;path&amp;gt; &lt;span class="c1"># 查看目录的使用情况&lt;/span>
 &lt;span class="ln"> 4&lt;/span>hadoop fs -du &amp;lt;path&amp;gt; &lt;span class="c1"># 显示目录中所有文件及目录大小&lt;/span>
@@ -2091,7 +2267,7 @@ Travel &amp;amp; Events 113
 &lt;h2 id="使用-hadoop-url-读取数据">使用 Hadoop URL 读取数据&lt;/h2>
 &lt;p>要从 Hadoop 文件系统读取数据，最简单的方法是使用 java.net.URL 对象打开数据流，从中读取数据。&lt;/p>
 &lt;p>让 Java 程序能够识别 Hadoop 的 HDFS URL 方案还需要一些额外的工作，这里采用的方法是通过 org.apache.hdfs.FsUrlStreamHandlerFactor 实例调用 java.net.URL 对象的 setURLStreamHandlerFactory 实例方法。每个 Java 虚拟机只能调用一次这个方法，因此通常在静态方法中调用。下述范例展示的程序以标准输出方式显示 Hadoop 文件系统中的文件，类似于 UNIX 中的 cat 命令。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.apache.hadoop.fs.FsUrlStreamHandlerFactory&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.apache.hadoop.fs.FsUrlStreamHandlerFactory&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="ln"> 2&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.apache.hadoop.io.IOUtils&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="ln"> 3&lt;/span>
 &lt;span class="ln"> 4&lt;/span>&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.io.InputStream&lt;/span>&lt;span class="o">;&lt;/span>
@@ -2113,16 +2289,16 @@ Travel &amp;amp; Events 113
 &lt;span class="ln">20&lt;/span> &lt;span class="o">}&lt;/span>
 &lt;span class="ln">21&lt;/span>&lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>编译代码，导出为 URLCat.jar 文件，并在 /user/hadoop/ 中准备一个测试文件 test，然后执行命令：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>hadoop jar hdfsclient.jar URLCat hdfs://master:9000/user/hadoop/test
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>hadoop jar hdfsclient.jar URLCat hdfs://master:9000/user/hadoop/test
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>执行完成后可以在屏幕上看到 /user/hadoop/test 文件中的内容。该程序是从 HDFS 读取文件的最简单的方式，即用 java.net.URL 对象打开数据流。其中，第 8~10 行静态代码块的作用是设置 URL 类能够识别 Hadoop 的 HDFS URL。第 16 行 IOUtils 是 Hadoop 中定义的类，调用其静态方法 copyBytes 实现从 HDFS 文件系统拷贝文件到标准输出流。4096 表示用来拷贝的缓冲区大小，false 表示拷贝完成后不关闭拷贝源。&lt;/p>
 &lt;h2 id="通过-filesystem-api-读取数据">通过 FileSystem API 读取数据&lt;/h2>
 &lt;p>在实际开发中，访问 HDFS 最常用的类是 FileSystem 类。Hadoop 文件系统中通过 Hadoop Path 对象来定位文件。可以将路径视为一个 Hadoop 文件系统 URI，如 hdfs:localhost/user/hadoop/test。FileSystem 是一个通用的文件系统 API，获取 FileSystem 实例有下面几个静态方法:&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln">1&lt;/span>&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="n">FileSystem&lt;/span> &lt;span class="nf">get&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Configuration&lt;/span> &lt;span class="n">conf&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">IOException&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln">1&lt;/span>&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="n">FileSystem&lt;/span> &lt;span class="nf">get&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Configuration&lt;/span> &lt;span class="n">conf&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">IOException&lt;/span>
 &lt;span class="ln">2&lt;/span>&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="n">FileSystem&lt;/span> &lt;span class="nf">get&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">URI&lt;/span> &lt;span class="n">uri&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">Configuration&lt;/span> &lt;span class="n">conf&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">IOException&lt;/span>
 &lt;span class="ln">3&lt;/span>&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="n">FileSystem&lt;/span> &lt;span class="nf">get&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">URI&lt;/span> &lt;span class="n">uri&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Configuration&lt;/span> &lt;span class="n">conf&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">user&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="k">throw&lt;/span> &lt;span class="n">IOException&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>下面分别给出几个常用操作的代码示例。&lt;/p>
 &lt;h3 id="读取文件">读取文件&lt;/h3>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="nd">@Test&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="nd">@Test&lt;/span>
 &lt;span class="ln"> 2&lt;/span>&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">readFile&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">Exception&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;span class="ln"> 3&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">uri&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;hdfs://master:9000/user/hadoop/test&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="ln"> 4&lt;/span> &lt;span class="n">Configuration&lt;/span> &lt;span class="n">configuration&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Configuration&lt;/span>&lt;span class="o">();&lt;/span>
@@ -2139,7 +2315,7 @@ Travel &amp;amp; Events 113
 &lt;p>第 4 行产生一个 Confguation 类的实例，代表了 Hadoop 平台的配置信息，并在第 5 行作为引用传递到 FileSystem 的静态方法 get 中，产生 FileSystem 对象。&lt;/p>
 &lt;p>第 9 行与上例类似，调用 Hadoop 中 IOUtils，并在 finally 字中关闭数据流，同时也可以在输入流和输出流之间复制数据。copyBytes 方的最后两个参数，第一个设置用于复制的缓冲区大小，第二个设置复制结束后是否关闭数据流。&lt;/p>
 &lt;h3 id="写入文件">写入文件&lt;/h3>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="nd">@Test&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="nd">@Test&lt;/span>
 &lt;span class="ln"> 2&lt;/span>&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">writeFile&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">Exception&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;span class="ln"> 3&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">source&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;C:\\Users\\Desktop\\test&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="ln"> 4&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">destination&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;hdfs://master:9000/user/hadoop/test2&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
@@ -2150,7 +2326,7 @@ Travel &amp;amp; Events 113
 &lt;span class="ln"> 9&lt;/span> &lt;span class="n">IOUtils&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">copyBytes&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">inputStream&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">outputStream&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">4096&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="ln">10&lt;/span>&lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="创建目录">创建目录&lt;/h3>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln">1&lt;/span>&lt;span class="nd">@Test&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln">1&lt;/span>&lt;span class="nd">@Test&lt;/span>
 &lt;span class="ln">2&lt;/span>&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">createFolder&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">Exception&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;span class="ln">3&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">uri&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;hdfs://master:9000/user/test&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="ln">4&lt;/span> &lt;span class="n">Configuration&lt;/span> &lt;span class="n">configuration&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Configuration&lt;/span>&lt;span class="o">();&lt;/span>
@@ -2160,7 +2336,7 @@ Travel &amp;amp; Events 113
 &lt;span class="ln">8&lt;/span> &lt;span class="n">fileSystem&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">close&lt;/span>&lt;span class="o">();&lt;/span>
 &lt;span class="ln">9&lt;/span>&lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="删除文件或目录">删除文件或目录&lt;/h3>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="nd">@Test&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="nd">@Test&lt;/span>
 &lt;span class="ln"> 2&lt;/span>&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">deleteFile&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">Exception&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;span class="ln"> 3&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">uri&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;hdfs://master:9000/user/hadoop/test2&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="ln"> 4&lt;/span> &lt;span class="n">Configuration&lt;/span> &lt;span class="n">configuration&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Configuration&lt;/span>&lt;span class="o">();&lt;/span>
@@ -2172,7 +2348,7 @@ Travel &amp;amp; Events 113
 &lt;span class="ln">10&lt;/span>&lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>使用 FileSystem 的 delete() 方法可以永久性删除文件或目录。如果要递归删除文件夹，则需要将其第二个参数设为 true。&lt;/p>
 &lt;h3 id="列出文件或目录">列出文件或目录&lt;/h3>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="nd">@Test&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="ln"> 1&lt;/span>&lt;span class="nd">@Test&lt;/span>
 &lt;span class="ln"> 2&lt;/span>&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">listFiles&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">Exception&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;span class="ln"> 3&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">uri&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;hdfs://master:9000/user&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="ln"> 4&lt;/span> &lt;span class="n">Configuration&lt;/span> &lt;span class="n">configuration&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Configuration&lt;/span>&lt;span class="o">();&lt;/span>
@@ -2225,7 +2401,8 @@ Travel &amp;amp; Events 113
 &lt;p>以上漫画版权均归原图作者所有&lt;/p>
 &lt;/blockquote>
 &lt;h1 id="参考文章">参考文章&lt;/h1>
-&lt;p>&lt;a href="https://www.cnblogs.com/qingyunzong/p/8548806.html">https://www.cnblogs.com/qingyunzong/p/8548806.html&lt;/a>&lt;/p></description></item><item><title>初识 Hadoop</title><link>https://sudrizzz.github.io/posts/getting-to-know-hadoop/</link><pubDate>Thu, 24 Sep 2020 09:20:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-hadoop/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>&lt;a class="link" href="https://www.cnblogs.com/qingyunzong/p/8548806.html" target="_blank" rel="noopener"
+>https://www.cnblogs.com/qingyunzong/p/8548806.html&lt;/a>&lt;/p></description></item><item><title>初识 Hadoop</title><link>https://sudrizzz.github.io/posts/getting-to-know-hadoop/</link><pubDate>Thu, 24 Sep 2020 09:20:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-hadoop/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>本系列文章是基于《大数据技术基础》与 &lt;a class="link" href="https://coding.imooc.com/class/128.html" target="_blank" rel="noopener"
 >10 小时入门大数据&lt;/a> 课程，如果有兴趣可以先阅读该书并观看视频教程。本系列文章中所用到的软件版本及其下载地址如下：&lt;/p>
 &lt;table>
@@ -2240,17 +2417,20 @@ Travel &amp;amp; Events 113
 &lt;tr>
 &lt;td>CentOS&lt;/td>
 &lt;td>8.2.2004&lt;/td>
-&lt;td>&lt;a href="https://mirrors.tuna.tsinghua.edu.cn/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso">https://mirrors.tuna.tsinghua.edu.cn/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso&lt;/a>&lt;/td>
+&lt;td>&lt;a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso" target="_blank" rel="noopener"
+>https://mirrors.tuna.tsinghua.edu.cn/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>JDK&lt;/td>
 &lt;td>14.0.2&lt;/td>
-&lt;td>&lt;a href="https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html">https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html&lt;/a>&lt;/td>
+&lt;td>&lt;a class="link" href="https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html" target="_blank" rel="noopener"
+>https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>Hadoop&lt;/td>
 &lt;td>2.10.1&lt;/td>
-&lt;td>&lt;a href="https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-src.tar.gz">https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-src.tar.gz&lt;/a>&lt;/td>
+&lt;td>&lt;a class="link" href="https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-src.tar.gz" target="_blank" rel="noopener"
+>https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-src.tar.gz&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -2259,7 +2439,7 @@ Travel &amp;amp; Events 113
 &lt;p>此篇文章所使用的 CentOS 环境均是使用 VMware 15 虚拟的，具体安装教程请查看 &lt;a class="link" href="https://www.cnblogs.com/bobo-pcb/p/11708459.html" target="_blank" rel="noopener"
 >使用 VMware 15 安装虚拟机和使用 CentOS 8&lt;/a>，此处不再赘述。安装好一个节点之后，我们可以采用“虚拟机克隆”的方式，直接完成另外两个节点系统的安装。&lt;/p>
 &lt;p>虚拟机的网络配置采用 DHCP 自动分配模式，每台机器的 IP 地址可以通过命令 &lt;code>ip address&lt;/code> 或 &lt;code>ifconfig&lt;/code> 查看，其中 &lt;code>ifconfig&lt;/code> 输出如下，第一组配置中 &lt;code>ens33&lt;/code> 即为本机网络配置，&lt;code>inet&lt;/code> 项对应的即为本机 ip（192.168.61.128）。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="ln"> 1&lt;/span>ens33: flags=4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt; mtu 1500
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="ln"> 1&lt;/span>ens33: flags=4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt; mtu 1500
 &lt;span class="ln"> 2&lt;/span> inet 192.168.61.128 netmask 255.255.255.0 broadcast 192.168.61.255
 &lt;span class="ln"> 3&lt;/span> inet6 fe80::20c:29ff:fe65:9052 prefixlen 64 scopeid 0x20&amp;lt;link&amp;gt;
 &lt;span class="ln"> 4&lt;/span> ether 00:0c:29:65:90:52 txqueuelen 1000 (Ethernet)
@@ -2308,26 +2488,26 @@ Travel &amp;amp; Events 113
 &lt;/table>
 &lt;h2 id="配置-host">配置 host&lt;/h2>
 &lt;p>以上三台机器要搭建成为集群，就需要让它们互相认识。这个认识的过程是通过 &lt;code>/etc/hosts&lt;/code> 文件来实现的。这一步需要修改每一台机器的 hosts 文件，将以下内容分别粘贴到各个机器的 hosts 文件中。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim /etc/hosts
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim /etc/hosts
 &lt;/code>&lt;/pre>&lt;/div>&lt;pre>&lt;code>192.168.61.128 master
 192.168.61.129 slave1
 192.168.61.131 slave2
 &lt;/code>&lt;/pre>&lt;h2 id="配置-jdk">配置 JDK&lt;/h2>
 &lt;p>因为 Hadoop 的环境依赖于 Java JDK，所以需要确保虚拟机中已经正确安装了 JDK，除此之外我们还需要将 JDK 地址配置到环境变量中。在本例中，我的 JDK 安装位置是 &lt;code>/usr/java/jdk-14.0.2&lt;/code>。&lt;/p>
 &lt;h3 id="修改-bash_profile">修改 bash_profile&lt;/h3>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim ~/.bash_profile
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim ~/.bash_profile
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>添加以下内容到 .bash_profile 文件末尾：&lt;/p>
 &lt;pre>&lt;code class="language-config" data-lang="config">export JAVA_HOME=/usr/java/jdk-14.0.2
 export PATH=$JAVA_HOME/bin:$PATH
 &lt;/code>&lt;/pre>&lt;p>修改完成并保存后，还需要执行 &lt;code>source&lt;/code> 命令使环境变量立即生效。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">source&lt;/span> ~/.bash_profile
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">source&lt;/span> ~/.bash_profile
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>然后即可使用 &lt;code>java -version&lt;/code> 检查环境变量是否配置成功，执行结果如下所示。&lt;/p>
 &lt;pre>&lt;code>java version &amp;quot;14.0.2&amp;quot; 2020-07-14
 Java(TM) SE Runtime Environment (build 14.0.2+12-46)
 Java HotSpot(TM) 64-Bit Server VM (build 14.0.2+12-46, mixed mode, sharing)
 &lt;/code>&lt;/pre>&lt;h2 id="配置-ssh-免密钥登录">配置 SSH 免密钥登录&lt;/h2>
 &lt;p>在 Linux 集群间配置免密钥登录，是 Hadoop 集群运维的基础。以下操作在 master 节点进行，实现从 master 免密钥登录 slave1、slave2 节点。生成 ssh 密钥的命令如下：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>ssh-keygen
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>ssh-keygen
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>生成过程中会有一些提示，一路回车即可。执行结果如下所示。&lt;/p>
 &lt;pre>&lt;code>root@master:/usr/local/software# ssh-keygen
 Generating public/private rsa key pair.
@@ -2353,7 +2533,7 @@ The key's randomart image is:
 | .o..ooo . |
 +----[SHA256]-----+
 &lt;/code>&lt;/pre>&lt;p>接下来需要将生成的公钥上传到 slave1 节点，命令如下：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>ssh-copy-id root@slave1
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>ssh-copy-id root@slave1
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>首次通过 master 终端将公钥传给 salve 终端，需要输入 slave 节点的登录密码。上述命令中我们是传输到 slave1 的 root 账户下，所以需要输入 root 用户的密码，传送完毕即可实现免密码登录。执行结果如下。&lt;/p>
 &lt;pre>&lt;code>root@master:/usr/local/software# ssh-copy-id root@slave1
 /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: &amp;quot;/root/.ssh/id_rsa.pub&amp;quot;
@@ -2373,7 +2553,7 @@ Number of key(s) added: 1
 Now try logging into the machine, with: &amp;quot;ssh 'root@slave2'&amp;quot;
 and check to make sure that only the key(s) you wanted were added.
 &lt;/code>&lt;/pre>&lt;p>现在可以尝试登录子节点 slave1 和 slave2。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>ssh root@slave1
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>ssh root@slave1
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>成功登录 salve1 节点的提示如下。&lt;/p>
 &lt;pre>&lt;code>root@master:/usr/local/software# ssh root@slave1
 Web console: https://slave1:9090/ or https://192.168.61.129:9090/
@@ -2381,7 +2561,7 @@ Last login: Fri Sep 24 14:56:46 2020 from 192.168.61.1
 &lt;/code>&lt;/pre>&lt;h1 id="完善配置">完善配置&lt;/h1>
 &lt;p>以下配置均在 master 节点上完成，配置完成后可直接复制到 slave 节点，以免重复劳动。&lt;/p>
 &lt;h2 id="安装-hadoop">安装 Hadoop&lt;/h2>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /usr/local/software
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /usr/local/software
 &lt;span class="ln">2&lt;/span>wget http://mirror.cogentco.com/pub/apache/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-src.tar.gz
 &lt;span class="ln">3&lt;/span>tar -zxvf hadoop-2.10.1-src.tar.gz
 &lt;span class="ln">4&lt;/span>&lt;span class="nb">cd&lt;/span> hadoop-2.10.1-src
@@ -2393,9 +2573,9 @@ Last login: Fri Sep 24 14:56:46 2020 from 192.168.61.1
 &lt;h3 id="编辑-core-sitexml">编辑 core-site.xml&lt;/h3>
 &lt;p>文件 core-site.xml 用来配置 Hadoop 集群的通用属性，包括指定 NameNode 的地址、指定使用 Hadoop 时临时文件的存放路径、指定检查点备份日志的最长时间等。&lt;/p>
 &lt;p>使用 vim 打开文件：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim ~/hadoop-2.10.1/etc/hadoop/core-site.xml
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim ~/hadoop-2.10.1/etc/hadoop/core-site.xml
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>使用以下内容替换 core-site.xml 中的内容：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="ln"> 1&lt;/span>&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="ln"> 1&lt;/span>&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span>
 &lt;span class="ln"> 2&lt;/span>&lt;span class="cp">&amp;lt;?xml-stylesheet type=&amp;#34;text/xsl&amp;#34; href=&amp;#34;configuration.xsl&amp;#34;?&amp;gt;&lt;/span>
 &lt;span class="ln"> 3&lt;/span>
 &lt;span class="ln"> 4&lt;/span>&lt;span class="nt">&amp;lt;configuration&amp;gt;&lt;/span>
@@ -2415,9 +2595,9 @@ Last login: Fri Sep 24 14:56:46 2020 from 192.168.61.1
 &lt;h3 id="编辑-hdfs-sitexml">编辑 hdfs-site.xml&lt;/h3>
 &lt;p>文件 hdfs-site.xml 用来配置分布式文件系统 HDFS 的属性，包括指定 HDFS 保存数据的副本数量，指定 HDFS 中 NameNode、DataNode 的存储位置等。&lt;/p>
 &lt;p>使用 vim 打开文件：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim ~/hadoop-2.10.1/etc/hadoop/hdfs-site.xml
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim ~/hadoop-2.10.1/etc/hadoop/hdfs-site.xml
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>使用以下内容替换 hdfs-site.xml 中的内容：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="ln"> 1&lt;/span>&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="ln"> 1&lt;/span>&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span>
 &lt;span class="ln"> 2&lt;/span>&lt;span class="cp">&amp;lt;?xml-stylesheet type=&amp;#34;text/xsl&amp;#34; href=&amp;#34;configuration.xsl&amp;#34;?&amp;gt;&lt;/span>
 &lt;span class="ln"> 3&lt;/span>
 &lt;span class="ln"> 4&lt;/span>&lt;span class="nt">&amp;lt;configuration&amp;gt;&lt;/span>
@@ -2431,9 +2611,9 @@ Last login: Fri Sep 24 14:56:46 2020 from 192.168.61.1
 &lt;h3 id="编辑-yarn-sitexml">编辑 yarn-site.xml&lt;/h3>
 &lt;p>YARN 是 MapReduce 的调度框架。文件 yarn-site.xml 用配置 YARN 的属性，包括指定 NameNodeManager 获取数据的方式，指定 ResourceManager 的地址，配置 YARN 打印工作日志等。&lt;/p>
 &lt;p>使用 vim 打开文件：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim ~/hadoop-2.10.1/etc/hadoop/yarn-site.xml
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim ~/hadoop-2.10.1/etc/hadoop/yarn-site.xml
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>使用以下内容替换 yarn-site.xml 中的内容：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="ln"> 1&lt;/span>&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="ln"> 1&lt;/span>&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span>
 &lt;span class="ln"> 2&lt;/span>
 &lt;span class="ln"> 3&lt;/span>&lt;span class="nt">&amp;lt;configuration&amp;gt;&lt;/span>
 &lt;span class="ln"> 4&lt;/span> &lt;span class="c">&amp;lt;!-- 指定 NameNodeManager 获取数据的方式是 shuffle --&amp;gt;&lt;/span>
@@ -2456,9 +2636,9 @@ Last login: Fri Sep 24 14:56:46 2020 from 192.168.61.1
 &lt;h3 id="编辑-mapred-sitexml">编辑 mapred-site.xml&lt;/h3>
 &lt;p>文件 mapred-site.xml 主要是配置 MapReduce 的属性，主要是 Hadoop 系统提交的 Map/Reduce 程序运行在 YARN 上。&lt;/p>
 &lt;p>首先复制一份 mapred-site.xml.template 文件为 mapred-site.xml，然后打开并进行修改。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim ~/hadoop-2.10.1/etc/hadoop/mapred-site.xml
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim ~/hadoop-2.10.1/etc/hadoop/mapred-site.xml
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>使用以下内容替换 mapred-site.xml 中的内容：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="ln"> 1&lt;/span>&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="ln"> 1&lt;/span>&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span>
 &lt;span class="ln"> 2&lt;/span>&lt;span class="cp">&amp;lt;?xml-stylesheet type=&amp;#34;text/xsl&amp;#34; href=&amp;#34;configuration.xsl&amp;#34;?&amp;gt;&lt;/span>
 &lt;span class="ln"> 3&lt;/span>
 &lt;span class="ln"> 4&lt;/span>&lt;span class="nt">&amp;lt;configuration&amp;gt;&lt;/span>
@@ -2474,36 +2654,36 @@ Last login: Fri Sep 24 14:56:46 2020 from 192.168.61.1
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>其中，第 5~8 行为 MapReduce 指定任务调度框架为 YARN。&lt;/p>
 &lt;h3 id="编辑-slaves">编辑 slaves&lt;/h3>
 &lt;p>slaves 文件为 Hadoop 提供了子节点的主机名。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim ~/hadoop-2.10.1/etc/hadoop/slaves
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim ~/hadoop-2.10.1/etc/hadoop/slaves
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>使用以下内容替换 slaves 中的内容：&lt;/p>
 &lt;pre>&lt;code>slave1
 slave2
 &lt;/code>&lt;/pre>&lt;h2 id="复制文件到子节点">复制文件到子节点&lt;/h2>
 &lt;p>使用下面的命令将 Hadoop 文件复制到其他节点，本文中为 slave1 和 slave2，命令如下：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> ~/hadoop
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> ~/hadoop
 &lt;span class="ln">2&lt;/span>scp -r hadoop-2.10.1 root@slave1:~/hadoop/
 &lt;span class="ln">3&lt;/span>scp -r hadoop-2.10.1 root@slave2:~/hadoop/
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="配置-hadoop-环境变量">配置 Hadoop 环境变量&lt;/h2>
 &lt;p>注意，此操作需要同时在所有节点（master，slave1，slave2）都执行一次，操作命令如下：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim ~/.bash_profile
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>vim ~/.bash_profile
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>将以下内容追加到 .bash_profile 文件末尾：&lt;/p>
 &lt;pre>&lt;code class="language-config" data-lang="config">#HADOOP
 export HADOOP_HOME=/root/hadoop/hadoop-2.10.1
 export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
 &lt;/code>&lt;/pre>&lt;p>然后执行下列命令使环境变量生效：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">source&lt;/span> ~/.bash_profile
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">source&lt;/span> ~/.bash_profile
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="创建临时文件存放目录">创建临时文件存放目录&lt;/h2>
 &lt;p>我们在 core-site.xml 文件中指定了 Hadoop 临时文件存放路径，但是文件夹并没有创建，此操作需要同时在所有节点（master，slave1，slave2）都执行一次，操作命令如下：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>mkdir /home/hadoop/temp
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>mkdir /home/hadoop/temp
 &lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="启动集群">启动集群&lt;/h1>
 &lt;h2 id="格式化文件系统">格式化文件系统&lt;/h2>
 &lt;p>注意，格式化仅需要在第一次使用 Hadoop 集群时进行，后续使用时无需格式化，并且在使用过程中进行格式化，所有文件将会丢失。此操作需要在 master 节点上进行，执行如下命令：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>hdfs namenode -format
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>hdfs namenode -format
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="启动-hadoop-集群">启动 Hadoop 集群&lt;/h2>
 &lt;p>Hadoop 启动或停止服务的脚本均存放在 sbin 目录中，所以切换到 /home/hadoop/hadoop-2.10.1/sbin 目录下，执行以下命令：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>start-all.sh
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>start-all.sh
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>需要注意的是，在启动过程中，Hadoop 会提示这样的启动方式已经过时，使用如下启动方式即可规避过时提示：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>start-dfs.sh
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>start-dfs.sh
 &lt;span class="ln">2&lt;/span>start-yarn.sh
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="查看进程是否启动成功">查看进程是否启动成功&lt;/h2>
 &lt;p>在 master 节点终端执行 jps 命令，在打印结果中会看到四个进程，分别是 NodeManager、SecondaryNameNode、ResourceManager、Jps。如果出现了这四个进程表示启动成功。结果如下：&lt;/p>
@@ -2521,7 +2701,7 @@ export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
 &lt;h3 id="hadoop-页面">Hadoop 页面&lt;/h3>
 &lt;p>如果要在宿主机上访问虚拟机 master 节点的 WebUI，需要先将虚拟机的防火墙关闭（此处仅仅是做示例，生产环境不建议这么做），然后访问虚拟机 master 节点 IP:50070 即可。&lt;/p>
 &lt;p>防火墙相关命令如下：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># 暂时关闭防火墙&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># 暂时关闭防火墙&lt;/span>
 &lt;span class="ln">2&lt;/span>systemctl stop firewalld
 &lt;span class="ln">3&lt;/span>
 &lt;span class="ln">4&lt;/span>&lt;span class="c1"># 永久关闭防火墙&lt;/span>
@@ -2537,7 +2717,7 @@ export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
 &lt;h1 id="运行实例">运行实例&lt;/h1>
 &lt;p>在 Hadoop 自带的 examples 中有一种利用分布式系统计算圆周率的方法，采用的是拟蒙特卡罗（Quasi-Monte Carlo）算法来对 $ \pi $ 的值进行估算。下面通过运行该程序来检验 Hadoop 集群是否安装配置成功。&lt;/p>
 &lt;p>在 master 节点终端中执行下面的命令：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>hadoop jar hadoop-2.10.1/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.1.jar pi &lt;span class="m">100&lt;/span> &lt;span class="m">100000&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>hadoop jar hadoop-2.10.1/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.1.jar pi &lt;span class="m">100&lt;/span> &lt;span class="m">100000&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Hadoop 的命令类似 Java 命令，通过 jar 指定要运行的程序所在的 jar 包 hadoop-mapreduce-examples-2.10.1.jar。参数 pi 表示需要计算的圆周率 $ \pi $。后面两个参数中，100 是指要运行 100 次 map，100000 表示每个 map 的任务次数，即每个节点要模拟飞镖 100000 次。执行过程及结果如下图：&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200926210747.png" alt="20200926210747" />&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200926211331.png" alt="20200926211331" />&lt;/p>
@@ -2548,7 +2728,7 @@ Estimated value of Pi is 3.14158440000000000000
 &lt;p>如果在执行 mapreduce 任务中报错如 &lt;a class="link" href="https://stackoverflow.com/questions/21005643/container-is-running-beyond-memory-limits" target="_blank" rel="noopener"
 >此问题&lt;/a> 的描述，参考 &lt;a class="link" href="https://web.archive.org/web/20170610145449/http://hortonworks.com/blog/how-to-plan-and-configure-yarn-in-hdp-2-0/" target="_blank" rel="noopener"
 >此篇文章&lt;/a>，需要在 mapred-site.xml 文件中添加下列配置：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="ln"> 1&lt;/span>&lt;span class="nt">&amp;lt;property&amp;gt;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="ln"> 1&lt;/span>&lt;span class="nt">&amp;lt;property&amp;gt;&lt;/span>
 &lt;span class="ln"> 2&lt;/span> &lt;span class="nt">&amp;lt;name&amp;gt;&lt;/span>mapreduce.map.memory.mb&lt;span class="nt">&amp;lt;/name&amp;gt;&lt;/span>
 &lt;span class="ln"> 3&lt;/span> &lt;span class="nt">&amp;lt;value&amp;gt;&lt;/span>4096&lt;span class="nt">&amp;lt;/value&amp;gt;&lt;/span>
 &lt;span class="ln"> 4&lt;/span>&lt;span class="nt">&amp;lt;/property&amp;gt;&lt;/span>
@@ -2709,8 +2889,10 @@ $$&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200924155525.png" alt="20200924155525" />&lt;/p>
 &lt;h1 id="参考文献">参考文献&lt;/h1>
 &lt;ol>
-&lt;li>&lt;a href="https://zh.wikipedia.org/wiki/%E9%97%AA%E5%AD%98">https://zh.wikipedia.org/wiki/%E9%97%AA%E5%AD%98&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://www.bilibili.com/video/av61437877">https://www.bilibili.com/video/av61437877&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://zh.wikipedia.org/wiki/%E9%97%AA%E5%AD%98" target="_blank" rel="noopener"
+>https://zh.wikipedia.org/wiki/%E9%97%AA%E5%AD%98&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.bilibili.com/video/av61437877" target="_blank" rel="noopener"
+>https://www.bilibili.com/video/av61437877&lt;/a>&lt;/li>
 &lt;/ol></description></item><item><title>CMU 15-213 浮点数</title><link>https://sudrizzz.github.io/posts/cmu-15-213-lesson2/</link><pubDate>Mon, 14 Sep 2020 18:57:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/cmu-15-213-lesson2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>在 &lt;a class="link" href="https://sudrizzz.github.io/posts/cmu-15-213-lesson1/" target="_blank" rel="noopener"
 >上一篇文章&lt;/a> 中，我们了解了二进制有符号数、无符号数以及其相关的运算方法，在本篇中，我们将进一步了解浮点数在计算机中的相关知识。&lt;/p>
@@ -2938,7 +3120,8 @@ $$&lt;/p>
 &lt;/ul>
 &lt;h1 id="参考文献">参考文献&lt;/h1>
 &lt;ol>
-&lt;li>&lt;a href="https://qiankun214.github.io/2019/05/28/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%A4%84%E7%90%86/">https://qiankun214.github.io/2019/05/28/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%A4%84%E7%90%86/&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://qiankun214.github.io/2019/05/28/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%A4%84%E7%90%86/" target="_blank" rel="noopener"
+>https://qiankun214.github.io/2019/05/28/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%A4%84%E7%90%86/&lt;/a>&lt;/li>
 &lt;/ol></description></item><item><title>初识 Nginx（二）</title><link>https://sudrizzz.github.io/posts/getting-to-know-nginx-2/</link><pubDate>Fri, 11 Sep 2020 19:51:07 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-nginx-2/</guid><description>&lt;h1 id="应用示例">应用示例&lt;/h1>
 &lt;blockquote>
 &lt;p>本篇文章中所使用的 Nginx 是通过下载软件包手动编译安装的，详见 &lt;a class="link" href="https://sudrizzz.github.io/posts/getting-to-know-nginx" target="_blank" rel="noopener"
@@ -2946,8 +3129,9 @@ $$&lt;/p>
 &lt;/blockquote>
 &lt;p>在上一篇文章中，我们初步接触了 Nginx 的安装以及使用方法。在本篇文章中我们将以具体的静态网页作为例子，来详细介绍 Nginx 的部分细节。&lt;/p>
 &lt;h2 id="文件准备">文件准备&lt;/h2>
-&lt;p>我们以 C++ 文档 dlib 为例做介绍，官网 &lt;a href="http://dlib.net">http://dlib.net&lt;/a>，点击左下角的 Download 按钮并将下载好的文件解压。将文件夹中的 docs 目录内容复制到 Nginx 安装目录中的 dlib 目录中。相关的目录结构如下。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="ln"> 1&lt;/span>drwxr-xr-x. 9 root root 258 9月 11 16:54 blog
+&lt;p>我们以 C++ 文档 dlib 为例做介绍，官网 &lt;a class="link" href="http://dlib.net" target="_blank" rel="noopener"
+>http://dlib.net&lt;/a>，点击左下角的 Download 按钮并将下载好的文件解压。将文件夹中的 docs 目录内容复制到 Nginx 安装目录中的 dlib 目录中。相关的目录结构如下。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="ln"> 1&lt;/span>drwxr-xr-x. 9 root root 258 9月 11 16:54 blog
 &lt;span class="ln"> 2&lt;/span>drwx------. 2 nobody root 6 9月 6 15:26 client_body_temp
 &lt;span class="ln"> 3&lt;/span>drwxr-xr-x. 2 root root 4096 9月 11 19:48 conf
 &lt;span class="ln"> 4&lt;/span>drwxrwxrwx. 10 root root 8192 8月 9 03:30 dlib
@@ -2967,11 +3151,12 @@ alias dlib/;
 &lt;/code>&lt;/pre>&lt;p>其中，&lt;code>location&lt;/code> 后的 &lt;code>/&lt;/code> 代表根域名指向括号中的目录配置，&lt;code>alias&lt;/code> 指定一个目录替代默认目录。&lt;/p>
 &lt;blockquote>
 &lt;p>更多信息可以查看官方文档&lt;br>
-&lt;a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#alias">http://nginx.org/en/docs/http/ngx_http_core_module.html#alias&lt;/a>&lt;/p>
+&lt;a class="link" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#alias" target="_blank" rel="noopener"
+>http://nginx.org/en/docs/http/ngx_http_core_module.html#alias&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="重新加载">重新加载&lt;/h2>
 &lt;p>执行以下命令，以新加载 Nginx 服务。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>nginx -s reload
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>nginx -s reload
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="访问">访问&lt;/h2>
 &lt;p>执行完以上步骤后，访问 Nginx 的地址，即可看到 dlib 下的静态文件已经被正常加载了。如下图。&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911201740.png" alt="20200911201740" />&lt;/p>
@@ -3014,7 +3199,8 @@ gzip_types text/plain application/x-javascript text/css application/xml text/jav
 &lt;/table>
 &lt;blockquote>
 &lt;p>更多信息可以查看官方文档&lt;br>
-&lt;a href="http://nginx.org/en/docs/http/ngx_http_gzip_module.html">http://nginx.org/en/docs/http/ngx_http_gzip_module.html&lt;/a>&lt;/p>
+&lt;a class="link" href="http://nginx.org/en/docs/http/ngx_http_gzip_module.html" target="_blank" rel="noopener"
+>http://nginx.org/en/docs/http/ngx_http_gzip_module.html&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;p>可以看到，开启 gzip 压缩后，加载的数据量大幅减少。&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203017.png" alt="优化后" />&lt;/p>
@@ -3028,7 +3214,8 @@ set $limit_rate 1k;
 &lt;/code>&lt;/pre>&lt;p>其中，&lt;code>$limit_rate&lt;/code> 是控制访问速度的变量。后面紧跟的 &lt;code>1k&lt;/code> 是需要限制的速度，此例中的单位为 &lt;code>kB&lt;/code>，也可以设置其他单位，例如 &lt;code>1M&lt;/code>。&lt;/p>
 &lt;blockquote>
 &lt;p>更多信息可以查看官方文档&lt;br>
-&lt;a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#var_limit_rate">http://nginx.org/en/docs/http/ngx_http_core_module.html#var_limit_rate&lt;/a>&lt;/p>
+&lt;a class="link" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#var_limit_rate" target="_blank" rel="noopener"
+>http://nginx.org/en/docs/http/ngx_http_core_module.html#var_limit_rate&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="记录日志">记录日志&lt;/h2>
 &lt;p>在 &lt;code>http&lt;/code> 模块中，可以配置日志记录的格式，以及日志记录的位置和文件名等等，配置如下。&lt;/p>
@@ -3042,7 +3229,8 @@ access_log logs/sample.log main;
 }
 &lt;/code>&lt;/pre>&lt;blockquote>
 &lt;p>更多信息可以查看官方文档&lt;br>
-&lt;a href="http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log">http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log&lt;/a>&lt;/p>
+&lt;a class="link" href="http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log" target="_blank" rel="noopener"
+>http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;h1 id="反向代理">反向代理&lt;/h1>
 &lt;p>在此部分，我们使用两台 Nginx 服务器作为示例，分别是 &lt;code>192.168.61.128&lt;/code> 和 &lt;code>192.168.61.129&lt;/code>，简记为 CentOS_1 与 CentOS_2。&lt;/p>
@@ -3070,7 +3258,8 @@ proxy_pass http://local/;
 &lt;/code>&lt;/pre>&lt;p>分别在两台机器上重新加载 Nginx 配置文件，并访问 &lt;code>192.168.61.129:80&lt;/code>，此时可以正常打开 &lt;code>192.168.61.128:80&lt;/code> 上所配置的静态文件。&lt;/p>
 &lt;blockquote>
 &lt;p>上述配置可以参考官方文档&lt;br>
-&lt;a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header">http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header&lt;/a>&lt;/p>
+&lt;a class="link" href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header" target="_blank" rel="noopener"
+>http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;h1 id="日志可视化">日志可视化&lt;/h1>
 &lt;p>在本例中，我们使用 GoAccess 首先日志试试可视化。&lt;/p>
@@ -3080,7 +3269,7 @@ proxy_pass http://local/;
 &lt;ol>
 &lt;li>安装 epel 配置包&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>yum install -y https://mirrors.aliyun.com/epel/epel-release-latest-8.noarch.rpm
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>yum install -y https://mirrors.aliyun.com/epel/epel-release-latest-8.noarch.rpm
 &lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
 &lt;li>将 repo 配置中的地址替换为阿里云镜像站地址&lt;/li>
 &lt;/ol>
@@ -3091,15 +3280,15 @@ sed -i 's|^metalink|#metalink|' /etc/yum.repos.d/epel*
 &lt;pre>&lt;code>sudo yum -y --enablerepo=epel install geoip
 &lt;/code>&lt;/pre>&lt;h3 id="安装-goaccess-1">安装 GoAccess&lt;/h3>
 &lt;p>根据官网的文档，我们顺序执行以下命令即可。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>wget https://tar.goaccess.io/goaccess-1.4.tar.gz
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>wget https://tar.goaccess.io/goaccess-1.4.tar.gz
 &lt;span class="ln">2&lt;/span>tar -xzvf goaccess-1.4.tar.gz
 &lt;span class="ln">3&lt;/span>&lt;span class="nb">cd&lt;/span> goaccess-1.4/
 &lt;span class="ln">4&lt;/span>./configure --enable-utf8 --enable-geoip&lt;span class="o">=&lt;/span>legacy
 &lt;span class="ln">5&lt;/span>make
 &lt;span class="ln">6&lt;/span>make install
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>安装完成后，使用以下命令，若得到类似结果则表明安装成功。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>goaccess -v
-&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="ln">1&lt;/span>GoAccess - 1.4.
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>goaccess -v
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="ln">1&lt;/span>GoAccess - 1.4.
 &lt;span class="ln">2&lt;/span>For more details visit: http://goaccess.io
 &lt;span class="ln">3&lt;/span>Copyright (C) 2009-2020 by Gerardo Orellana
 &lt;span class="ln">4&lt;/span>
@@ -3119,20 +3308,20 @@ real-time-html true
 #...
 &lt;/code>&lt;/pre>&lt;h2 id="启动监听">启动监听&lt;/h2>
 &lt;p>在 Nginx 的 logs 目录中，我们以 access 为源文件，启动 GoAccess 进程后，会产生一个 websocket 长连接，持续监听客户端的请求数据，进而实时展现在 report.html 页面上。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /usr/local/nginx/logs
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /usr/local/nginx/logs
 &lt;span class="ln">2&lt;/span>goaccess access.log -o ../html/report.html
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>此时我们还需要修改 nginx.conf 使报告页面可以直接访问，在 server 部分添加如下内容。&lt;/p>
 &lt;pre>&lt;code class="language-config" data-lang="config">location /report.html {
 alias html/report.html;
 }
 &lt;/code>&lt;/pre>&lt;p>然后重新加载配置即可。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>nginx -s reload
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>nginx -s reload
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>至此，日志可视化已经配置完成，我们可以直接访问 Nginx &lt;code>服务地址/report.html&lt;/code> 查看可视化页面，如下。&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200913143610.png" alt="20200913143610" />&lt;/p>
 &lt;h1 id="附录">附录&lt;/h1>
 &lt;p>Linux 查看端口占用状态&lt;/p>
 &lt;h2 id="查看占用">查看占用&lt;/h2>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>netstat -anp
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>netstat -anp
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>其中，参数 anp 分别表示：&lt;/p>
 &lt;ul>
 &lt;li>
@@ -3147,15 +3336,16 @@ alias html/report.html;
 &lt;/ul>
 &lt;h2 id="关闭占用">关闭占用&lt;/h2>
 &lt;p>在本例中，若要关闭 GoAccess 建立的连接，首先执行如下命令拿到其 pid。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>netstat -anp &lt;span class="p">|&lt;/span> grep goaccess
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>netstat -anp &lt;span class="p">|&lt;/span> grep goaccess
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>结果如下。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="ln">1&lt;/span>tcp 0 0 0.0.0.0:7890 0.0.0.0:* LISTEN 2323/goaccess
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="ln">1&lt;/span>tcp 0 0 0.0.0.0:7890 0.0.0.0:* LISTEN 2323/goaccess
 &lt;span class="ln">2&lt;/span>tcp 0 0 192.168.61.128:7890 192.168.61.1:56503 ESTABLISHED 2323/goaccess
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>然后手动 kill 其进程即可。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">kill&lt;/span> &lt;span class="m">2323&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">kill&lt;/span> &lt;span class="m">2323&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div></description></item><item><title>初识 Nginx</title><link>https://sudrizzz.github.io/posts/getting-to-know-nginx/</link><pubDate>Mon, 07 Sep 2020 15:47:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-nginx/</guid><description>&lt;h1 id="nginx-简介">Nginx 简介&lt;/h1>
 &lt;blockquote>
-&lt;p>简介内容来自 Nginx 官网 &lt;a href="http://nginx.org/en">http://nginx.org/en&lt;/a>&lt;/p>
+&lt;p>简介内容来自 Nginx 官网 &lt;a class="link" href="http://nginx.org/en" target="_blank" rel="noopener"
+>http://nginx.org/en&lt;/a>&lt;/p>
 &lt;p>nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress.com, FastMail.FM.&lt;/p>
 &lt;p>The sources and documentation are distributed under the 2-clause BSD-like license.&lt;br>
 Commercial support is available from Nginx, Inc.&lt;/p>
@@ -3169,7 +3359,7 @@ Commercial support is available from Nginx, Inc.&lt;/p>
 &lt;p>注意，本篇文章基于 CentOS 8.2 版本，如使用其他系统，操作可能有一些变化，一切以&lt;a class="link" href="http://nginx.org/en/linux_packages.html" target="_blank" rel="noopener"
 >官方网站安装教程&lt;/a>为准。&lt;/p>
 &lt;p>首先我们需要先安装 yum-utils 包，执行以下命令即可。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo yum install yum-utils
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo yum install yum-utils
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>然后配置 Nginx 仓库，我们需要在 &lt;code>/etc/yum.repo.d/&lt;/code> 中创建一个名为 &lt;code>nginx.repo&lt;/code> 的文件，并填入以下内容。&lt;/p>
 &lt;pre>&lt;code class="language-properties" data-lang="properties">[nginx-stable]
 name=nginx stable repo
@@ -3186,18 +3376,18 @@ enabled=0
 gpgkey=https://nginx.org/keys/nginx_signing.key
 module_hotfixes=true
 &lt;/code>&lt;/pre>&lt;p>默认情况下使用的是 Nginx 稳定版仓库，即配置中的 &lt;code>nginx-stable&lt;/code>。如果需要使用主线版仓库，可以执行下面的命令进行手动指定。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo yum-config-manager --enable nginx-mainline
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo yum-config-manager --enable nginx-mainline
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>上述准备工作完成后，就可以开始安装 Nginx 了，执行下面这条命令即可。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo yum install nginx
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo yum install nginx
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>稍等片刻完成安装后，可使用下述命令来验证是否安装成功。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>nginx -v
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>nginx -v
 &lt;span class="ln">2&lt;/span>whereis nginx
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>得到类似于下面的输出，即代表安装成功。&lt;/p>
 &lt;pre>&lt;code>nginx version: nginx/1.18.0
 nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz
 &lt;/code>&lt;/pre>&lt;h1 id="离线安装-nginx">离线安装 Nginx&lt;/h1>
 &lt;h2 id="下载并解压">下载并解压&lt;/h2>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /usr/local/software
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /usr/local/software
 &lt;span class="ln">2&lt;/span>
 &lt;span class="ln">3&lt;/span>&lt;span class="c1"># 下载&lt;/span>
 &lt;span class="ln">4&lt;/span>sudo wget http://nginx.org/download/nginx-1.18.0.tar.gz
@@ -3205,7 +3395,7 @@ nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/m
 &lt;span class="ln">6&lt;/span>&lt;span class="c1"># 解压&lt;/span>
 &lt;span class="ln">7&lt;/span>tar -zxvf nginx-1.18.0.tar.gz -C ./
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="编译">编译&lt;/h2>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> nginx-1.18.0
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> nginx-1.18.0
 &lt;span class="ln">2&lt;/span>sudo ./configure --prefix&lt;span class="o">=&lt;/span>/usr/local/nginx
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>其中 &lt;code>--prefix&lt;/code> 的作用是指定编译后的文件存放位置，可以根据实际情况自由确定。&lt;br>
 编译过程中可能会遇到一些报错，详细信息和解决方案如下。&lt;/p>
@@ -3249,7 +3439,7 @@ nginx http fastcgi temporary files: &amp;quot;fastcgi_temp&amp;quot;
 nginx http uwsgi temporary files: &amp;quot;uwsgi_temp&amp;quot;
 nginx http scgi temporary files: &amp;quot;scgi_temp&amp;quot;
 &lt;/code>&lt;/pre>&lt;h2 id="安装">安装&lt;/h2>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /usr/local/software/nginx-1.18.0
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /usr/local/software/nginx-1.18.0
 &lt;span class="ln">2&lt;/span>sudo make &lt;span class="p">&amp;amp;&lt;/span> make install
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>得到如下输出时，即表明 Nginx 已经安装成功。&lt;/p>
 &lt;pre>&lt;code>...
@@ -3294,21 +3484,21 @@ index index.html index.htm;
 }
 &lt;/code>&lt;/pre>&lt;h2 id="系统防火墙">系统防火墙&lt;/h2>
 &lt;p>由于我的 CentOS 是安装在虚拟机中，未安装图形界面，故需要在宿主机上进行测试并访问虚拟机地址，所以需要增加一步禁用 CentOS 防火墙的操作，具体命令如下。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># 关闭防火墙&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># 关闭防火墙&lt;/span>
 &lt;span class="ln">2&lt;/span>systemctl stop firewalld.service
 &lt;span class="ln">3&lt;/span>
 &lt;span class="ln">4&lt;/span>&lt;span class="c1"># 禁止防火墙开机自启&lt;/span>
 &lt;span class="ln">5&lt;/span>systemctl disable firewalld.service
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>现在可以正式启动 Nginx 服务了，执行下述命令即可。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo nginx
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo nginx
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>执行之后，可以使用下面命令检查是否启动成功，以及访问地址和端口是否生效。&lt;/p>
 &lt;h2 id="查看包含-nginx-关键词的进程">查看包含 nginx 关键词的进程&lt;/h2>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>ps -ef &lt;span class="p">|&lt;/span> grep nginx
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>ps -ef &lt;span class="p">|&lt;/span> grep nginx
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>结果如下，可以看到已经成功启动了。&lt;/p>
 &lt;pre>&lt;code>root 4781 1 0 14:31 ? 00:00:00 nginx: master process nginx
 nginx 5055 4781 0 14:36 ? 00:00:00 nginx: worker process
 &lt;/code>&lt;/pre>&lt;h2 id="查看本机所有暴露的端口">查看本机所有暴露的端口&lt;/h2>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>netstat -ntlp
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>netstat -ntlp
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>结果如下，可以看到此前配置的 &lt;code>8090&lt;/code> 端口已经是 &lt;code>listen&lt;/code> 状态，接下来就可以在浏览器中访问了。&lt;/p>
 &lt;pre>&lt;code>Active Internet connections (only servers)
 Proto Recv-Q Send-Q Local Address Foreign Address State PID/Program name
@@ -3324,7 +3514,7 @@ tcp 0 0 127.0.0.1:6010 0.0.0.0:* LISTEN -
 &lt;/blockquote>
 &lt;h1 id="离线安装-nginx-的启动方式">离线安装 Nginx 的启动方式&lt;/h1>
 &lt;p>首先执行下述命令来启动 Nginx。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /usr/local/nginx/sbin
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /usr/local/nginx/sbin
 &lt;span class="ln">2&lt;/span>sudo ./nginx
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>同样的，我们可以按照上一节中介绍的方法，来验证 Nginx 是否启动成功，以及端口是否开放。&lt;br>
 Nginx 服务默认的端口是 &lt;code>80&lt;/code>，如果需要修改端口，也可以参照上一节中的内容进行手动修改，略有不同的是，通过手动编译安装的 Nginx，配置文件地址在 &lt;code>/usr/local/nginx/conf/nginx.conf&lt;/code>，也就是编译时我们手动指定的路径下。
@@ -3333,7 +3523,7 @@ Nginx 服务默认的端口是 &lt;code>80&lt;/code>，如果需要修改端口�
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906153613.png" alt="20200906153613" />&lt;/p>
 &lt;h1 id="修改-nginxconf">修改 nginx.conf&lt;/h1>
 &lt;p>如果后续需要修改 &lt;code>nginx.conf&lt;/code> 中的内容，例如更改 Nginx 服务端口号，请务必在修改完成后重启服务。常用的 Nginx 命令如下。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># 检查 nginx.conf 是否配置正确&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># 检查 nginx.conf 是否配置正确&lt;/span>
 &lt;span class="ln">2&lt;/span>sudo nginx -t
 &lt;span class="ln">3&lt;/span>
 &lt;span class="ln">4&lt;/span>&lt;span class="c1"># 重启 Nginx 服务&lt;/span>
@@ -3343,7 +3533,7 @@ Nginx 服务默认的端口是 &lt;code>80&lt;/code>，如果需要修改端口�
 &lt;span class="ln">8&lt;/span>sudo nginx -s stop
 &lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="附录">附录&lt;/h1>
 &lt;p>在 Linux 中查找某一个具体文件路径时，可以使用以下命令。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo find / -name filename
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo find / -name filename
 &lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>&lt;code>/&lt;/code> 代表查找的目录，此例是根目录&lt;/li>
 &lt;li>&lt;code>-name&lt;/code> 代表按照文件名进行查找&lt;/li>
@@ -3354,10 +3544,12 @@ Nginx 服务默认的端口是 &lt;code>80&lt;/code>，如果需要修改端口�
 /usr/local/software/nginx-1.18.0/conf/nginx.conf
 /usr/local/nginx/conf/nginx.conf
 &lt;/code>&lt;/pre></description></item><item><title>CMU 15-213 位、字节与整数</title><link>https://sudrizzz.github.io/posts/cmu-15-213-lesson1/</link><pubDate>Fri, 04 Sep 2020 19:02:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/cmu-15-213-lesson1/</guid><description>&lt;h1 id="简介">简介&lt;/h1>
-&lt;p>CSAPP 课程全程 Computer Systems: A Programmer’s Perspective，中文翻译为“从程序员的视角，看计算机系统！”或“深入理解计算机系统”。此课程是卡耐基梅隆大学开设的一门课程，官方网站 &lt;a href="https://www.cs.cmu.edu/~213/index.html">https://www.cs.cmu.edu/~213/index.html&lt;/a>。&lt;/p>
+&lt;p>CSAPP 课程全程 Computer Systems: A Programmer’s Perspective，中文翻译为“从程序员的视角，看计算机系统！”或“深入理解计算机系统”。此课程是卡耐基梅隆大学开设的一门课程，官方网站 &lt;a class="link" href="https://www.cs.cmu.edu/~213/index.html" target="_blank" rel="noopener"
+>https://www.cs.cmu.edu/~213/index.html&lt;/a>。&lt;/p>
 &lt;blockquote>
 &lt;p>内容简介节选自豆瓣&lt;br>
-&lt;a href="https://book.douban.com/subject/1230413">https://book.douban.com/subject/1230413&lt;/a>&lt;/p>
+&lt;a class="link" href="https://book.douban.com/subject/1230413" target="_blank" rel="noopener"
+>https://book.douban.com/subject/1230413&lt;/a>&lt;/p>
 &lt;p>从程序员的视角，看计算机系统！&lt;/p>
 &lt;p>本书适用于那些想要写出更快、更可靠程序的程序员。通过掌握程序是如何映射到系统上，以及程序是如何执行的，读者能够更好的理解程序的行为为什么是这样的，以及效率低下是如何造成的。粗略来看，计算机系统包括处理器和存储器硬件、编译器、操作系统和网络互连环境。而通过程序员的视角，读者可以清晰地明白学习计算机系统的内部工作原理会对他们今后作为计算机科学研究者和工程师的工作有进一步的帮助。它还有助于为进一步学习计算机体系结构、操作系统、编译器和网络互连做好准备。&lt;/p>
 &lt;/blockquote>
@@ -3669,7 +3861,7 @@ $$ B2T(X) = -x_{w-1}\cdot 2^{w-1}+\sum_{i=0}^{w-2}x_{i}\cdot 2^{i} $$&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905110036.png" alt="20200905110036" />&lt;/p>
 &lt;h2 id="示例">示例&lt;/h2>
 &lt;p>定义两个 &lt;code>short&lt;/code> 变量 x 与 y，将其分别扩充为 &lt;code>int&lt;/code> 变量，得到 ix 与 iy，详细结果如下。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="kt">short&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">15213&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="ln">1&lt;/span>&lt;span class="kt">short&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">15213&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="ln">2&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">ix&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="ln">3&lt;/span>&lt;span class="kt">short&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">15213&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="ln">4&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">iy&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">;&lt;/span>
@@ -3818,14 +4010,14 @@ $$ B2T(X) = -x_{w-1}\cdot 2^{w-1}+\sum_{i=0}^{w-2}x_{i}\cdot 2^{i} $$&lt;/p>
 &lt;p>在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。&lt;/p>
 &lt;h2 id="设置-docker-仓库">设置 Docker 仓库&lt;/h2>
 &lt;p>根据官方教程，执行以下两条命令：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo yum install -y yum-utils
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo yum install -y yum-utils
 &lt;span class="ln">2&lt;/span>
 &lt;span class="ln">3&lt;/span>sudo yum-config-manager &lt;span class="se">\
 &lt;/span>&lt;span class="ln">4&lt;/span>&lt;span class="se">&lt;/span> --add-repo &lt;span class="se">\
 &lt;/span>&lt;span class="ln">5&lt;/span>&lt;span class="se">&lt;/span> http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>由于国内直接连接 Docker 官方镜像源十分缓慢，所以在第二个命令中将官方镜像源替换为阿里云镜像源。&lt;/p>
 &lt;h2 id="安装-docker-引擎">安装 Docker 引擎&lt;/h2>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo yum install docker-ce docker-ce-cli containerd.io
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo yum install docker-ce docker-ce-cli containerd.io
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>在执行这条命令时，极有可能会报错。比如作者遇到的报错如下：&lt;/p>
 &lt;pre>&lt;code>Error:
 Problem: package docker-ce-3:19.03.8-3.el7.x86_64 requires containerd.io &amp;gt;= 1.2.2-3, but none of the providers can be installed
@@ -3838,7 +4030,7 @@ Problem: package docker-ce-3:19.03.8-3.el7.x86_64 requires containerd.io &amp;gt
 - package containerd.io-1.2.5-3.1.el7.x86_64 is excluded
 - package containerd.io-1.2.6-3.3.el7.x86_64 is excluded
 &lt;/code>&lt;/pre>&lt;p>为了解决这个报错，需要先执行下述命令安装好 containerd.io 组件。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo yum install -y &lt;span class="se">\
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo yum install -y &lt;span class="se">\
 &lt;/span>&lt;span class="ln">2&lt;/span>&lt;span class="se">&lt;/span> https://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.13-3.2.el7.x86_64.rpm
 &lt;span class="ln">3&lt;/span>
 &lt;span class="ln">4&lt;/span>sudo yum -y install ./containerd.io-1.2.13-3.1.el7.x86_64.rpm
@@ -3848,9 +4040,9 @@ Problem: package docker-ce-3:19.03.8-3.el7.x86_64 requires containerd.io &amp;gt
 &lt;li>阿里云官方只提供了适配 centos 7 的 containerd.io 组件。&lt;/li>
 &lt;/ol>
 &lt;p>然后重新执行上述命令即可完成 Docker 的安装。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo yum install docker-ce docker-ce-cli
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo yum install docker-ce docker-ce-cli
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>我们可以通过两个命令来验证 Docker 是否安装成功。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>docker version
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>docker version
 &lt;span class="ln">2&lt;/span>&lt;span class="c1"># 或&lt;/span>
 &lt;span class="ln">3&lt;/span>docker info
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>若输出类似于以下的内容，则配置正确。&lt;/p>
@@ -3882,12 +4074,13 @@ docker-init:
 Version: 0.18.0
 GitCommit: fec3683
 &lt;/code>&lt;/pre>&lt;h1 id="配置-docker-仓库">配置 Docker 仓库&lt;/h1>
-&lt;p>由于在国内连接 Docker 官方仓库 &lt;a href="https://hub.docker.com">https://hub.docker.com&lt;/a> 十分缓慢，故我们可以将仓库地址更换为国内的各种源，详细步骤如下。&lt;/p>
+&lt;p>由于在国内连接 Docker 官方仓库 &lt;a class="link" href="https://hub.docker.com" target="_blank" rel="noopener"
+>https://hub.docker.com&lt;/a> 十分缓慢，故我们可以将仓库地址更换为国内的各种源，详细步骤如下。&lt;/p>
 &lt;ol>
 &lt;li>在 &lt;code>/etc/docker&lt;/code> 目录中新增一个名为 &lt;code>daemon.json&lt;/code> 的配置文件，如果已经存在这个文件，则只需要进行修改。&lt;/li>
 &lt;li>将该文件中的 &lt;code>registry-mirrors&lt;/code> 项修改为如下形式。&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="ln">1&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="ln">1&lt;/span>&lt;span class="p">{&lt;/span>
 &lt;span class="ln">2&lt;/span> &lt;span class="nt">&amp;#34;registry-mirrors&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
 &lt;span class="ln">3&lt;/span> &lt;span class="s2">&amp;#34;https://kuamavit.mirror.aliyuncs.com&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="ln">4&lt;/span> &lt;span class="s2">&amp;#34;https://docker.mirrors.ustc.edu.cn&amp;#34;&lt;/span>
@@ -3896,11 +4089,11 @@ GitCommit: fec3683
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>到此就配置完毕了。&lt;/p>
 &lt;h1 id="启动并运行-docker">启动并运行 Docker&lt;/h1>
 &lt;h2 id="启动">启动&lt;/h2>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>$ sudo service docker start
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>$ sudo service docker start
 &lt;span class="ln">2&lt;/span>&lt;span class="c1"># 或&lt;/span>
 &lt;span class="ln">3&lt;/span>$ sudo systemctl start docker
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="运行-hello-world">运行 hello-world&lt;/h2>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo docker run hello-world
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo docker run hello-world
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>此时，由于本地尚未安装 hello-world 实例，Docker 会自动从上文中配置的镜像中拉取 hello-world 实例，然后运行这个实例。具体输出如下。&lt;/p>
 &lt;pre>&lt;code>[root@localhost docker]# docker run hello-world
 # 这里提示未在本地找到 hello-world 实例，将从镜像中拉取最新版。
@@ -3931,11 +4124,11 @@ https://docs.docker.com/get-started/
 &lt;ol>
 &lt;li>列出本机正在运行的容器&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo docker container ls
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo docker container ls
 &lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
 &lt;li>列出本机所有容器（包括已停止运行的）&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo docker container ls -all
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo docker container ls -all
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>输出结果如下。&lt;/p>
 &lt;pre>&lt;code>CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
 d3a382fde773 hello-world &amp;quot;/hello&amp;quot; 8 minutes ago Exited (0) 8 minutes ago romantic_proskuriakova
@@ -3943,23 +4136,23 @@ d3a382fde773 hello-world &amp;quot;/hello&amp;quot; 8 minutes ago Exited (0) 8 m
 &lt;ol start="3">
 &lt;li>终止容器运行&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo docker container &lt;span class="nb">kill&lt;/span> d3a382fde773
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo docker container &lt;span class="nb">kill&lt;/span> d3a382fde773
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>当然本例中 hello-world 容器已经停止运行了，所以不能再次停止，此处仅做示例。
 即使一个容器文件已经停止运行，但是其依然会占据磁盘空间，可以使用下述命令进行删除。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo docker container rm d3a382fde773
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo docker container rm d3a382fde773
 &lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="镜像管理">镜像管理&lt;/h1>
 &lt;p>当我们拉取了多个镜像，其中某些又不需要使用了，则需要对镜像进行手动管理，详细操作如下。&lt;/p>
 &lt;ol>
 &lt;li>罗列所有本地已经安装的镜像&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo docker image ls
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo docker image ls
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>输出如下&lt;/p>
 &lt;pre>&lt;code>REPOSITORY TAG IMAGE ID CREATED SIZE
 hello-world latest bf756fb1ae65 8 months ago 13.3kB
 &lt;/code>&lt;/pre>&lt;ol start="2">
 &lt;li>移除不需要的镜像&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo docker image rm hello-world
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo docker image rm hello-world
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>注意，如果 image 在运行，或者已经生成了实例文件，是不能直接删除的，需要先将实例容器停止并删除实例文件，才可以正常删除。执行结果如下。&lt;/p>
 &lt;pre>&lt;code>Untagged: hello-world:latest
 Untagged: hello-world@sha256:7f0a9f93b4aa3022c3a4c147a449bf11e0941a1fd0bf4a8e6c9408b2600777c5
@@ -4027,7 +4220,7 @@ sudrizzz.github.io 仓库
 &lt;/code>&lt;/pre>&lt;h1 id="配置公私密钥">配置公私密钥&lt;/h1>
 &lt;h2 id="生成密钥">生成密钥&lt;/h2>
 &lt;p>打开 Git Bash，执行如下命令&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>ssh-keygen -t rsa -b &lt;span class="m">4096&lt;/span> -C &lt;span class="s2">&amp;#34;sudrizzz.github.io&amp;#34;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>ssh-keygen -t rsa -b &lt;span class="m">4096&lt;/span> -C &lt;span class="s2">&amp;#34;sudrizzz.github.io&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>设置密钥存储位置，按照提示进行操作，不需要自定义一路回车即可。&lt;/p>
 &lt;pre>&lt;code>Generating public/private rsa key pair.
 Enter file in which to save the key (/c/Users/.ssh/id_rsa):
@@ -4065,7 +4258,7 @@ The key's randomart image is:
 &lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809154958.png" alt="20200809154958" />&lt;/p>
 &lt;h1 id="配置-action-脚本">配置 Action 脚本&lt;/h1>
 &lt;p>打开 &lt;code>blog_workflow&lt;/code> 仓库，进入 &lt;code>Action&lt;/code>，初始化左侧界面，选择 &lt;code>set up a workflow yourself&lt;/code>，在编辑框中粘贴如下配置&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln"> 1&lt;/span>name: CI
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln"> 1&lt;/span>name: CI
 &lt;span class="ln"> 2&lt;/span>
 &lt;span class="ln"> 3&lt;/span>&lt;span class="c1"># 持续发布的分支&lt;/span>
 &lt;span class="ln"> 4&lt;/span>on:
@@ -4114,7 +4307,8 @@ The key's randomart image is:
 &lt;p>创作流程得到了极大的简化。下面将介绍使用 Github 作为图床的相关配置。&lt;/p>
 &lt;h1 id="安装并配置-picgo">安装并配置 PicGo&lt;/h1>
 &lt;p>本文使用的方案是 VSCode + PicGo 扩展，所以首先打开 VSCode 安装好 PicGo，此处不再赘述。&lt;/p>
-&lt;p>如果需要使用 PicGo Windows 客户端，请点击 &lt;a href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases&lt;/a> 下载，并跳过本节配置说明。&lt;/p>
+&lt;p>如果需要使用 PicGo Windows 客户端，请点击 &lt;a class="link" href="https://github.com/Molunerfinn/PicGo/releases" target="_blank" rel="noopener"
+>https://github.com/Molunerfinn/PicGo/releases&lt;/a> 下载，并跳过本节配置说明。&lt;/p>
 &lt;h2 id="生成-token">生成 Token&lt;/h2>
 &lt;p>点击 Github 右上角个人头像，进入 &lt;code>Settings&lt;/code> -&amp;gt; &lt;code>Developer settings&lt;/code> -&amp;gt; &lt;code>Personal access tokens&lt;/code>，点击 &lt;code>Generate new token&lt;/code>。&lt;br>
 Note 中可以任意填写，勾选下方的 &lt;code>repo&lt;/code> 复选框，点击页面最下方的 &lt;code>Generate token&lt;/code>，复制生成的 token 字符串。
@@ -4152,13 +4346,14 @@ OSX：Cmd + Opt + E
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809134438.png" alt="20200809134438" />&lt;/p>
 &lt;h1 id="初始化-hugo">初始化 Hugo&lt;/h1>
 &lt;h2 id="安装-hugo-应用">安装 Hugo 应用&lt;/h2>
-&lt;p>&lt;a href="https://github.com/gohugoio/hugo/releases">https://github.com/gohugoio/hugo/releases&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/gohugoio/hugo/releases" target="_blank" rel="noopener"
+>https://github.com/gohugoio/hugo/releases&lt;/a>&lt;/p>
 &lt;h2 id="配置环境变量">配置环境变量&lt;/h2>
 &lt;p>将安装 Hugo 的目录路径配置到用户环境变量 &lt;code>PATH&lt;/code> 中，如图
 &lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809135128.png" alt="20200809135128" />&lt;/p>
 &lt;h2 id="检验配置">检验配置&lt;/h2>
 &lt;p>在命令行窗口中输入以下内容&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>hugo version
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>hugo version
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>如果得到类似以下的结果则说明配置正确。&lt;/p>
 &lt;pre>&lt;code>Hugo Static Site Generator v0.74.3-DA0437B4 windows/amd64 BuildDate: 2020-07-23T16:23:30Z
 &lt;/code>&lt;/pre>&lt;h1 id="创建博客">创建博客&lt;/h1>
@@ -4168,13 +4363,13 @@ OSX：Cmd + Opt + E
 &lt;h2 id="添加主题">添加主题&lt;/h2>
 &lt;p>以 &lt;a class="link" href="https://github.com/joway/hugo-theme-yinyang" target="_blank" rel="noopener"
 >yinyang&lt;/a> 主题为例，按照文档中的安装步骤，执行以下命令&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> sudrizzz.github.io
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> sudrizzz.github.io
 &lt;span class="ln">2&lt;/span>git clone git@github.com:joway/hugo-theme-yinyang.git themes/yinyang
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>进入 &lt;code>sudrizzz.github.io/themes/yinyang/exampleSite&lt;/code> 目录，将 &lt;code>content&lt;/code> 文件夹和 &lt;code>config.toml&lt;/code> 文件拷贝到 &lt;code>sudrizzz.github.io&lt;/code> 目录。&lt;/p>
 &lt;h2 id="自定义主题">自定义主题&lt;/h2>
 &lt;p>根据 &lt;a class="link" href="https://github.com/joway/hugo-theme-yinyang#configuration" target="_blank" rel="noopener"
 >yinyang 主题配置文档&lt;/a>，我们可以按需修改其中的内容即可，以下贴出我自定义的配置内容。&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="ln"> 1&lt;/span>&lt;span class="nx">baseURL&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://sudrizzz.github.com&amp;#34;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="ln"> 1&lt;/span>&lt;span class="nx">baseURL&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://sudrizzz.github.com&amp;#34;&lt;/span>
 &lt;span class="ln"> 2&lt;/span>&lt;span class="nx">languageCode&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;zh-cn&amp;#34;&lt;/span>
 &lt;span class="ln"> 3&lt;/span>&lt;span class="nx">title&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Anthony&amp;#39;s Blog&amp;#34;&lt;/span>
 &lt;span class="ln"> 4&lt;/span>&lt;span class="nx">theme&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;yinyang&amp;#34;&lt;/span>
@@ -4210,7 +4405,7 @@ OSX：Cmd + Opt + E
 &lt;span class="ln">34&lt;/span>&lt;span class="nx">link&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;/index.xml&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="添加文章">添加文章&lt;/h1>
 &lt;p>在 &lt;code>sudrizzz.github.io&lt;/code> 文件夹中执行以下命令以新增文章&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>hugo new content/cn/posts/my-first-post.md
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>hugo new content/cn/posts/my-first-post.md
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>但是我个人不建议这么操作，原因有两点&lt;/p>
 &lt;ol>
 &lt;li>此主题的 posts 目录分为 cn 和 en，也就是中文和英语目录，路径较长，敲命令不是很方便；&lt;/li>
@@ -4270,7 +4465,8 @@ Press Ctrl+C to stop
 &lt;blockquote>
 &lt;p>说明：&lt;br>
 下述命令中的参数可以根据 Hugo 官方文档按需添加&lt;br>
-&lt;a href="https://gohugo.io/commands/hugo/#options">https://gohugo.io/commands/hugo/#options&lt;/a>&lt;/p>
+&lt;a class="link" href="https://gohugo.io/commands/hugo/#options" target="_blank" rel="noopener"
+>https://gohugo.io/commands/hugo/#options&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;pre>&lt;code>hugo --minify --cleanDestinationDir
 &lt;/code>&lt;/pre>&lt;p>可以得到如下结果&lt;/p>
@@ -4310,7 +4506,7 @@ Total in 29 ms
 所以请确保下述命令是在 &lt;code>/pulic&lt;/code> 目录中执行的。&lt;/p>
 &lt;/blockquote>
 &lt;p>在 &lt;code>sudrizzz.github.io/pulic&lt;/code> 目录中执行以下命令&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>git clone https://github.com/sudrizzz/sudrizzz.github.io.git
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>git clone https://github.com/sudrizzz/sudrizzz.github.io.git
 &lt;span class="ln">2&lt;/span>git add .
 &lt;span class="ln">3&lt;/span>git commit -m &lt;span class="s2">&amp;#34;&amp;lt;commit_info&amp;gt;&amp;#34;&lt;/span>
 &lt;span class="ln">4&lt;/span>git push origin master

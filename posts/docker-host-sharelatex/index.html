@@ -1,21 +1,62 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="安装 ShareLaTeX 1sudo su 2docker pull kingsleyluoxin/sharelatex:full 编辑配置 在 ~/sharelatex 中放入配置文件 docker-compose.yml，并进行编辑。
+<!doctype html><html lang=en-us>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="安装 ShareLaTeX 1sudo su 2docker pull kingsleyluoxin/sharelatex:full 编辑配置 在 ~/sharelatex 中放入配置文件 docker-compose.yml，并进行编辑。
 1cd ~/sharelatex 2vim docker-compose.yml 完整配置如下
 1version:&amp;#34;2.2&amp;#34;2services:3sharelatex:4restart:always5image:kingsleyluoxin/sharelatex:full6container_name:sharelatex7depends_on:8mongo:9condition:service_healthy10redis:11condition:service_started12ports:13- 80:8014links:15- mongo16- redis17volumes:18- ~/sharelatex_data:/var/lib/sharelatex19environment:20SHARELATEX_APP_NAME:Overleaf Community Edition2122SHARELATEX_MONGO_URL:mongodb://mongo/sharelatex2324SHARELATEX_REDIS_HOST:redis25REDIS_HOST:redis2627ENABLED_LINKED_FILE_TYPES:&amp;#34;url,project_file&amp;#34;2829ENABLE_CONVERSIONS:&amp;#34;true&amp;#34;3031# Disables email confirmation requirement32EMAIL_CONFIRMATION_DISABLED:&amp;#34;true&amp;#34;3334TEXMFVAR:/var/lib/sharelatex/tmp/texmf-var3536## Set for SSL via nginx-proxy37#VIRTUAL_HOST: 103.112.212.223839SHARELATEX_SITE_URL:http://172.23.253.11340SHARELATEX_ADMIN_EMAIL:username@qq.com4142SHARELATEX_EMAIL_FROM_ADDRESS:&amp;#34;username@qq.com&amp;#34;4344SHARELATEX_EMAIL_SMTP_HOST:smtp.qq.com45SHARELATEX_EMAIL_SMTP_PORT:46546SHARELATEX_EMAIL_SMTP_SECURE:&amp;#34;true&amp;#34;47SHARELATEX_EMAIL_SMTP_USER:username@qq.com48SHARELATEX_EMAIL_SMTP_PASS:SMTP 授权码49SHARELATEX_EMAIL_SMTP_TLS_REJECT_UNAUTH:&amp;#34;true&amp;#34;50SHARELATEX_EMAIL_SMTP_IGNORE_TLS:&amp;#34;false&amp;#34;51# SHARELATEX_CUSTOM_EMAIL_FOOTER: &amp;#34;This system is run by department x&amp;#34;5253mongo:54restart:always55image:mongo:4.056container_name:mongo57expose:58- 2701759volumes:60- ~/mongo_data:/data/db61healthcheck:62test:echo &amp;#39;db.stats().ok&amp;#39; | mongo localhost:27017/test --quiet63interval:10s64timeout:10s65retries:56667redis:68restart:always69image:redis:570container_name:redis71expose:72- 637973volumes:74- ~/redis_data:/data初始化容器 1cd ~/sharelatex 2docker-compose up -d 停止、重启服务 可以先使用以下命令查看正在运行的 docker 服务
 1docker ps -a 输出如下
-CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 471e68a315b9 kingsleyluoxin/sharelatex:full &amp;quot;/sbin/my_init&amp;quot; 2 hours ago Up 2 hours 0."><title>Docker 搭建 ShareLaTeX</title><link rel=canonical href=https://sudrizzz.github.io/posts/docker-host-sharelatex/><link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="Docker 搭建 ShareLaTeX"><meta property="og:description" content="安装 ShareLaTeX 1sudo su 2docker pull kingsleyluoxin/sharelatex:full 编辑配置 在 ~/sharelatex 中放入配置文件 docker-compose.yml，并进行编辑。
+CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 471e68a315b9 kingsleyluoxin/sharelatex:full &amp;quot;/sbin/my_init&amp;quot; 2 hours ago Up 2 hours 0."><title>Docker 搭建 ShareLaTeX</title>
+<link rel=canonical href=https://sudrizzz.github.io/posts/docker-host-sharelatex/>
+<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="Docker 搭建 ShareLaTeX">
+<meta property="og:description" content="安装 ShareLaTeX 1sudo su 2docker pull kingsleyluoxin/sharelatex:full 编辑配置 在 ~/sharelatex 中放入配置文件 docker-compose.yml，并进行编辑。
 1cd ~/sharelatex 2vim docker-compose.yml 完整配置如下
 1version:&amp;#34;2.2&amp;#34;2services:3sharelatex:4restart:always5image:kingsleyluoxin/sharelatex:full6container_name:sharelatex7depends_on:8mongo:9condition:service_healthy10redis:11condition:service_started12ports:13- 80:8014links:15- mongo16- redis17volumes:18- ~/sharelatex_data:/var/lib/sharelatex19environment:20SHARELATEX_APP_NAME:Overleaf Community Edition2122SHARELATEX_MONGO_URL:mongodb://mongo/sharelatex2324SHARELATEX_REDIS_HOST:redis25REDIS_HOST:redis2627ENABLED_LINKED_FILE_TYPES:&amp;#34;url,project_file&amp;#34;2829ENABLE_CONVERSIONS:&amp;#34;true&amp;#34;3031# Disables email confirmation requirement32EMAIL_CONFIRMATION_DISABLED:&amp;#34;true&amp;#34;3334TEXMFVAR:/var/lib/sharelatex/tmp/texmf-var3536## Set for SSL via nginx-proxy37#VIRTUAL_HOST: 103.112.212.223839SHARELATEX_SITE_URL:http://172.23.253.11340SHARELATEX_ADMIN_EMAIL:username@qq.com4142SHARELATEX_EMAIL_FROM_ADDRESS:&amp;#34;username@qq.com&amp;#34;4344SHARELATEX_EMAIL_SMTP_HOST:smtp.qq.com45SHARELATEX_EMAIL_SMTP_PORT:46546SHARELATEX_EMAIL_SMTP_SECURE:&amp;#34;true&amp;#34;47SHARELATEX_EMAIL_SMTP_USER:username@qq.com48SHARELATEX_EMAIL_SMTP_PASS:SMTP 授权码49SHARELATEX_EMAIL_SMTP_TLS_REJECT_UNAUTH:&amp;#34;true&amp;#34;50SHARELATEX_EMAIL_SMTP_IGNORE_TLS:&amp;#34;false&amp;#34;51# SHARELATEX_CUSTOM_EMAIL_FOOTER: &amp;#34;This system is run by department x&amp;#34;5253mongo:54restart:always55image:mongo:4.056container_name:mongo57expose:58- 2701759volumes:60- ~/mongo_data:/data/db61healthcheck:62test:echo &amp;#39;db.stats().ok&amp;#39; | mongo localhost:27017/test --quiet63interval:10s64timeout:10s65retries:56667redis:68restart:always69image:redis:570container_name:redis71expose:72- 637973volumes:74- ~/redis_data:/data初始化容器 1cd ~/sharelatex 2docker-compose up -d 停止、重启服务 可以先使用以下命令查看正在运行的 docker 服务
 1docker ps -a 输出如下
-CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 471e68a315b9 kingsleyluoxin/sharelatex:full &amp;quot;/sbin/my_init&amp;quot; 2 hours ago Up 2 hours 0."><meta property="og:url" content="https://sudrizzz.github.io/posts/docker-host-sharelatex/"><meta property="og:site_name" content="Anthony's blog"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2021-03-11T08:00:00+08:00"><meta property="article:modified_time" content="2021-03-11T08:00:00+08:00"><meta name=twitter:title content="Docker 搭建 ShareLaTeX"><meta name=twitter:description content="安装 ShareLaTeX 1sudo su 2docker pull kingsleyluoxin/sharelatex:full 编辑配置 在 ~/sharelatex 中放入配置文件 docker-compose.yml，并进行编辑。
+CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 471e68a315b9 kingsleyluoxin/sharelatex:full &amp;quot;/sbin/my_init&amp;quot; 2 hours ago Up 2 hours 0.">
+<meta property="og:url" content="https://sudrizzz.github.io/posts/docker-host-sharelatex/">
+<meta property="og:site_name" content="Anthony's blog">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2021-03-11T08:00:00+08:00"><meta property="article:modified_time" content="2021-03-11T08:00:00+08:00">
+<meta name=twitter:title content="Docker 搭建 ShareLaTeX">
+<meta name=twitter:description content="安装 ShareLaTeX 1sudo su 2docker pull kingsleyluoxin/sharelatex:full 编辑配置 在 ~/sharelatex 中放入配置文件 docker-compose.yml，并进行编辑。
 1cd ~/sharelatex 2vim docker-compose.yml 完整配置如下
 1version:&amp;#34;2.2&amp;#34;2services:3sharelatex:4restart:always5image:kingsleyluoxin/sharelatex:full6container_name:sharelatex7depends_on:8mongo:9condition:service_healthy10redis:11condition:service_started12ports:13- 80:8014links:15- mongo16- redis17volumes:18- ~/sharelatex_data:/var/lib/sharelatex19environment:20SHARELATEX_APP_NAME:Overleaf Community Edition2122SHARELATEX_MONGO_URL:mongodb://mongo/sharelatex2324SHARELATEX_REDIS_HOST:redis25REDIS_HOST:redis2627ENABLED_LINKED_FILE_TYPES:&amp;#34;url,project_file&amp;#34;2829ENABLE_CONVERSIONS:&amp;#34;true&amp;#34;3031# Disables email confirmation requirement32EMAIL_CONFIRMATION_DISABLED:&amp;#34;true&amp;#34;3334TEXMFVAR:/var/lib/sharelatex/tmp/texmf-var3536## Set for SSL via nginx-proxy37#VIRTUAL_HOST: 103.112.212.223839SHARELATEX_SITE_URL:http://172.23.253.11340SHARELATEX_ADMIN_EMAIL:username@qq.com4142SHARELATEX_EMAIL_FROM_ADDRESS:&amp;#34;username@qq.com&amp;#34;4344SHARELATEX_EMAIL_SMTP_HOST:smtp.qq.com45SHARELATEX_EMAIL_SMTP_PORT:46546SHARELATEX_EMAIL_SMTP_SECURE:&amp;#34;true&amp;#34;47SHARELATEX_EMAIL_SMTP_USER:username@qq.com48SHARELATEX_EMAIL_SMTP_PASS:SMTP 授权码49SHARELATEX_EMAIL_SMTP_TLS_REJECT_UNAUTH:&amp;#34;true&amp;#34;50SHARELATEX_EMAIL_SMTP_IGNORE_TLS:&amp;#34;false&amp;#34;51# SHARELATEX_CUSTOM_EMAIL_FOOTER: &amp;#34;This system is run by department x&amp;#34;5253mongo:54restart:always55image:mongo:4.056container_name:mongo57expose:58- 2701759volumes:60- ~/mongo_data:/data/db61healthcheck:62test:echo &amp;#39;db.stats().ok&amp;#39; | mongo localhost:27017/test --quiet63interval:10s64timeout:10s65retries:56667redis:68restart:always69image:redis:570container_name:redis71expose:72- 637973volumes:74- ~/redis_data:/data初始化容器 1cd ~/sharelatex 2docker-compose up -d 停止、重启服务 可以先使用以下命令查看正在运行的 docker 服务
 1docker ps -a 输出如下
-CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 471e68a315b9 kingsleyluoxin/sharelatex:full &amp;quot;/sbin/my_init&amp;quot; 2 hours ago Up 2 hours 0."></head><body class="article-page has-toc"><script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script><div class="container main-container flex
-extended"><div id=article-toolbar><a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg><span>Back</span></a></div><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/latex/>LaTeX</a></header><h2 class=article-title><a href=/posts/docker-host-sharelatex/>Docker 搭建 ShareLaTeX</a></h2><footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--published>Mar 11, 2021</time></footer></div></header><section class=article-content><h1 id=安装-sharelatex>安装 ShareLaTeX</h1><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo su
+CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 471e68a315b9 kingsleyluoxin/sharelatex:full &amp;quot;/sbin/my_init&amp;quot; 2 hours ago Up 2 hours 0.">
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>Back</span>
+</a>
+</div>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/latex/>
+LaTeX
+</a>
+</header>
+<h2 class=article-title>
+<a href=/posts/docker-host-sharelatex/>Docker 搭建 ShareLaTeX</a>
+</h2>
+<footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--published>Mar 11, 2021</time>
+</footer></div>
+</header>
+<section class=article-content>
+<h1 id=安装-sharelatex>安装 ShareLaTeX</h1>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo su
 <span class=ln>2</span>docker pull kingsleyluoxin/sharelatex:full
-</code></pre></div><h1 id=编辑配置>编辑配置</h1><p>在 <code>~/sharelatex</code> 中放入配置文件 <code>docker-compose.yml</code>，并进行编辑。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> ~/sharelatex
+</code></pre></div><h1 id=编辑配置>编辑配置</h1>
+<p>在 <code>~/sharelatex</code> 中放入配置文件 <code>docker-compose.yml</code>，并进行编辑。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> ~/sharelatex
 <span class=ln>2</span>vim docker-compose.yml
-</code></pre></div><p>完整配置如下</p><div class=highlight><pre class=chroma><code class=language-yaml data-lang=yaml><span class=ln> 1</span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;2.2&#34;</span><span class=w>
+</code></pre></div><p>完整配置如下</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=ln> 1</span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;2.2&#34;</span><span class=w>
 </span><span class=ln> 2</span><span class=w></span><span class=nt>services</span><span class=p>:</span><span class=w>
 </span><span class=ln> 3</span><span class=w>  </span><span class=nt>sharelatex</span><span class=p>:</span><span class=w>
 </span><span class=ln> 4</span><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>always</span><span class=w>
@@ -89,23 +130,103 @@ extended"><div id=article-toolbar><a href=https://sudrizzz.github.io/ class=back
 </span><span class=ln>72</span><span class=w>      </span>- <span class=m>6379</span><span class=w>
 </span><span class=ln>73</span><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
 </span><span class=ln>74</span><span class=w>      </span>- <span class=l>~/redis_data:/data</span><span class=w>
-</span></code></pre></div><h1 id=初始化容器>初始化容器</h1><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> ~/sharelatex
+</span></code></pre></div><h1 id=初始化容器>初始化容器</h1>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> ~/sharelatex
 <span class=ln>2</span>docker-compose up -d
-</code></pre></div><h1 id=停止重启服务>停止、重启服务</h1><p>可以先使用以下命令查看正在运行的 docker 服务</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>docker ps -a
-</code></pre></div><p>输出如下</p><pre><code>CONTAINER ID   IMAGE                            COMMAND                  CREATED       STATUS                   PORTS                NAMES
+</code></pre></div><h1 id=停止重启服务>停止、重启服务</h1>
+<p>可以先使用以下命令查看正在运行的 docker 服务</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>docker ps -a
+</code></pre></div><p>输出如下</p>
+<pre><code>CONTAINER ID   IMAGE                            COMMAND                  CREATED       STATUS                   PORTS                NAMES
 471e68a315b9   kingsleyluoxin/sharelatex:full   &quot;/sbin/my_init&quot;          2 hours ago   Up 2 hours               0.0.0.0:80-&gt;80/tcp   sharelatex
 86213089675e   redis:5                          &quot;docker-entrypoint.s…&quot;   2 hours ago   Up 2 hours               6379/tcp             redis
 2ae87df3ecc0   mongo:4.0                        &quot;docker-entrypoint.s…&quot;   2 hours ago   Up 2 hours (healthy)     27017/tcp            mongo
-</code></pre><p>使用以下命令可以停止服务</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>docker stop sharelatex
+</code></pre><p>使用以下命令可以停止服务</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>docker stop sharelatex
 <span class=ln>2</span>docker stop redis
 <span class=ln>3</span>docker stop mongo
-</code></pre></div><p>使用以下命令可以重启服务</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>docker restart sharelatex
+</code></pre></div><p>使用以下命令可以重启服务</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>docker restart sharelatex
 <span class=ln>2</span>docker restart redis
 <span class=ln>3</span>docker restart mongo
-</code></pre></div></section><footer class=article-footer><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script></article><aside class=related-contents--wrapper></aside><footer class=site-footer><section class=copyright>&copy;
+</code></pre></div>
+</section>
+<footer class=article-footer>
+<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span>
+</section>
+</footer>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script>
+</article>
+<aside class=related-contents--wrapper>
+</aside>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
 2018 -
-2021 Anthony's blog</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.4.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+2021 Anthony's blog
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.4.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#安装-sharelatex>安装 ShareLaTeX</a></li><li><a href=#编辑配置>编辑配置</a></li><li><a href=#初始化容器>初始化容器</a></li><li><a href=#停止重启服务>停止、重启服务</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script></body></html>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">Table of contents</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#安装-sharelatex>安装 ShareLaTeX</a></li>
+<li><a href=#编辑配置>编辑配置</a></li>
+<li><a href=#初始化容器>初始化容器</a></li>
+<li><a href=#停止重启服务>停止、重启服务</a></li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>

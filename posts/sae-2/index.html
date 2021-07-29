@@ -1,24 +1,82 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="前言 在上一篇文章中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。
+<!doctype html><html lang=en-us>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="前言 在上一篇文章中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。
 tiny_dnn 简介 tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。
 搭建环境 版本要求 需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 Visual Studio 2019 为例进行配置。
 创建项目 打开 VS，创建一个名为 testTinyDNN 的控制台应用。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 testTinyDNN.cpp 属于同一层级。
-编辑配置  编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：  1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.h 文件第 378 行，将 border_width 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下：  1const size_t border_width = 0; 编写代码 打开 testTinyDNN."><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title><link rel=canonical href=https://sudrizzz.github.io/posts/sae-2/><link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="SAE 入门（二）——基于 tiny_dnn 的手写数字重建"><meta property="og:description" content="前言 在上一篇文章中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。
+编辑配置  编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：  1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.h 文件第 378 行，将 border_width 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下：  1const size_t border_width = 0; 编写代码 打开 testTinyDNN."><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title>
+<link rel=canonical href=https://sudrizzz.github.io/posts/sae-2/>
+<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="SAE 入门（二）——基于 tiny_dnn 的手写数字重建">
+<meta property="og:description" content="前言 在上一篇文章中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。
 tiny_dnn 简介 tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。
 搭建环境 版本要求 需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 Visual Studio 2019 为例进行配置。
 创建项目 打开 VS，创建一个名为 testTinyDNN 的控制台应用。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 testTinyDNN.cpp 属于同一层级。
-编辑配置  编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：  1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.h 文件第 378 行，将 border_width 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下：  1const size_t border_width = 0; 编写代码 打开 testTinyDNN."><meta property="og:url" content="https://sudrizzz.github.io/posts/sae-2/"><meta property="og:site_name" content="Anthony's blog"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2021-01-28T18:00:00+08:00"><meta property="article:modified_time" content="2021-01-28T18:00:00+08:00"><meta name=twitter:title content="SAE 入门（二）——基于 tiny_dnn 的手写数字重建"><meta name=twitter:description content="前言 在上一篇文章中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。
+编辑配置  编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：  1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.h 文件第 378 行，将 border_width 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下：  1const size_t border_width = 0; 编写代码 打开 testTinyDNN.">
+<meta property="og:url" content="https://sudrizzz.github.io/posts/sae-2/">
+<meta property="og:site_name" content="Anthony's blog">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2021-01-28T18:00:00+08:00"><meta property="article:modified_time" content="2021-01-28T18:00:00+08:00">
+<meta name=twitter:title content="SAE 入门（二）——基于 tiny_dnn 的手写数字重建">
+<meta name=twitter:description content="前言 在上一篇文章中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。
 tiny_dnn 简介 tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。
 搭建环境 版本要求 需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 Visual Studio 2019 为例进行配置。
 创建项目 打开 VS，创建一个名为 testTinyDNN 的控制台应用。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 testTinyDNN.cpp 属于同一层级。
-编辑配置  编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：  1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.h 文件第 378 行，将 border_width 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下：  1const size_t border_width = 0; 编写代码 打开 testTinyDNN."></head><body class="article-page has-toc"><script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script><div class="container main-container flex
-extended"><div id=article-toolbar><a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg><span>Back</span></a></div><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/stacked-autoencoder/>Stacked-Autoencoder</a>
-<a href=/categories/machine-learning/>Machine-Learning</a></header><h2 class=article-title><a href=/posts/sae-2/>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</a></h2><footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--published>Jan 28, 2021</time></footer></div></header><section class=article-content><h1 id=前言>前言</h1><p>在<a class=link href=https://sudrizzz.github.io/posts/sae-1/ target=_blank rel=noopener>上一篇文章</a>中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。</p><h1 id=tiny_dnn-简介>tiny_dnn 简介</h1><p>tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。</p><h1 id=搭建环境>搭建环境</h1><h2 id=版本要求>版本要求</h2><p>需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 <strong>Visual Studio 2019</strong> 为例进行配置。</p><h2 id=创建项目>创建项目</h2><p>打开 VS，创建一个名为 testTinyDNN 的<strong>控制台应用</strong>。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 <code>testTinyDNN.cpp</code> 属于同一层级。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129112851.png alt=20210129112851></p><h2 id=编辑配置>编辑配置</h2><ol><li>编辑 <code>config.h</code> 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：</li></ol><div class=highlight><pre class=chroma><code class=language-cpp data-lang=cpp><span class=ln>1</span><span class=cm>/**
+编辑配置  编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：  1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.h 文件第 378 行，将 border_width 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下：  1const size_t border_width = 0; 编写代码 打开 testTinyDNN.">
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>Back</span>
+</a>
+</div>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/stacked-autoencoder/>
+Stacked-Autoencoder
+</a>
+<a href=/categories/machine-learning/>
+Machine-Learning
+</a>
+</header>
+<h2 class=article-title>
+<a href=/posts/sae-2/>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</a>
+</h2>
+<footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--published>Jan 28, 2021</time>
+</footer></div>
+</header>
+<section class=article-content>
+<h1 id=前言>前言</h1>
+<p>在<a class=link href=https://sudrizzz.github.io/posts/sae-1/ target=_blank rel=noopener>上一篇文章</a>中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。</p>
+<h1 id=tiny_dnn-简介>tiny_dnn 简介</h1>
+<p>tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。</p>
+<h1 id=搭建环境>搭建环境</h1>
+<h2 id=版本要求>版本要求</h2>
+<p>需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 <strong>Visual Studio 2019</strong> 为例进行配置。</p>
+<h2 id=创建项目>创建项目</h2>
+<p>打开 VS，创建一个名为 testTinyDNN 的<strong>控制台应用</strong>。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 <code>testTinyDNN.cpp</code> 属于同一层级。</p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129112851.png alt=20210129112851></p>
+<h2 id=编辑配置>编辑配置</h2>
+<ol>
+<li>编辑 <code>config.h</code> 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：</li>
+</ol>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=ln>1</span><span class=cm>/**
 </span><span class=ln>2</span><span class=cm> * Enable Image API support.
 </span><span class=ln>3</span><span class=cm> * Currently we use stb by default.
 </span><span class=ln>4</span><span class=cm> **/</span>
 <span class=ln>5</span><span class=cp>#define DNN_USE_IMAGE_API
-</span></code></pre></div><ol start=2><li>编辑 <code>image.h</code> 文件第 378 行，将 <code>border_width</code> 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下：</li></ol><div class=highlight><pre class=chroma><code class=language-cpp data-lang=cpp><span class=ln>1</span><span class=k>const</span> <span class=n>size_t</span> <span class=n>border_width</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
-</code></pre></div><h2 id=编写代码>编写代码</h2><p>打开 <code>testTinyDNN.cpp</code> 文件，将下列代码粘贴进去。</p><div class=highlight><pre class=chroma><code class=language-cpp data-lang=cpp><span class=ln> 1</span><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span></code></pre></div><ol start=2>
+<li>编辑 <code>image.h</code> 文件第 378 行，将 <code>border_width</code> 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下：</li>
+</ol>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=ln>1</span><span class=k>const</span> <span class=n>size_t</span> <span class=n>border_width</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</code></pre></div><h2 id=编写代码>编写代码</h2>
+<p>打开 <code>testTinyDNN.cpp</code> 文件，将下列代码粘贴进去。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=ln> 1</span><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
 </span><span class=ln> 2</span><span class=cp>#include</span> <span class=cpf>&lt;string&gt;</span><span class=cp>
 </span><span class=ln> 3</span><span class=cp>#include</span> <span class=cpf>&#34;tiny_dnn/tiny_dnn.h&#34;</span><span class=cp>
 </span><span class=ln> 4</span><span class=cp></span><span class=k>using</span> <span class=k>namespace</span> <span class=n>tiny_dnn</span><span class=p>;</span>
@@ -112,10 +170,156 @@ extended"><div id=article-toolbar><a href=https://sudrizzz.github.io/ class=back
 <span class=ln>92</span><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
 <span class=ln>93</span>    <span class=n>sae</span><span class=p>();</span>
 <span class=ln>94</span><span class=p>}</span>
-</code></pre></div><p>在代码中，我们定义了每批次训练数据量为 256 条，总共训练 50 个批次。</p><p>网络结构为 3 个编码层 + 3 个解码层。编码层将数据从 784（28 * 28） 维分别编码（降维）到 128、64、32 维，解码器再将 32 维的编码结果解码（升维）到 64、128、784 维，完成手写数字重建。各层之间的激活函数选用 <code>relu()</code> 与 <code>sigmoid()</code>。</p><h1 id=结果展示>结果展示</h1><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129163100.png alt=20210129163100></p><p>从上到下，第一行为测试图像，第二行为 keras 搭建的 SAE 网络重建图像，第三行为 tiny_dnn 搭建的 SAE 网络重建图像。下面展示数字 2 和 5 重建的详细效果，左侧为 Python 平台重建结果，右侧为 C++ 平台重建结果。</p><p>数字 2</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129182201.png alt=20210129182201></p><p>数字 5</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129181931.png alt=20210129181931></p><h1 id=性能对比>性能对比</h1><p>测试使用的 CPU 型号为 Intel i5-4200H，基准频率为 2.80GHz。</p><p>基于 tiny_dnn 的 C++ 平台训练时长为 2624.95 秒，基于 keras 的 Python 平台训练时长为 135.70 秒。在 50 个 epoch 测试中，Python 平台比 C++ 平台快了大约 19 倍，Python 平台 loss 大约为 0.08。由重建图片结果不难看出，Python 平台效果明显优于 C++ 平台。</p><h1 id=存在的不足>存在的不足</h1><ol><li>C++ 平台目前无法计算每个 epoch 的 loss；</li><li>将在 C++ 平台测试更多的 epoch，观察图像重建效果是否会有改善。</li></ol><h1 id=参考文献>参考文献</h1><ol><li><a class=link href=https://mightynotes.wordpress.com/2017/10/11/a-simple-and-basic-tutorial-of-tiny-dnn/ target=_blank rel=noopener>A simple and basic tutorial of tiny-dnn</a></li><li><a class=link href=https://tiny-dnn.readthedocs.io/en/latest/getting_started/Getting-started.html target=_blank rel=noopener>A quick introduction to tiny-dnn</a></li><li><a class=link href=https://tiny-dnn.readthedocs.io/en/latest/how_tos/How-Tos.html#construct-the-network-model target=_blank rel=noopener>Details about tiny-dnn’s API and short examples</a></li></ol></section><footer class=article-footer><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script></article><aside class=related-contents--wrapper><h2 class=section-title>Related contents</h2><div class=related-contents><div class="flex article-list--tile"><article><a href=/posts/sae-1/><div class=article-details><h2 class=article-title>SAE 入门（一）</h2></div></a></article><article><a href=/posts/machine-learning-note-4/><div class=article-details><h2 class=article-title>《机器学习》笔记（第五章）</h2></div></a></article><article><a href=/posts/machine-learning-note-3/><div class=article-details><h2 class=article-title>《机器学习》笔记（第四章）</h2></div></a></article><article><a href=/posts/machine-learning-note-2/><div class=article-details><h2 class=article-title>《机器学习》笔记（第三章）</h2></div></a></article><article><a href=/posts/machine-learning-note-1/><div class=article-details><h2 class=article-title>《机器学习》笔记（第一、二章）</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+</code></pre></div><p>在代码中，我们定义了每批次训练数据量为 256 条，总共训练 50 个批次。</p>
+<p>网络结构为 3 个编码层 + 3 个解码层。编码层将数据从 784（28 * 28） 维分别编码（降维）到 128、64、32 维，解码器再将 32 维的编码结果解码（升维）到 64、128、784 维，完成手写数字重建。各层之间的激活函数选用 <code>relu()</code> 与 <code>sigmoid()</code>。</p>
+<h1 id=结果展示>结果展示</h1>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129163100.png alt=20210129163100></p>
+<p>从上到下，第一行为测试图像，第二行为 keras 搭建的 SAE 网络重建图像，第三行为 tiny_dnn 搭建的 SAE 网络重建图像。下面展示数字 2 和 5 重建的详细效果，左侧为 Python 平台重建结果，右侧为 C++ 平台重建结果。</p>
+<p>数字 2</p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129182201.png alt=20210129182201></p>
+<p>数字 5</p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129181931.png alt=20210129181931></p>
+<h1 id=性能对比>性能对比</h1>
+<p>测试使用的 CPU 型号为 Intel i5-4200H，基准频率为 2.80GHz。</p>
+<p>基于 tiny_dnn 的 C++ 平台训练时长为 2624.95 秒，基于 keras 的 Python 平台训练时长为 135.70 秒。在 50 个 epoch 测试中，Python 平台比 C++ 平台快了大约 19 倍，Python 平台 loss 大约为 0.08。由重建图片结果不难看出，Python 平台效果明显优于 C++ 平台。</p>
+<h1 id=存在的不足>存在的不足</h1>
+<ol>
+<li>C++ 平台目前无法计算每个 epoch 的 loss；</li>
+<li>将在 C++ 平台测试更多的 epoch，观察图像重建效果是否会有改善。</li>
+</ol>
+<h1 id=参考文献>参考文献</h1>
+<ol>
+<li><a class=link href=https://mightynotes.wordpress.com/2017/10/11/a-simple-and-basic-tutorial-of-tiny-dnn/ target=_blank rel=noopener>A simple and basic tutorial of tiny-dnn</a></li>
+<li><a class=link href=https://tiny-dnn.readthedocs.io/en/latest/getting_started/Getting-started.html target=_blank rel=noopener>A quick introduction to tiny-dnn</a></li>
+<li><a class=link href=https://tiny-dnn.readthedocs.io/en/latest/how_tos/How-Tos.html#construct-the-network-model target=_blank rel=noopener>Details about tiny-dnn’s API and short examples</a></li>
+</ol>
+</section>
+<footer class=article-footer>
+<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span>
+</section>
+</footer>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script>
+</article>
+<aside class=related-contents--wrapper>
+<h2 class=section-title>Related contents</h2>
+<div class=related-contents>
+<div class="flex article-list--tile">
+<article>
+<a href=/posts/sae-1/>
+<div class=article-details>
+<h2 class=article-title>SAE 入门（一）</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/posts/machine-learning-note-4/>
+<div class=article-details>
+<h2 class=article-title>《机器学习》笔记（第五章）</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/posts/machine-learning-note-3/>
+<div class=article-details>
+<h2 class=article-title>《机器学习》笔记（第四章）</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/posts/machine-learning-note-2/>
+<div class=article-details>
+<h2 class=article-title>《机器学习》笔记（第三章）</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/posts/machine-learning-note-1/>
+<div class=article-details>
+<h2 class=article-title>《机器学习》笔记（第一、二章）</h2>
+</div>
+</a>
+</article>
+</div>
+</div>
+</aside>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
 2018 -
-2021 Anthony's blog</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.4.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+2021 Anthony's blog
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.4.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#前言>前言</a></li><li><a href=#tiny_dnn-简介>tiny_dnn 简介</a></li><li><a href=#搭建环境>搭建环境</a><ol><li><a href=#版本要求>版本要求</a></li><li><a href=#创建项目>创建项目</a></li><li><a href=#编辑配置>编辑配置</a></li><li><a href=#编写代码>编写代码</a></li></ol></li><li><a href=#结果展示>结果展示</a></li><li><a href=#性能对比>性能对比</a></li><li><a href=#存在的不足>存在的不足</a></li><li><a href=#参考文献>参考文献</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script></body></html>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">Table of contents</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#前言>前言</a></li>
+<li><a href=#tiny_dnn-简介>tiny_dnn 简介</a></li>
+<li><a href=#搭建环境>搭建环境</a>
+<ol>
+<li><a href=#版本要求>版本要求</a></li>
+<li><a href=#创建项目>创建项目</a></li>
+<li><a href=#编辑配置>编辑配置</a></li>
+<li><a href=#编写代码>编写代码</a></li>
+</ol>
+</li>
+<li><a href=#结果展示>结果展示</a></li>
+<li><a href=#性能对比>性能对比</a></li>
+<li><a href=#存在的不足>存在的不足</a></li>
+<li><a href=#参考文献>参考文献</a></li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>

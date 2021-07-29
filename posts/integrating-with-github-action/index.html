@@ -1,23 +1,97 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="前情提要 在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。
+<!doctype html><html lang=en-us>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="前情提要 在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。
 创建仓库  注意：
 由于 username 不方便叙述，故下文中均以 sudrizzz 为例替代 username，
 请读者根据实际情况进行更改。
  在上文中我们已经创建了一个名为 &amp;lt;username&amp;gt;.github.io 的仓库，现在还需要创建另一个仓库来存放文章管理文件。仓库名任意，公有与私有均可。另外，还需要创建一个仓库来存储文章中涉及到的图片，仓库名任意，但必须是公有的。本例中，我们所用到的仓库名如下。
    仓库名 用途 公有或私有     blog_workflow 存储博客中文章或者主题等原始文件 私有   sudrizzz.github.io 存储 Hugo 生成的静态文件 公有   blog_images 存储图片文件 公有    拆分文件 上文中我们只是将 /public 文件夹提交到了 sudrizzz.github.io 仓库，现在我们还需要将除了 /public 以外的文件全部提交到 blog_workflow，实现这一步可以再本地建立两个对应的文件夹，分别进行提交，操作步骤不再赘述。拆分后的目录结构如下。
-blog_workflow 仓库 ├─archetypes ├─content │ └─cn │ └─posts ├─layouts ├─resources │ └─_gen └─themes └─yinyang ├─... sudrizzz."><title>Github 自动部署与图床</title><link rel=canonical href=https://sudrizzz.github.io/posts/integrating-with-github-action/><link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="Github 自动部署与图床"><meta property="og:description" content="前情提要 在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。
+blog_workflow 仓库 ├─archetypes ├─content │ └─cn │ └─posts ├─layouts ├─resources │ └─_gen └─themes └─yinyang ├─... sudrizzz."><title>Github 自动部署与图床</title>
+<link rel=canonical href=https://sudrizzz.github.io/posts/integrating-with-github-action/>
+<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="Github 自动部署与图床">
+<meta property="og:description" content="前情提要 在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。
 创建仓库  注意：
 由于 username 不方便叙述，故下文中均以 sudrizzz 为例替代 username，
 请读者根据实际情况进行更改。
  在上文中我们已经创建了一个名为 &amp;lt;username&amp;gt;.github.io 的仓库，现在还需要创建另一个仓库来存放文章管理文件。仓库名任意，公有与私有均可。另外，还需要创建一个仓库来存储文章中涉及到的图片，仓库名任意，但必须是公有的。本例中，我们所用到的仓库名如下。
    仓库名 用途 公有或私有     blog_workflow 存储博客中文章或者主题等原始文件 私有   sudrizzz.github.io 存储 Hugo 生成的静态文件 公有   blog_images 存储图片文件 公有    拆分文件 上文中我们只是将 /public 文件夹提交到了 sudrizzz.github.io 仓库，现在我们还需要将除了 /public 以外的文件全部提交到 blog_workflow，实现这一步可以再本地建立两个对应的文件夹，分别进行提交，操作步骤不再赘述。拆分后的目录结构如下。
-blog_workflow 仓库 ├─archetypes ├─content │ └─cn │ └─posts ├─layouts ├─resources │ └─_gen └─themes └─yinyang ├─... sudrizzz."><meta property="og:url" content="https://sudrizzz.github.io/posts/integrating-with-github-action/"><meta property="og:site_name" content="Anthony's blog"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2020-08-09T15:00:00+08:00"><meta property="article:modified_time" content="2020-08-09T15:00:00+08:00"><meta name=twitter:title content="Github 自动部署与图床"><meta name=twitter:description content="前情提要 在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。
+blog_workflow 仓库 ├─archetypes ├─content │ └─cn │ └─posts ├─layouts ├─resources │ └─_gen └─themes └─yinyang ├─... sudrizzz.">
+<meta property="og:url" content="https://sudrizzz.github.io/posts/integrating-with-github-action/">
+<meta property="og:site_name" content="Anthony's blog">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2020-08-09T15:00:00+08:00"><meta property="article:modified_time" content="2020-08-09T15:00:00+08:00">
+<meta name=twitter:title content="Github 自动部署与图床">
+<meta name=twitter:description content="前情提要 在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。
 创建仓库  注意：
 由于 username 不方便叙述，故下文中均以 sudrizzz 为例替代 username，
 请读者根据实际情况进行更改。
  在上文中我们已经创建了一个名为 &amp;lt;username&amp;gt;.github.io 的仓库，现在还需要创建另一个仓库来存放文章管理文件。仓库名任意，公有与私有均可。另外，还需要创建一个仓库来存储文章中涉及到的图片，仓库名任意，但必须是公有的。本例中，我们所用到的仓库名如下。
    仓库名 用途 公有或私有     blog_workflow 存储博客中文章或者主题等原始文件 私有   sudrizzz.github.io 存储 Hugo 生成的静态文件 公有   blog_images 存储图片文件 公有    拆分文件 上文中我们只是将 /public 文件夹提交到了 sudrizzz.github.io 仓库，现在我们还需要将除了 /public 以外的文件全部提交到 blog_workflow，实现这一步可以再本地建立两个对应的文件夹，分别进行提交，操作步骤不再赘述。拆分后的目录结构如下。
-blog_workflow 仓库 ├─archetypes ├─content │ └─cn │ └─posts ├─layouts ├─resources │ └─_gen └─themes └─yinyang ├─... sudrizzz."></head><body class="article-page has-toc"><script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script><div class="container main-container flex
-extended"><div id=article-toolbar><a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg><span>Back</span></a></div><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/blog/>blog</a></header><h2 class=article-title><a href=/posts/integrating-with-github-action/>Github 自动部署与图床</a></h2><footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--published>Aug 09, 2020</time></footer></div></header><section class=article-content><h1 id=前情提要>前情提要</h1><p>在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。</p><h1 id=创建仓库>创建仓库</h1><blockquote><p>注意：<br>由于 <code>username</code> 不方便叙述，故下文中均以 <code>sudrizzz</code> 为例替代 <code>username</code>，<br>请读者根据实际情况进行更改。</p></blockquote><p>在上文中我们已经创建了一个名为 <code>&lt;username>.github.io</code> 的仓库，现在还需要创建另一个仓库来存放文章管理文件。仓库名任意，公有与私有均可。另外，还需要创建一个仓库来存储文章中涉及到的图片，仓库名任意，但必须是<strong>公有</strong>的。本例中，我们所用到的仓库名如下。</p><table><thead><tr><th>仓库名</th><th>用途</th><th>公有或私有</th></tr></thead><tbody><tr><td>blog_workflow</td><td>存储博客中文章或者主题等原始文件</td><td>私有</td></tr><tr><td>sudrizzz.github.io</td><td>存储 Hugo 生成的静态文件</td><td>公有</td></tr><tr><td>blog_images</td><td>存储图片文件</td><td>公有</td></tr></tbody></table><h1 id=拆分文件>拆分文件</h1><p>上文中我们只是将 <code>/public</code> 文件夹提交到了 <code>sudrizzz.github.io</code> 仓库，现在我们还需要将除了 <code>/public</code> 以外的文件全部提交到 <code>blog_workflow</code>，实现这一步可以再本地建立两个对应的文件夹，分别进行提交，操作步骤不再赘述。拆分后的目录结构如下。</p><pre><code>blog_workflow 仓库
+blog_workflow 仓库 ├─archetypes ├─content │ └─cn │ └─posts ├─layouts ├─resources │ └─_gen └─themes └─yinyang ├─... sudrizzz.">
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>Back</span>
+</a>
+</div>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/blog/>
+blog
+</a>
+</header>
+<h2 class=article-title>
+<a href=/posts/integrating-with-github-action/>Github 自动部署与图床</a>
+</h2>
+<footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--published>Aug 09, 2020</time>
+</footer></div>
+</header>
+<section class=article-content>
+<h1 id=前情提要>前情提要</h1>
+<p>在前文中我们实现了在 Github 中部署博客，此文将简化发文操作步骤，并实现文章图片管理。</p>
+<h1 id=创建仓库>创建仓库</h1>
+<blockquote>
+<p>注意：<br>
+由于 <code>username</code> 不方便叙述，故下文中均以 <code>sudrizzz</code> 为例替代 <code>username</code>，<br>
+请读者根据实际情况进行更改。</p>
+</blockquote>
+<p>在上文中我们已经创建了一个名为 <code>&lt;username>.github.io</code> 的仓库，现在还需要创建另一个仓库来存放文章管理文件。仓库名任意，公有与私有均可。另外，还需要创建一个仓库来存储文章中涉及到的图片，仓库名任意，但必须是<strong>公有</strong>的。本例中，我们所用到的仓库名如下。</p>
+<table>
+<thead>
+<tr>
+<th>仓库名</th>
+<th>用途</th>
+<th>公有或私有</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>blog_workflow</td>
+<td>存储博客中文章或者主题等原始文件</td>
+<td>私有</td>
+</tr>
+<tr>
+<td>sudrizzz.github.io</td>
+<td>存储 Hugo 生成的静态文件</td>
+<td>公有</td>
+</tr>
+<tr>
+<td>blog_images</td>
+<td>存储图片文件</td>
+<td>公有</td>
+</tr>
+</tbody>
+</table>
+<h1 id=拆分文件>拆分文件</h1>
+<p>上文中我们只是将 <code>/public</code> 文件夹提交到了 <code>sudrizzz.github.io</code> 仓库，现在我们还需要将除了 <code>/public</code> 以外的文件全部提交到 <code>blog_workflow</code>，实现这一步可以再本地建立两个对应的文件夹，分别进行提交，操作步骤不再赘述。拆分后的目录结构如下。</p>
+<pre><code>blog_workflow 仓库
 
 ├─archetypes
 ├─content
@@ -43,8 +117,12 @@ sudrizzz.github.io 仓库
 ├─posts
 │  └─test
 └─tags
-</code></pre><h1 id=配置公私密钥>配置公私密钥</h1><h2 id=生成密钥>生成密钥</h2><p>打开 Git Bash，执行如下命令</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>ssh-keygen -t rsa -b <span class=m>4096</span> -C <span class=s2>&#34;sudrizzz.github.io&#34;</span>
-</code></pre></div><p>设置密钥存储位置，按照提示进行操作，不需要自定义一路回车即可。</p><pre><code>Generating public/private rsa key pair.
+</code></pre><h1 id=配置公私密钥>配置公私密钥</h1>
+<h2 id=生成密钥>生成密钥</h2>
+<p>打开 Git Bash，执行如下命令</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>ssh-keygen -t rsa -b <span class=m>4096</span> -C <span class=s2>&#34;sudrizzz.github.io&#34;</span>
+</code></pre></div><p>设置密钥存储位置，按照提示进行操作，不需要自定义一路回车即可。</p>
+<pre><code>Generating public/private rsa key pair.
 Enter file in which to save the key (/c/Users/.ssh/id_rsa):
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
@@ -64,8 +142,23 @@ The key's randomart image is:
 | ..*.            |
 |  .o.            |
 +----[SHA256]-----+
-</code></pre><p>生成的密钥文件放置在 <code>c/Users/&lt;user>/.ssh/</code> 文件夹中，分别是</p><ul><li>id_rsa</li><li>id_rsa.pub</li></ul><p>其中后缀为 .pub 的文件为公钥，另一个则为私钥。</p><h2 id=配置密钥>配置密钥</h2><h3 id=配置私钥>配置私钥</h3><p>打开 <code>blog_workflow</code> 仓库，进入 <code>Settings</code> -> <code>Secrets</code>，选择 <code>New secret</code>，名称填写为 <strong>ACTIONS_DEPLOY_KEY</strong>，后续需要用到该名称。<br>打开 <strong>id_rsa</strong>，并复制其全部内容，粘贴到 <code>Value</code> 中，点击添加。</p><h3 id=配置公钥>配置公钥</h3><p>打开 <code>sudrizzz.github.io</code> 仓库，进入 <code>Settings</code> -> <code>Deploy keys</code>，选择 <code>Add deploy key</code>，名字可以任意写。<br>打开 <strong>id_rsa.pub</strong>，并复制其全部内容，粘贴到 <code>Key</code> 中，勾选 <code>Allow write access</code>，点击添加。
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809154958.png alt=20200809154958></p><h1 id=配置-action-脚本>配置 Action 脚本</h1><p>打开 <code>blog_workflow</code> 仓库，进入 <code>Action</code>，初始化左侧界面，选择 <code>set up a workflow yourself</code>，在编辑框中粘贴如下配置</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln> 1</span>name: CI
+</code></pre><p>生成的密钥文件放置在 <code>c/Users/&lt;user>/.ssh/</code> 文件夹中，分别是</p>
+<ul>
+<li>id_rsa</li>
+<li>id_rsa.pub</li>
+</ul>
+<p>其中后缀为 .pub 的文件为公钥，另一个则为私钥。</p>
+<h2 id=配置密钥>配置密钥</h2>
+<h3 id=配置私钥>配置私钥</h3>
+<p>打开 <code>blog_workflow</code> 仓库，进入 <code>Settings</code> -> <code>Secrets</code>，选择 <code>New secret</code>，名称填写为 <strong>ACTIONS_DEPLOY_KEY</strong>，后续需要用到该名称。<br>
+打开 <strong>id_rsa</strong>，并复制其全部内容，粘贴到 <code>Value</code> 中，点击添加。</p>
+<h3 id=配置公钥>配置公钥</h3>
+<p>打开 <code>sudrizzz.github.io</code> 仓库，进入 <code>Settings</code> -> <code>Deploy keys</code>，选择 <code>Add deploy key</code>，名字可以任意写。<br>
+打开 <strong>id_rsa.pub</strong>，并复制其全部内容，粘贴到 <code>Key</code> 中，勾选 <code>Allow write access</code>，点击添加。
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809154958.png alt=20200809154958></p>
+<h1 id=配置-action-脚本>配置 Action 脚本</h1>
+<p>打开 <code>blog_workflow</code> 仓库，进入 <code>Action</code>，初始化左侧界面，选择 <code>set up a workflow yourself</code>，在编辑框中粘贴如下配置</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln> 1</span>name: CI
 <span class=ln> 2</span>
 <span class=ln> 3</span><span class=c1># 持续发布的分支</span>
 <span class=ln> 4</span>on:
@@ -103,20 +196,154 @@ The key's randomart image is:
 <span class=ln>36</span>        publish_branch: master      <span class=c1># 远程仓库分支</span>
 <span class=ln>37</span>        commit_message: <span class=si>${</span><span class=p>{ github.event.head_commit.message </span><span class=si>}</span><span class=o>}</span>
 </code></pre></div><p>注意修改第 33 行 <code>external_repository</code> 中的用户名。
-该配置的文件名任意，例如 <code>main.yml</code>。保存后即可在 Actions 界面查看脚本执行情况。每当 <code>blog_workflow</code> 仓库有新的 push 操作时，就会自动执行该脚本，然后将执行后生成的文件自动提交到 <code>sudrizzz.github.io</code>。</p><p>至此，利用 Github Actions 实现自动部署就已经完成了，写作步骤简化为：</p><ol><li>在 <code>content/posts/cn/</code> 目录中新增文章，修改相关头信息，完成内容创作并保存；</li><li>执行 <code>hugo server</code> 并访问 <code>localhost:1313</code> 查看文章显示效果；</li><li>提交新文章到 <code>blog_workflow</code>；</li><li>上述 Action 自动编译并将生成的静态文件部署到 <code>sudrizzz.github.io</code>。</li></ol><p>创作流程得到了极大的简化。下面将介绍使用 Github 作为图床的相关配置。</p><h1 id=安装并配置-picgo>安装并配置 PicGo</h1><p>本文使用的方案是 VSCode + PicGo 扩展，所以首先打开 VSCode 安装好 PicGo，此处不再赘述。</p><p>如果需要使用 PicGo Windows 客户端，请点击 <a href=https://github.com/Molunerfinn/PicGo/releases>https://github.com/Molunerfinn/PicGo/releases</a> 下载，并跳过本节配置说明。</p><h2 id=生成-token>生成 Token</h2><p>点击 Github 右上角个人头像，进入 <code>Settings</code> -> <code>Developer settings</code> -> <code>Personal access tokens</code>，点击 <code>Generate new token</code>。<br>Note 中可以任意填写，勾选下方的 <code>repo</code> 复选框，点击页面最下方的 <code>Generate token</code>，复制生成的 token 字符串。
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809161038.png alt=20200809161038></p><h2 id=配置-picgo>配置 PicGo</h2><p>在 VSCode 中打开 PicGo 的设置界面，将复制的 token 字符串填到 <code>picgo.picBed.github.token</code> 中，具体配置见下图。
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201221163830.png alt=20201221163830></p><ul><li><code>picgo.picBed.github.customUrl</code><br>此项是利用 jsDelivr CDN 为图片进行加速服务，填写时只需将 <code>sudrizzz/blog_images</code> 更改为自己的用户名与仓库即可，具体如下。</li></ul><pre><code>https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main
-</code></pre><ul><li><code>picgo.picBed.github.path</code><br>此项是配置图片的存储路径，根目录为 <code>picgo.picBed.github.repo</code> 中设置的仓库。</li></ul><p>当然你可以新建一个仓库专门用来存储图片，只需要调整上述相关设置，使其保持一致即可。</p><h1 id=使用-picgo-写作>使用 PicGo 写作</h1><p>在编写 markdown 文件需要插入图片时，只需要使用相应的快捷键即可完成上传图片操作，具体如下。</p><pre><code>从剪贴板上传图像
+该配置的文件名任意，例如 <code>main.yml</code>。保存后即可在 Actions 界面查看脚本执行情况。每当 <code>blog_workflow</code> 仓库有新的 push 操作时，就会自动执行该脚本，然后将执行后生成的文件自动提交到 <code>sudrizzz.github.io</code>。</p>
+<p>至此，利用 Github Actions 实现自动部署就已经完成了，写作步骤简化为：</p>
+<ol>
+<li>在 <code>content/posts/cn/</code> 目录中新增文章，修改相关头信息，完成内容创作并保存；</li>
+<li>执行 <code>hugo server</code> 并访问 <code>localhost:1313</code> 查看文章显示效果；</li>
+<li>提交新文章到 <code>blog_workflow</code>；</li>
+<li>上述 Action 自动编译并将生成的静态文件部署到 <code>sudrizzz.github.io</code>。</li>
+</ol>
+<p>创作流程得到了极大的简化。下面将介绍使用 Github 作为图床的相关配置。</p>
+<h1 id=安装并配置-picgo>安装并配置 PicGo</h1>
+<p>本文使用的方案是 VSCode + PicGo 扩展，所以首先打开 VSCode 安装好 PicGo，此处不再赘述。</p>
+<p>如果需要使用 PicGo Windows 客户端，请点击 <a class=link href=https://github.com/Molunerfinn/PicGo/releases target=_blank rel=noopener>https://github.com/Molunerfinn/PicGo/releases</a> 下载，并跳过本节配置说明。</p>
+<h2 id=生成-token>生成 Token</h2>
+<p>点击 Github 右上角个人头像，进入 <code>Settings</code> -> <code>Developer settings</code> -> <code>Personal access tokens</code>，点击 <code>Generate new token</code>。<br>
+Note 中可以任意填写，勾选下方的 <code>repo</code> 复选框，点击页面最下方的 <code>Generate token</code>，复制生成的 token 字符串。
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809161038.png alt=20200809161038></p>
+<h2 id=配置-picgo>配置 PicGo</h2>
+<p>在 VSCode 中打开 PicGo 的设置界面，将复制的 token 字符串填到 <code>picgo.picBed.github.token</code> 中，具体配置见下图。
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201221163830.png alt=20201221163830></p>
+<ul>
+<li><code>picgo.picBed.github.customUrl</code><br>
+此项是利用 jsDelivr CDN 为图片进行加速服务，填写时只需将 <code>sudrizzz/blog_images</code> 更改为自己的用户名与仓库即可，具体如下。</li>
+</ul>
+<pre><code>https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main
+</code></pre><ul>
+<li><code>picgo.picBed.github.path</code><br>
+此项是配置图片的存储路径，根目录为 <code>picgo.picBed.github.repo</code> 中设置的仓库。</li>
+</ul>
+<p>当然你可以新建一个仓库专门用来存储图片，只需要调整上述相关设置，使其保持一致即可。</p>
+<h1 id=使用-picgo-写作>使用 PicGo 写作</h1>
+<p>在编写 markdown 文件需要插入图片时，只需要使用相应的快捷键即可完成上传图片操作，具体如下。</p>
+<pre><code>从剪贴板上传图像
 Windows / Unix：Ctrl + Alt + U
 OSX：Cmd + Opt + U
 
 从资源管理器上传图像
 Windows / Unix：Ctrl + Alt + E
 OSX：Cmd + Opt + E
-</code></pre><h1 id=结语>结语</h1><p>至此，搭建 Github Pages 系列文章就到此结束了，作者的需求基本得到了满足，感谢您的阅读。</p></section><footer class=article-footer><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script></article><aside class=related-contents--wrapper><h2 class=section-title>Related contents</h2><div class=related-contents><div class="flex article-list--tile"><article><a href=/posts/build-blog-from-scratch/><div class=article-details><h2 class=article-title>从零搭建 Github Pages</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+</code></pre><h1 id=结语>结语</h1>
+<p>至此，搭建 Github Pages 系列文章就到此结束了，作者的需求基本得到了满足，感谢您的阅读。</p>
+</section>
+<footer class=article-footer>
+<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span>
+</section>
+</footer>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script>
+</article>
+<aside class=related-contents--wrapper>
+<h2 class=section-title>Related contents</h2>
+<div class=related-contents>
+<div class="flex article-list--tile">
+<article>
+<a href=/posts/build-blog-from-scratch/>
+<div class=article-details>
+<h2 class=article-title>从零搭建 Github Pages</h2>
+</div>
+</a>
+</article>
+</div>
+</div>
+</aside>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
 2018 -
-2021 Anthony's blog</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.4.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+2021 Anthony's blog
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.4.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#前情提要>前情提要</a></li><li><a href=#创建仓库>创建仓库</a></li><li><a href=#拆分文件>拆分文件</a></li><li><a href=#配置公私密钥>配置公私密钥</a><ol><li><a href=#生成密钥>生成密钥</a></li><li><a href=#配置密钥>配置密钥</a><ol><li><a href=#配置私钥>配置私钥</a></li><li><a href=#配置公钥>配置公钥</a></li></ol></li></ol></li><li><a href=#配置-action-脚本>配置 Action 脚本</a></li><li><a href=#安装并配置-picgo>安装并配置 PicGo</a><ol><li><a href=#生成-token>生成 Token</a></li><li><a href=#配置-picgo>配置 PicGo</a></li></ol></li><li><a href=#使用-picgo-写作>使用 PicGo 写作</a></li><li><a href=#结语>结语</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script></body></html>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">Table of contents</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#前情提要>前情提要</a></li>
+<li><a href=#创建仓库>创建仓库</a></li>
+<li><a href=#拆分文件>拆分文件</a></li>
+<li><a href=#配置公私密钥>配置公私密钥</a>
+<ol>
+<li><a href=#生成密钥>生成密钥</a></li>
+<li><a href=#配置密钥>配置密钥</a>
+<ol>
+<li><a href=#配置私钥>配置私钥</a></li>
+<li><a href=#配置公钥>配置公钥</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href=#配置-action-脚本>配置 Action 脚本</a></li>
+<li><a href=#安装并配置-picgo>安装并配置 PicGo</a>
+<ol>
+<li><a href=#生成-token>生成 Token</a></li>
+<li><a href=#配置-picgo>配置 PicGo</a></li>
+</ol>
+</li>
+<li><a href=#使用-picgo-写作>使用 PicGo 写作</a></li>
+<li><a href=#结语>结语</a></li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>

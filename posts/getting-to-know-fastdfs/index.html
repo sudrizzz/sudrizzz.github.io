@@ -1,20 +1,70 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="FastDFS 简介 FastDFS 是一个开源的高性能分布式文件系统（Distributed File System）。它的主要功能包括：文件存储、文件同步和文件访问以及高容量和负载平衡。主要解决了海量数据存储问题，特别适合以中小文件（建议范围：4KB &amp;lt; file_size &amp;lt; 500MB）为载体的在线服务。
+<!doctype html><html lang=en-us>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="FastDFS 简介 FastDFS 是一个开源的高性能分布式文件系统（Distributed File System）。它的主要功能包括：文件存储、文件同步和文件访问以及高容量和负载平衡。主要解决了海量数据存储问题，特别适合以中小文件（建议范围：4KB &amp;lt; file_size &amp;lt; 500MB）为载体的在线服务。
 FastDFS 开源地址：https://github.com/happyfish100/fastdfs
 由于网络上已有很多详细的关于 FastDFS 的介绍，故此处不再赘述。请查看参考文章中的第 1、2 条。
 FastDFS 架构图 FastDFS 上传流程 FastDFS 下载流程 安装 FastDFS 配置防火墙 本篇文章是基于 CentOS v8.2.2004 版本，以下操作均为单机环境，单机 IP 地址为 192.168.61.128。在安装 FastDFS 之前，需要先进行防火墙的设置。防火墙的相关命令如下：
 1# 暂时关闭防火墙 2systemctl stop firewalld 3 4# 永久关闭防火墙 5systemctl disable firewalld 6 7# 启用防火墙 8systemctl enable firewalld 下载安装 libfastcommon libfastcommon 是从 FastDFS 抽取出来的公共 c 函数库。
-1# 下载 2wget https://github.com/happyfish100/libfastcommon/archive/V1.0.43.tar.gz 3 4# 解压 5tar -zxvf V1.0.43.tar.gz 6cd libfastcommon-1."><title>FastDFS 搭建分布式文件管理系统</title><link rel=canonical href=https://sudrizzz.github.io/posts/getting-to-know-fastdfs/><link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="FastDFS 搭建分布式文件管理系统"><meta property="og:description" content="FastDFS 简介 FastDFS 是一个开源的高性能分布式文件系统（Distributed File System）。它的主要功能包括：文件存储、文件同步和文件访问以及高容量和负载平衡。主要解决了海量数据存储问题，特别适合以中小文件（建议范围：4KB &amp;lt; file_size &amp;lt; 500MB）为载体的在线服务。
+1# 下载 2wget https://github.com/happyfish100/libfastcommon/archive/V1.0.43.tar.gz 3 4# 解压 5tar -zxvf V1.0.43.tar.gz 6cd libfastcommon-1."><title>FastDFS 搭建分布式文件管理系统</title>
+<link rel=canonical href=https://sudrizzz.github.io/posts/getting-to-know-fastdfs/>
+<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="FastDFS 搭建分布式文件管理系统">
+<meta property="og:description" content="FastDFS 简介 FastDFS 是一个开源的高性能分布式文件系统（Distributed File System）。它的主要功能包括：文件存储、文件同步和文件访问以及高容量和负载平衡。主要解决了海量数据存储问题，特别适合以中小文件（建议范围：4KB &amp;lt; file_size &amp;lt; 500MB）为载体的在线服务。
 FastDFS 开源地址：https://github.com/happyfish100/fastdfs
 由于网络上已有很多详细的关于 FastDFS 的介绍，故此处不再赘述。请查看参考文章中的第 1、2 条。
 FastDFS 架构图 FastDFS 上传流程 FastDFS 下载流程 安装 FastDFS 配置防火墙 本篇文章是基于 CentOS v8.2.2004 版本，以下操作均为单机环境，单机 IP 地址为 192.168.61.128。在安装 FastDFS 之前，需要先进行防火墙的设置。防火墙的相关命令如下：
 1# 暂时关闭防火墙 2systemctl stop firewalld 3 4# 永久关闭防火墙 5systemctl disable firewalld 6 7# 启用防火墙 8systemctl enable firewalld 下载安装 libfastcommon libfastcommon 是从 FastDFS 抽取出来的公共 c 函数库。
-1# 下载 2wget https://github.com/happyfish100/libfastcommon/archive/V1.0.43.tar.gz 3 4# 解压 5tar -zxvf V1.0.43.tar.gz 6cd libfastcommon-1."><meta property="og:url" content="https://sudrizzz.github.io/posts/getting-to-know-fastdfs/"><meta property="og:site_name" content="Anthony's blog"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2020-11-04T17:00:00+08:00"><meta property="article:modified_time" content="2020-11-04T17:00:00+08:00"><meta name=twitter:title content="FastDFS 搭建分布式文件管理系统"><meta name=twitter:description content="FastDFS 简介 FastDFS 是一个开源的高性能分布式文件系统（Distributed File System）。它的主要功能包括：文件存储、文件同步和文件访问以及高容量和负载平衡。主要解决了海量数据存储问题，特别适合以中小文件（建议范围：4KB &amp;lt; file_size &amp;lt; 500MB）为载体的在线服务。
+1# 下载 2wget https://github.com/happyfish100/libfastcommon/archive/V1.0.43.tar.gz 3 4# 解压 5tar -zxvf V1.0.43.tar.gz 6cd libfastcommon-1.">
+<meta property="og:url" content="https://sudrizzz.github.io/posts/getting-to-know-fastdfs/">
+<meta property="og:site_name" content="Anthony's blog">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2020-11-04T17:00:00+08:00"><meta property="article:modified_time" content="2020-11-04T17:00:00+08:00">
+<meta name=twitter:title content="FastDFS 搭建分布式文件管理系统">
+<meta name=twitter:description content="FastDFS 简介 FastDFS 是一个开源的高性能分布式文件系统（Distributed File System）。它的主要功能包括：文件存储、文件同步和文件访问以及高容量和负载平衡。主要解决了海量数据存储问题，特别适合以中小文件（建议范围：4KB &amp;lt; file_size &amp;lt; 500MB）为载体的在线服务。
 FastDFS 开源地址：https://github.com/happyfish100/fastdfs
 由于网络上已有很多详细的关于 FastDFS 的介绍，故此处不再赘述。请查看参考文章中的第 1、2 条。
 FastDFS 架构图 FastDFS 上传流程 FastDFS 下载流程 安装 FastDFS 配置防火墙 本篇文章是基于 CentOS v8.2.2004 版本，以下操作均为单机环境，单机 IP 地址为 192.168.61.128。在安装 FastDFS 之前，需要先进行防火墙的设置。防火墙的相关命令如下：
 1# 暂时关闭防火墙 2systemctl stop firewalld 3 4# 永久关闭防火墙 5systemctl disable firewalld 6 7# 启用防火墙 8systemctl enable firewalld 下载安装 libfastcommon libfastcommon 是从 FastDFS 抽取出来的公共 c 函数库。
-1# 下载 2wget https://github.com/happyfish100/libfastcommon/archive/V1.0.43.tar.gz 3 4# 解压 5tar -zxvf V1.0.43.tar.gz 6cd libfastcommon-1."></head><body class="article-page has-toc"><script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script><div class="container main-container flex
-extended"><div id=article-toolbar><a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg><span>Back</span></a></div><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/fastdfs/>fastdfs</a></header><h2 class=article-title><a href=/posts/getting-to-know-fastdfs/>FastDFS 搭建分布式文件管理系统</a></h2><footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--published>Nov 04, 2020</time></footer></div></header><section class=article-content><h1 id=fastdfs-简介>FastDFS 简介</h1><p>FastDFS 是一个开源的高性能分布式文件系统（Distributed File System）。它的主要功能包括：文件存储、文件同步和文件访问以及高容量和负载平衡。主要解决了海量数据存储问题，特别适合以中小文件（建议范围：4KB &lt; file_size &lt; 500MB）为载体的在线服务。</p><p>FastDFS 开源地址：https://github.com/happyfish100/fastdfs</p><p>由于网络上已有很多详细的关于 FastDFS 的介绍，故此处不再赘述。请查看参考文章中的第 1、2 条。</p><h2 id=fastdfs-架构图>FastDFS 架构图</h2><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201103150000.jpg alt=20201103150000></p><h2 id=fastdfs-上传流程>FastDFS 上传流程</h2><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104100033.png alt=20201104100033></p><h2 id=fastdfs-下载流程>FastDFS 下载流程</h2><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104100107.png alt=20201104100107></p><h1 id=安装-fastdfs>安装 FastDFS</h1><h2 id=配置防火墙>配置防火墙</h2><p>本篇文章是基于 CentOS v8.2.2004 版本，以下操作均为单机环境，单机 IP 地址为 192.168.61.128。在安装 FastDFS 之前，需要先进行防火墙的设置。防火墙的相关命令如下：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># 暂时关闭防火墙</span>
+1# 下载 2wget https://github.com/happyfish100/libfastcommon/archive/V1.0.43.tar.gz 3 4# 解压 5tar -zxvf V1.0.43.tar.gz 6cd libfastcommon-1.">
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>Back</span>
+</a>
+</div>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/fastdfs/>
+fastdfs
+</a>
+</header>
+<h2 class=article-title>
+<a href=/posts/getting-to-know-fastdfs/>FastDFS 搭建分布式文件管理系统</a>
+</h2>
+<footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--published>Nov 04, 2020</time>
+</footer></div>
+</header>
+<section class=article-content>
+<h1 id=fastdfs-简介>FastDFS 简介</h1>
+<p>FastDFS 是一个开源的高性能分布式文件系统（Distributed File System）。它的主要功能包括：文件存储、文件同步和文件访问以及高容量和负载平衡。主要解决了海量数据存储问题，特别适合以中小文件（建议范围：4KB &lt; file_size &lt; 500MB）为载体的在线服务。</p>
+<p>FastDFS 开源地址：https://github.com/happyfish100/fastdfs</p>
+<p>由于网络上已有很多详细的关于 FastDFS 的介绍，故此处不再赘述。请查看参考文章中的第 1、2 条。</p>
+<h2 id=fastdfs-架构图>FastDFS 架构图</h2>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201103150000.jpg alt=20201103150000></p>
+<h2 id=fastdfs-上传流程>FastDFS 上传流程</h2>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104100033.png alt=20201104100033></p>
+<h2 id=fastdfs-下载流程>FastDFS 下载流程</h2>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104100107.png alt=20201104100107></p>
+<h1 id=安装-fastdfs>安装 FastDFS</h1>
+<h2 id=配置防火墙>配置防火墙</h2>
+<p>本篇文章是基于 CentOS v8.2.2004 版本，以下操作均为单机环境，单机 IP 地址为 192.168.61.128。在安装 FastDFS 之前，需要先进行防火墙的设置。防火墙的相关命令如下：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># 暂时关闭防火墙</span>
 <span class=ln>2</span>systemctl stop firewalld
 <span class=ln>3</span>
 <span class=ln>4</span><span class=c1># 永久关闭防火墙</span>
@@ -22,7 +72,9 @@ extended"><div id=article-toolbar><a href=https://sudrizzz.github.io/ class=back
 <span class=ln>6</span>
 <span class=ln>7</span><span class=c1># 启用防火墙</span>
 <span class=ln>8</span>systemctl <span class=nb>enable</span> firewalld
-</code></pre></div><h2 id=下载安装-libfastcommon>下载安装 libfastcommon</h2><p>libfastcommon 是从 FastDFS 抽取出来的公共 c 函数库。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln> 1</span><span class=c1># 下载</span>
+</code></pre></div><h2 id=下载安装-libfastcommon>下载安装 libfastcommon</h2>
+<p>libfastcommon 是从 FastDFS 抽取出来的公共 c 函数库。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln> 1</span><span class=c1># 下载</span>
 <span class=ln> 2</span>wget https://github.com/happyfish100/libfastcommon/archive/V1.0.43.tar.gz
 <span class=ln> 3</span>
 <span class=ln> 4</span><span class=c1># 解压</span>
@@ -32,11 +84,13 @@ extended"><div id=article-toolbar><a href=https://sudrizzz.github.io/ class=back
 <span class=ln> 8</span><span class=c1># 编译安装</span>
 <span class=ln> 9</span>./make.sh
 <span class=ln>10</span>./make.sh install
-</code></pre></div><p>libfastcommon.so 安装到了 <code>/usr/lib64/libfastcommon.so</code>，但是 FastDFS 主程序设置的 lib 目录是 <code>/usr/local/lib</code>，所以需要创建软链接。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>ln -s /usr/lib64/libfastcommon.so /usr/local/lib/libfastcommon.so
+</code></pre></div><p>libfastcommon.so 安装到了 <code>/usr/lib64/libfastcommon.so</code>，但是 FastDFS 主程序设置的 lib 目录是 <code>/usr/local/lib</code>，所以需要创建软链接。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>ln -s /usr/lib64/libfastcommon.so /usr/local/lib/libfastcommon.so
 <span class=ln>2</span>ln -s /usr/lib64/libfastcommon.so /usr/lib/libfastcommon.so
 <span class=ln>3</span>ln -s /usr/lib64/libfdfsclient.so /usr/local/lib/libfdfsclient.so
 <span class=ln>4</span>ln -s /usr/lib64/libfdfsclient.so /usr/lib/libfdfsclient.so
-</code></pre></div><h2 id=下载安装-fastdfs>下载安装 FastDFS</h2><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln> 1</span><span class=c1># 下载</span>
+</code></pre></div><h2 id=下载安装-fastdfs>下载安装 FastDFS</h2>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln> 1</span><span class=c1># 下载</span>
 <span class=ln> 2</span>wget https://github.com/happyfish100/fastdfs/archive/V6.06.tar.gz
 <span class=ln> 3</span>
 <span class=ln> 4</span><span class=c1># 解压</span>
@@ -46,12 +100,17 @@ extended"><div id=article-toolbar><a href=https://sudrizzz.github.io/ class=back
 <span class=ln> 8</span><span class=c1># 编译安装</span>
 <span class=ln> 9</span>./make.sh
 <span class=ln>10</span>./make.sh install
-</code></pre></div><p>安装完成之后，服务脚本存储在 <code>/etc/init.d/</code> 中，详细文件如下：</p><pre><code>/etc/init.d/fdfs_storaged
+</code></pre></div><p>安装完成之后，服务脚本存储在 <code>/etc/init.d/</code> 中，详细文件如下：</p>
+<pre><code>/etc/init.d/fdfs_storaged
 /etc/init.d/fdfs_tracker
-</code></pre><p>默认配置文件存储在 <code>/etc/fdfs/</code> 中，详细文件如下：</p><pre><code>/etc/fdfs/client.conf.sample
+</code></pre>
+<p>默认配置文件存储在 <code>/etc/fdfs/</code> 中，详细文件如下：</p>
+<pre><code>/etc/fdfs/client.conf.sample
 /etc/fdfs/storage.conf.sample
 /etc/fdfs/tracker.conf.sample
-</code></pre><p>命令工具存储在 <code>/usr/bin/</code> 中，详细文件如下：</p><pre><code>fdfs_appender_test
+</code></pre>
+<p>命令工具存储在 <code>/usr/bin/</code> 中，详细文件如下：</p>
+<pre><code>fdfs_appender_test
 fdfs_appender_test1
 fdfs_append_file
 fdfs_crc32
@@ -68,30 +127,45 @@ fdfs_upload_appender
 fdfs_upload_file
 stop.sh
 restart.sh
-</code></pre><h1 id=配置-fastdfs-tracker-服务>配置 FastDFS Tracker 服务</h1><h2 id=修改配置文件>修改配置文件</h2><p>从上文可知，配置文件在 <code>/etc/fdfs/</code> 中，我们需要拷贝一份并进行一些修改。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /etc/fdfs
+</code></pre>
+<h1 id=配置-fastdfs-tracker-服务>配置 FastDFS Tracker 服务</h1>
+<h2 id=修改配置文件>修改配置文件</h2>
+<p>从上文可知，配置文件在 <code>/etc/fdfs/</code> 中，我们需要拷贝一份并进行一些修改。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /etc/fdfs
 <span class=ln>2</span>cp tracker.conf.sample tracker.conf
 <span class=ln>3</span>vim tracker.conf
-</code></pre></div><p>需要修改的部分如下：</p><pre><code class=language-config data-lang=config># Tracker 数据和日志存储目录
+</code></pre></div><p>需要修改的部分如下：</p>
+<pre><code class=language-config data-lang=config># Tracker 数据和日志存储目录
 base_path = /home/fastdfs/tracker
 
 # HTTP 服务端口
 http.server_port = 80
-</code></pre><p>根据上述配置，创建配置中的目录</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>mkdir -p /home/fastdfs/tracker
-</code></pre></div><h2 id=启动-tracker-服务>启动 Tracker 服务</h2><p>初次成功启动，会在 base_path 即 <code>/home/fastdfs/tracker</code> 下创建 data、logs 两个目录。启动命令如下：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>/etc/init.d/fdfs_trackerd start
+</code></pre><p>根据上述配置，创建配置中的目录</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>mkdir -p /home/fastdfs/tracker
+</code></pre></div><h2 id=启动-tracker-服务>启动 Tracker 服务</h2>
+<p>初次成功启动，会在 base_path 即 <code>/home/fastdfs/tracker</code> 下创建 data、logs 两个目录。启动命令如下：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>/etc/init.d/fdfs_trackerd start
 <span class=ln>2</span><span class=c1># 或</span>
 <span class=ln>3</span>service fdfs_trackerd start
-</code></pre></div><p>启动后，可以通过 netstat 命令查看是都启动成功，若得到以下类似输出，22122 端口处于监听状态，则表示 Tracker 服务安装并启动成功。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>netstat -unltp <span class=p>|</span> grep fdfs
+</code></pre></div><p>启动后，可以通过 netstat 命令查看是都启动成功，若得到以下类似输出，22122 端口处于监听状态，则表示 Tracker 服务安装并启动成功。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>netstat -unltp <span class=p>|</span> grep fdfs
 </code></pre></div><pre><code># 输出内容
 tcp        0      0 0.0.0.0:22122           0.0.0.0:*               LISTEN      6220/fdfs_trackerd
-</code></pre><p>同理，可以通过下列命令关闭 Tracker 服务或者设置 Tracker 开机自启：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># 关闭服务</span>
+</code></pre>
+<p>同理，可以通过下列命令关闭 Tracker 服务或者设置 Tracker 开机自启：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># 关闭服务</span>
 <span class=ln>2</span>service fdfs_trackerd stop
 <span class=ln>3</span>
 <span class=ln>4</span><span class=c1># 开机自启</span>
 <span class=ln>5</span>chkconfig fdfs_trackerd on
-</code></pre></div><h1 id=配置-fastdfs-storage-服务>配置 FastDFS Storage 服务</h1><h2 id=修改配置文件-1>修改配置文件</h2><p>与配置 Tracker 服务类似，首先我们也需要拷贝样例配置文件并进行相应修改。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /etc/fdfs
+</code></pre></div><h1 id=配置-fastdfs-storage-服务>配置 FastDFS Storage 服务</h1>
+<h2 id=修改配置文件-1>修改配置文件</h2>
+<p>与配置 Tracker 服务类似，首先我们也需要拷贝样例配置文件并进行相应修改。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /etc/fdfs
 <span class=ln>2</span>cp storage.conf.sample storage.conf
 <span class=ln>3</span>vim storage.conf
-</code></pre></div><p>需要修改的部分如下：</p><pre><code class=language-config data-lang=config># Tracker 数据和日志存储目录
+</code></pre></div><p>需要修改的部分如下：</p>
+<pre><code class=language-config data-lang=config># Tracker 数据和日志存储目录
 base_path = /home/fastdfs/storage
 
 # 存放文件时 storage server 支持多个路径。这里配置存放文件的基路径数目，通常只配一个目录
@@ -111,24 +185,31 @@ tracker_server=192.168.61.128:22122
 
 # HTTP 服务端口
 http.server_port = 80
-</code></pre><p>根据上述配置，创建配置中的目录</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># base_path</span>
+</code></pre><p>根据上述配置，创建配置中的目录</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># base_path</span>
 <span class=ln>2</span>mkdir -p /home/fastdfs/storage
 <span class=ln>3</span>
 <span class=ln>4</span><span class=c1># store_path0</span>
 <span class=ln>5</span>mkdir -p /home/fastdfs/file
-</code></pre></div><h2 id=启动-storage-服务>启动 Storage 服务</h2><p>启动 Storage 前确保 Tracker 是启动的。初次启动成功，会在 base_path 即 <code>/home/fastdfs/storage/</code> 目录下创建 data、logs 两个目录。启动命令如下：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>/etc/init.d/fdfs_storaged start
+</code></pre></div><h2 id=启动-storage-服务>启动 Storage 服务</h2>
+<p>启动 Storage 前确保 Tracker 是启动的。初次启动成功，会在 base_path 即 <code>/home/fastdfs/storage/</code> 目录下创建 data、logs 两个目录。启动命令如下：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>/etc/init.d/fdfs_storaged start
 <span class=ln>2</span><span class=c1># 或</span>
 <span class=ln>3</span>service fdfs_storaged start
-</code></pre></div><p>启动后，可以通过下列命令查看 Storage 服务是否启动成功。若输出结果与下列输出类似，23000 端口正处于监听状态，则 Storage 服务启动成功。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>netstat -unltp <span class=p>|</span> grep fdfs
+</code></pre></div><p>启动后，可以通过下列命令查看 Storage 服务是否启动成功。若输出结果与下列输出类似，23000 端口正处于监听状态，则 Storage 服务启动成功。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>netstat -unltp <span class=p>|</span> grep fdfs
 </code></pre></div><pre><code># 输出内容
 tcp        0      0 0.0.0.0:23000           0.0.0.0:*               LISTEN      6257/fdfs_storaged
 tcp        0      0 0.0.0.0:22122           0.0.0.0:*               LISTEN      6220/fdfs_trackerd
-</code></pre><p>同理，可以通过下列命令关闭 Tracker 服务或者设置 Tracker 开机自启：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># 关闭服务</span>
+</code></pre>
+<p>同理，可以通过下列命令关闭 Tracker 服务或者设置 Tracker 开机自启：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># 关闭服务</span>
 <span class=ln>2</span>service fdfs_storaged stop
 <span class=ln>3</span>
 <span class=ln>4</span><span class=c1># 开机自启</span>
 <span class=ln>5</span>chkconfig fdfs_storaged on
-</code></pre></div><p>此时我们可以在 store_path0 目录下看到 Storage 服务自动创建的 N*N 个子目录</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>ls /home/fastdfs/file/data/
+</code></pre></div><p>此时我们可以在 store_path0 目录下看到 Storage 服务自动创建的 N*N 个子目录</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>ls /home/fastdfs/file/data/
 <span class=ln>2</span>
 <span class=ln>3</span><span class=c1># 统计文件夹数量</span>
 <span class=ln>4</span>ls -l <span class=p>|</span> grep <span class=s2>&#34;^d&#34;</span> <span class=p>|</span> wc -l
@@ -150,16 +231,30 @@ tcp        0      0 0.0.0.0:22122           0.0.0.0:*               LISTEN      
 256
 
 256
-</code></pre><h1 id=文件上传测试>文件上传测试</h1><h2 id=修改配置文件-2>修改配置文件</h2><p>与配置 Storage 服务类似，首先我们也需要拷贝客户端样例配置文件并进行相应修改。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /etc/fdfs
+</code></pre>
+<h1 id=文件上传测试>文件上传测试</h1>
+<h2 id=修改配置文件-2>修改配置文件</h2>
+<p>与配置 Storage 服务类似，首先我们也需要拷贝客户端样例配置文件并进行相应修改。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /etc/fdfs
 <span class=ln>2</span>cp client.conf.sample client.conf
 <span class=ln>3</span>vim client.conf
-</code></pre></div><p>需要修改的部分如下：</p><pre><code class=language-config data-lang=config># Client 的数据和日志目录
+</code></pre></div><p>需要修改的部分如下：</p>
+<pre><code class=language-config data-lang=config># Client 的数据和日志目录
 base_path=/home/fastdfs/client
 
 # Tracker端口
 tracker_server=192.168.61.128:22122
-</code></pre><h2 id=上传图片测试>上传图片测试</h2><p>执行下列命令，尝试上传一张图片到 FastDFS 中：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>fdfs_upload_file /home/Pictures/1989.jpg
-</code></pre></div><p>上传成功后，会输出文件 ID：group1/M00/00/00/wKg9gF-f0aKAUJAlAARra4mLMhc390.jpg</p><p>返回的文件 ID 由 group、存储目录、两级子目录、fileid、文件后缀名（由客户端指定，主要用于区分文件类型）拼接而成。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104093640.png alt=20201104093640></p><h1 id=配置-nginx>配置 Nginx</h1><p>安装 Nginx 的相关操作请查看文章 <a class=link href=https://sudrizzz.github.io/posts/getting-to-know-nginx/ target=_blank rel=noopener>初识 Nginx</a>，此处不再赘述。</p><h2 id=修改配置>修改配置</h2><p>经过上述操作之后，文件已经可以通过命令行的方式上传到 FastDFS 中，但还无法下载，此时我们需要使用 Nginx 来实现下载功能。修改 Nginx 配置文件，在 server 组内添加以下内容：</p><pre><code class=language-config data-lang=config>server {
+</code></pre><h2 id=上传图片测试>上传图片测试</h2>
+<p>执行下列命令，尝试上传一张图片到 FastDFS 中：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>fdfs_upload_file /home/Pictures/1989.jpg
+</code></pre></div><p>上传成功后，会输出文件 ID：group1/M00/00/00/wKg9gF-f0aKAUJAlAARra4mLMhc390.jpg</p>
+<p>返回的文件 ID 由 group、存储目录、两级子目录、fileid、文件后缀名（由客户端指定，主要用于区分文件类型）拼接而成。</p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104093640.png alt=20201104093640></p>
+<h1 id=配置-nginx>配置 Nginx</h1>
+<p>安装 Nginx 的相关操作请查看文章 <a class=link href=https://sudrizzz.github.io/posts/getting-to-know-nginx/ target=_blank rel=noopener>初识 Nginx</a>，此处不再赘述。</p>
+<h2 id=修改配置>修改配置</h2>
+<p>经过上述操作之后，文件已经可以通过命令行的方式上传到 FastDFS 中，但还无法下载，此时我们需要使用 Nginx 来实现下载功能。修改 Nginx 配置文件，在 server 组内添加以下内容：</p>
+<pre><code class=language-config data-lang=config>server {
     listen       80;
     server_name  localhost;
 
@@ -168,19 +263,33 @@ tracker_server=192.168.61.128:22122
         alias /home/fastdfs/file/data;
     }
 }
-</code></pre><p>然后重启 Nginx，访问服务器 ip/fileid 进行测试，根据上述例子，此处访问 http://192.168.61.128/group1/M00/00/00/wKg9gF-f0aKAUJAlAARra4mLMhc390.jpg</p><p>测试结果如下图，可以看到已经访问成功，HTTP 状态码返回 200。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104104028.png alt=20201104104028></p><h1 id=配置-fastdfs-nginx-module-模块>配置 fastdfs-nginx-module 模块</h1><h2 id=模块简介>模块简介</h2><p>fastdfs-nginx-module 可以重定向文件链接到源服务器，避免由于 Storage 服务器复制延迟导致文件无法访问而产生的错误。</p><h2 id=下载解压>下载解压</h2><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>wget https://github.com/happyfish100/fastdfs-nginx-module/archive/V1.22.tar.gz
+</code></pre><p>然后重启 Nginx，访问服务器 ip/fileid 进行测试，根据上述例子，此处访问 http://192.168.61.128/group1/M00/00/00/wKg9gF-f0aKAUJAlAARra4mLMhc390.jpg</p>
+<p>测试结果如下图，可以看到已经访问成功，HTTP 状态码返回 200。</p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104104028.png alt=20201104104028></p>
+<h1 id=配置-fastdfs-nginx-module-模块>配置 fastdfs-nginx-module 模块</h1>
+<h2 id=模块简介>模块简介</h2>
+<p>fastdfs-nginx-module 可以重定向文件链接到源服务器，避免由于 Storage 服务器复制延迟导致文件无法访问而产生的错误。</p>
+<h2 id=下载解压>下载解压</h2>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>wget https://github.com/happyfish100/fastdfs-nginx-module/archive/V1.22.tar.gz
 <span class=ln>2</span>tar -zxvf V1.22.tar.gz
 <span class=ln>3</span><span class=nb>cd</span> fastdfs-nginx-module
-</code></pre></div><h2 id=为-nginx-添加模块>为 Nginx 添加模块</h2><p>首先进入 Nginx 源目录，然后执行 <code>./configure</code> 命令，具体命令如下：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>nginx -s stop
+</code></pre></div><h2 id=为-nginx-添加模块>为 Nginx 添加模块</h2>
+<p>首先进入 Nginx 源目录，然后执行 <code>./configure</code> 命令，具体命令如下：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>nginx -s stop
 <span class=ln>2</span><span class=nb>cd</span> /usr/local/software/nginx-1.18.0
 <span class=ln>3</span>./configure --prefix<span class=o>=</span>/usr/local/nginx/ --add-module<span class=o>=</span><span class=nv>$YOUR_PATH</span>/fastdfs-nginx-module/src
 <span class=ln>4</span>make <span class=o>&amp;&amp;</span> make install
-</code></pre></div><p>其中，<code>/usr/local/software/nginx-1.18.0</code> 为 Nginx 源目录，<code>--prefix</code> 参数指定新版本生成的目录，<code>--add-module</code> 参数表示添加模块，<code>$YOUR_PATH</code> 需要手动替换为 fastdfs-nginx-module 模块的文件路径，本例中为 <code>/usr/local/software/fastdfs-nginx-module</code>。</p><p>安装好之后可以通过以下命令查看 Nginx 模块，如果输出与下列内容类似，则表示模块添加成功。</p><pre><code>nginx -V
+</code></pre></div><p>其中，<code>/usr/local/software/nginx-1.18.0</code> 为 Nginx 源目录，<code>--prefix</code> 参数指定新版本生成的目录，<code>--add-module</code> 参数表示添加模块，<code>$YOUR_PATH</code> 需要手动替换为 fastdfs-nginx-module 模块的文件路径，本例中为 <code>/usr/local/software/fastdfs-nginx-module</code>。</p>
+<p>安装好之后可以通过以下命令查看 Nginx 模块，如果输出与下列内容类似，则表示模块添加成功。</p>
+<pre><code>nginx -V
 </code></pre><pre><code># 输出内容
 nginx version: nginx/1.18.0
 built by gcc 8.3.1 20191121 (Red Hat 8.3.1-5) (GCC)
 configure arguments: --prefix=/usr/local/nginx/ --add-module=/usr/local/software/fastdfs-nginx-module/src
-</code></pre><h2 id=修改-nginx-配置>修改 Nginx 配置</h2><p>修改 nginx.conf，在 server 中做出如下修改：</p><pre><code class=language-config data-lang=config>server {
+</code></pre>
+<h2 id=修改-nginx-配置>修改 Nginx 配置</h2>
+<p>修改 nginx.conf，在 server 中做出如下修改：</p>
+<pre><code class=language-config data-lang=config>server {
     listen       80;
     server_name  localhost;
 
@@ -194,7 +303,9 @@ configure arguments: --prefix=/usr/local/nginx/ --add-module=/usr/local/software
         ngx_fastdfs_module;
     }
 }
-</code></pre><h2 id=修改-fastdfs-nginx-module-配置>修改 fastdfs-nginx-module 配置</h2><p>复制 fastdfs-nginx-module 源码中的配置文件到 <code>/etc/fdfs</code> 目录，兵做以下修改。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /usr/local/software/fastdfs-nginx-module/src
+</code></pre><h2 id=修改-fastdfs-nginx-module-配置>修改 fastdfs-nginx-module 配置</h2>
+<p>复制 fastdfs-nginx-module 源码中的配置文件到 <code>/etc/fdfs</code> 目录，兵做以下修改。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /usr/local/software/fastdfs-nginx-module/src
 <span class=ln>2</span>cp mod_fastdfs.conf /etc/fdfs/
 </code></pre></div><pre><code class=language-config data-lang=config># Tracker Server
 tracker_server=192.168.61.128:22122
@@ -207,15 +318,148 @@ url_have_group_name = true
 
 # Storage 配置的 store_path0 路径，必须和 storage.conf 中的一致
 store_path0=/home/fastdfs/file
-</code></pre><p>复制 FastDFS 的部分配置文件到 <code>/etc/fdfs</code> 目录</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /usr/local/software/fastdfs-5.05/conf/
+</code></pre><p>复制 FastDFS 的部分配置文件到 <code>/etc/fdfs</code> 目录</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /usr/local/software/fastdfs-5.05/conf/
 <span class=ln>2</span>cp anti-steal.jpg http.conf mime.types /etc/fdfs/
-</code></pre></div><h2 id=测试>测试</h2><p>配置完成之后，我们先启动 Nginx 服务，并观察输出内容，如果与下列输出类似，则表示配置成功。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>nginx
+</code></pre></div><h2 id=测试>测试</h2>
+<p>配置完成之后，我们先启动 Nginx 服务，并观察输出内容，如果与下列输出类似，则表示配置成功。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>nginx
 </code></pre></div><pre><code># 输出内容
 ngx_http_fastdfs_set pid=11648
-</code></pre><p>此时我们可以在浏览器中访问前文中上传的文件，能下载文件则表示 fastdfs-nginx-module 模块安装成功。注意和和前文中直接使用 Nginx 路由访问不同的是，这里配置 fastdfs-nginx-module 模块，可以重定向文件链接到源服务器取文件。访问结果如下图所示。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104104028.png alt=20201104104028></p><p>至此，FastDFS 搭建分布式文件管理系统就初步完成了，在下一篇文章中，将介绍如何在客户端上通过 Java 来实现文件的上传和下载。</p><h1 id=参考文章>参考文章</h1><ol><li><a class=link href=https://www.cnblogs.com/chiangchou/p/fastdfs.html target=_blank rel=noopener>用 FastDFS 一步步搭建文件管理系统</a></li><li><a class=link href=https://www.cnblogs.com/myitnews/p/12214319.html target=_blank rel=noopener>FastDFS 简介</a></li><li><a class=link href=https://programmer.ink/think/fastdfs-distributed-file-storage.html target=_blank rel=noopener>FastDFS Distributed File Storage</a></li><li><a class=link href="http://bbs.chinaunix.net/forum.php?mod=viewthread&tid=1941456" target=_blank rel=noopener>FastDFS 配置文件详解（修订版 1）</a></li><li><a class=link href=https://sudrizzz.github.io/posts/getting-to-know-nginx/ target=_blank rel=noopener>初识 Nginx</a></li><li><a class=link href=https://github.com/happyfish100/fastdfs-nginx-module/blob/master/INSTALL target=_blank rel=noopener>fastdfs nginx module installation introduction</a></li></ol></section><footer class=article-footer><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script></article><aside class=related-contents--wrapper></aside><footer class=site-footer><section class=copyright>&copy;
+</code></pre>
+<p>此时我们可以在浏览器中访问前文中上传的文件，能下载文件则表示 fastdfs-nginx-module 模块安装成功。注意和和前文中直接使用 Nginx 路由访问不同的是，这里配置 fastdfs-nginx-module 模块，可以重定向文件链接到源服务器取文件。访问结果如下图所示。</p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104104028.png alt=20201104104028></p>
+<p>至此，FastDFS 搭建分布式文件管理系统就初步完成了，在下一篇文章中，将介绍如何在客户端上通过 Java 来实现文件的上传和下载。</p>
+<h1 id=参考文章>参考文章</h1>
+<ol>
+<li><a class=link href=https://www.cnblogs.com/chiangchou/p/fastdfs.html target=_blank rel=noopener>用 FastDFS 一步步搭建文件管理系统</a></li>
+<li><a class=link href=https://www.cnblogs.com/myitnews/p/12214319.html target=_blank rel=noopener>FastDFS 简介</a></li>
+<li><a class=link href=https://programmer.ink/think/fastdfs-distributed-file-storage.html target=_blank rel=noopener>FastDFS Distributed File Storage</a></li>
+<li><a class=link href="http://bbs.chinaunix.net/forum.php?mod=viewthread&tid=1941456" target=_blank rel=noopener>FastDFS 配置文件详解（修订版 1）</a></li>
+<li><a class=link href=https://sudrizzz.github.io/posts/getting-to-know-nginx/ target=_blank rel=noopener>初识 Nginx</a></li>
+<li><a class=link href=https://github.com/happyfish100/fastdfs-nginx-module/blob/master/INSTALL target=_blank rel=noopener>fastdfs nginx module installation introduction</a></li>
+</ol>
+</section>
+<footer class=article-footer>
+<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span>
+</section>
+</footer>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script>
+</article>
+<aside class=related-contents--wrapper>
+</aside>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
 2018 -
-2021 Anthony's blog</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.4.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+2021 Anthony's blog
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.4.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#fastdfs-简介>FastDFS 简介</a><ol><li><a href=#fastdfs-架构图>FastDFS 架构图</a></li><li><a href=#fastdfs-上传流程>FastDFS 上传流程</a></li><li><a href=#fastdfs-下载流程>FastDFS 下载流程</a></li></ol></li><li><a href=#安装-fastdfs>安装 FastDFS</a><ol><li><a href=#配置防火墙>配置防火墙</a></li><li><a href=#下载安装-libfastcommon>下载安装 libfastcommon</a></li><li><a href=#下载安装-fastdfs>下载安装 FastDFS</a></li></ol></li><li><a href=#配置-fastdfs-tracker-服务>配置 FastDFS Tracker 服务</a><ol><li><a href=#修改配置文件>修改配置文件</a></li><li><a href=#启动-tracker-服务>启动 Tracker 服务</a></li></ol></li><li><a href=#配置-fastdfs-storage-服务>配置 FastDFS Storage 服务</a><ol><li><a href=#修改配置文件-1>修改配置文件</a></li><li><a href=#启动-storage-服务>启动 Storage 服务</a></li></ol></li><li><a href=#文件上传测试>文件上传测试</a><ol><li><a href=#修改配置文件-2>修改配置文件</a></li><li><a href=#上传图片测试>上传图片测试</a></li></ol></li><li><a href=#配置-nginx>配置 Nginx</a><ol><li><a href=#修改配置>修改配置</a></li></ol></li><li><a href=#配置-fastdfs-nginx-module-模块>配置 fastdfs-nginx-module 模块</a><ol><li><a href=#模块简介>模块简介</a></li><li><a href=#下载解压>下载解压</a></li><li><a href=#为-nginx-添加模块>为 Nginx 添加模块</a></li><li><a href=#修改-nginx-配置>修改 Nginx 配置</a></li><li><a href=#修改-fastdfs-nginx-module-配置>修改 fastdfs-nginx-module 配置</a></li><li><a href=#测试>测试</a></li></ol></li><li><a href=#参考文章>参考文章</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script></body></html>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">Table of contents</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#fastdfs-简介>FastDFS 简介</a>
+<ol>
+<li><a href=#fastdfs-架构图>FastDFS 架构图</a></li>
+<li><a href=#fastdfs-上传流程>FastDFS 上传流程</a></li>
+<li><a href=#fastdfs-下载流程>FastDFS 下载流程</a></li>
+</ol>
+</li>
+<li><a href=#安装-fastdfs>安装 FastDFS</a>
+<ol>
+<li><a href=#配置防火墙>配置防火墙</a></li>
+<li><a href=#下载安装-libfastcommon>下载安装 libfastcommon</a></li>
+<li><a href=#下载安装-fastdfs>下载安装 FastDFS</a></li>
+</ol>
+</li>
+<li><a href=#配置-fastdfs-tracker-服务>配置 FastDFS Tracker 服务</a>
+<ol>
+<li><a href=#修改配置文件>修改配置文件</a></li>
+<li><a href=#启动-tracker-服务>启动 Tracker 服务</a></li>
+</ol>
+</li>
+<li><a href=#配置-fastdfs-storage-服务>配置 FastDFS Storage 服务</a>
+<ol>
+<li><a href=#修改配置文件-1>修改配置文件</a></li>
+<li><a href=#启动-storage-服务>启动 Storage 服务</a></li>
+</ol>
+</li>
+<li><a href=#文件上传测试>文件上传测试</a>
+<ol>
+<li><a href=#修改配置文件-2>修改配置文件</a></li>
+<li><a href=#上传图片测试>上传图片测试</a></li>
+</ol>
+</li>
+<li><a href=#配置-nginx>配置 Nginx</a>
+<ol>
+<li><a href=#修改配置>修改配置</a></li>
+</ol>
+</li>
+<li><a href=#配置-fastdfs-nginx-module-模块>配置 fastdfs-nginx-module 模块</a>
+<ol>
+<li><a href=#模块简介>模块简介</a></li>
+<li><a href=#下载解压>下载解压</a></li>
+<li><a href=#为-nginx-添加模块>为 Nginx 添加模块</a></li>
+<li><a href=#修改-nginx-配置>修改 Nginx 配置</a></li>
+<li><a href=#修改-fastdfs-nginx-module-配置>修改 fastdfs-nginx-module 配置</a></li>
+<li><a href=#测试>测试</a></li>
+</ol>
+</li>
+<li><a href=#参考文章>参考文章</a></li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>
