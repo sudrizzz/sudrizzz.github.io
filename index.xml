@@ -1175,7 +1175,7 @@ conda environments:
 base C:\Users\xvyn\anaconda3
 handwrittendigits * C:\Users\xvyn\anaconda3\envs\handwrittendigits
 &lt;/code>&lt;/pre>
-&lt;h2 id="更换镜像源">更换镜像源&lt;/h2>
+&lt;h2 id="更换镜像源不推荐">更换镜像源（不推荐）&lt;/h2>
 &lt;p>由于 Anaconda 和 pip 官方镜像源访问缓慢，故需要将镜像源更换为国内镜像源，例如清华大学、中科大与阿里云镜像源。使用下列命令可以查看当前 Anaconda 镜像源。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda config --show
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>在输出中找到 channel 部分，有如下内容。&lt;/p>
@@ -1217,7 +1217,7 @@ menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;/code>&lt;/pre>
-&lt;h3 id="更换-pip-镜像源">更换 pip 镜像源&lt;/h3>
+&lt;h3 id="更换-pip-镜像源不推荐">更换 pip 镜像源（不推荐）&lt;/h3>
 &lt;p>以清华大学镜像源为例，执行下列命令即可完成更换。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>pip config &lt;span class="nb">set&lt;/span> global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装-tensorflow">安装 tensorflow&lt;/h2>
@@ -1374,7 +1374,10 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>运行时的截图如下，可以看到已经生成了多张手写数字的图片。&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208201913.png" alt="20201208201913" />&lt;/p>
 &lt;p>至此，GAN 网络手写数字生成环境搭建已经完成，后续将进行更加深入的学习。&lt;/p>
-&lt;h1 id="参考文章">参考文章&lt;/h1>
+&lt;h1 id="备注">备注&lt;/h1>
+&lt;p>为 jupyter lab 指定 conda 环境，在 conda 环境中执行以下命令后再启动 jupyter lab 即可&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda install nb_conda
+&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="参考文章">参考文章&lt;/h1>
 &lt;ol>
 &lt;li>&lt;a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda.html" target="_blank" rel="noopener"
 >Anaconda 源使用帮助&lt;/a>&lt;/li>
