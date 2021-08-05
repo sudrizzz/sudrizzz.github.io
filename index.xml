@@ -1,4 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 01 Aug 2021 10:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>增肌训练计划笔记</title><link>https://sudrizzz.github.io/posts/fitness/</link><pubDate>Sun, 01 Aug 2021 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/fitness/</guid><description>&lt;h1 id="时间安排">时间安排&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 05 Aug 2021 19:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Anaconda 克隆到离线环境</title><link>https://sudrizzz.github.io/posts/conda-clone/</link><pubDate>Thu, 05 Aug 2021 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/conda-clone/</guid><description>&lt;h1 id="配置-conda-环境">配置 conda 环境&lt;/h1>
+&lt;p>首先我们需要在在线环境中配置好 conda 环境，安装好所需要的包，方可开始打包。此处假设我们创建的环境名为 baseenv。&lt;/p>
+&lt;h1 id="打包">打包&lt;/h1>
+&lt;p>首先进入 Anaconda 的安装目录，将以下目录进行打包：&lt;/p>
+&lt;ol>
+&lt;li>annaconda3\envs\baseenv&lt;/li>
+&lt;li>annaconda3\pkgs&lt;/li>
+&lt;/ol>
+&lt;p>我们直接将这两个目录压缩生成对应的压缩包：baseenv.zip 与 pkgs.zip&lt;/p>
+&lt;h1 id="离线创建-conda-环境">离线创建 conda 环境&lt;/h1>
+&lt;p>在离线的机器上安装好 Anaconda 后，在 Anaconda Prompt (anaconda3) 执行以下命令将其设置为离线模式。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda config --set offline &lt;span class="nb">true&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后创建需要的环境，以 new_env 作为环境名为例。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>conda create -n new_env
+&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="环境恢复">环境恢复&lt;/h1>
+&lt;p>将上述两个压缩包分别解压到离线机器的以下目录中：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>压缩包&lt;/th>
+&lt;th>解压到&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>baseenv.zip&lt;/td>
+&lt;td>annaconda3\env\new_env\&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>pkgs.zip&lt;/td>
+&lt;td>annaconda3\pkgs\&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h1 id="测试">测试&lt;/h1>
+&lt;p>经过上述步骤，环境就已经恢复成功了，可以通过命令行运行 python 并引入包的方式来进行测试。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210805185700.png" alt="20210805185700" />&lt;/p></description></item><item><title>增肌训练计划笔记</title><link>https://sudrizzz.github.io/posts/fitness/</link><pubDate>Sun, 01 Aug 2021 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/fitness/</guid><description>&lt;h1 id="时间安排">时间安排&lt;/h1>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801191101.png" alt="20210801191101" />&lt;/p>
 &lt;p>周一、周四：胸背&lt;br>
 周二、周五：先练大腿，带上肩部和手臂&lt;/p>
