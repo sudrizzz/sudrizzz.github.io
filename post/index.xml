@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Anthony's blog</title><link>https://sudrizzz.github.io/post/</link><description>Recent content in Posts on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 05 Aug 2021 19:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Anaconda 克隆到离线环境</title><link>https://sudrizzz.github.io/posts/conda-clone/</link><pubDate>Thu, 05 Aug 2021 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/conda-clone/</guid><description>配置 conda 环境 首先我们需要在在线环境中配置好 conda 环境，安装好所需要的包，方可开始打包。此处假设我们创建的环境名为 baseenv。
 打包 首先进入 Anaconda 的安装目录，将以下目录进行打包：
-annaconda3\envs\baseenv annaconda3\pkgs 我们直接将这两个目录压缩生成对应的压缩包：baseenv.zip 与 pkgs.zip
+anaconda3\envs\baseenv anaconda3\pkgs 我们直接将这两个目录压缩生成对应的压缩包：baseenv.zip 与 pkgs.zip
 离线创建 conda 环境 在离线的机器上安装好 Anaconda 后，在 Anaconda Prompt (anaconda3) 执行以下命令将其设置为离线模式。
 1conda config --set offline true 然后创建需要的环境，以 new_env 作为环境名为例。
 1conda create -n new_env 环境恢复 将上述两个压缩包分别解压到离线机器的以下目录中：
-压缩包 解压到 baseenv.zip annaconda3\env\new_env\ pkgs.zip annaconda3\pkgs\ 测试 经过上述步骤，环境就已经恢复成功了，可以通过命令行运行 python 并引入包的方式来进行测试。</description></item><item><title>增肌训练计划笔记</title><link>https://sudrizzz.github.io/posts/fitness/</link><pubDate>Sun, 01 Aug 2021 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/fitness/</guid><description>时间安排 周一、周四：胸背
+压缩包 解压到 baseenv.zip anaconda3\env\new_env\ pkgs.zip anaconda3\pkgs\ 测试 经过上述步骤，环境就已经恢复成功了，可以通过命令行运行 python 并引入包的方式来进行测试。</description></item><item><title>增肌训练计划笔记</title><link>https://sudrizzz.github.io/posts/fitness/</link><pubDate>Sun, 01 Aug 2021 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/fitness/</guid><description>时间安排 周一、周四：胸背
 周二、周五：先练大腿，带上肩部和手臂
 胸背 平板卧推（胸部） 组数：4 组 次数：8 次 间歇：1~2 分钟 练法：最后一组力竭 要点 肩胛骨收紧，仰躺在卧推椅上 双手垂直在身体上方，缓慢有控制地将哑铃往下放 放到最低点再用力往上推（两侧手肘往中间夹） 注意 小臂全程垂直地面。
 后期可以考虑杠铃卧推。

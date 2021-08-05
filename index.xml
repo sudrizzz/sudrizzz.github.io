@@ -3,8 +3,8 @@
 &lt;h1 id="打包">打包&lt;/h1>
 &lt;p>首先进入 Anaconda 的安装目录，将以下目录进行打包：&lt;/p>
 &lt;ol>
-&lt;li>annaconda3\envs\baseenv&lt;/li>
-&lt;li>annaconda3\pkgs&lt;/li>
+&lt;li>anaconda3\envs\baseenv&lt;/li>
+&lt;li>anaconda3\pkgs&lt;/li>
 &lt;/ol>
 &lt;p>我们直接将这两个目录压缩生成对应的压缩包：baseenv.zip 与 pkgs.zip&lt;/p>
 &lt;h1 id="离线创建-conda-环境">离线创建 conda 环境&lt;/h1>
@@ -24,11 +24,11 @@
 &lt;tbody>
 &lt;tr>
 &lt;td>baseenv.zip&lt;/td>
-&lt;td>annaconda3\env\new_env\&lt;/td>
+&lt;td>anaconda3\env\new_env\&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>pkgs.zip&lt;/td>
-&lt;td>annaconda3\pkgs\&lt;/td>
+&lt;td>anaconda3\pkgs\&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
