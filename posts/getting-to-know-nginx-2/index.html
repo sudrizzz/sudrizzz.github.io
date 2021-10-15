@@ -40,9 +40,17 @@ nginx
 <h2 class=article-title>
 <a href=/posts/getting-to-know-nginx-2/>初识 Nginx（二）</a>
 </h2>
-<footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
 <time class=article-time--published>Sep 11, 2020</time>
-</footer></div>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+3 min read
+</time>
+</div>
+</footer>
+</div>
 </header>
 <section class=article-content>
 <h1 id=应用示例>应用示例</h1>
@@ -65,7 +73,7 @@ nginx
 <span class=ln>11</span>drwx------.  2 nobody root    6 9月   6 15:26 uwsgi_temp
 </code></pre></div><h2 id=修改配置>修改配置</h2>
 <p>编辑 <code>conf/nginx.conf</code>，将 <code>server</code> 中的 <code>location</code> 部分修改为如下配置。</p>
-<pre><code class=language-config data-lang=config>location / {
+<pre tabindex=0><code class=language-config data-lang=config>location / {
     alias dlib/;
     #...
 }
@@ -79,14 +87,24 @@ nginx
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>nginx -s reload
 </code></pre></div><h2 id=访问>访问</h2>
 <p>执行完以上步骤后，访问 Nginx 的地址，即可看到 dlib 下的静态文件已经被正常加载了。如下图。</p>
-<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911201740.png alt=20200911201740></p>
+<p><figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911201740.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911201740.png loading=lazy alt=20200911201740>
+</a>
+<figcaption>20200911201740</figcaption>
+</figure></p>
 <h1 id=常用配置>常用配置</h1>
 <p>以下内容均在 nginx.conf 文件中进行配置。</p>
 <h2 id=数据压缩>数据压缩</h2>
 <p>根据以上的配置，我们已经可以正常访问部署好的静态网页，但是根据开发者工具我们可以看到，首页的大小是 26.4 kB。我们还可以进一步进行优化，将所需要加载的数据进行压缩，使其所需数据量大大减少。</p>
-<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203709.png alt=优化前></p>
+<p><figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203709.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203709.png loading=lazy alt=优化前>
+</a>
+<figcaption>优化前</figcaption>
+</figure></p>
 <p>在 http 部分中添加以下配置。</p>
-<pre><code class=language-config data-lang=config>gzip  on;
+<pre tabindex=0><code class=language-config data-lang=config>gzip  on;
 gzip_min_length 1;
 gzip_comp_level 2;
 gzip_types text/plain application/x-javascript text/css application/xml text/javascript application/x- httpd- php image/jpeg image/gif image/png;
@@ -122,10 +140,15 @@ gzip_types text/plain application/x-javascript text/css application/xml text/jav
 <a class=link href=http://nginx.org/en/docs/http/ngx_http_gzip_module.html target=_blank rel=noopener>http://nginx.org/en/docs/http/ngx_http_gzip_module.html</a></p>
 </blockquote>
 <p>可以看到，开启 gzip 压缩后，加载的数据量大幅减少。</p>
-<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203017.png alt=优化后></p>
+<p><figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203017.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203017.png loading=lazy alt=优化后>
+</a>
+<figcaption>优化后</figcaption>
+</figure></p>
 <h2 id=加载速度>加载速度</h2>
 <p>使用 limit_rate 可以对网页加载速度进行控制，详细如下。</p>
-<pre><code class=language-config data-lang=config>server {
+<pre tabindex=0><code class=language-config data-lang=config>server {
     #...
     set $limit_rate 1k;
     #...
@@ -137,7 +160,7 @@ gzip_types text/plain application/x-javascript text/css application/xml text/jav
 </blockquote>
 <h2 id=记录日志>记录日志</h2>
 <p>在 <code>http</code> 模块中，可以配置日志记录的格式，以及日志记录的位置和文件名等等，配置如下。</p>
-<pre><code class=language-config data-lang=config>http {
+<pre tabindex=0><code class=language-config data-lang=config>http {
     #...
     log_format  main  '$remote_addr - $remote_user [$time_local] &quot;$request&quot; '
                       '$status $body_bytes_sent &quot;$http_referer&quot; '
@@ -153,13 +176,13 @@ gzip_types text/plain application/x-javascript text/css application/xml text/jav
 <h1 id=反向代理>反向代理</h1>
 <p>在此部分，我们使用两台 Nginx 服务器作为示例，分别是 <code>192.168.61.128</code> 和 <code>192.168.61.129</code>，简记为 CentOS_1 与 CentOS_2。</p>
 <p>修改 CentOS_1 的 Nginx 配置文件，修改部分如下，此时直接访问 <code>192.168.61.128</code> 已经不能正常进行加载。</p>
-<pre><code class=language-config data-lang=config>server {
+<pre tabindex=0><code class=language-config data-lang=config>server {
     listen       127.0.0.1:80;
     server_name  localhost;
     #...
 }
 </code></pre><p>修改 CentOS_2 的 Nginx 配置文件，修改部分如下，我们将 <code>192.168.61.129:80</code> 指向了 <code>192.168.61.128:80</code>。</p>
-<pre><code class=language-config data-lang=config>upstream local {
+<pre tabindex=0><code class=language-config data-lang=config>upstream local {
     server 192.168.61.128:80;
 }
 
@@ -192,11 +215,11 @@ server {
 </code></pre></div><ol start=2>
 <li>将 repo 配置中的地址替换为阿里云镜像站地址</li>
 </ol>
-<pre><code>sed -i 's|^#baseurl=https://download.fedoraproject.org/pub|baseurl=https://mirrors.aliyun.com|' /etc/yum.repos.d/epel*
+<pre tabindex=0><code>sed -i 's|^#baseurl=https://download.fedoraproject.org/pub|baseurl=https://mirrors.aliyun.com|' /etc/yum.repos.d/epel*
 sed -i 's|^metalink|#metalink|' /etc/yum.repos.d/epel*
 </code></pre><h3 id=安装-geoip>安装 GeoIP</h3>
 <p>编译安装 GoAccess 需要用到 GeoIP。</p>
-<pre><code>sudo yum -y --enablerepo=epel install geoip
+<pre tabindex=0><code>sudo yum -y --enablerepo=epel install geoip
 </code></pre><h3 id=安装-goaccess-1>安装 GoAccess</h3>
 <p>根据官网的文档，我们顺序执行以下命令即可。</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>wget https://tar.goaccess.io/goaccess-1.4.tar.gz
@@ -216,9 +239,9 @@ sed -i 's|^metalink|#metalink|' /etc/yum.repos.d/epel*
 <span class=ln>7</span>  --enable-geoip=legacy
 </code></pre></div><h2 id=配置-goaccess>配置 GoAccess</h2>
 <p>在使用前，我们需要对 GoAccess 的配置文件进行一些修改，以方便后续使用。</p>
-<pre><code>vim /usr/local/etc/goaccess/goaccess.conf
+<pre tabindex=0><code>vim /usr/local/etc/goaccess/goaccess.conf
 </code></pre><p>在此配置文件中，将以下内容取消注释，其他内容则保持不变。</p>
-<pre><code class=language-config data-lang=config>#...
+<pre tabindex=0><code class=language-config data-lang=config>#...
 no-ip-validation true
 log-format COMBINED
 time-format %H:%M:%S
@@ -230,13 +253,18 @@ real-time-html true
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nb>cd</span> /usr/local/nginx/logs
 <span class=ln>2</span>goaccess access.log -o ../html/report.html
 </code></pre></div><p>此时我们还需要修改 nginx.conf 使报告页面可以直接访问，在 server 部分添加如下内容。</p>
-<pre><code class=language-config data-lang=config>location /report.html {
+<pre tabindex=0><code class=language-config data-lang=config>location /report.html {
     alias html/report.html;
 }
 </code></pre><p>然后重新加载配置即可。</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>nginx -s reload
 </code></pre></div><p>至此，日志可视化已经配置完成，我们可以直接访问 Nginx <code>服务地址/report.html</code> 查看可视化页面，如下。</p>
-<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200913143610.png alt=20200913143610></p>
+<p><figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200913143610.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200913143610.png loading=lazy alt=20200913143610>
+</a>
+<figcaption>20200913143610</figcaption>
+</figure></p>
 <h1 id=附录>附录</h1>
 <p>Linux 查看端口占用状态</p>
 <h2 id=查看占用>查看占用</h2>
@@ -268,7 +296,7 @@ real-time-html true
 <span>Licensed under CC BY-NC-SA 4.0</span>
 </section>
 </footer>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css integrity=sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js integrity=sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script>
 </article>
 <aside class=related-contents--wrapper>
 <h2 class=section-title>Related contents</h2>
@@ -292,7 +320,7 @@ real-time-html true
 </section>
 <section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.4.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
 </section>
 </footer>
 <div class=pswp tabindex=-1 role=dialog aria-hidden=true>

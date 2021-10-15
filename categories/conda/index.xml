@@ -4,4 +4,5 @@ anaconda3\envs\baseenv anaconda3\pkgs 我们直接将这两个目录压缩生成
 离线创建 conda 环境 在离线的机器上安装好 Anaconda 后，在 Anaconda Prompt (anaconda3) 执行以下命令将其设置为离线模式。
 1conda config --set offline true 然后创建需要的环境，以 new_env 作为环境名为例。
 1conda create -n new_env 环境恢复 将上述两个压缩包分别解压到离线机器的以下目录中：
-压缩包 解压到 baseenv.zip anaconda3\env\new_env\ pkgs.zip anaconda3\pkgs\ 测试 经过上述步骤，环境就已经恢复成功了，可以通过命令行运行 python 并引入包的方式来进行测试。</description></item></channel></rss>
+压缩包 解压到 baseenv.zip anaconda3\env\new_env\ pkgs.zip anaconda3\pkgs\ 测试 经过上述步骤，环境就已经恢复成功了，可以通过命令行运行 python 并引入包的方式来进行测试。
+20210805185700</description></item></channel></rss>

@@ -3,25 +3,27 @@
 <meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="5 神经网络 5.1 神经元模型 神经网络是由具有适应性的简单单元组成的广泛并行互连的网络，它的组织能够模拟生物神经系统对真实世界物体所作出的交互反应。我们在机器学习中谈论神经网络时指的是“神经网络学习”。
 神经网络中最基本的成分是神经元（neuron）模型，即上述定义中的“简单单元”。在生物神经网络中，每个神经元与其他神经元相连，当它“兴奋”时，就会向相连的神经元发送化学物质，从而改变这些神经元内的电位；如果某神经元的电位超过了一个“阈值”（threshold），那么它就会被激活。即“兴奋”起来，向其他神经元发送化学物质。
 1943 年，[McCulloch and Pitts,1943] 将上述情形抽象为下图所示的简单模型，这就是一直沿用至今的“M-P 神经元模型”。在这个模型中，神经元接收到来自 n 个其他神经元传递过来的输入信号，这些输入信号通过带权重的连接（connection）进行传递，神经元接收到的总输入值将与神经元的阈值进行比较，然后通过“激活函数”（activation function）处理以产生神经元的输出。
+ 20210218140107 
 激活函数是将输入值映射为输出值“0”或“1”的一类函数，“0”代表神经元抑制，“1”代表神经元兴奋。常见的激活函数主要包括三种：阶跃函数，Sigmoid 函数和 ReLU 函数。
- 阶跃函数  $$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ 1, &amp;amp;x \geq 0; \end{cases} $$
-Sigmoid 函数  $$ f(x) = \frac{1}{1+e^{-x}} $$
-ReLU 函数  $$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ x, &amp;amp;x \geq 0; \end{cases} $$
-5.2 感知机与多层网络 感知机（Perceptron）由两层神经元组成，如下图所示，输入层接收外界输入信号后传递给输出层，输出层是 M-P 神经元，亦称“阈值逻辑单元”（threshold logic unit）。感知机能容易地实现逻辑与、或、非运算。
-需注意的是,感知机只有输出层神经元进行激活函数处理,即只拥有一层功能神经元（functional neuron），其学习能力非常有限。
-一般的，常见的神经网络是形如下图所示的层级结构，每层神经元与下一层神经元全互连，神经元之间不存在同层连接，也不存在跨层连接。这样的神经网络结构通常称为“多层前馈神经网络”（multi-layer feedforward neural networks），其中输入层神经元接收外界输入，隐层与输出层神经元对信号进行加工，最终结果由输出层神经元输出；换言之，输入层神经元仅是接受输入，不进行函数处理，隐层与输出层包含功能神经元。因此，下图通常被称为“两层网络”或“单隐层网络”。只需包含隐层，即可称为多层网络。"><title>《机器学习》笔记（第五章）</title>
+ 阶跃函数   20210218142053 
+$$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ 1, &amp;amp;x \geq 0; \end{cases} $$
+Sigmoid 函数   20210218142227 
+$$ f(x) = \frac{1}{1+e^{-x}} $$
+ReLU 函数   20210218142335 
+$$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ x, &amp;amp;x \geq 0; \end{cases} $$"><title>《机器学习》笔记（第五章）</title>
 <link rel=canonical href=https://sudrizzz.github.io/posts/machine-learning-note-4/>
 <link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="《机器学习》笔记（第五章）">
 <meta property="og:description" content="5 神经网络 5.1 神经元模型 神经网络是由具有适应性的简单单元组成的广泛并行互连的网络，它的组织能够模拟生物神经系统对真实世界物体所作出的交互反应。我们在机器学习中谈论神经网络时指的是“神经网络学习”。
 神经网络中最基本的成分是神经元（neuron）模型，即上述定义中的“简单单元”。在生物神经网络中，每个神经元与其他神经元相连，当它“兴奋”时，就会向相连的神经元发送化学物质，从而改变这些神经元内的电位；如果某神经元的电位超过了一个“阈值”（threshold），那么它就会被激活。即“兴奋”起来，向其他神经元发送化学物质。
 1943 年，[McCulloch and Pitts,1943] 将上述情形抽象为下图所示的简单模型，这就是一直沿用至今的“M-P 神经元模型”。在这个模型中，神经元接收到来自 n 个其他神经元传递过来的输入信号，这些输入信号通过带权重的连接（connection）进行传递，神经元接收到的总输入值将与神经元的阈值进行比较，然后通过“激活函数”（activation function）处理以产生神经元的输出。
+ 20210218140107 
 激活函数是将输入值映射为输出值“0”或“1”的一类函数，“0”代表神经元抑制，“1”代表神经元兴奋。常见的激活函数主要包括三种：阶跃函数，Sigmoid 函数和 ReLU 函数。
- 阶跃函数  $$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ 1, &amp;amp;x \geq 0; \end{cases} $$
-Sigmoid 函数  $$ f(x) = \frac{1}{1+e^{-x}} $$
-ReLU 函数  $$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ x, &amp;amp;x \geq 0; \end{cases} $$
-5.2 感知机与多层网络 感知机（Perceptron）由两层神经元组成，如下图所示，输入层接收外界输入信号后传递给输出层，输出层是 M-P 神经元，亦称“阈值逻辑单元”（threshold logic unit）。感知机能容易地实现逻辑与、或、非运算。
-需注意的是,感知机只有输出层神经元进行激活函数处理,即只拥有一层功能神经元（functional neuron），其学习能力非常有限。
-一般的，常见的神经网络是形如下图所示的层级结构，每层神经元与下一层神经元全互连，神经元之间不存在同层连接，也不存在跨层连接。这样的神经网络结构通常称为“多层前馈神经网络”（multi-layer feedforward neural networks），其中输入层神经元接收外界输入，隐层与输出层神经元对信号进行加工，最终结果由输出层神经元输出；换言之，输入层神经元仅是接受输入，不进行函数处理，隐层与输出层包含功能神经元。因此，下图通常被称为“两层网络”或“单隐层网络”。只需包含隐层，即可称为多层网络。">
+ 阶跃函数   20210218142053 
+$$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ 1, &amp;amp;x \geq 0; \end{cases} $$
+Sigmoid 函数   20210218142227 
+$$ f(x) = \frac{1}{1+e^{-x}} $$
+ReLU 函数   20210218142335 
+$$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ x, &amp;amp;x \geq 0; \end{cases} $$">
 <meta property="og:url" content="https://sudrizzz.github.io/posts/machine-learning-note-4/">
 <meta property="og:site_name" content="Anthony's blog">
 <meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2021-02-16T08:00:00+08:00"><meta property="article:modified_time" content="2021-02-16T08:00:00+08:00">
@@ -29,13 +31,14 @@ ReLU 函数  $$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ x, &amp;amp;x \g
 <meta name=twitter:description content="5 神经网络 5.1 神经元模型 神经网络是由具有适应性的简单单元组成的广泛并行互连的网络，它的组织能够模拟生物神经系统对真实世界物体所作出的交互反应。我们在机器学习中谈论神经网络时指的是“神经网络学习”。
 神经网络中最基本的成分是神经元（neuron）模型，即上述定义中的“简单单元”。在生物神经网络中，每个神经元与其他神经元相连，当它“兴奋”时，就会向相连的神经元发送化学物质，从而改变这些神经元内的电位；如果某神经元的电位超过了一个“阈值”（threshold），那么它就会被激活。即“兴奋”起来，向其他神经元发送化学物质。
 1943 年，[McCulloch and Pitts,1943] 将上述情形抽象为下图所示的简单模型，这就是一直沿用至今的“M-P 神经元模型”。在这个模型中，神经元接收到来自 n 个其他神经元传递过来的输入信号，这些输入信号通过带权重的连接（connection）进行传递，神经元接收到的总输入值将与神经元的阈值进行比较，然后通过“激活函数”（activation function）处理以产生神经元的输出。
+ 20210218140107 
 激活函数是将输入值映射为输出值“0”或“1”的一类函数，“0”代表神经元抑制，“1”代表神经元兴奋。常见的激活函数主要包括三种：阶跃函数，Sigmoid 函数和 ReLU 函数。
- 阶跃函数  $$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ 1, &amp;amp;x \geq 0; \end{cases} $$
-Sigmoid 函数  $$ f(x) = \frac{1}{1+e^{-x}} $$
-ReLU 函数  $$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ x, &amp;amp;x \geq 0; \end{cases} $$
-5.2 感知机与多层网络 感知机（Perceptron）由两层神经元组成，如下图所示，输入层接收外界输入信号后传递给输出层，输出层是 M-P 神经元，亦称“阈值逻辑单元”（threshold logic unit）。感知机能容易地实现逻辑与、或、非运算。
-需注意的是,感知机只有输出层神经元进行激活函数处理,即只拥有一层功能神经元（functional neuron），其学习能力非常有限。
-一般的，常见的神经网络是形如下图所示的层级结构，每层神经元与下一层神经元全互连，神经元之间不存在同层连接，也不存在跨层连接。这样的神经网络结构通常称为“多层前馈神经网络”（multi-layer feedforward neural networks），其中输入层神经元接收外界输入，隐层与输出层神经元对信号进行加工，最终结果由输出层神经元输出；换言之，输入层神经元仅是接受输入，不进行函数处理，隐层与输出层包含功能神经元。因此，下图通常被称为“两层网络”或“单隐层网络”。只需包含隐层，即可称为多层网络。">
+ 阶跃函数   20210218142053 
+$$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ 1, &amp;amp;x \geq 0; \end{cases} $$
+Sigmoid 函数   20210218142227 
+$$ f(x) = \frac{1}{1+e^{-x}} $$
+ReLU 函数   20210218142335 
+$$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ x, &amp;amp;x \geq 0; \end{cases} $$">
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
@@ -58,9 +61,17 @@ Machine-Learning
 <h2 class=article-title>
 <a href=/posts/machine-learning-note-4/>《机器学习》笔记（第五章）</a>
 </h2>
-<footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
 <time class=article-time--published>Feb 16, 2021</time>
-</footer></div>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+1 min read
+</time>
+</div>
+</footer>
+</div>
 </header>
 <section class=article-content>
 <h1 id=5-神经网络>5 神经网络</h1>
@@ -68,12 +79,22 @@ Machine-Learning
 <p>神经网络是由具有适应性的简单单元组成的广泛并行互连的网络，它的组织能够模拟生物神经系统对真实世界物体所作出的交互反应。我们在机器学习中谈论神经网络时指的是“神经网络学习”。</p>
 <p>神经网络中最基本的成分是神经元（neuron）模型，即上述定义中的“简单单元”。在生物神经网络中，每个神经元与其他神经元相连，当它“兴奋”时，就会向相连的神经元发送化学物质，从而改变这些神经元内的电位；如果某神经元的电位超过了一个“阈值”（threshold），那么它就会被激活。即“兴奋”起来，向其他神经元发送化学物质。</p>
 <p>1943 年，[McCulloch and Pitts,1943] 将上述情形抽象为下图所示的简单模型，这就是一直沿用至今的“M-P 神经元模型”。在这个模型中，神经元接收到来自 n 个其他神经元传递过来的输入信号，这些输入信号通过带权重的连接（connection）进行传递，神经元接收到的总输入值将与神经元的阈值进行比较，然后通过“激活函数”（activation function）处理以产生神经元的输出。</p>
-<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218140107.png alt=20210218140107></p>
+<p><figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218140107.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218140107.png loading=lazy alt=20210218140107>
+</a>
+<figcaption>20210218140107</figcaption>
+</figure></p>
 <p>激活函数是将输入值映射为输出值“0”或“1”的一类函数，“0”代表神经元抑制，“1”代表神经元兴奋。常见的激活函数主要包括三种：阶跃函数，Sigmoid 函数和 ReLU 函数。</p>
 <ol>
 <li>阶跃函数</li>
 </ol>
-<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218142053.png alt=20210218142053></p>
+<p><figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218142053.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218142053.png loading=lazy alt=20210218142053>
+</a>
+<figcaption>20210218142053</figcaption>
+</figure></p>
 <p>$$
 f(x) = \begin{cases}
 0, &x&lt;0; \\ 1, &x \geq 0;
@@ -82,12 +103,22 @@ $$</p>
 <ol start=2>
 <li>Sigmoid 函数</li>
 </ol>
-<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218142227.png alt=20210218142227></p>
+<p><figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218142227.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218142227.png loading=lazy alt=20210218142227>
+</a>
+<figcaption>20210218142227</figcaption>
+</figure></p>
 <p>$$ f(x) = \frac{1}{1+e^{-x}} $$</p>
 <ol start=3>
 <li>ReLU 函数</li>
 </ol>
-<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218142335.png alt=20210218142335></p>
+<p><figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218142335.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218142335.png loading=lazy alt=20210218142335>
+</a>
+<figcaption>20210218142335</figcaption>
+</figure></p>
 <p>$$
 f(x) = \begin{cases}
 0, &x&lt;0; \\ x, &x \geq 0;
@@ -95,10 +126,20 @@ f(x) = \begin{cases}
 $$</p>
 <h2 id=52-感知机与多层网络>5.2 感知机与多层网络</h2>
 <p>感知机（Perceptron）由两层神经元组成，如下图所示，输入层接收外界输入信号后传递给输出层，输出层是 M-P 神经元，亦称“阈值逻辑单元”（threshold logic unit）。感知机能容易地实现逻辑与、或、非运算。</p>
-<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218143036.png alt=20210218143036></p>
+<p><figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218143036.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218143036.png loading=lazy alt=20210218143036>
+</a>
+<figcaption>20210218143036</figcaption>
+</figure></p>
 <p>需注意的是,感知机只有输出层神经元进行激活函数处理,即只拥有一层功能神经元（functional neuron），其学习能力非常有限。</p>
 <p>一般的，常见的神经网络是形如下图所示的层级结构，每层神经元与下一层神经元全互连，神经元之间不存在同层连接，也不存在跨层连接。这样的神经网络结构通常称为“多层前馈神经网络”（multi-layer feedforward neural networks），其中输入层神经元接收外界输入，隐层与输出层神经元对信号进行加工，最终结果由输出层神经元输出；换言之，输入层神经元仅是接受输入，不进行函数处理，隐层与输出层包含功能神经元。因此，下图通常被称为“两层网络”或“单隐层网络”。只需包含隐层，即可称为多层网络。</p>
-<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218145023.png alt=20210218145023></p>
+<p><figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218145023.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218145023.png loading=lazy alt=20210218145023>
+</a>
+<figcaption>20210218145023</figcaption>
+</figure></p>
 <p><strong>神经网络的学习过程，就是根据训练数据来调整神经元之间的“连接权”（connection weight）以及每个功能神经元的阈值；换言之，神经网络“学”到的东西，蕴涵在连接权与阈值中。</strong></p>
 <h2 id=53-误差逆传播算法>5.3 误差逆传播算法</h2>
 <p>多层网络的学习能力比单层感知机强得多．欲训练多层网络，需要更强大的学习算法。误差逆传播（errorBackPropagation，简称 BP）算法就是其中最杰出的代表，它是迄今最成功的神经网络学习算法。现实任务中使用神经网络时，大多是在使用 BP 算法进行训练。值得指出的是，BP 算法不仅可用于多层前馈神经网络，还可用于其他类型的神经网络。但通常说“BP 网络”时，一般是指用 BP 算法训练的多层前馈神经网络。</p>
@@ -138,7 +179,7 @@ $$</p>
 <span>Licensed under CC BY-NC-SA 4.0</span>
 </section>
 </footer>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css integrity=sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js integrity=sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script>
 </article>
 <aside class=related-contents--wrapper>
 <h2 class=section-title>Related contents</h2>
@@ -190,7 +231,7 @@ $$</p>
 </section>
 <section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.4.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
 </section>
 </footer>
 <div class=pswp tabindex=-1 role=dialog aria-hidden=true>

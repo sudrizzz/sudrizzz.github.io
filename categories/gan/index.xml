@@ -4,6 +4,7 @@ Anaconda 安装 通过清华大学开源软件镜像站，我们可以直接下�
 Anaconda 安装教程网络上已经有很多，故此处不再赘述。
 安装完成后，我们需要手动配置 Anaconda 的环境变量，在用户变量的 Path 中添加 Anaconda 的安装路径以及其子文件夹，具体内容如下。
 C:\Users\xvyn\anaconda3 C:\Users\xvyn\anaconda3\Scripts C:\Users\xvyn\anaconda3\Library\bin 上述配置请根据 Anaconda 实际安装路径进行调整，配置完成的效果如下图所示。
+20201208152533
+20201208152633
 完成后打开 cmd 输入下列命令，如果输出内容与下列内容类似，则表示配置正确，可继续后面的步骤。
-1conda --version 输出 conda 4.9.2 创建虚拟环境 通过如下命令进行创建一个虚拟环境。
-1conda create -n handwrittendigits -n handwrittendigits 的作用是指定虚拟环境的名称，本例中指定为 handwrittendigits。</description></item></channel></rss>
+1conda --version 输出 conda 4.9.2 创建虚拟环境 通过如下命令进行创建一个虚拟环境。</description></item></channel></rss>

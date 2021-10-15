@@ -49,9 +49,17 @@ blog
 <h2 class=article-title>
 <a href=/posts/integrating-with-github-action/>Github 自动部署与图床</a>
 </h2>
-<footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
 <time class=article-time--published>Aug 09, 2020</time>
-</footer></div>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+3 min read
+</time>
+</div>
+</footer>
+</div>
 </header>
 <section class=article-content>
 <h1 id=前情提要>前情提要</h1>
@@ -91,7 +99,7 @@ blog
 </table>
 <h1 id=拆分文件>拆分文件</h1>
 <p>上文中我们只是将 <code>/public</code> 文件夹提交到了 <code>sudrizzz.github.io</code> 仓库，现在我们还需要将除了 <code>/public</code> 以外的文件全部提交到 <code>blog_workflow</code>，实现这一步可以再本地建立两个对应的文件夹，分别进行提交，操作步骤不再赘述。拆分后的目录结构如下。</p>
-<pre><code>blog_workflow 仓库
+<pre tabindex=0><code>blog_workflow 仓库
 
 ├─archetypes
 ├─content
@@ -122,7 +130,7 @@ sudrizzz.github.io 仓库
 <p>打开 Git Bash，执行如下命令</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>ssh-keygen -t rsa -b <span class=m>4096</span> -C <span class=s2>&#34;sudrizzz.github.io&#34;</span>
 </code></pre></div><p>设置密钥存储位置，按照提示进行操作，不需要自定义一路回车即可。</p>
-<pre><code>Generating public/private rsa key pair.
+<pre tabindex=0><code>Generating public/private rsa key pair.
 Enter file in which to save the key (/c/Users/.ssh/id_rsa):
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
@@ -155,7 +163,12 @@ The key's randomart image is:
 <h3 id=配置公钥>配置公钥</h3>
 <p>打开 <code>sudrizzz.github.io</code> 仓库，进入 <code>Settings</code> -> <code>Deploy keys</code>，选择 <code>Add deploy key</code>，名字可以任意写。<br>
 打开 <strong>id_rsa.pub</strong>，并复制其全部内容，粘贴到 <code>Key</code> 中，勾选 <code>Allow write access</code>，点击添加。
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809154958.png alt=20200809154958></p>
+<figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809154958.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809154958.png loading=lazy alt=20200809154958>
+</a>
+<figcaption>20200809154958</figcaption>
+</figure></p>
 <h1 id=配置-action-脚本>配置 Action 脚本</h1>
 <p>打开 <code>blog_workflow</code> 仓库，进入 <code>Action</code>，初始化左侧界面，选择 <code>set up a workflow yourself</code>，在编辑框中粘贴如下配置</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln> 1</span>name: CI
@@ -211,15 +224,25 @@ The key's randomart image is:
 <h2 id=生成-token>生成 Token</h2>
 <p>点击 Github 右上角个人头像，进入 <code>Settings</code> -> <code>Developer settings</code> -> <code>Personal access tokens</code>，点击 <code>Generate new token</code>。<br>
 Note 中可以任意填写，勾选下方的 <code>repo</code> 复选框，点击页面最下方的 <code>Generate token</code>，复制生成的 token 字符串。
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809161038.png alt=20200809161038></p>
+<figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809161038.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809161038.png loading=lazy alt=20200809161038>
+</a>
+<figcaption>20200809161038</figcaption>
+</figure></p>
 <h2 id=配置-picgo>配置 PicGo</h2>
 <p>在 VSCode 中打开 PicGo 的设置界面，将复制的 token 字符串填到 <code>picgo.picBed.github.token</code> 中，具体配置见下图。
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201221163830.png alt=20201221163830></p>
+<figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201221163830.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201221163830.png loading=lazy alt=20201221163830>
+</a>
+<figcaption>20201221163830</figcaption>
+</figure></p>
 <ul>
 <li><code>picgo.picBed.github.customUrl</code><br>
 此项是利用 jsDelivr CDN 为图片进行加速服务，填写时只需将 <code>sudrizzz/blog_images</code> 更改为自己的用户名与仓库即可，具体如下。</li>
 </ul>
-<pre><code>https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main
+<pre tabindex=0><code>https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main
 </code></pre><ul>
 <li><code>picgo.picBed.github.path</code><br>
 此项是配置图片的存储路径，根目录为 <code>picgo.picBed.github.repo</code> 中设置的仓库。</li>
@@ -227,7 +250,7 @@ Note 中可以任意填写，勾选下方的 <code>repo</code> 复选框，点�
 <p>当然你可以新建一个仓库专门用来存储图片，只需要调整上述相关设置，使其保持一致即可。</p>
 <h1 id=使用-picgo-写作>使用 PicGo 写作</h1>
 <p>在编写 markdown 文件需要插入图片时，只需要使用相应的快捷键即可完成上传图片操作，具体如下。</p>
-<pre><code>从剪贴板上传图像
+<pre tabindex=0><code>从剪贴板上传图像
 Windows / Unix：Ctrl + Alt + U
 OSX：Cmd + Opt + U
 
@@ -242,7 +265,7 @@ OSX：Cmd + Opt + E
 <span>Licensed under CC BY-NC-SA 4.0</span>
 </section>
 </footer>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css integrity=sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js integrity=sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script>
 </article>
 <aside class=related-contents--wrapper>
 <h2 class=section-title>Related contents</h2>
@@ -266,7 +289,7 @@ OSX：Cmd + Opt + E
 </section>
 <section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.4.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
 </section>
 </footer>
 <div class=pswp tabindex=-1 role=dialog aria-hidden=true>
