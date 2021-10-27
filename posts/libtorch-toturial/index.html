@@ -1,0 +1,229 @@
+<!doctype html><html lang=en-us>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="前言 LibTorch 简介 在 Python 深度学习圈，PyTorch 具有举足轻重的地位。同样的，C++ 平台上的 LibTorch 作为 PyTorch 的纯 C++ 接口，它遵循 PyTorch 的设计和架构，旨在支持高性能、低延迟的 C++ 深度学习应用研究。本文基于 Windows 环境与 Visual Studio 2019 开发工具，将从零开始搭建一个完整的深度学习开发环境，包括环境配置、项目演示、自定义数据集及问题排查等部分。
+LibTorch 安装 本文使用的 LibTorch 版本为 LTS(1.8.2) CPU 版，若需要使用 GPU 版，也可以在官方网站下载。
+环境配置 创建项目 首先，在 Visual Studio 中创建一个名为 libtorch-toturial 的控制台项目。创建完成后，将项目设置为 Release 模式，x64 平台，如下图。
+ 20211027154904 
+配置 LibTorch 依赖  本文中 LibTorch 解压后的存放目录为 D:\Software\libtorch-lts，后续配置过程中，读者请按照自己实际情况进行相关设置。
+ 在 Visual Studio 中，点击 项目 -&amp;gt; libtorch-toturial 项目属性，在左侧导航栏中找到 VC++ 目录 选项。在右侧的 包含目录 选项中将 LibTorch include 目录添加进去，详细如下。"><title>LibTorch 上手教程</title>
+<link rel=canonical href=https://sudrizzz.github.io/posts/libtorch-toturial/>
+<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="LibTorch 上手教程">
+<meta property="og:description" content="前言 LibTorch 简介 在 Python 深度学习圈，PyTorch 具有举足轻重的地位。同样的，C++ 平台上的 LibTorch 作为 PyTorch 的纯 C++ 接口，它遵循 PyTorch 的设计和架构，旨在支持高性能、低延迟的 C++ 深度学习应用研究。本文基于 Windows 环境与 Visual Studio 2019 开发工具，将从零开始搭建一个完整的深度学习开发环境，包括环境配置、项目演示、自定义数据集及问题排查等部分。
+LibTorch 安装 本文使用的 LibTorch 版本为 LTS(1.8.2) CPU 版，若需要使用 GPU 版，也可以在官方网站下载。
+环境配置 创建项目 首先，在 Visual Studio 中创建一个名为 libtorch-toturial 的控制台项目。创建完成后，将项目设置为 Release 模式，x64 平台，如下图。
+ 20211027154904 
+配置 LibTorch 依赖  本文中 LibTorch 解压后的存放目录为 D:\Software\libtorch-lts，后续配置过程中，读者请按照自己实际情况进行相关设置。
+ 在 Visual Studio 中，点击 项目 -&amp;gt; libtorch-toturial 项目属性，在左侧导航栏中找到 VC++ 目录 选项。在右侧的 包含目录 选项中将 LibTorch include 目录添加进去，详细如下。">
+<meta property="og:url" content="https://sudrizzz.github.io/posts/libtorch-toturial/">
+<meta property="og:site_name" content="Anthony's blog">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2021-10-27T15:00:00+08:00"><meta property="article:modified_time" content="2021-10-27T15:00:00+08:00">
+<meta name=twitter:title content="LibTorch 上手教程">
+<meta name=twitter:description content="前言 LibTorch 简介 在 Python 深度学习圈，PyTorch 具有举足轻重的地位。同样的，C++ 平台上的 LibTorch 作为 PyTorch 的纯 C++ 接口，它遵循 PyTorch 的设计和架构，旨在支持高性能、低延迟的 C++ 深度学习应用研究。本文基于 Windows 环境与 Visual Studio 2019 开发工具，将从零开始搭建一个完整的深度学习开发环境，包括环境配置、项目演示、自定义数据集及问题排查等部分。
+LibTorch 安装 本文使用的 LibTorch 版本为 LTS(1.8.2) CPU 版，若需要使用 GPU 版，也可以在官方网站下载。
+环境配置 创建项目 首先，在 Visual Studio 中创建一个名为 libtorch-toturial 的控制台项目。创建完成后，将项目设置为 Release 模式，x64 平台，如下图。
+ 20211027154904 
+配置 LibTorch 依赖  本文中 LibTorch 解压后的存放目录为 D:\Software\libtorch-lts，后续配置过程中，读者请按照自己实际情况进行相关设置。
+ 在 Visual Studio 中，点击 项目 -&amp;gt; libtorch-toturial 项目属性，在左侧导航栏中找到 VC++ 目录 选项。在右侧的 包含目录 选项中将 LibTorch include 目录添加进去，详细如下。">
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>Back</span>
+</a>
+</div>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/libtorch/>
+libtorch
+</a>
+<a href=/categories/c++/>
+c++
+</a>
+</header>
+<h2 class=article-title>
+<a href=/posts/libtorch-toturial/>LibTorch 上手教程</a>
+</h2>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Oct 27, 2021</time>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+1 min read
+</time>
+</div>
+</footer>
+</div>
+</header>
+<section class=article-content>
+<h1 id=前言>前言</h1>
+<h2 id=libtorch-简介>LibTorch 简介</h2>
+<p>在 Python 深度学习圈，PyTorch 具有举足轻重的地位。同样的，C++ 平台上的 LibTorch 作为 PyTorch 的纯 C++ 接口，它遵循 PyTorch 的设计和架构，旨在支持高性能、低延迟的 C++ 深度学习应用研究。本文基于 Windows 环境与 Visual Studio 2019 开发工具，将从零开始搭建一个完整的深度学习开发环境，包括环境配置、项目演示、自定义数据集及问题排查等部分。</p>
+<h2 id=libtorch-安装>LibTorch 安装</h2>
+<p>本文使用的 LibTorch 版本为 <code>LTS(1.8.2) CPU</code> 版，若需要使用 GPU 版，也可以在<a class=link href=https://pytorch.org/get-started/locally/ target=_blank rel=noopener>官方网站</a>下载。</p>
+<h1 id=环境配置>环境配置</h1>
+<h2 id=创建项目>创建项目</h2>
+<p>首先，在 Visual Studio 中创建一个名为 libtorch-toturial 的控制台项目。创建完成后，将项目设置为 <code>Release</code> 模式，<code>x64</code> 平台，如下图。</p>
+<p><figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027154904.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027154904.png loading=lazy alt=20211027154904>
+</a>
+<figcaption>20211027154904</figcaption>
+</figure></p>
+<h2 id=配置-libtorch-依赖>配置 LibTorch 依赖</h2>
+<blockquote>
+<p>本文中 LibTorch 解压后的存放目录为 <code>D:\Software\libtorch-lts</code>，后续配置过程中，读者请按照自己实际情况进行相关设置。</p>
+</blockquote>
+<p>在 Visual Studio 中，点击 <code>项目 -> libtorch-toturial 项目属性</code>，在左侧导航栏中找到 <code>VC++ 目录</code> 选项。在右侧的 <code>包含目录</code> 选项中将 LibTorch include 目录添加进去，详细如下。</p>
+<pre tabindex=0><code>D:\Software\libtorch-lts\include
+D:\Software\libtorch-lts\include\torch\csrc\api\include
+</code></pre><p>接着找到 <code>库目录</code> 选项，将 LibTorch lib 目录添加进去，详细如下。</p>
+<pre tabindex=0><code>D:\Software\libtorch-lts\lib
+</code></pre><p>配置结果如下图，注意检查窗口顶栏 <code>配置</code> 是否为 <code>Release</code>，<code>平台</code> 是否为 <code>x64</code>。</p>
+<p><figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027160310.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027160310.png loading=lazy alt=20211027160310>
+</a>
+<figcaption>20211027160310</figcaption>
+</figure></p>
+<p>然后找到 <code>链接器 -> 输入 -> 附加依赖项</code> 选项，在其中填入 LibTorch lib 路径下（即 <code>D:\Software\libtorch-lts\lib</code>）所有 <code>*.lib</code> 文件的文件名，详细如下。</p>
+<pre tabindex=0><code>asmjit.lib
+c10.lib
+c10d.lib
+caffe2_detectron_ops.lib
+caffe2_module_test_dynamic.lib
+clog.lib
+cpuinfo.lib
+dnnl.lib
+fbgemm.lib
+fbjni.lib
+gloo.lib
+libprotobuf-lite.lib
+libprotobuf.lib
+libprotoc.lib
+mkldnn.lib
+pthreadpool.lib
+pytorch_jni.lib
+torch.lib
+torch_cpu.lib
+XNNPACK.lib
+</code></pre><p>最后，将 <code>D:\Software\libtorch-lts\lib</code> 路径下所有的 <code>*.dll</code> 文件拷贝至 <code>项目路径 -> x64 -> Release</code> 路径下，如下图。</p>
+<p><figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027163802.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027163802.png loading=lazy alt=20211027163802>
+</a>
+<figcaption>20211027163802</figcaption>
+</figure></p>
+<h2 id=示例程序>示例程序</h2>
+<p>至此，开发环境搭建就已经完成了。我们可以通过运行以下示例程序，来检验上述配置是否正确。若输出如图中所示，则配置无误。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=ln>1</span><span class=cp>#include</span> <span class=cpf>&lt;torch/torch.h&gt;</span><span class=cp>
+</span><span class=ln>2</span><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span><span class=ln>3</span><span class=cp></span>
+<span class=ln>4</span><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+<span class=ln>5</span><span class=p>{</span>
+<span class=ln>6</span>    <span class=k>auto</span> <span class=n>array</span> <span class=o>=</span> <span class=n>torch</span><span class=o>::</span><span class=n>rand</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span>
+<span class=ln>7</span>    <span class=n>std</span><span class=o>::</span><span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>array</span> <span class=o>&lt;&lt;</span> <span class=n>std</span><span class=o>::</span><span class=n>endl</span><span class=p>;</span>
+<span class=ln>8</span><span class=p>}</span>
+</code></pre></div><p><figure>
+<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027170451.png>
+<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027170451.png loading=lazy alt=20211027170451>
+</a>
+<figcaption>20211027170451</figcaption>
+</figure></p>
+<h1 id=heading></h1>
+</section>
+<footer class=article-footer>
+<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span>
+</section>
+</footer>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css integrity=sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js integrity=sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script>
+</article>
+<aside class=related-contents--wrapper>
+</aside>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2018 -
+2021 Anthony's blog
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">Table of contents</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#前言>前言</a>
+<ol>
+<li><a href=#libtorch-简介>LibTorch 简介</a></li>
+<li><a href=#libtorch-安装>LibTorch 安装</a></li>
+</ol>
+</li>
+<li><a href=#环境配置>环境配置</a>
+<ol>
+<li><a href=#创建项目>创建项目</a></li>
+<li><a href=#配置-libtorch-依赖>配置 LibTorch 依赖</a></li>
+<li><a href=#示例程序>示例程序</a></li>
+</ol>
+</li>
+<li><a href=#heading></a></li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>
