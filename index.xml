@@ -71,11 +71,10 @@ alt="20211027163802">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln">1&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;torch/torch.h&amp;gt;&lt;/span>&lt;span class="cp">
 &lt;/span>&lt;span class="ln">2&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span class="cp">
 &lt;/span>&lt;span class="ln">3&lt;/span>&lt;span class="cp">&lt;/span>
-&lt;span class="ln">4&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="ln">5&lt;/span>&lt;span class="p">{&lt;/span>
-&lt;span class="ln">6&lt;/span> &lt;span class="k">auto&lt;/span> &lt;span class="n">array&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">rand&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="ln">7&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">array&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="ln">8&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;span class="ln">4&lt;/span>&lt;span class="k">auto&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">5&lt;/span> &lt;span class="k">auto&lt;/span> &lt;span class="n">array&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">rand&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln">6&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">array&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="ln">7&lt;/span>&lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
 >
 &lt;a href="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027170451.png" >
@@ -85,7 +84,153 @@ alt="20211027170451">
 &lt;/a>
 &lt;figcaption>20211027170451&lt;/figcaption>
 &lt;/figure>&lt;/p>
-&lt;h1 id="heading">&lt;/h1></description></item><item><title>Anaconda 克隆到离线环境</title><link>https://sudrizzz.github.io/posts/conda-clone/</link><pubDate>Thu, 05 Aug 2021 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/conda-clone/</guid><description>&lt;h1 id="配置-conda-环境">配置 conda 环境&lt;/h1>
+&lt;h1 id="手写数字识别">手写数字识别&lt;/h1>
+&lt;h2 id="数据准备">数据准备&lt;/h2>
+&lt;p>本节将以深度学习经典案例——手写数字识别来演示 LibTorch 的使用。首先需要下载 mnist 手写数字数据集，你可以在&lt;a class="link" href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="noopener"
+>这里下载&lt;/a>，下载完成后将其解压到 &lt;code>libtorch-toturial.cpp&lt;/code> 同一目录 &lt;code>data&lt;/code> 文件夹下，目录结构如下。&lt;/p>
+&lt;pre tabindex="0">&lt;code>├─libtorch-toturial
+│ │ libtorch-toturial.cpp
+│ │ ...
+│ ├─data
+│ │ t10k-images-idx3-ubyte
+│ │ t10k-labels-idx1-ubyte
+│ │ train-images-idx3-ubyte
+│ │ train-labels-idx1-ubyte
+│ ...
+&lt;/code>&lt;/pre>&lt;h2 id="源代码">源代码&lt;/h2>
+&lt;p>手写数字识别的源代码可以在 &lt;a class="link" href="https://github.com/pytorch/examples/blob/master/cpp/mnist/mnist.cpp" target="_blank" rel="noopener"
+>LibTorch 官方示例&lt;/a> 中找到，请将其拷贝到项目的 &lt;code>libtorch-toturial.cpp&lt;/code> 中。&lt;/p>
+&lt;h2 id="结果">结果&lt;/h2>
+&lt;p>与 PyTorch 类似，LibTorch 创建深度学习应用同样包含与其相似的步骤：定义网络、初始化网络、加载数据集、训练、验证及保存模型等，详细代码可以参照上述官方示例，此处不再赘述。训练 10 个 epoch 之后，识别准确率已经达到了 98.4%.&lt;/p>
+&lt;p>&lt;figure
+>
+&lt;a href="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211028114206.png" >
+&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211028114206.png"
+loading="lazy"
+alt="20211028114206">
+&lt;/a>
+&lt;figcaption>20211028114206&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;h1 id="自定义数据集">自定义数据集&lt;/h1>
+&lt;p>在本节中，我们将介绍如何将已有的数据集读取到神经网络中，生成 PyTorch 张量。在这之前，需要先介绍 NumCpp 工具，它可以大幅提升数据处理的效率。&lt;/p>
+&lt;h2 id="numcpp-简介与配置">NumCpp 简介与配置&lt;/h2>
+&lt;p>在 Python 开发环境中，最常用的工具非 NumPy 莫属，因其极为便捷高效的特性被开发者广为使用。同样的，在 C++ 平台上，也有开发者开发出了一款与 NumPy 体验“几乎一致”的 NumCpp ———— Python NumPy 库的模板头文件 C++ 实现[2]。&lt;/p>
+&lt;p>由于 NumCpp 依赖 Boost 库，因此在配置 NumCpp 之前，需要先配置 Boost 库。相关文件可以在 &lt;a class="link" href="https://www.boost.org/users/download/" target="_blank" rel="noopener"
+>Boost 官方网站&lt;/a> 与 &lt;a class="link" href="https://github.com/dpilger26/NumCpp" target="_blank" rel="noopener"
+>NumCpp Github 页面&lt;/a> 进行下载。&lt;/p>
+&lt;p>与 LibTorch 配置过程类似，我们需要在 Visual Studio 项目属性中找到 &lt;code>VC++ 目录 -&amp;gt; 包含目录&lt;/code> 选项，将 Boost 库与 NumCpp 库的路径添加进去，具体路径如下。&lt;/p>
+&lt;pre tabindex="0">&lt;code>D:\Software\boost
+D:\Software\NumCpp\include
+&lt;/code>&lt;/pre>&lt;p>然后即可使用下述程序片段进行检查是否配置正确，若成功运行并生成了 3x4 个浮点随机数，则说明配置无误。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln">1&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;#34;NumCpp.hpp&amp;#34;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="ln">2&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="ln">3&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="ln">4&lt;/span>&lt;span class="k">auto&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">5&lt;/span> &lt;span class="k">auto&lt;/span> &lt;span class="n">array&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">nc&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">random&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">randN&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">double&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">({&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">4&lt;/span> &lt;span class="p">});&lt;/span>
+&lt;span class="ln">6&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">array&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="ln">7&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>接下来可以使用 NumCpp 读取本地数据集，由于 NumCpp 缺少类似于 NumPy 的 &lt;code>loadtxt()&lt;/code> 方法，故只能使用 &lt;code>fromfile()&lt;/code>方法，具体代码如下。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln">1&lt;/span>&lt;span class="k">auto&lt;/span> &lt;span class="n">input_data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">nc&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">fromfile&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">double&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_filepath&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="cm">/*sep=*/&lt;/span>&lt;span class="sc">&amp;#39;,&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>假设数据实际尺寸为 &lt;code>m×n&lt;/code>，读取到的数据形状为 &lt;code>1×(m×n)&lt;/code>，所以还需要进行 &lt;code>reshape()&lt;/code> 才可以正常使用。行切片与列切片也和 NumPy 类似，代码如下。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln">1&lt;/span>&lt;span class="n">input_data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">input_data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">reshape&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">n&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln">2&lt;/span>
+&lt;span class="ln">3&lt;/span>&lt;span class="c1">// 行切片，形如 input_data = input_data[0:2, :]
+&lt;/span>&lt;span class="ln">4&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">input_data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">input_data&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">nc&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Slice&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">input_data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">cSlice&lt;/span>&lt;span class="p">());&lt;/span>
+&lt;span class="ln">5&lt;/span>
+&lt;span class="ln">6&lt;/span>&lt;span class="c1">// 列切片，形如 input_data = input_data[:, :2]
+&lt;/span>&lt;span class="ln">7&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">input_data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">input_data&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">rSlice&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="n">nc&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Slice&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>若要进行矩阵与矩阵的计算，则需要保证矩阵的尺寸一致。若不一致，则可以使用 &lt;code>tile()&lt;/code> 方法进行扩充，示例代码如下。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln">1&lt;/span>&lt;span class="c1">// 按列求均值，得到的矩阵为 1×n
+&lt;/span>&lt;span class="ln">2&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">auto&lt;/span> &lt;span class="n">input_mean&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">nc&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">mean&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_data&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">nc&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Axis&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ROW&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln">3&lt;/span>&lt;span class="c1">// 按列求标准差，得到的矩阵为 1×n
+&lt;/span>&lt;span class="ln">4&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">auto&lt;/span> &lt;span class="n">input_std&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">nc&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">stdev&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_data&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">nc&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Axis&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ROW&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln">5&lt;/span>
+&lt;span class="ln">6&lt;/span>&lt;span class="c1">// 归一化，将 input_mean 与 input_std 扩充为 m×n，再进行操作
+&lt;/span>&lt;span class="ln">7&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">input_data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">input_data&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">nc&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">tile&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_mean&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">input_data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">numRows&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="p">}))&lt;/span>
+&lt;span class="ln">8&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="n">nc&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">tile&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_std&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">input_data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">numRows&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="p">});&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="自定义数据集-1">自定义数据集&lt;/h2>
+&lt;p>要实现自定义数据集，首先要继承 &lt;code>torch::data::Dataset&amp;lt;CustomDataset&amp;gt;&lt;/code> 类，实现 &lt;code>CustomDataset()&lt;/code> 构造方法、 &lt;code>get()&lt;/code> 方法与 &lt;code>size()&lt;/code> 方法。示例代码如下。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln"> 1&lt;/span>&lt;span class="k">class&lt;/span> &lt;span class="nc">CustomDataset&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="k">public&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Dataset&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">CustomDataset&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 2&lt;/span>&lt;span class="k">private&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;span class="ln"> 3&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">vector&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Tensor&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">source&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">target&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="ln"> 4&lt;/span>&lt;span class="k">public&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;span class="ln"> 5&lt;/span> &lt;span class="c1">// 构造函数
+&lt;/span>&lt;span class="ln"> 6&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">CustomDataset&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">nc&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">NdArray&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">double&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">input_data&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">nc&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">NdArray&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">double&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">output_data&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">string&lt;/span> &lt;span class="n">data_type&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 7&lt;/span> &lt;span class="c1">// 一些数据读取、处理工作。最后得到的 source 与 target 是输入与输出数据的集合
+&lt;/span>&lt;span class="ln"> 8&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// 如果要对数据集进行划分，可以在此处声明一个方法进行详细处理
+&lt;/span>&lt;span class="ln"> 9&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">source&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">process_data&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_data&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">data_type&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln">10&lt;/span> &lt;span class="n">target&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">process_data&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_data&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">data_type&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln">11&lt;/span> &lt;span class="p">};&lt;/span>
+&lt;span class="ln">12&lt;/span>
+&lt;span class="ln">13&lt;/span> &lt;span class="c1">// 复写 get() 方法以返回第 index 个位置的张量（输入与输出）
+&lt;/span>&lt;span class="ln">14&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Example&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;&lt;/span> &lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">size_t&lt;/span> &lt;span class="n">index&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">override&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">15&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Tensor&lt;/span> &lt;span class="n">sample_source&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">source&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">at&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">index&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln">16&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Tensor&lt;/span> &lt;span class="n">sample_target&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">target&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">at&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">index&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln">17&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">sample_source&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">clone&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="n">sample_target&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">clone&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">};&lt;/span>
+&lt;span class="ln">18&lt;/span> &lt;span class="p">};&lt;/span>
+&lt;span class="ln">19&lt;/span>
+&lt;span class="ln">20&lt;/span> &lt;span class="c1">// 返回数据的数量
+&lt;/span>&lt;span class="ln">21&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">optional&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">size_t&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">size&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="k">override&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">22&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="n">source&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">size&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="ln">23&lt;/span> &lt;span class="p">};&lt;/span>
+&lt;span class="ln">24&lt;/span>&lt;span class="p">};&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>接下来调用 &lt;code>CustomDataset()&lt;/code> 生成 data loader。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln"> 1&lt;/span>&lt;span class="c1">// 训练数据
+&lt;/span>&lt;span class="ln"> 2&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">auto&lt;/span> &lt;span class="n">train_dataset&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">CustomDataset&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_data&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_data&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;train_data&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln"> 3&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">transforms&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Stack&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;&lt;/span>&lt;span class="p">());&lt;/span>
+&lt;span class="ln"> 4&lt;/span>&lt;span class="k">const&lt;/span> &lt;span class="n">size_t&lt;/span> &lt;span class="n">train_dataset_size&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">train_dataset&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">size&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">value&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="ln"> 5&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="s">&amp;#34;train data size = &amp;#34;&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">train_dataset_size&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="ln"> 6&lt;/span>&lt;span class="c1">// 训练集 data loader
+&lt;/span>&lt;span class="ln"> 7&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">auto&lt;/span> &lt;span class="n">train_loader&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">make_data_loader&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">move&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">train_dataset&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">train_batch_size&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln"> 8&lt;/span>
+&lt;span class="ln"> 9&lt;/span>&lt;span class="c1">// 验证数据
+&lt;/span>&lt;span class="ln">10&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">auto&lt;/span> &lt;span class="n">validate_dataset&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">CustomDataset&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_data&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_data&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;validate_data&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">11&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">transforms&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Stack&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;&lt;/span>&lt;span class="p">());&lt;/span>
+&lt;span class="ln">12&lt;/span>&lt;span class="k">const&lt;/span> &lt;span class="n">size_t&lt;/span> &lt;span class="n">validate_dataset_size&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">validate_dataset&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">size&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">value&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="ln">13&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="s">&amp;#34;validate data size = &amp;#34;&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">validate_dataset_size&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="ln">14&lt;/span>&lt;span class="c1">// 验证集 data loader
+&lt;/span>&lt;span class="ln">15&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">auto&lt;/span> &lt;span class="n">validate_loader&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">make_data_loader&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">move&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">validate_dataset&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">validate_batch_size&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>与手写数字识别示例类似，在调用 &lt;code>train()&lt;/code> 训练方法和 &lt;code>validate()&lt;/code> 验证方法时，直接将 data loader 传入即可，代码示例如下。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln">1&lt;/span>&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">size_t&lt;/span> &lt;span class="n">epoch&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">epoch&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="n">kNumberOfEpochs&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">++&lt;/span>&lt;span class="n">epoch&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">2&lt;/span> &lt;span class="n">train&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">epoch&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">model&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">device&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">train_loader&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">optimizer&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">train_dataset_size&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln">3&lt;/span> &lt;span class="n">validate&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">device&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">validate_loader&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">validate_dataset_size&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln">4&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="疑难排查">疑难排查&lt;/h1>
+&lt;h2 id="网络浮点数精度">网络浮点数精度&lt;/h2>
+&lt;p>由于上述教程中使用 NumCpp 来读取数据，得到的数据集数据类型为泛型中指定的类型。LibTorch 网络初始化后的数据类型默认为 &lt;code>float(float32)&lt;/code>，若我们读取的数据类型为 &lt;code>double(float64)&lt;/code> 型，则需要手动将网络数据类型指定为 &lt;code>double&lt;/code>，否则程序将会抛出异常[3]。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln">1&lt;/span>&lt;span class="n">Net&lt;/span> &lt;span class="n">model&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Net&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="ln">2&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">to&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">device&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">kDouble&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="模型保存再读取异常">模型保存再读取异常&lt;/h2>
+&lt;p>当读取本地保存好的模型后，进行预测产生 loss 为 nan 的情况。经过 Debug 查看权重和张量数据，可以发现其均已经溢出了。这可能是由于保存的模型是 &lt;code>double&lt;/code> 类型，而重新读取后初始化的模型为 &lt;code>float&lt;/code> 类型，导致数据溢出。代码如下。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln"> 1&lt;/span>&lt;span class="n">Net&lt;/span> &lt;span class="n">model&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Net&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="ln"> 2&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">to&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">device&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">kDouble&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln"> 3&lt;/span>&lt;span class="c1">// 数据处理及网络训练与验证，并保存模型
+&lt;/span>&lt;span class="ln"> 4&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">save&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;test.pt&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln"> 5&lt;/span>
+&lt;span class="ln"> 6&lt;/span>&lt;span class="n">Net&lt;/span> &lt;span class="n">new_model&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Net&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="ln"> 7&lt;/span>&lt;span class="c1">// 首先将网络初始化为 double 类型
+&lt;/span>&lt;span class="ln"> 8&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">new_model&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">to&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">device&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">kDouble&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln"> 9&lt;/span>&lt;span class="c1">// 从本地加载保存好的模型
+&lt;/span>&lt;span class="ln">10&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">load&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">new_model&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;test.pt&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="c10-error">C10 Error&lt;/h2>
+&lt;p>如果在程序运行过程中抛出了 C10 Error，控制台也没有打印出错误信息，这是 LibTorch 一个已知的问题，详见参考文献[4]。为了得到实际的错误信息，此时我们可以使用 &lt;code>try catch&lt;/code> 来手动捕获异常，代码如下。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="ln">1&lt;/span>&lt;span class="k">try&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">2&lt;/span> &lt;span class="c1">// 导致异常的代码块
+&lt;/span>&lt;span class="ln">3&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;span class="ln">4&lt;/span>&lt;span class="k">catch&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">exception&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">5&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">what&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="ln">6&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="参考文献">参考文献&lt;/h1>
+&lt;ol>
+&lt;li>&lt;a class="link" href="https://allentdan.github.io/tags/libtorch/" target="_blank" rel="noopener"
+>LibTorch 教程 - Allent Dan&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://dpilger26.github.io/NumCpp/" target="_blank" rel="noopener"
+>NumCpp 官方文档&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://github.com/pytorch/pytorch/issues/65457" target="_blank" rel="noopener"
+>Does LibTorch not support float64 data training?&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://discuss.pytorch.org/t/after-torch-load-model-and-predict-then-got-nan/133142/4" target="_blank" rel="noopener"
+>After torch::load model and predict, then got NaN&lt;/a>&lt;/li>
+&lt;/ol></description></item><item><title>Anaconda 克隆到离线环境</title><link>https://sudrizzz.github.io/posts/conda-clone/</link><pubDate>Thu, 05 Aug 2021 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/conda-clone/</guid><description>&lt;h1 id="配置-conda-环境">配置 conda 环境&lt;/h1>
 &lt;p>首先我们需要在在线环境中配置好 conda 环境，安装好所需要的包，方可开始打包。此处假设我们创建的环境名为 baseenv。&lt;/p>
 &lt;h1 id="打包">打包&lt;/h1>
 &lt;p>首先进入 Anaconda 的安装目录，将以下目录进行打包：&lt;/p>
