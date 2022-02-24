@@ -8,7 +8,7 @@ RDD 上的操作 从相关数据源获取初始数据形成初始 RDD 后，需�
 RDD 支持两种操作，一种是转换（Transformation）操作，另一种是行动（Action）操作。
 转换（Transformation）操作 转换操作即将一个 RDD 转换为一个新的 RDD。值得注意的是，转换操作是惰性的，这就意味着对 RDD 调用某种转换操作时，操作并不会立即执行，而是 Spark 在内部记录下所要求执行的操作的相关信息，当在行动操作中需要用到这些转换出来的 RDD 时才会被计算，下表所示为基本的转换操作。通过转换操作，可以从已有的 RDD 生成出新的 RDD, Spark 使用谱系（Lineage）记录新旧 RDD 之间的依赖关系，一旦持久化的 RDD 丢失部分数据时，Spark 能通过谱系图重新计算丢失的数据。"><title>Spark 分布式内存计算框架</title>
 <link rel=canonical href=https://sudrizzz.github.io/posts/spark-distributed-programming/>
-<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="Spark 分布式内存计算框架">
+<link rel=stylesheet href=/scss/style.min.6801b4ba48a1373a0e84194e17f1122b8c1a811307a6a68009ac579b23c0df40.css><meta property="og:title" content="Spark 分布式内存计算框架">
 <meta property="og:description" content="Spark 简介 Spark 是一种基于内存的、用以实现高效集群计算的平台。准确地讲，Spark 是一个大数据并行计算框架，是对广泛使用的 MapReduce 计算模型的扩展。Spark 有着自己的生态系统，但同时兼容 HDFS、Hive 等分布式存储系统，可以完美融入 Hadoop 的生态圈中，代替 MapReduce 去执行更为高效的分布式计算。两者的区别在于：基于 MapReduce 的计算引擎通常会将中间结果输出到磁盘上进行存储和容错；而 Spark 则是将中间结果尽量保存在内存中以减少底层存储系统的 I/O，以提高计算速度。
 Spark 编程模型 核心数据结构 RDD Spark 将数据抽象成弹性分布式数据集（Resilient Distributed Dataset, RDD），RDD 实际是分布在集群多个节点上数据的集合，通过操作 RDD 对象来并行化操作集群上的分布式数据。
 RDD 有两种创建方式:
@@ -26,14 +26,15 @@ RDD 有两种创建方式:
  并行化驱动程序中已有的原生集合; 引用 HDFS、HBase 等外部存储系统上的数据集。  RDD 可以缓存在内存中，每次对 RDD 操作的结果都可以放到内存中，下一次操作时可直接从内存中读取，相对于 MapReduce,它省去了大量的磁盘 I/O 操作。另外，持久化的 RDD 能够在错误中自动恢复，如果某部分 RDD 丢失，Spark 会自动重算丢失的部分。
 RDD 上的操作 从相关数据源获取初始数据形成初始 RDD 后，需要根据应用的需求对得到的初始 RDD 进行必要的处理，来获取满足需求的数据内容，从而对中间数据进行计算加工，得到最终的数据。
 RDD 支持两种操作，一种是转换（Transformation）操作，另一种是行动（Action）操作。
-转换（Transformation）操作 转换操作即将一个 RDD 转换为一个新的 RDD。值得注意的是，转换操作是惰性的，这就意味着对 RDD 调用某种转换操作时，操作并不会立即执行，而是 Spark 在内部记录下所要求执行的操作的相关信息，当在行动操作中需要用到这些转换出来的 RDD 时才会被计算，下表所示为基本的转换操作。通过转换操作，可以从已有的 RDD 生成出新的 RDD, Spark 使用谱系（Lineage）记录新旧 RDD 之间的依赖关系，一旦持久化的 RDD 丢失部分数据时，Spark 能通过谱系图重新计算丢失的数据。">
+转换（Transformation）操作 转换操作即将一个 RDD 转换为一个新的 RDD。值得注意的是，转换操作是惰性的，这就意味着对 RDD 调用某种转换操作时，操作并不会立即执行，而是 Spark 在内部记录下所要求执行的操作的相关信息，当在行动操作中需要用到这些转换出来的 RDD 时才会被计算，下表所示为基本的转换操作。通过转换操作，可以从已有的 RDD 生成出新的 RDD, Spark 使用谱系（Lineage）记录新旧 RDD 之间的依赖关系，一旦持久化的 RDD 丢失部分数据时，Spark 能通过谱系图重新计算丢失的数据。"><style>:root{--article-font-family:"Noto Serif SC", var(--base-font-family)}</style>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
-<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>Back</span>
 </a>
 </div>
@@ -55,7 +56,7 @@ hadoop
 </div>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
-8 min read
+8 minute read
 </time>
 </div>
 </footer>
@@ -82,7 +83,7 @@ HDFS、Hive 等分布式存储系统，可以完美融入 Hadoop 的生态圈中
 <blockquote>
 <p>输入数据为 {1, 2, 3, 3}</p>
 </blockquote>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th>函数名</th>
@@ -123,13 +124,13 @@ HDFS、Hive 等分布式存储系统，可以完美融入 Hadoop 的生态圈中
 <td style=text-align:center>非确定的</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id=行动action操作>行动（Action）操作</h3>
 <p>行动操作会触发 Spark 提交作业，对 RDD 进行实际的计算，并将最终求得的结果返回到驱动器程序，或者写入外部存储系统中。由于行动操作会得到一个结果，所以 Spark 会强制对 RDD 的转换操作进行求值，下表所示为基本的行动操作。</p>
 <blockquote>
 <p>输入数据为 {1, 2, 3, 3}</p>
 </blockquote>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th>函数名</th>
@@ -194,7 +195,7 @@ HDFS、Hive 等分布式存储系统，可以完美融入 Hadoop 的生态圈中
 <td style=text-align:center>无</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h1 id=示例>示例</h1>
 <p>以下两个示例的数据集与源代码均可以在下述链接中进行下载
 <a class=link href=https://github.com/sudrizzz/BigDataTechnologyFoundation_SourceCodeAndDataSet/tree/main/ch08 target=_blank rel=noopener>https://github.com/sudrizzz/BigDataTechnologyFoundation_SourceCodeAndDataSet/tree/main/ch08</a></p>
@@ -394,11 +395,11 @@ User: davidisbetterthenyou, Number of videos: 16
 <section class=copyright>
 &copy;
 2018 -
-2021 Anthony's blog
+2022 Anthony's blog
 </section>
 <section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
 </section>
 </footer>
 <div class=pswp tabindex=-1 role=dialog aria-hidden=true>
@@ -484,7 +485,7 @@ Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=
 </section>
 </aside>
 </div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
 <script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </body>
 </html>

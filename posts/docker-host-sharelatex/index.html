@@ -6,7 +6,7 @@
 1docker ps -a 输出如下
 CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 471e68a315b9 kingsleyluoxin/sharelatex:full &amp;quot;/sbin/my_init&amp;quot; 2 hours ago Up 2 hours 0."><title>Docker 搭建 ShareLaTeX</title>
 <link rel=canonical href=https://sudrizzz.github.io/posts/docker-host-sharelatex/>
-<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="Docker 搭建 ShareLaTeX">
+<link rel=stylesheet href=/scss/style.min.6801b4ba48a1373a0e84194e17f1122b8c1a811307a6a68009ac579b23c0df40.css><meta property="og:title" content="Docker 搭建 ShareLaTeX">
 <meta property="og:description" content="安装 ShareLaTeX 1sudo su 2docker pull kingsleyluoxin/sharelatex:full 编辑配置 在 ~/sharelatex 中放入配置文件 docker-compose.yml，并进行编辑。
 1cd ~/sharelatex 2vim docker-compose.yml 完整配置如下
 1version:&amp;#34;2.2&amp;#34;2services:3sharelatex:4restart:always5image:kingsleyluoxin/sharelatex:full6container_name:sharelatex7depends_on:8mongo:9condition:service_healthy10redis:11condition:service_started12ports:13- 80:8014links:15- mongo16- redis17volumes:18- ~/sharelatex_data:/var/lib/sharelatex19environment:20SHARELATEX_APP_NAME:Overleaf Community Edition2122SHARELATEX_MONGO_URL:mongodb://mongo/sharelatex2324SHARELATEX_REDIS_HOST:redis25REDIS_HOST:redis2627ENABLED_LINKED_FILE_TYPES:&amp;#34;url,project_file&amp;#34;2829ENABLE_CONVERSIONS:&amp;#34;true&amp;#34;3031# Disables email confirmation requirement32EMAIL_CONFIRMATION_DISABLED:&amp;#34;true&amp;#34;3334TEXMFVAR:/var/lib/sharelatex/tmp/texmf-var3536## Set for SSL via nginx-proxy37#VIRTUAL_HOST: 103.112.212.223839SHARELATEX_SITE_URL:http://172.23.253.11340SHARELATEX_ADMIN_EMAIL:username@qq.com4142SHARELATEX_EMAIL_FROM_ADDRESS:&amp;#34;username@qq.com&amp;#34;4344SHARELATEX_EMAIL_SMTP_HOST:smtp.qq.com45SHARELATEX_EMAIL_SMTP_PORT:46546SHARELATEX_EMAIL_SMTP_SECURE:&amp;#34;true&amp;#34;47SHARELATEX_EMAIL_SMTP_USER:username@qq.com48SHARELATEX_EMAIL_SMTP_PASS:SMTP 授权码49SHARELATEX_EMAIL_SMTP_TLS_REJECT_UNAUTH:&amp;#34;true&amp;#34;50SHARELATEX_EMAIL_SMTP_IGNORE_TLS:&amp;#34;false&amp;#34;51# SHARELATEX_CUSTOM_EMAIL_FOOTER: &amp;#34;This system is run by department x&amp;#34;5253mongo:54restart:always55image:mongo:4.056container_name:mongo57expose:58- 2701759volumes:60- ~/mongo_data:/data/db61healthcheck:62test:echo &amp;#39;db.stats().ok&amp;#39; | mongo localhost:27017/test --quiet63interval:10s64timeout:10s65retries:56667redis:68restart:always69image:redis:570container_name:redis71expose:72- 637973volumes:74- ~/redis_data:/data初始化容器 1cd ~/sharelatex 2docker-compose up -d 停止、重启服务 可以先使用以下命令查看正在运行的 docker 服务
@@ -20,14 +20,15 @@ CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 471e68a315b9 kingsleyluoxi
 1cd ~/sharelatex 2vim docker-compose.yml 完整配置如下
 1version:&amp;#34;2.2&amp;#34;2services:3sharelatex:4restart:always5image:kingsleyluoxin/sharelatex:full6container_name:sharelatex7depends_on:8mongo:9condition:service_healthy10redis:11condition:service_started12ports:13- 80:8014links:15- mongo16- redis17volumes:18- ~/sharelatex_data:/var/lib/sharelatex19environment:20SHARELATEX_APP_NAME:Overleaf Community Edition2122SHARELATEX_MONGO_URL:mongodb://mongo/sharelatex2324SHARELATEX_REDIS_HOST:redis25REDIS_HOST:redis2627ENABLED_LINKED_FILE_TYPES:&amp;#34;url,project_file&amp;#34;2829ENABLE_CONVERSIONS:&amp;#34;true&amp;#34;3031# Disables email confirmation requirement32EMAIL_CONFIRMATION_DISABLED:&amp;#34;true&amp;#34;3334TEXMFVAR:/var/lib/sharelatex/tmp/texmf-var3536## Set for SSL via nginx-proxy37#VIRTUAL_HOST: 103.112.212.223839SHARELATEX_SITE_URL:http://172.23.253.11340SHARELATEX_ADMIN_EMAIL:username@qq.com4142SHARELATEX_EMAIL_FROM_ADDRESS:&amp;#34;username@qq.com&amp;#34;4344SHARELATEX_EMAIL_SMTP_HOST:smtp.qq.com45SHARELATEX_EMAIL_SMTP_PORT:46546SHARELATEX_EMAIL_SMTP_SECURE:&amp;#34;true&amp;#34;47SHARELATEX_EMAIL_SMTP_USER:username@qq.com48SHARELATEX_EMAIL_SMTP_PASS:SMTP 授权码49SHARELATEX_EMAIL_SMTP_TLS_REJECT_UNAUTH:&amp;#34;true&amp;#34;50SHARELATEX_EMAIL_SMTP_IGNORE_TLS:&amp;#34;false&amp;#34;51# SHARELATEX_CUSTOM_EMAIL_FOOTER: &amp;#34;This system is run by department x&amp;#34;5253mongo:54restart:always55image:mongo:4.056container_name:mongo57expose:58- 2701759volumes:60- ~/mongo_data:/data/db61healthcheck:62test:echo &amp;#39;db.stats().ok&amp;#39; | mongo localhost:27017/test --quiet63interval:10s64timeout:10s65retries:56667redis:68restart:always69image:redis:570container_name:redis71expose:72- 637973volumes:74- ~/redis_data:/data初始化容器 1cd ~/sharelatex 2docker-compose up -d 停止、重启服务 可以先使用以下命令查看正在运行的 docker 服务
 1docker ps -a 输出如下
-CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 471e68a315b9 kingsleyluoxin/sharelatex:full &amp;quot;/sbin/my_init&amp;quot; 2 hours ago Up 2 hours 0.">
+CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 471e68a315b9 kingsleyluoxin/sharelatex:full &amp;quot;/sbin/my_init&amp;quot; 2 hours ago Up 2 hours 0."><style>:root{--article-font-family:"Noto Serif SC", var(--base-font-family)}</style>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
-<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>Back</span>
 </a>
 </div>
@@ -49,7 +50,7 @@ LaTeX
 </div>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
-1 min read
+1 minute read
 </time>
 </div>
 </footer>
@@ -172,11 +173,11 @@ LaTeX
 <section class=copyright>
 &copy;
 2018 -
-2021 Anthony's blog
+2022 Anthony's blog
 </section>
 <section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
 </section>
 </footer>
 <div class=pswp tabindex=-1 role=dialog aria-hidden=true>
@@ -234,7 +235,7 @@ Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=
 </section>
 </aside>
 </div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
 <script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </body>
 </html>

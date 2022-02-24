@@ -2,16 +2,13 @@
 tiny_dnn 简介 tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。
 搭建环境 版本要求 需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 Visual Studio 2019 为例进行配置。
 创建项目 打开 VS，创建一个名为 testTinyDNN 的控制台应用。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 testTinyDNN.cpp 属于同一层级。
-20210129112851
-编辑配置 编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下： 1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.</description></item><item><title>SAE 入门（一）</title><link>https://sudrizzz.github.io/posts/sae-1/</link><pubDate>Wed, 20 Jan 2021 18:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/sae-1/</guid><description>Autoencoder 简介 自编码器（Autoencoder，AE），是一种利用反向传播（backpropagation，BP）算法使得输出值等于输入值的神经网络，它先将输入压缩成潜在空间表征，然后通过这种表征来重构输出。其中，空间表征可以看作是输入数据的高级抽象，通常是将高维度的数据抽象为低维度的数据。
+编辑配置 编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下： 1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.h 文件第 378 行，将 border_width 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下： 1const size_t border_width = 0; 编写代码 打开 testTinyDNN.</description></item><item><title>SAE 入门（一）</title><link>https://sudrizzz.github.io/posts/sae-1/</link><pubDate>Wed, 20 Jan 2021 18:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/sae-1/</guid><description>Autoencoder 简介 自编码器（Autoencoder，AE），是一种利用反向传播（backpropagation，BP）算法使得输出值等于输入值的神经网络，它先将输入压缩成潜在空间表征，然后通过这种表征来重构输出。其中，空间表征可以看作是输入数据的高级抽象，通常是将高维度的数据抽象为低维度的数据。
 自编码器由两部分组成：
 编码器：这部分能将输入压缩成潜在空间表征，可以用编码函数 $h=f(x)$ 表示;
 解码器：这部分能重构来自潜在空间表征的输入，可以用解码函数 $r=g(h)$ 表示。
 因此，整个自编码器可以用函数 $g(f(x)) = r$ 来描述，其中输出 $r$ 与原始输入 $x$ 相近。
 自动编码器的目标是最大程度地减少输入和输出之间的重构误差。这有助于自动编码器学习数据中存在的重要功能。当表征很好地重建其输入时，则表示这个表征很好地保留了输入中存在的许多信息。整个过程如下图。
-20210122142001
 Stacked Autoencoder 简介 Stacked Autoencoder 简写作 SAE。SAE 与 AE 的主要区别在于编码器与解码器的层数，栈式自编码器包含多层隐藏层。具体网络结构如下图所示，图中有两层编码层，两层解码层。
-20210122154135
 代码实现 代码环境配置，请参考 GAN 网络之手写数字生成 第一小节——环境搭建。
 自编码器只是一种思想，在具体实现中，编码器和解码器可以由多种深度学习模型构成，例如全连接层、卷积层和 LSTM 等，以下使用 Keras 来实现栈式自编码器。
 1from keras.datasets import mnist 2from keras.layers import Input, Dense 3from keras.models import Model 4import numpy as np 5import matplotlib.pyplot as plt 6 7EPOCHS = 50 8BATCH_SIZE = 256 9 10 11def train(x_train, x_test): 12 input_img = Input(shape=(784,)) 13 14 # 三个编码层，将数据从 784 维向量编码为 128、64、32 维向量 15 encoded = Dense(units=128, activation=&amp;#39;relu&amp;#39;)(input_img) 16 encoded = Dense(units=64, activation=&amp;#39;relu&amp;#39;)(encoded) 17 encoded = Dense(units=32, activation=&amp;#39;relu&amp;#39;)(encoded) 18 19 # 三个解码层，将数据从 32 维向量解码成 64、128、784 维向量 20 decoded = Dense(units=64, activation=&amp;#39;relu&amp;#39;)(encoded) 21 decoded = Dense(units=128, activation=&amp;#39;relu&amp;#39;)(decoded) 22 decoded = Dense(units=784, activation=&amp;#39;sigmoid&amp;#39;)(decoded) 23 autoencoder = Model(input_img, decoded) 24 encoder = Model(input_img, encoded) 25 26 autoencoder.</description></item></channel></rss>

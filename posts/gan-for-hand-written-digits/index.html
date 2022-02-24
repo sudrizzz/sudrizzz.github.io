@@ -6,22 +6,20 @@ Anaconda 安装 通过清华大学开源软件镜像站，我们可以直接下�
 Anaconda 安装教程网络上已经有很多，故此处不再赘述。
 安装完成后，我们需要手动配置 Anaconda 的环境变量，在用户变量的 Path 中添加 Anaconda 的安装路径以及其子文件夹，具体内容如下。
 C:\Users\xvyn\anaconda3 C:\Users\xvyn\anaconda3\Scripts C:\Users\xvyn\anaconda3\Library\bin 上述配置请根据 Anaconda 实际安装路径进行调整，配置完成的效果如下图所示。
- 20201208152533 
- 20201208152633 
 完成后打开 cmd 输入下列命令，如果输出内容与下列内容类似，则表示配置正确，可继续后面的步骤。
-1conda --version 输出 conda 4.9.2  创建虚拟环境 通过如下命令进行创建一个虚拟环境。"><title>GAN 网络之手写数字生成</title>
+1conda --version 输出 conda 4.9.2  创建虚拟环境 通过如下命令进行创建一个虚拟环境。
+1conda create -n handwrittendigits -n handwrittendigits 的作用是指定虚拟环境的名称，本例中指定为 handwrittendigits。"><title>GAN 网络之手写数字生成</title>
 <link rel=canonical href=https://sudrizzz.github.io/posts/gan-for-hand-written-digits/>
-<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="GAN 网络之手写数字生成">
+<link rel=stylesheet href=/scss/style.min.6801b4ba48a1373a0e84194e17f1122b8c1a811307a6a68009ac579b23c0df40.css><meta property="og:title" content="GAN 网络之手写数字生成">
 <meta property="og:description" content="环境搭建 本例中，所涉及的系统与软件版本列表如下。
    名称 版本     操作系统 Windows 20H2   Anaconda Anaconda3-2020.11   python 3.6   tensorflow 1.8.0    本例代码存放于 https://github.com/sudrizzz/MachineLearning。
 Anaconda 安装 通过清华大学开源软件镜像站，我们可以直接下载最新版本的 Anaconda，本例中使用的 Anaconda 下载链接： https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe
 Anaconda 安装教程网络上已经有很多，故此处不再赘述。
 安装完成后，我们需要手动配置 Anaconda 的环境变量，在用户变量的 Path 中添加 Anaconda 的安装路径以及其子文件夹，具体内容如下。
 C:\Users\xvyn\anaconda3 C:\Users\xvyn\anaconda3\Scripts C:\Users\xvyn\anaconda3\Library\bin 上述配置请根据 Anaconda 实际安装路径进行调整，配置完成的效果如下图所示。
- 20201208152533 
- 20201208152633 
 完成后打开 cmd 输入下列命令，如果输出内容与下列内容类似，则表示配置正确，可继续后面的步骤。
-1conda --version 输出 conda 4.9.2  创建虚拟环境 通过如下命令进行创建一个虚拟环境。">
+1conda --version 输出 conda 4.9.2  创建虚拟环境 通过如下命令进行创建一个虚拟环境。
+1conda create -n handwrittendigits -n handwrittendigits 的作用是指定虚拟环境的名称，本例中指定为 handwrittendigits。">
 <meta property="og:url" content="https://sudrizzz.github.io/posts/gan-for-hand-written-digits/">
 <meta property="og:site_name" content="Anthony's blog">
 <meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2020-12-08T10:00:00+08:00"><meta property="article:modified_time" content="2020-12-08T10:00:00+08:00">
@@ -32,17 +30,17 @@ Anaconda 安装 通过清华大学开源软件镜像站，我们可以直接下�
 Anaconda 安装教程网络上已经有很多，故此处不再赘述。
 安装完成后，我们需要手动配置 Anaconda 的环境变量，在用户变量的 Path 中添加 Anaconda 的安装路径以及其子文件夹，具体内容如下。
 C:\Users\xvyn\anaconda3 C:\Users\xvyn\anaconda3\Scripts C:\Users\xvyn\anaconda3\Library\bin 上述配置请根据 Anaconda 实际安装路径进行调整，配置完成的效果如下图所示。
- 20201208152533 
- 20201208152633 
 完成后打开 cmd 输入下列命令，如果输出内容与下列内容类似，则表示配置正确，可继续后面的步骤。
-1conda --version 输出 conda 4.9.2  创建虚拟环境 通过如下命令进行创建一个虚拟环境。">
+1conda --version 输出 conda 4.9.2  创建虚拟环境 通过如下命令进行创建一个虚拟环境。
+1conda create -n handwrittendigits -n handwrittendigits 的作用是指定虚拟环境的名称，本例中指定为 handwrittendigits。"><style>:root{--article-font-family:"Noto Serif SC", var(--base-font-family)}</style>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
-<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>Back</span>
 </a>
 </div>
@@ -67,7 +65,7 @@ Machine-Learning
 </div>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
-4 min read
+4 minute read
 </time>
 </div>
 </footer>
@@ -76,7 +74,7 @@ Machine-Learning
 <section class=article-content>
 <h1 id=环境搭建>环境搭建</h1>
 <p>本例中，所涉及的系统与软件版本列表如下。</p>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th>名称</th>
@@ -101,7 +99,7 @@ Machine-Learning
 <td>1.8.0</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>本例代码存放于 <a class=link href=https://github.com/sudrizzz/MachineLearning target=_blank rel=noopener>https://github.com/sudrizzz/MachineLearning</a>。</p>
 <h2 id=anaconda-安装>Anaconda 安装</h2>
 <p>通过清华大学开源软件镜像站，我们可以直接下载最新版本的 Anaconda，本例中使用的 Anaconda 下载链接：
@@ -112,18 +110,8 @@ Machine-Learning
 C:\Users\xvyn\anaconda3\Scripts
 C:\Users\xvyn\anaconda3\Library\bin
 </code></pre><p>上述配置请根据 Anaconda 实际安装路径进行调整，配置完成的效果如下图所示。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208152533.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208152533.png loading=lazy alt=20201208152533>
-</a>
-<figcaption>20201208152533</figcaption>
-</figure></p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208152633.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208152633.png loading=lazy alt=20201208152633>
-</a>
-<figcaption>20201208152633</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208152533.png loading=lazy alt=20201208152533></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208152633.png loading=lazy alt=20201208152633></p>
 <p>完成后打开 cmd 输入下列命令，如果输出内容与下列内容类似，则表示配置正确，可继续后面的步骤。</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>conda --version
 </code></pre></div><pre><code>输出
@@ -228,12 +216,7 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 <h2 id=使用-pycharm-创建项目>使用 PyCharm 创建项目</h2>
 <p>在创建项目时，需要将虚拟环境（图中 Location 项）配置为前文中创建的虚拟环境所在目录，然后点击创建项目。</p>
 <p><em>由于此前作者已经创建过项目，故创建窗口下方会提示虚拟环境目录不为空，忽略即可。</em></p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208194401.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208194401.png loading=lazy alt=20201208194401>
-</a>
-<figcaption>20201208194401</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208194401.png loading=lazy alt=20201208194401></p>
 <h2 id=运行项目>运行项目</h2>
 <p>将以下代码置于项目 <code>main.py</code> 中，运行。</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=ln>  1</span><span class=kn>import</span> <span class=nn>tensorflow</span> <span class=k>as</span> <span class=nn>tf</span>
@@ -369,12 +352,7 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 <span class=ln>131</span>            <span class=n>logger</span><span class=o>.</span><span class=n>info</span><span class=p>(</span><span class=s2>&#34;step </span><span class=si>%s</span><span class=s2>: d_loss is </span><span class=si>%s</span><span class=s2>, gan_loss is </span><span class=si>%s</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=n>step</span><span class=p>,</span> <span class=n>d_loss_train</span><span class=p>,</span> <span class=n>g_loss_train</span><span class=p>))</span>
 <span class=ln>132</span>            <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;step </span><span class=si>%s</span><span class=s2>: d_loss is </span><span class=si>%s</span><span class=s2>, g_loss is </span><span class=si>%s</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=n>step</span><span class=p>,</span> <span class=n>d_loss_train</span><span class=p>,</span> <span class=n>g_loss_train</span><span class=p>))</span>
 </code></pre></div><p>运行时的截图如下，可以看到已经生成了多张手写数字的图片。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208201913.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208201913.png loading=lazy alt=20201208201913>
-</a>
-<figcaption>20201208201913</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208201913.png loading=lazy alt=20201208201913></p>
 <p>至此，GAN 网络手写数字生成环境搭建已经完成，后续将进行更加深入的学习。</p>
 <h1 id=备注>备注</h1>
 <p>为 jupyter lab 指定 conda 环境，在 conda 环境中执行以下命令后再启动 jupyter lab 即可</p>
@@ -442,11 +420,11 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 <section class=copyright>
 &copy;
 2018 -
-2021 Anthony's blog
+2022 Anthony's blog
 </section>
 <section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
 </section>
 </footer>
 <div class=pswp tabindex=-1 role=dialog aria-hidden=true>
@@ -523,7 +501,7 @@ Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=
 </section>
 </aside>
 </div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
 <script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </body>
 </html>

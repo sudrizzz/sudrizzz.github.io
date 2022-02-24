@@ -3,15 +3,13 @@
 <meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="前言 LibTorch 简介 在 Python 深度学习圈，PyTorch 具有举足轻重的地位。同样的，C++ 平台上的 LibTorch 作为 PyTorch 的纯 C++ 接口，它遵循 PyTorch 的设计和架构，旨在支持高性能、低延迟的 C++ 深度学习应用研究。本文基于 Windows 环境与 Visual Studio 2019 开发工具，将从零开始搭建一个完整的深度学习开发环境，包括环境配置、项目演示、自定义数据集及问题排查等部分。
 LibTorch 安装 本文使用的 LibTorch 版本为 LTS(1.8.2) CPU 版，若需要使用 GPU 版，也可以在官方网站下载。
 环境配置 创建项目 首先，在 Visual Studio 中创建一个名为 libtorch-toturial 的控制台项目。创建完成后，将项目设置为 Release 模式，x64 平台，如下图。
- 20211027154904 
 配置 LibTorch 依赖  本文中 LibTorch 解压后的存放目录为 D:\Software\libtorch-lts，后续配置过程中，读者请按照自己实际情况进行相关设置。
  在 Visual Studio 中，点击 项目 -&amp;gt; libtorch-toturial 项目属性，在左侧导航栏中找到 VC++ 目录 选项。在右侧的 包含目录 选项中将 LibTorch include 目录添加进去，详细如下。"><title>LibTorch 上手教程</title>
 <link rel=canonical href=https://sudrizzz.github.io/posts/libtorch-toturial/>
-<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="LibTorch 上手教程">
+<link rel=stylesheet href=/scss/style.min.6801b4ba48a1373a0e84194e17f1122b8c1a811307a6a68009ac579b23c0df40.css><meta property="og:title" content="LibTorch 上手教程">
 <meta property="og:description" content="前言 LibTorch 简介 在 Python 深度学习圈，PyTorch 具有举足轻重的地位。同样的，C++ 平台上的 LibTorch 作为 PyTorch 的纯 C++ 接口，它遵循 PyTorch 的设计和架构，旨在支持高性能、低延迟的 C++ 深度学习应用研究。本文基于 Windows 环境与 Visual Studio 2019 开发工具，将从零开始搭建一个完整的深度学习开发环境，包括环境配置、项目演示、自定义数据集及问题排查等部分。
 LibTorch 安装 本文使用的 LibTorch 版本为 LTS(1.8.2) CPU 版，若需要使用 GPU 版，也可以在官方网站下载。
 环境配置 创建项目 首先，在 Visual Studio 中创建一个名为 libtorch-toturial 的控制台项目。创建完成后，将项目设置为 Release 模式，x64 平台，如下图。
- 20211027154904 
 配置 LibTorch 依赖  本文中 LibTorch 解压后的存放目录为 D:\Software\libtorch-lts，后续配置过程中，读者请按照自己实际情况进行相关设置。
  在 Visual Studio 中，点击 项目 -&amp;gt; libtorch-toturial 项目属性，在左侧导航栏中找到 VC++ 目录 选项。在右侧的 包含目录 选项中将 LibTorch include 目录添加进去，详细如下。">
 <meta property="og:url" content="https://sudrizzz.github.io/posts/libtorch-toturial/">
@@ -21,16 +19,16 @@ LibTorch 安装 本文使用的 LibTorch 版本为 LTS(1.8.2) CPU 版，若需�
 <meta name=twitter:description content="前言 LibTorch 简介 在 Python 深度学习圈，PyTorch 具有举足轻重的地位。同样的，C++ 平台上的 LibTorch 作为 PyTorch 的纯 C++ 接口，它遵循 PyTorch 的设计和架构，旨在支持高性能、低延迟的 C++ 深度学习应用研究。本文基于 Windows 环境与 Visual Studio 2019 开发工具，将从零开始搭建一个完整的深度学习开发环境，包括环境配置、项目演示、自定义数据集及问题排查等部分。
 LibTorch 安装 本文使用的 LibTorch 版本为 LTS(1.8.2) CPU 版，若需要使用 GPU 版，也可以在官方网站下载。
 环境配置 创建项目 首先，在 Visual Studio 中创建一个名为 libtorch-toturial 的控制台项目。创建完成后，将项目设置为 Release 模式，x64 平台，如下图。
- 20211027154904 
 配置 LibTorch 依赖  本文中 LibTorch 解压后的存放目录为 D:\Software\libtorch-lts，后续配置过程中，读者请按照自己实际情况进行相关设置。
- 在 Visual Studio 中，点击 项目 -&amp;gt; libtorch-toturial 项目属性，在左侧导航栏中找到 VC++ 目录 选项。在右侧的 包含目录 选项中将 LibTorch include 目录添加进去，详细如下。">
+ 在 Visual Studio 中，点击 项目 -&amp;gt; libtorch-toturial 项目属性，在左侧导航栏中找到 VC++ 目录 选项。在右侧的 包含目录 选项中将 LibTorch include 目录添加进去，详细如下。"><style>:root{--article-font-family:"Noto Serif SC", var(--base-font-family)}</style>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
-<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>Back</span>
 </a>
 </div>
@@ -55,7 +53,7 @@ c++
 </div>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
-4 min read
+4 minute read
 </time>
 </div>
 </footer>
@@ -70,12 +68,7 @@ c++
 <h1 id=环境配置>环境配置</h1>
 <h2 id=创建项目>创建项目</h2>
 <p>首先，在 Visual Studio 中创建一个名为 libtorch-toturial 的控制台项目。创建完成后，将项目设置为 <code>Release</code> 模式，<code>x64</code> 平台，如下图。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027154904.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027154904.png loading=lazy alt=20211027154904>
-</a>
-<figcaption>20211027154904</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027154904.png loading=lazy alt=20211027154904></p>
 <h2 id=配置-libtorch-依赖>配置 LibTorch 依赖</h2>
 <blockquote>
 <p>本文中 LibTorch 解压后的存放目录为 <code>D:\Software\libtorch-lts</code>，后续配置过程中，读者请按照自己实际情况进行相关设置。</p>
@@ -86,12 +79,7 @@ D:\Software\libtorch-lts\include\torch\csrc\api\include
 </code></pre><p>接着找到 <code>库目录</code> 选项，将 LibTorch lib 目录添加进去，详细如下。</p>
 <pre tabindex=0><code>D:\Software\libtorch-lts\lib
 </code></pre><p>配置结果如下图，注意检查窗口顶栏 <code>配置</code> 是否为 <code>Release</code>，<code>平台</code> 是否为 <code>x64</code>。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027160310.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027160310.png loading=lazy alt=20211027160310>
-</a>
-<figcaption>20211027160310</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027160310.png loading=lazy alt=20211027160310></p>
 <p>然后找到 <code>链接器 -> 输入 -> 附加依赖项</code> 选项，在其中填入 LibTorch lib 路径下（即 <code>D:\Software\libtorch-lts\lib</code>）所有 <code>*.lib</code> 文件的文件名，详细如下。</p>
 <pre tabindex=0><code>asmjit.lib
 c10.lib
@@ -114,12 +102,7 @@ torch.lib
 torch_cpu.lib
 XNNPACK.lib
 </code></pre><p>最后，将 <code>D:\Software\libtorch-lts\lib</code> 路径下所有的 <code>*.dll</code> 文件拷贝至 <code>项目路径 -> x64 -> Release</code> 路径下，如下图。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027163802.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027163802.png loading=lazy alt=20211027163802>
-</a>
-<figcaption>20211027163802</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027163802.png loading=lazy alt=20211027163802></p>
 <h2 id=示例程序>示例程序</h2>
 <p>至此，开发环境搭建就已经完成了。我们可以通过运行以下示例程序，来检验上述配置是否正确。若输出如图中所示，则配置无误。</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=ln>1</span><span class=cp>#include</span> <span class=cpf>&lt;torch/torch.h&gt;</span><span class=cp>
@@ -129,12 +112,7 @@ XNNPACK.lib
 <span class=ln>5</span>    <span class=k>auto</span> <span class=n>array</span> <span class=o>=</span> <span class=n>torch</span><span class=o>::</span><span class=n>rand</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span>
 <span class=ln>6</span>    <span class=n>std</span><span class=o>::</span><span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>array</span> <span class=o>&lt;&lt;</span> <span class=n>std</span><span class=o>::</span><span class=n>endl</span><span class=p>;</span>
 <span class=ln>7</span><span class=p>}</span>
-</code></pre></div><p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027170451.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027170451.png loading=lazy alt=20211027170451>
-</a>
-<figcaption>20211027170451</figcaption>
-</figure></p>
+</code></pre></div><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027170451.png loading=lazy alt=20211027170451></p>
 <h1 id=手写数字识别>手写数字识别</h1>
 <h2 id=数据准备>数据准备</h2>
 <p>本节将以深度学习经典案例——手写数字识别来演示 LibTorch 的使用。首先需要下载 mnist 手写数字数据集，你可以在<a class=link href=http://yann.lecun.com/exdb/mnist/ target=_blank rel=noopener>这里下载</a>，下载完成后将其解压到 <code>libtorch-toturial.cpp</code> 同一目录 <code>data</code> 文件夹下，目录结构如下。</p>
@@ -151,12 +129,7 @@ XNNPACK.lib
 <p>手写数字识别的源代码可以在 <a class=link href=https://github.com/pytorch/examples/blob/master/cpp/mnist/mnist.cpp target=_blank rel=noopener>LibTorch 官方示例</a> 中找到，请将其拷贝到项目的 <code>libtorch-toturial.cpp</code> 中。</p>
 <h2 id=结果>结果</h2>
 <p>与 PyTorch 类似，LibTorch 创建深度学习应用同样包含与其相似的步骤：定义网络、初始化网络、加载数据集、训练、验证及保存模型等，详细代码可以参照上述官方示例，此处不再赘述。训练 10 个 epoch 之后，识别准确率已经达到了 98.4%.</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211028114206.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211028114206.png loading=lazy alt=20211028114206>
-</a>
-<figcaption>20211028114206</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211028114206.png loading=lazy alt=20211028114206></p>
 <h1 id=自定义数据集>自定义数据集</h1>
 <p>在本节中，我们将介绍如何将已有的数据集读取到神经网络中，生成 PyTorch 张量。在这之前，需要先介绍 NumCpp 工具，它可以大幅提升数据处理的效率。</p>
 <h2 id=numcpp-简介与配置>NumCpp 简介与配置</h2>
@@ -285,11 +258,11 @@ D:\Software\NumCpp\include
 <section class=copyright>
 &copy;
 2018 -
-2021 Anthony's blog
+2022 Anthony's blog
 </section>
 <section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
 </section>
 </footer>
 <div class=pswp tabindex=-1 role=dialog aria-hidden=true>
@@ -377,7 +350,7 @@ Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=
 </section>
 </aside>
 </div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
 <script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </body>
 </html>

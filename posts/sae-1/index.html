@@ -6,23 +6,19 @@
 解码器：这部分能重构来自潜在空间表征的输入，可以用解码函数 $r=g(h)$ 表示。
 因此，整个自编码器可以用函数 $g(f(x)) = r$ 来描述，其中输出 $r$ 与原始输入 $x$ 相近。
 自动编码器的目标是最大程度地减少输入和输出之间的重构误差。这有助于自动编码器学习数据中存在的重要功能。当表征很好地重建其输入时，则表示这个表征很好地保留了输入中存在的许多信息。整个过程如下图。
- 20210122142001 
 Stacked Autoencoder 简介 Stacked Autoencoder 简写作 SAE。SAE 与 AE 的主要区别在于编码器与解码器的层数，栈式自编码器包含多层隐藏层。具体网络结构如下图所示，图中有两层编码层，两层解码层。
- 20210122154135 
 代码实现  代码环境配置，请参考 GAN 网络之手写数字生成 第一小节——环境搭建。
  自编码器只是一种思想，在具体实现中，编码器和解码器可以由多种深度学习模型构成，例如全连接层、卷积层和 LSTM 等，以下使用 Keras 来实现栈式自编码器。
 1from keras.datasets import mnist 2from keras.layers import Input, Dense 3from keras.models import Model 4import numpy as np 5import matplotlib.pyplot as plt 6 7EPOCHS = 50 8BATCH_SIZE = 256 9 10 11def train(x_train, x_test): 12 input_img = Input(shape=(784,)) 13 14 # 三个编码层，将数据从 784 维向量编码为 128、64、32 维向量 15 encoded = Dense(units=128, activation=&amp;#39;relu&amp;#39;)(input_img) 16 encoded = Dense(units=64, activation=&amp;#39;relu&amp;#39;)(encoded) 17 encoded = Dense(units=32, activation=&amp;#39;relu&amp;#39;)(encoded) 18 19 # 三个解码层，将数据从 32 维向量解码成 64、128、784 维向量 20 decoded = Dense(units=64, activation=&amp;#39;relu&amp;#39;)(encoded) 21 decoded = Dense(units=128, activation=&amp;#39;relu&amp;#39;)(decoded) 22 decoded = Dense(units=784, activation=&amp;#39;sigmoid&amp;#39;)(decoded) 23 autoencoder = Model(input_img, decoded) 24 encoder = Model(input_img, encoded) 25 26 autoencoder."><title>SAE 入门（一）</title>
 <link rel=canonical href=https://sudrizzz.github.io/posts/sae-1/>
-<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="SAE 入门（一）">
+<link rel=stylesheet href=/scss/style.min.6801b4ba48a1373a0e84194e17f1122b8c1a811307a6a68009ac579b23c0df40.css><meta property="og:title" content="SAE 入门（一）">
 <meta property="og:description" content="Autoencoder 简介 自编码器（Autoencoder，AE），是一种利用反向传播（backpropagation，BP）算法使得输出值等于输入值的神经网络，它先将输入压缩成潜在空间表征，然后通过这种表征来重构输出。其中，空间表征可以看作是输入数据的高级抽象，通常是将高维度的数据抽象为低维度的数据。
 自编码器由两部分组成：
 编码器：这部分能将输入压缩成潜在空间表征，可以用编码函数 $h=f(x)$ 表示;
 解码器：这部分能重构来自潜在空间表征的输入，可以用解码函数 $r=g(h)$ 表示。
 因此，整个自编码器可以用函数 $g(f(x)) = r$ 来描述，其中输出 $r$ 与原始输入 $x$ 相近。
 自动编码器的目标是最大程度地减少输入和输出之间的重构误差。这有助于自动编码器学习数据中存在的重要功能。当表征很好地重建其输入时，则表示这个表征很好地保留了输入中存在的许多信息。整个过程如下图。
- 20210122142001 
 Stacked Autoencoder 简介 Stacked Autoencoder 简写作 SAE。SAE 与 AE 的主要区别在于编码器与解码器的层数，栈式自编码器包含多层隐藏层。具体网络结构如下图所示，图中有两层编码层，两层解码层。
- 20210122154135 
 代码实现  代码环境配置，请参考 GAN 网络之手写数字生成 第一小节——环境搭建。
  自编码器只是一种思想，在具体实现中，编码器和解码器可以由多种深度学习模型构成，例如全连接层、卷积层和 LSTM 等，以下使用 Keras 来实现栈式自编码器。
 1from keras.datasets import mnist 2from keras.layers import Input, Dense 3from keras.models import Model 4import numpy as np 5import matplotlib.pyplot as plt 6 7EPOCHS = 50 8BATCH_SIZE = 256 9 10 11def train(x_train, x_test): 12 input_img = Input(shape=(784,)) 13 14 # 三个编码层，将数据从 784 维向量编码为 128、64、32 维向量 15 encoded = Dense(units=128, activation=&amp;#39;relu&amp;#39;)(input_img) 16 encoded = Dense(units=64, activation=&amp;#39;relu&amp;#39;)(encoded) 17 encoded = Dense(units=32, activation=&amp;#39;relu&amp;#39;)(encoded) 18 19 # 三个解码层，将数据从 32 维向量解码成 64、128、784 维向量 20 decoded = Dense(units=64, activation=&amp;#39;relu&amp;#39;)(encoded) 21 decoded = Dense(units=128, activation=&amp;#39;relu&amp;#39;)(decoded) 22 decoded = Dense(units=784, activation=&amp;#39;sigmoid&amp;#39;)(decoded) 23 autoencoder = Model(input_img, decoded) 24 encoder = Model(input_img, encoded) 25 26 autoencoder.">
@@ -36,19 +32,18 @@ Stacked Autoencoder 简介 Stacked Autoencoder 简写作 SAE。SAE 与 AE 的主
 解码器：这部分能重构来自潜在空间表征的输入，可以用解码函数 $r=g(h)$ 表示。
 因此，整个自编码器可以用函数 $g(f(x)) = r$ 来描述，其中输出 $r$ 与原始输入 $x$ 相近。
 自动编码器的目标是最大程度地减少输入和输出之间的重构误差。这有助于自动编码器学习数据中存在的重要功能。当表征很好地重建其输入时，则表示这个表征很好地保留了输入中存在的许多信息。整个过程如下图。
- 20210122142001 
 Stacked Autoencoder 简介 Stacked Autoencoder 简写作 SAE。SAE 与 AE 的主要区别在于编码器与解码器的层数，栈式自编码器包含多层隐藏层。具体网络结构如下图所示，图中有两层编码层，两层解码层。
- 20210122154135 
 代码实现  代码环境配置，请参考 GAN 网络之手写数字生成 第一小节——环境搭建。
  自编码器只是一种思想，在具体实现中，编码器和解码器可以由多种深度学习模型构成，例如全连接层、卷积层和 LSTM 等，以下使用 Keras 来实现栈式自编码器。
-1from keras.datasets import mnist 2from keras.layers import Input, Dense 3from keras.models import Model 4import numpy as np 5import matplotlib.pyplot as plt 6 7EPOCHS = 50 8BATCH_SIZE = 256 9 10 11def train(x_train, x_test): 12 input_img = Input(shape=(784,)) 13 14 # 三个编码层，将数据从 784 维向量编码为 128、64、32 维向量 15 encoded = Dense(units=128, activation=&amp;#39;relu&amp;#39;)(input_img) 16 encoded = Dense(units=64, activation=&amp;#39;relu&amp;#39;)(encoded) 17 encoded = Dense(units=32, activation=&amp;#39;relu&amp;#39;)(encoded) 18 19 # 三个解码层，将数据从 32 维向量解码成 64、128、784 维向量 20 decoded = Dense(units=64, activation=&amp;#39;relu&amp;#39;)(encoded) 21 decoded = Dense(units=128, activation=&amp;#39;relu&amp;#39;)(decoded) 22 decoded = Dense(units=784, activation=&amp;#39;sigmoid&amp;#39;)(decoded) 23 autoencoder = Model(input_img, decoded) 24 encoder = Model(input_img, encoded) 25 26 autoencoder.">
+1from keras.datasets import mnist 2from keras.layers import Input, Dense 3from keras.models import Model 4import numpy as np 5import matplotlib.pyplot as plt 6 7EPOCHS = 50 8BATCH_SIZE = 256 9 10 11def train(x_train, x_test): 12 input_img = Input(shape=(784,)) 13 14 # 三个编码层，将数据从 784 维向量编码为 128、64、32 维向量 15 encoded = Dense(units=128, activation=&amp;#39;relu&amp;#39;)(input_img) 16 encoded = Dense(units=64, activation=&amp;#39;relu&amp;#39;)(encoded) 17 encoded = Dense(units=32, activation=&amp;#39;relu&amp;#39;)(encoded) 18 19 # 三个解码层，将数据从 32 维向量解码成 64、128、784 维向量 20 decoded = Dense(units=64, activation=&amp;#39;relu&amp;#39;)(encoded) 21 decoded = Dense(units=128, activation=&amp;#39;relu&amp;#39;)(decoded) 22 decoded = Dense(units=784, activation=&amp;#39;sigmoid&amp;#39;)(decoded) 23 autoencoder = Model(input_img, decoded) 24 encoder = Model(input_img, encoded) 25 26 autoencoder."><style>:root{--article-font-family:"Noto Serif SC", var(--base-font-family)}</style>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
-<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>Back</span>
 </a>
 </div>
@@ -73,7 +68,7 @@ Machine-Learning
 </div>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
-3 min read
+3 minute read
 </time>
 </div>
 </footer>
@@ -87,20 +82,10 @@ Machine-Learning
 解码器：这部分能重构来自潜在空间表征的输入，可以用解码函数 $r=g(h)$ 表示。</p>
 <p>因此，整个自编码器可以用函数 $g(f(x)) = r$ 来描述，其中输出 $r$ 与原始输入 $x$ 相近。</p>
 <p>自动编码器的目标是最大程度地减少输入和输出之间的重构误差。这有助于自动编码器学习数据中存在的重要功能。当表征很好地重建其输入时，则表示这个表征很好地保留了输入中存在的许多信息。整个过程如下图。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210122142001.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210122142001.png loading=lazy alt=20210122142001>
-</a>
-<figcaption>20210122142001</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210122142001.png loading=lazy alt=20210122142001></p>
 <h1 id=stacked-autoencoder-简介>Stacked Autoencoder 简介</h1>
 <p>Stacked Autoencoder 简写作 SAE。SAE 与 AE 的主要区别在于编码器与解码器的层数，栈式自编码器包含多层隐藏层。具体网络结构如下图所示，图中有两层编码层，两层解码层。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210122154135.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210122154135.png loading=lazy alt=20210122154135>
-</a>
-<figcaption>20210122154135</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210122154135.png loading=lazy alt=20210122154135></p>
 <h1 id=代码实现>代码实现</h1>
 <blockquote>
 <p>代码环境配置，请参考 <a class=link href=https://sudrizzz.github.io/posts/gan-for-hand-written-digits/ target=_blank rel=noopener>GAN 网络之手写数字生成</a> 第一小节——环境搭建。</p>
@@ -249,12 +234,7 @@ Epoch 49/50
 235/235 [==============================] - 3s 12ms/step - loss: 0.0846 - accuracy: 0.0130 - val_loss: 0.0845 - val_accuracy: 0.0115
 Epoch 50/50
 235/235 [==============================] - 3s 12ms/step - loss: 0.0845 - accuracy: 0.0139 - val_loss: 0.0840 - val_accuracy: 0.0165
-</code></pre><p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210122160643.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210122160643.png loading=lazy alt=20210122160643>
-</a>
-<figcaption>20210122160643</figcaption>
-</figure></p>
+</code></pre><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210122160643.png loading=lazy alt=20210122160643></p>
 <h1 id=参考文献>参考文献</h1>
 <ol>
 <li><a class=link href=https://medium.com/@venkatakrishna.jonnalagadda/sparse-stacked-and-variational-autoencoder-efe5bfe73b64 target=_blank rel=noopener>Sparse, Stacked and Variational Autoencoder</a></li>
@@ -318,11 +298,11 @@ Epoch 50/50
 <section class=copyright>
 &copy;
 2018 -
-2021 Anthony's blog
+2022 Anthony's blog
 </section>
 <section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
 </section>
 </footer>
 <div class=pswp tabindex=-1 role=dialog aria-hidden=true>
@@ -380,7 +360,7 @@ Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=
 </section>
 </aside>
 </div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
 <script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </body>
 </html>

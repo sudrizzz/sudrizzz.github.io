@@ -8,7 +8,7 @@ $$ f(\boldsymbol{x}) = \boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b $$
 3.2 线性回归 给定数据集 $D=\{(x_1, y_1,), (x_2, y_2), \cdots, (x_m, y_m)\}$，其中 $\boldsymbol{x}_i = (x_{i1}; x_{i2}, \cdots, x_{id})$，$y_i \in \mathbb{R}$。“线性回归（linear regression）”试图学得一个线性模型以尽可能准确地预测实值输出标记。
 线性回归试图学得 $f(x_i) = wx_i + b$，使得 $f(x_i) \simeq y_i$。"><title>《机器学习》笔记（第三章）</title>
 <link rel=canonical href=https://sudrizzz.github.io/posts/machine-learning-note-2/>
-<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="《机器学习》笔记（第三章）">
+<link rel=stylesheet href=/scss/style.min.6801b4ba48a1373a0e84194e17f1122b8c1a811307a6a68009ac579b23c0df40.css><meta property="og:title" content="《机器学习》笔记（第三章）">
 <meta property="og:description" content="3 线性模型 3.1 基本形式 给定由 $d$ 个属性描述的示例 $\boldsymbol{x}=\{x_1; x_2;\cdots;x_d\}$，其中 $x_i$ 是 $\boldsymbol{x}$ 在第 $i$ 个属性上的取值，线性模型（linear model）试图学得一个通过属性的线性组合来进行预测的函数，即
 $$ f(\boldsymbol{x}) = w_1x_1 + w_2x_2 + \cdots + w_dx_d + b $$
 一般用向量形式写成
@@ -26,14 +26,15 @@ $$ f(\boldsymbol{x}) = w_1x_1 + w_2x_2 + \cdots + w_dx_d + b $$
 $$ f(\boldsymbol{x}) = \boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b $$
 其中 $\boldsymbol{w} = (w_1; w_2; \cdots; w_d)$，$\boldsymbol{w}$ 和 $b$ 学得之后，模型就得以确定。
 3.2 线性回归 给定数据集 $D=\{(x_1, y_1,), (x_2, y_2), \cdots, (x_m, y_m)\}$，其中 $\boldsymbol{x}_i = (x_{i1}; x_{i2}, \cdots, x_{id})$，$y_i \in \mathbb{R}$。“线性回归（linear regression）”试图学得一个线性模型以尽可能准确地预测实值输出标记。
-线性回归试图学得 $f(x_i) = wx_i + b$，使得 $f(x_i) \simeq y_i$。">
+线性回归试图学得 $f(x_i) = wx_i + b$，使得 $f(x_i) \simeq y_i$。"><style>:root{--article-font-family:"Noto Serif SC", var(--base-font-family)}</style>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
-<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>Back</span>
 </a>
 </div>
@@ -55,7 +56,7 @@ Machine-Learning
 </div>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
-3 min read
+3 minute read
 </time>
 </div>
 </footer>
@@ -92,12 +93,7 @@ $$</p>
 <p>可否令模型预测值逼近 $y$ 的衍生物呢？譬如说，假设我们认为示例所对应的输出标记是在指数尺度上变化，那就可将输出标记的对数作为线性模型逼近的目标，即</p>
 <p>$$ \ln y = \boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b $$</p>
 <p>这就是“对数线性回归”（log-linear regression），它实际上是在试图让 $e^{\boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b}$ 逼近 $y$。上式在形式上仍是线性回归，但实质上已是在求取输入空间到输出空间的非线性函数映射，如下图所示，这里的对数函数起到了将线性回归模型的预测值与真实标记联系起来的作用。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231150756.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231150756.png loading=lazy alt=20201231150756>
-</a>
-<figcaption>20201231150756</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231150756.png loading=lazy alt=20201231150756></p>
 <p>更一般地，考虑单调可微函数 $g(\cdot)$，令</p>
 <p>$$ y=g^{-1}(\boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b) $$</p>
 <p>这样得到的模型称为“广义线性模型”（generalized linear model），其中函数 $g(\cdot)$ 称为“联系函数”（link function）。显然，对数线性回归是广义线性模型在 $g(\cdot) = \ln (\cdot)$ 时的特例。</p>
@@ -109,12 +105,7 @@ y = \begin{cases}
 \end{cases}
 $$</p>
 <p>即若预测值 $z$ 大于零就判为正例，小于零则判为反例，预测值为临界值零则可任意判别，如下图所示。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231140318.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231140318.png loading=lazy alt=20201231140318>
-</a>
-<figcaption>20201231140318</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231140318.png loading=lazy alt=20201231140318></p>
 <p>如果我们希望找到在一定程度上近似单位阶跃函数的“替代函数”（surrogate function），并希望它单调可微。对数几率函数（logistic function）正是这样一个常用的替代函数。</p>
 <p>$$ y = \frac{1}{1+e^{-z}} $$</p>
 <p>从上图可看出，对数几率函数是一种“Sigmoid 函数”，它将 $z$ 值转化为一个接近 0 或 1 的 $y$ 值，并且其输出值在 $z=0$ 附近变化很陡。将对数几率函数作为 $g^{-1}(\cdot)$ 代入 $ y=g^{-1}(\boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b) $，得到</p>
@@ -130,24 +121,14 @@ $$</p>
 <h2 id=34-线性判别分析>3.4 线性判别分析</h2>
 <p>线性判别分析（Linear Discriminant Analysis，简称 LDA）是一种经典的线性学习方法，在二分类问题上因为最早由 [Fisher，1936] 提出，亦称“Fisher 判别分析”。</p>
 <p>LDA 的思想非常朴素：给定训练样例集，设法将样例投影到一条直线上，使得同类样例的投影点尽可能接近、异类样例的投影点尽可能远离；在对新样本进行分类时，将其投影到同样的这条直线上，再根据投影点的位置来确定新样本的类别。下图给出了一个二维示意图。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231154207.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231154207.png loading=lazy alt=20201231154207>
-</a>
-<figcaption>20201231154207</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231154207.png loading=lazy alt=20201231154207></p>
 <p>图中 “+”、“-” 分别代表正例和反例，椭圆表示数据簇的外轮廓，虛线表示投影，红色实心圆和实心三角形分别表示两类样本投影后的中心点。</p>
 <h2 id=35-多分类学习>3.5 多分类学习</h2>
 <p>现实中常遇到多分类学习任务。有些二分类学习方法可直接推广到多分类，但在更多情形下，我们是基于一些基本策略，利用二分类学习器来解决多分类问题。</p>
 <p>不失一般性，考虑 N 个类别 $C_1, C_2, \cdots, C_N$ 多分类学习的基本思路是“拆解法”，即将多分类任务拆为若干个二分类任务求解。具体来说，先对问题进行拆分，然后为拆出的每个二分类任务训练一个分类器；在测试时，对这些分类器的预测结果进行集成以获得最终的多分类结果。这里的关键是如何对多分类任务进行拆分，以及如何对多个分类器进行集成。</p>
 <p>最经典的拆分策略有三种；“一对一”（One vs. One，简称 OvO）、“一对其余”（One vs. Rest，简称 OvR）和“多对多”（Many vs. Many，简称 MvM）。</p>
 <p>给定数据集 $D=\{(\boldsymbol{x}_1, y_1,), (\boldsymbol{x}_2, y_2), \cdots, (\boldsymbol{x}_m, y_m)\}$，$y_i \in \{C_1, C_2, \cdots, C_N\}$。OvO 将这 $N$ 个类别两两配对，从而产生 $N(N-1)/2$ 个二分类任务，例如 OvO 将为区分类别 $C_i$ 和 $C_j$；训练一个分类器，该分类器把 $D$ 中的 $C_i$ 类样例作为正例, $C_j$ 类样例作为反例。在测试阶段，新样本将同时提交给所有分类器，于是我们将得到 $N(N-1)/2$ 个分类结果，最终结果可通过投票产生：即把被预测得最多的类别作为最终分类结果。下图是 OvO 与 OvR 的示意图。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231161216.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231161216.png loading=lazy alt=20201231161216>
-</a>
-<figcaption>20201231161216</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231161216.png loading=lazy alt=20201231161216></p>
 <p>OvR 则是每次将一个类的样例作为正例、所有其他类的样例作为反例来训练 N 个分类器。在测试时若仅有一个分类器预测为正类，则对应的类别标记作为最终分类结果，如上图所示，若有多个分类器预测为正类，则通常考虑各
 分类器的预测置信度，选择置信度最大的类别标记作为分类结果。</p>
 <p>容易看出，OvR 只需训练 $N$ 个分类器,而 OvO 需训练 $N(N-1)/2$ 个分类器，因此，OvO 的存储开销和测试时间开销通常比 OvR 更大。但在训练时，OvR 的每个分类器均使用全部训练样例，而 OvO 的每个分类器仅用到两个类的样例，因此，在类别很多时，OvO 的训练时间开销通常比 OvR 更小。至于预测性能，则取决于具体的数据分布，在多数情形下两者差不多。</p>
@@ -162,12 +143,7 @@ $$</p>
 </li>
 </ul>
 <p>类别划分通过“编码矩阵”（coding matrix）指定。编码矩阵有多种形式，常见的主要有二元码 [Dietterich and Bakiri，1995] 和三元码 [Allwein et al，2000]。前者将每个类别分别指定为正类和反类，后者在正、反类之外，还可指定“停用类”。下图为二元码和三元码的示意图。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231162236.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231162236.png loading=lazy alt=20201231162236>
-</a>
-<figcaption>20201231162236</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231162236.png loading=lazy alt=20201231162236></p>
 <p>上图中，“+1”、“-1”分别表示学习器 $f_i$ 将该类样本作为正、反例；三元码中“0”表示 $f_i$ 不使用该类样本。</p>
 <blockquote>
 <p>海明距离：两个等长编码序列中对应位置的不同字符的个数</p>
@@ -252,11 +228,11 @@ $$</p>
 <section class=copyright>
 &copy;
 2018 -
-2021 Anthony's blog
+2022 Anthony's blog
 </section>
 <section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
 </section>
 </footer>
 <div class=pswp tabindex=-1 role=dialog aria-hidden=true>
@@ -321,7 +297,7 @@ Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=
 </section>
 </aside>
 </div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
 <script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </body>
 </html>

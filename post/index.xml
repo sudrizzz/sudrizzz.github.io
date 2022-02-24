@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Anthony's blog</title><link>https://sudrizzz.github.io/post/</link><description>Recent content in Posts on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 27 Oct 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>LibTorch 上手教程</title><link>https://sudrizzz.github.io/posts/libtorch-toturial/</link><pubDate>Wed, 27 Oct 2021 15:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/libtorch-toturial/</guid><description>前言 LibTorch 简介 在 Python 深度学习圈，PyTorch 具有举足轻重的地位。同样的，C++ 平台上的 LibTorch 作为 PyTorch 的纯 C++ 接口，它遵循 PyTorch 的设计和架构，旨在支持高性能、低延迟的 C++ 深度学习应用研究。本文基于 Windows 环境与 Visual Studio 2019 开发工具，将从零开始搭建一个完整的深度学习开发环境，包括环境配置、项目演示、自定义数据集及问题排查等部分。
 LibTorch 安装 本文使用的 LibTorch 版本为 LTS(1.8.2) CPU 版，若需要使用 GPU 版，也可以在官方网站下载。
 环境配置 创建项目 首先，在 Visual Studio 中创建一个名为 libtorch-toturial 的控制台项目。创建完成后，将项目设置为 Release 模式，x64 平台，如下图。
-20211027154904
 配置 LibTorch 依赖 本文中 LibTorch 解压后的存放目录为 D:\Software\libtorch-lts，后续配置过程中，读者请按照自己实际情况进行相关设置。
 在 Visual Studio 中，点击 项目 -&amp;gt; libtorch-toturial 项目属性，在左侧导航栏中找到 VC++ 目录 选项。在右侧的 包含目录 选项中将 LibTorch include 目录添加进去，详细如下。</description></item><item><title>Anaconda 克隆到离线环境</title><link>https://sudrizzz.github.io/posts/conda-clone/</link><pubDate>Thu, 05 Aug 2021 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/conda-clone/</guid><description>配置 conda 环境 首先我们需要在在线环境中配置好 conda 环境，安装好所需要的包，方可开始打包。此处假设我们创建的环境名为 baseenv。
 打包 首先进入 Anaconda 的安装目录，将以下目录进行打包：
@@ -9,61 +8,54 @@ anaconda3\envs\baseenv anaconda3\pkgs 我们直接将这两个目录压缩生成
 离线创建 conda 环境 在离线的机器上安装好 Anaconda 后，在 Anaconda Prompt (anaconda3) 执行以下命令将其设置为离线模式。
 1conda config --set offline true 然后创建需要的环境，以 new_env 作为环境名为例。
 1conda create -n new_env 环境恢复 将上述两个压缩包分别解压到离线机器的以下目录中：
-压缩包 解压到 baseenv.zip anaconda3\env\new_env\ pkgs.zip anaconda3\pkgs\ 测试 经过上述步骤，环境就已经恢复成功了，可以通过命令行运行 python 并引入包的方式来进行测试。
-20210805185700</description></item><item><title>增肌训练计划笔记</title><link>https://sudrizzz.github.io/posts/fitness/</link><pubDate>Sun, 01 Aug 2021 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/fitness/</guid><description>时间安排 20210801191101
-周一、周四：胸背
+压缩包 解压到 baseenv.zip anaconda3\env\new_env\ pkgs.zip anaconda3\pkgs\ 测试 经过上述步骤，环境就已经恢复成功了，可以通过命令行运行 python 并引入包的方式来进行测试。</description></item><item><title>增肌训练计划笔记</title><link>https://sudrizzz.github.io/posts/fitness/</link><pubDate>Sun, 01 Aug 2021 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/fitness/</guid><description>时间安排 周一、周四：胸背
 周二、周五：先练大腿，带上肩部和手臂
 胸背 平板卧推（胸部） 组数：4 组 次数：8 次 间歇：1~2 分钟 练法：最后一组力竭 要点 肩胛骨收紧，仰躺在卧推椅上 双手垂直在身体上方，缓慢有控制地将哑铃往下放 放到最低点再用力往上推（两侧手肘往中间夹） 注意 小臂全程垂直地面。
 后期可以考虑杠铃卧推。
-20210801191327 20210801191356 20210801191632
 引体向上（背部） 组数：自定，不限 次数：30 次 间歇：1~2 分钟 练法：完成目标数量即可 要点 双手比肩部略宽握着吊杆，身体挺直 将肩胛骨往下压，把整个身体用力拉上去 再缓慢有控制地往下放 注意 拉起时不要耸肩 身体不要往后仰太多 动作尽量做完全程。 如果实在拉不上去，可以考虑高位下拉。
 组数：4 组
 次数：12 次
 间歇：1~2 分钟
 练法：最后一组力竭
-20210801192424 20210801192452 20210801192506 20210801192713</description></item><item><title>基于 Isight 的实验设计</title><link>https://sudrizzz.github.io/posts/isight-doe/</link><pubDate>Wed, 28 Jul 2021 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/isight-doe/</guid><description>实验设计 实验设计（Design Of Experiments，DOE），一种安排实验和分析实验数据的数理统计方法。通过实验，研究并确定影响因子，通过改变因子设置以使输出达到最佳值；要严格按照计划进行实验，并进行分析，从而找到改进的途径。
+上斜卧推（胸部） 组数：4 组 次数：8 次 间歇：1~2 分钟 练法：最后一组力竭 要点 肩胛骨收紧，仰躺在卧推椅上 双手垂直在身体上方，缓慢有控制地将哑铃往下放 放到最低点再用力往上推（两侧手肘往中间夹） 注意 小臂全程垂直地面。
+坐姿划船（背部） 组数：4 组 次数：12 次 间歇：1~2 分钟 练法：最后一组力竭 要点 坐在凳子上，双脚踩稳，挺直腰背，核心收紧 用力拉起把手，缓慢有控制地往下放 要保持身体挺直，摆动的幅度不要太大 注意 往后拉的时候，背部使劲往中间夹。</description></item><item><title>基于 Isight 的实验设计</title><link>https://sudrizzz.github.io/posts/isight-doe/</link><pubDate>Wed, 28 Jul 2021 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/isight-doe/</guid><description>实验设计 实验设计（Design Of Experiments，DOE），一种安排实验和分析实验数据的数理统计方法。通过实验，研究并确定影响因子，通过改变因子设置以使输出达到最佳值；要严格按照计划进行实验，并进行分析，从而找到改进的途径。
 通过有效的实验方案的设计，找到可行的工艺方法和产品指标。 筛选重要因子，确定真正的影响因素，从而有目标地进行质量改进。 Isight 版本 本文采用 Isight 2016 版本，下载链接：https://dl.downloadly.ir/Files/Software2/DS_SIMULIA_Isight_2016_HF4_Downloadly.ir.rar。
 安装 安装过程不再赘述，值得一提的是，在设置 Isight FlexNet License 时，首选 License 服务器名应填写 27011@localhost，其余留空即可。 完成安装后，启动 Isight 2016.HF4 Design Gateway。
 实验 数据准备 如下图所示，定义了三个输入参数以及两个输出参数，并在 excel 中使用名称管理器为这 5 个变量设置了名称。两个输出参数的计算方法分别如下。
 $$ volume = length \times height \times width $$ $$ costs = 2 \times length^2 + 3 \times width^2 + 0.05 \times height^3 $$
-20210729094237
-新建任务 打开 Isight 任务界面，将 Application Components 中的 Excel 组件拖拽到如下图所示的位置。</description></item><item><title>飞机结冰论文阅读 2</title><link>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-2/</link><pubDate>Thu, 22 Apr 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-2/</guid><description>文章简介 来源 卷积神经网络在机翼升力系数预测中的应用
+新建任务 打开 Isight 任务界面，将 Application Components 中的 Excel 组件拖拽到如下图所示的位置。
+此时会发现底部有一黄色警告，这是因为我们还没有正确配置 Excel 文件地址。双击刚刚添加的 Excel 组件即可打开配置界面，在顶部选中数据文件。由于我们在 Excel 文件中提前对变量进行命名，故此时 Isight 会提示并自动生成变量，如下图所示。确认无误后点击下方 OK 即可回到任务界面。</description></item><item><title>飞机结冰论文阅读 2</title><link>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-2/</link><pubDate>Thu, 22 Apr 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-2/</guid><description>文章简介 来源 卷积神经网络在机翼升力系数预测中的应用
 Application of Convolutional Neural Network to Predict Airfoil Lift Coefficient
 https://arxiv.org/abs/1712.10082
 摘要 本文主要介绍了 CNN 网络结构，通过 CNN 网络学习预测多种形状翼型在多种流动马赫数、雷诺数和不同攻角下的升力系数，同时使用 MLP 网络进行结果对比。实验结果表明，CNN 网络的预测结果，相比于 MLP 网络的预测结果，有更高的精度。
-网络结构 20210423164152
-本文中用到的 CNN 网络，为修改后的 LeNet-5
-20210423164230
+网络结构 本文中用到的 CNN 网络，为修改后的 LeNet-5
 本文种用到的三种网络结构
-20210423164300
 卷积方案的图示（数字非实际值，仅用于图示）
 数据准备 根据 freestreamMach 数和像素密度，通过以下方程式进行“着色“：
 $$ \overline\rho = (1 - \frac{\rho}{\rho_{max}}) \frac{M_\infty}{M_{\infty, max}} $$
 原始像素密度 $\rho$ 每个单元格的范围为[0, 100]；对于“完全”位于翼型内部的单元，为 100；对于“完全”位于翼型外部的单元 ，为 0；对于位于翼型形状边界上的单元，为（0, 100）。
-20210423164754
-上图为 NACA654421a05 型机翼在 22° 仰角时的图示。（左）经过 AoA 倾斜和数字化（通过像素密度），（中）对于 0.</description></item><item><title>飞机结冰论文阅读 1</title><link>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-1/</link><pubDate>Tue, 20 Apr 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-1/</guid><description>文章简介 来源 深度神经网络在用于飞机结冰检测和特征化的飞行中参数识别中的应用
+上图为 NACA654421a05 型机翼在 22° 仰角时的图示。（左）经过 AoA 倾斜和数字化（通过像素密度），（中）对于 0.8 马赫数未标注尺寸，（右）对于 0.6 马赫数具有相同几何形状
+本文使用的数据集来自于 UIUC 机翼数据中的 NACA 4 位数和 6 位数系列机型，总共 133 套 2D 机翼几何图形被用作训练和验证数据集。所有机翼均具有外部模型线形。</description></item><item><title>飞机结冰论文阅读 1</title><link>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-1/</link><pubDate>Tue, 20 Apr 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-1/</guid><description>文章简介 来源 深度神经网络在用于飞机结冰检测和特征化的飞行中参数识别中的应用
 An application of Deep Neural Networks to the in-flight parameter identification for detection and characterization of aircraft icing
 https://www.sciencedirect.com/science/article/pii/S1270963817318242
 摘要 本文将深度神经网络应用于飞行器结冰的检测和表征的飞行参数识别。作者为预处理输入的飞行状态数据，设计了一种类似于真实图片的“状态图像（state-image）”，然后作者设计了一个 DNN 网络结构，该结构可对飞行状态的本地连通性（local connectivity，使用 CNN）和时间特征（temporal characteristics，使用 RNN）进行建模。在文中，作者对以下几种情形进行了实验，分别是：未结冰（clean）、不同部位结冰（机翼、尾翼、机翼与尾翼）以及结冰严重程度（中等结冰、严重结冰）。同时，作者还提供了基于 DNN 的方法与基于基线 $H_{\infty}$ 的识别算法（飞机结冰的最新技术）的比较。基于测试和比较结果，基于 DNN 的方法对多参数输入数据能产生更准确的预测性能。
 实验说明 对于中度结冰的情况，$T_{cld}$ = 600（飞机结冰时间），$\eta_{ice}(T_{cld})$ = 0.20（结冰严重性参数），$\eta_{ice}(T_{cld}/2)$ = 0.12。对于快速/严重结冰情况，$T_{cld}$ = 300，$\eta_{ice}(T_{cld})$ = 0.30，$\eta_{ice}(T_{cld}/2)$ = 0.20。图 1 展示了两种结冰情形的结冰严重性参数变化，以及未结冰对照组的情况。
-20210420205418
 数据预处理 作者认为仅识别俯仰和横摆力矩稳定系数（$C_{m_a}$，$C_{n_{\beta}}$）是有用的。在纵向平面中，作者展示了 2 个稳定性系数（$C_{m_a}$，$C_{z_a}$）和 2 个控制系数（$C_{m_{\delta_e}}$，$C_{z_{\delta_e}}$）的性能，而在横向平面中，作者展示了 3 个稳定性系数（$C_{y_\beta}$，$C_{l_p}$，$C_{n_\beta}$）和 2 个控制系数（$C_{y_{\delta_r}}$，$C_{l_{\delta_a}}$）的结果。
 为进行本文的参数识别，作者在纵向中指定速度（$V$），体轴上的垂直载荷系数（$g_z$），俯仰率（$q$），俯仰角（$\theta$）和高度（$H$）作为输入数据。对于横向，作者使用速度（$V$），体轴上的横向负载系数（$g_y$），横摆率（$r$），横摆角（$\varphi$），偏航角（$r$）和偏航角（$\psi$）作为输入数据。
-20210420214213</description></item><item><title>Docker 搭建 ShareLaTeX</title><link>https://sudrizzz.github.io/posts/docker-host-sharelatex/</link><pubDate>Thu, 11 Mar 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/docker-host-sharelatex/</guid><description>安装 ShareLaTeX 1sudo su 2docker pull kingsleyluoxin/sharelatex:full 编辑配置 在 ~/sharelatex 中放入配置文件 docker-compose.yml，并进行编辑。
+类似于常用的图像（2D 矩阵），作者将飞机结冰数据按照时间划分，将纵向参数分割成 m * n 的矩阵，其中矩阵每行代表一个参数，每列代表某一时刻的所有参数数值；同理，横向参数也划分为 m * n 的矩阵。其中 $n = \Delta T / \Delta t$，文中采用时间窗口的方法来采集数据，设定 $\Delta T=30s$，$n=30$；m 代表参数数量，纵向参数为 5 个，横向参数为 6 个，故对于纵向数据图像尺寸为 5 * 30，横向参数图像尺寸为 6 * 30。完成数据划分后，将图像数据进行了正则化。</description></item><item><title>Docker 搭建 ShareLaTeX</title><link>https://sudrizzz.github.io/posts/docker-host-sharelatex/</link><pubDate>Thu, 11 Mar 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/docker-host-sharelatex/</guid><description>安装 ShareLaTeX 1sudo su 2docker pull kingsleyluoxin/sharelatex:full 编辑配置 在 ~/sharelatex 中放入配置文件 docker-compose.yml，并进行编辑。
 1cd ~/sharelatex 2vim docker-compose.yml 完整配置如下
 1version:&amp;#34;2.2&amp;#34;2services:3sharelatex:4restart:always5image:kingsleyluoxin/sharelatex:full6container_name:sharelatex7depends_on:8mongo:9condition:service_healthy10redis:11condition:service_started12ports:13- 80:8014links:15- mongo16- redis17volumes:18- ~/sharelatex_data:/var/lib/sharelatex19environment:20SHARELATEX_APP_NAME:Overleaf Community Edition2122SHARELATEX_MONGO_URL:mongodb://mongo/sharelatex2324SHARELATEX_REDIS_HOST:redis25REDIS_HOST:redis2627ENABLED_LINKED_FILE_TYPES:&amp;#34;url,project_file&amp;#34;2829ENABLE_CONVERSIONS:&amp;#34;true&amp;#34;3031# Disables email confirmation requirement32EMAIL_CONFIRMATION_DISABLED:&amp;#34;true&amp;#34;3334TEXMFVAR:/var/lib/sharelatex/tmp/texmf-var3536## Set for SSL via nginx-proxy37#VIRTUAL_HOST: 103.112.212.223839SHARELATEX_SITE_URL:http://172.23.253.11340SHARELATEX_ADMIN_EMAIL:username@qq.com4142SHARELATEX_EMAIL_FROM_ADDRESS:&amp;#34;username@qq.com&amp;#34;4344SHARELATEX_EMAIL_SMTP_HOST:smtp.qq.com45SHARELATEX_EMAIL_SMTP_PORT:46546SHARELATEX_EMAIL_SMTP_SECURE:&amp;#34;true&amp;#34;47SHARELATEX_EMAIL_SMTP_USER:username@qq.com48SHARELATEX_EMAIL_SMTP_PASS:SMTP 授权码49SHARELATEX_EMAIL_SMTP_TLS_REJECT_UNAUTH:&amp;#34;true&amp;#34;50SHARELATEX_EMAIL_SMTP_IGNORE_TLS:&amp;#34;false&amp;#34;51# SHARELATEX_CUSTOM_EMAIL_FOOTER: &amp;#34;This system is run by department x&amp;#34;5253mongo:54restart:always55image:mongo:4.056container_name:mongo57expose:58- 2701759volumes:60- ~/mongo_data:/data/db61healthcheck:62test:echo &amp;#39;db.stats().ok&amp;#39; | mongo localhost:27017/test --quiet63interval:10s64timeout:10s65retries:56667redis:68restart:always69image:redis:570container_name:redis71expose:72- 637973volumes:74- ~/redis_data:/data初始化容器 1cd ~/sharelatex 2docker-compose up -d 停止、重启服务 可以先使用以下命令查看正在运行的 docker 服务
 1docker ps -a 输出如下
 CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 471e68a315b9 kingsleyluoxin/sharelatex:full &amp;quot;/sbin/my_init&amp;quot; 2 hours ago Up 2 hours 0.</description></item><item><title>《机器学习》笔记（第五章）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-4/</link><pubDate>Tue, 16 Feb 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-4/</guid><description>5 神经网络 5.1 神经元模型 神经网络是由具有适应性的简单单元组成的广泛并行互连的网络，它的组织能够模拟生物神经系统对真实世界物体所作出的交互反应。我们在机器学习中谈论神经网络时指的是“神经网络学习”。
 神经网络中最基本的成分是神经元（neuron）模型，即上述定义中的“简单单元”。在生物神经网络中，每个神经元与其他神经元相连，当它“兴奋”时，就会向相连的神经元发送化学物质，从而改变这些神经元内的电位；如果某神经元的电位超过了一个“阈值”（threshold），那么它就会被激活。即“兴奋”起来，向其他神经元发送化学物质。
 1943 年，[McCulloch and Pitts,1943] 将上述情形抽象为下图所示的简单模型，这就是一直沿用至今的“M-P 神经元模型”。在这个模型中，神经元接收到来自 n 个其他神经元传递过来的输入信号，这些输入信号通过带权重的连接（connection）进行传递，神经元接收到的总输入值将与神经元的阈值进行比较，然后通过“激活函数”（activation function）处理以产生神经元的输出。
-20210218140107
 激活函数是将输入值映射为输出值“0”或“1”的一类函数，“0”代表神经元抑制，“1”代表神经元兴奋。常见的激活函数主要包括三种：阶跃函数，Sigmoid 函数和 ReLU 函数。
-阶跃函数 20210218142053
-$$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ 1, &amp;amp;x \geq 0; \end{cases} $$
-Sigmoid 函数 20210218142227
-$$ f(x) = \frac{1}{1+e^{-x}} $$
-ReLU 函数 20210218142335
-$$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ x, &amp;amp;x \geq 0; \end{cases} $$</description></item><item><title>《机器学习》笔记（第四章）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-3/</link><pubDate>Tue, 02 Feb 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-3/</guid><description>4 决策树 4.1 基本流程 一般的，一棵决策树包含一个根结点、若干个内部结点和若干个叶结点；叶结点对应于决策结果，其他每个结点则对应于一个属性测试；每个结点包含的样本集合根据属性测试的结果被划分到子结点中；根结点包含样本全集。从根结点到每个叶结点的路径对应了一个判定测试序列。决策树学习的目的是为了产生一棵泛化能力强，即处理未见示例能力强的决策树，其基本流程遵循简单且直观的“分而治之”（divide-and-conquer）策略。
+阶跃函数 $$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ 1, &amp;amp;x \geq 0; \end{cases} $$
+Sigmoid 函数 $$ f(x) = \frac{1}{1+e^{-x}} $$
+ReLU 函数 $$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ x, &amp;amp;x \geq 0; \end{cases} $$
+5.2 感知机与多层网络 感知机（Perceptron）由两层神经元组成，如下图所示，输入层接收外界输入信号后传递给输出层，输出层是 M-P 神经元，亦称“阈值逻辑单元”（threshold logic unit）。感知机能容易地实现逻辑与、或、非运算。
+需注意的是,感知机只有输出层神经元进行激活函数处理,即只拥有一层功能神经元（functional neuron），其学习能力非常有限。
+一般的，常见的神经网络是形如下图所示的层级结构，每层神经元与下一层神经元全互连，神经元之间不存在同层连接，也不存在跨层连接。这样的神经网络结构通常称为“多层前馈神经网络”（multi-layer feedforward neural networks），其中输入层神经元接收外界输入，隐层与输出层神经元对信号进行加工，最终结果由输出层神经元输出；换言之，输入层神经元仅是接受输入，不进行函数处理，隐层与输出层包含功能神经元。因此，下图通常被称为“两层网络”或“单隐层网络”。只需包含隐层，即可称为多层网络。</description></item><item><title>《机器学习》笔记（第四章）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-3/</link><pubDate>Tue, 02 Feb 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-3/</guid><description>4 决策树 4.1 基本流程 一般的，一棵决策树包含一个根结点、若干个内部结点和若干个叶结点；叶结点对应于决策结果，其他每个结点则对应于一个属性测试；每个结点包含的样本集合根据属性测试的结果被划分到子结点中；根结点包含样本全集。从根结点到每个叶结点的路径对应了一个判定测试序列。决策树学习的目的是为了产生一棵泛化能力强，即处理未见示例能力强的决策树，其基本流程遵循简单且直观的“分而治之”（divide-and-conquer）策略。
 4.2 划分选择 一般而言，随着划分过程不断进行，我们希望决策树的分支结点所包含的样本尽可能属于同一类别，即结点的纯度（purity）越来越高。
 4.2.1 信息增益 信息熵定义为信息的期望值。如果待分类的事物可能划分在多个分类之中，则符号 $x_i$ 的信息定义为
 $$ l(x_i) = -\log_{2} p(x_i) $$
@@ -76,16 +68,13 @@ $$ Gain(D, a) = Ent(D) - \sum_{v=1}^{V} \frac{|D^v|}{|D|}Ent(D^v) $$</descriptio
 tiny_dnn 简介 tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。
 搭建环境 版本要求 需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 Visual Studio 2019 为例进行配置。
 创建项目 打开 VS，创建一个名为 testTinyDNN 的控制台应用。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 testTinyDNN.cpp 属于同一层级。
-20210129112851
-编辑配置 编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下： 1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.</description></item><item><title>SAE 入门（一）</title><link>https://sudrizzz.github.io/posts/sae-1/</link><pubDate>Wed, 20 Jan 2021 18:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/sae-1/</guid><description>Autoencoder 简介 自编码器（Autoencoder，AE），是一种利用反向传播（backpropagation，BP）算法使得输出值等于输入值的神经网络，它先将输入压缩成潜在空间表征，然后通过这种表征来重构输出。其中，空间表征可以看作是输入数据的高级抽象，通常是将高维度的数据抽象为低维度的数据。
+编辑配置 编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下： 1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.h 文件第 378 行，将 border_width 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下： 1const size_t border_width = 0; 编写代码 打开 testTinyDNN.</description></item><item><title>SAE 入门（一）</title><link>https://sudrizzz.github.io/posts/sae-1/</link><pubDate>Wed, 20 Jan 2021 18:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/sae-1/</guid><description>Autoencoder 简介 自编码器（Autoencoder，AE），是一种利用反向传播（backpropagation，BP）算法使得输出值等于输入值的神经网络，它先将输入压缩成潜在空间表征，然后通过这种表征来重构输出。其中，空间表征可以看作是输入数据的高级抽象，通常是将高维度的数据抽象为低维度的数据。
 自编码器由两部分组成：
 编码器：这部分能将输入压缩成潜在空间表征，可以用编码函数 $h=f(x)$ 表示;
 解码器：这部分能重构来自潜在空间表征的输入，可以用解码函数 $r=g(h)$ 表示。
 因此，整个自编码器可以用函数 $g(f(x)) = r$ 来描述，其中输出 $r$ 与原始输入 $x$ 相近。
 自动编码器的目标是最大程度地减少输入和输出之间的重构误差。这有助于自动编码器学习数据中存在的重要功能。当表征很好地重建其输入时，则表示这个表征很好地保留了输入中存在的许多信息。整个过程如下图。
-20210122142001
 Stacked Autoencoder 简介 Stacked Autoencoder 简写作 SAE。SAE 与 AE 的主要区别在于编码器与解码器的层数，栈式自编码器包含多层隐藏层。具体网络结构如下图所示，图中有两层编码层，两层解码层。
-20210122154135
 代码实现 代码环境配置，请参考 GAN 网络之手写数字生成 第一小节——环境搭建。
 自编码器只是一种思想，在具体实现中，编码器和解码器可以由多种深度学习模型构成，例如全连接层、卷积层和 LSTM 等，以下使用 Keras 来实现栈式自编码器。
 1from keras.datasets import mnist 2from keras.layers import Input, Dense 3from keras.models import Model 4import numpy as np 5import matplotlib.pyplot as plt 6 7EPOCHS = 50 8BATCH_SIZE = 256 9 10 11def train(x_train, x_test): 12 input_img = Input(shape=(784,)) 13 14 # 三个编码层，将数据从 784 维向量编码为 128、64、32 维向量 15 encoded = Dense(units=128, activation=&amp;#39;relu&amp;#39;)(input_img) 16 encoded = Dense(units=64, activation=&amp;#39;relu&amp;#39;)(encoded) 17 encoded = Dense(units=32, activation=&amp;#39;relu&amp;#39;)(encoded) 18 19 # 三个解码层，将数据从 32 维向量解码成 64、128、784 维向量 20 decoded = Dense(units=64, activation=&amp;#39;relu&amp;#39;)(encoded) 21 decoded = Dense(units=128, activation=&amp;#39;relu&amp;#39;)(decoded) 22 decoded = Dense(units=784, activation=&amp;#39;sigmoid&amp;#39;)(decoded) 23 autoencoder = Model(input_img, decoded) 24 encoder = Model(input_img, encoded) 25 26 autoencoder.</description></item><item><title>《机器学习》笔记（第三章）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-2/</link><pubDate>Wed, 30 Dec 2020 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-2/</guid><description>3 线性模型 3.1 基本形式 给定由 $d$ 个属性描述的示例 $\boldsymbol{x}=\{x_1; x_2;\cdots;x_d\}$，其中 $x_i$ 是 $\boldsymbol{x}$ 在第 $i$ 个属性上的取值，线性模型（linear model）试图学得一个通过属性的线性组合来进行预测的函数，即
@@ -101,27 +90,21 @@ Anaconda 安装 通过清华大学开源软件镜像站，我们可以直接下�
 Anaconda 安装教程网络上已经有很多，故此处不再赘述。
 安装完成后，我们需要手动配置 Anaconda 的环境变量，在用户变量的 Path 中添加 Anaconda 的安装路径以及其子文件夹，具体内容如下。
 C:\Users\xvyn\anaconda3 C:\Users\xvyn\anaconda3\Scripts C:\Users\xvyn\anaconda3\Library\bin 上述配置请根据 Anaconda 实际安装路径进行调整，配置完成的效果如下图所示。
-20201208152533
-20201208152633
 完成后打开 cmd 输入下列命令，如果输出内容与下列内容类似，则表示配置正确，可继续后面的步骤。
-1conda --version 输出 conda 4.9.2 创建虚拟环境 通过如下命令进行创建一个虚拟环境。</description></item><item><title>FastDFS 搭建分布式文件管理系统</title><link>https://sudrizzz.github.io/posts/getting-to-know-fastdfs/</link><pubDate>Wed, 04 Nov 2020 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-fastdfs/</guid><description>FastDFS 简介 FastDFS 是一个开源的高性能分布式文件系统（Distributed File System）。它的主要功能包括：文件存储、文件同步和文件访问以及高容量和负载平衡。主要解决了海量数据存储问题，特别适合以中小文件（建议范围：4KB &amp;lt; file_size &amp;lt; 500MB）为载体的在线服务。
+1conda --version 输出 conda 4.9.2 创建虚拟环境 通过如下命令进行创建一个虚拟环境。
+1conda create -n handwrittendigits -n handwrittendigits 的作用是指定虚拟环境的名称，本例中指定为 handwrittendigits。</description></item><item><title>FastDFS 搭建分布式文件管理系统</title><link>https://sudrizzz.github.io/posts/getting-to-know-fastdfs/</link><pubDate>Wed, 04 Nov 2020 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-fastdfs/</guid><description>FastDFS 简介 FastDFS 是一个开源的高性能分布式文件系统（Distributed File System）。它的主要功能包括：文件存储、文件同步和文件访问以及高容量和负载平衡。主要解决了海量数据存储问题，特别适合以中小文件（建议范围：4KB &amp;lt; file_size &amp;lt; 500MB）为载体的在线服务。
 FastDFS 开源地址：https://github.com/happyfish100/fastdfs
 由于网络上已有很多详细的关于 FastDFS 的介绍，故此处不再赘述。请查看参考文章中的第 1、2 条。
-FastDFS 架构图 20201103150000
-FastDFS 上传流程 20201104100033
-FastDFS 下载流程 20201104100107
-安装 FastDFS 配置防火墙 本篇文章是基于 CentOS v8.2.2004 版本，以下操作均为单机环境，单机 IP 地址为 192.168.61.128。在安装 FastDFS 之前，需要先进行防火墙的设置。防火墙的相关命令如下：
+FastDFS 架构图 FastDFS 上传流程 FastDFS 下载流程 安装 FastDFS 配置防火墙 本篇文章是基于 CentOS v8.2.2004 版本，以下操作均为单机环境，单机 IP 地址为 192.168.61.128。在安装 FastDFS 之前，需要先进行防火墙的设置。防火墙的相关命令如下：
 1# 暂时关闭防火墙 2systemctl stop firewalld 3 4# 永久关闭防火墙 5systemctl disable firewalld 6 7# 启用防火墙 8systemctl enable firewalld 下载安装 libfastcommon libfastcommon 是从 FastDFS 抽取出来的公共 c 函数库。
-1# 下载 2wget https://github.</description></item><item><title>Spark 分布式内存计算框架</title><link>https://sudrizzz.github.io/posts/spark-distributed-programming/</link><pubDate>Fri, 23 Oct 2020 20:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/spark-distributed-programming/</guid><description>Spark 简介 Spark 是一种基于内存的、用以实现高效集群计算的平台。准确地讲，Spark 是一个大数据并行计算框架，是对广泛使用的 MapReduce 计算模型的扩展。Spark 有着自己的生态系统，但同时兼容 HDFS、Hive 等分布式存储系统，可以完美融入 Hadoop 的生态圈中，代替 MapReduce 去执行更为高效的分布式计算。两者的区别在于：基于 MapReduce 的计算引擎通常会将中间结果输出到磁盘上进行存储和容错；而 Spark 则是将中间结果尽量保存在内存中以减少底层存储系统的 I/O，以提高计算速度。
+1# 下载 2wget https://github.com/happyfish100/libfastcommon/archive/V1.0.43.tar.gz 3 4# 解压 5tar -zxvf V1.0.43.tar.gz 6cd libfastcommon-1.</description></item><item><title>Spark 分布式内存计算框架</title><link>https://sudrizzz.github.io/posts/spark-distributed-programming/</link><pubDate>Fri, 23 Oct 2020 20:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/spark-distributed-programming/</guid><description>Spark 简介 Spark 是一种基于内存的、用以实现高效集群计算的平台。准确地讲，Spark 是一个大数据并行计算框架，是对广泛使用的 MapReduce 计算模型的扩展。Spark 有着自己的生态系统，但同时兼容 HDFS、Hive 等分布式存储系统，可以完美融入 Hadoop 的生态圈中，代替 MapReduce 去执行更为高效的分布式计算。两者的区别在于：基于 MapReduce 的计算引擎通常会将中间结果输出到磁盘上进行存储和容错；而 Spark 则是将中间结果尽量保存在内存中以减少底层存储系统的 I/O，以提高计算速度。
 Spark 编程模型 核心数据结构 RDD Spark 将数据抽象成弹性分布式数据集（Resilient Distributed Dataset, RDD），RDD 实际是分布在集群多个节点上数据的集合，通过操作 RDD 对象来并行化操作集群上的分布式数据。
 RDD 有两种创建方式:
 并行化驱动程序中已有的原生集合; 引用 HDFS、HBase 等外部存储系统上的数据集。 RDD 可以缓存在内存中，每次对 RDD 操作的结果都可以放到内存中，下一次操作时可直接从内存中读取，相对于 MapReduce,它省去了大量的磁盘 I/O 操作。另外，持久化的 RDD 能够在错误中自动恢复，如果某部分 RDD 丢失，Spark 会自动重算丢失的部分。
 RDD 上的操作 从相关数据源获取初始数据形成初始 RDD 后，需要根据应用的需求对得到的初始 RDD 进行必要的处理，来获取满足需求的数据内容，从而对中间数据进行计算加工，得到最终的数据。
 RDD 支持两种操作，一种是转换（Transformation）操作，另一种是行动（Action）操作。
-转换（Transformation）操作 转换操作即将一个 RDD 转换为一个新的 RDD。值得注意的是，转换操作是惰性的，这就意味着对 RDD 调用某种转换操作时，操作并不会立即执行，而是 Spark 在内部记录下所要求执行的操作的相关信息，当在行动操作中需要用到这些转换出来的 RDD 时才会被计算，下表所示为基本的转换操作。通过转换操作，可以从已有的 RDD 生成出新的 RDD, Spark 使用谱系（Lineage）记录新旧 RDD 之间的依赖关系，一旦持久化的 RDD 丢失部分数据时，Spark 能通过谱系图重新计算丢失的数据。</description></item><item><title>MapReduce 分布式编程</title><link>https://sudrizzz.github.io/posts/mapreduce-distributed-programming/</link><pubDate>Sat, 17 Oct 2020 20:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/mapreduce-distributed-programming/</guid><description>词频统计程序示例 20201014180000
-假设将一个英文文本大文件作为输入，统计文件中单词出现的频数。最基本的操作是把输入文件的每一行传递给 map 函数完成对单词的拆分并输出中间结果，中间结果为 &amp;lt;word, 1&amp;gt; 的形式， 表示程序对一个单词，都对应一个计数 1。使用 reduce 函数收集 map 函数的结果作为输入值，并生成最终 &amp;lt;word, count&amp;gt; 形式的结果，完成对每个单词的词频统计。它们对应 MapReduce 处理数据流程如上图所示。
+转换（Transformation）操作 转换操作即将一个 RDD 转换为一个新的 RDD。值得注意的是，转换操作是惰性的，这就意味着对 RDD 调用某种转换操作时，操作并不会立即执行，而是 Spark 在内部记录下所要求执行的操作的相关信息，当在行动操作中需要用到这些转换出来的 RDD 时才会被计算，下表所示为基本的转换操作。通过转换操作，可以从已有的 RDD 生成出新的 RDD, Spark 使用谱系（Lineage）记录新旧 RDD 之间的依赖关系，一旦持久化的 RDD 丢失部分数据时，Spark 能通过谱系图重新计算丢失的数据。</description></item><item><title>MapReduce 分布式编程</title><link>https://sudrizzz.github.io/posts/mapreduce-distributed-programming/</link><pubDate>Sat, 17 Oct 2020 20:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/mapreduce-distributed-programming/</guid><description>词频统计程序示例 假设将一个英文文本大文件作为输入，统计文件中单词出现的频数。最基本的操作是把输入文件的每一行传递给 map 函数完成对单词的拆分并输出中间结果，中间结果为 &amp;lt;word, 1&amp;gt; 的形式， 表示程序对一个单词，都对应一个计数 1。使用 reduce 函数收集 map 函数的结果作为输入值，并生成最终 &amp;lt;word, count&amp;gt; 形式的结果，完成对每个单词的词频统计。它们对应 MapReduce 处理数据流程如上图所示。
 MapReduce 程序的运行过程 如图所示，MapReduce 运行阶段数据传递经过输入文件、Map 阶段、中间文件、 Reduce 阶段、输出文件五个阶段，用户程序只与 Map 阶段和 Reduce 阶段的 Worker 直接相关，其他事情由 Hadoop 平台根据设置自行完成。
-20201014190000
 从用户程序 User Program 开始，用户程序 User Program 链接了 MapReduce 库，实现了最基本的 map 函数和 reduce 函数。
 MapReduce 库先把 User Program 的输入文件划分为 M 份，如上图左方所示，将数据分成了分片 0~4，每一份通常为 16MB~64MB；然后使用 fork 将用户进程复制到集群内其他机器上。 User Program 的副本中有一个 Master 副本和多个 Worker 副本。Master 是负责调度的，为空闲 Worker 分配 Map 作业或者 Reduce 作业。 被分配了 Map 作业的 Worker，开始读取对应分片的输入数据, Map 作业数量与输入文件划分数 M 相同，并与分片一一对应; Map 作业将输入数据转化为键值对表示形式并传递给 map 函数，map 函数产生的中间键值对被缓存在内存中。 缓存的中间键值对会被定期写入本地磁盘，而且被分为 R 个区（R 的大小是由用户定义的），每个区会对应一个 Reduce 作业；这些中间键值对的位置会被通报给 Master, Master 负责将信息转发给 Reduce Worker。 Master 通知分配了 Reduce 作业的 Worker 负责数据分区，Reduce Worker 读取键值对数据并依据键排序，使相同键的键值对聚集在一起。同一个分区可能存在多个键的键值对，而 reduce 函数的一次调用的键值是唯一的， 所以必须进行排序处理。 Reduce Worker 遍历排序后的中间键值对，对于每个唯一的键，都将键与关联的值传递给 reduce 函数，reduce 函数产生的输出会写回到数据分区的输出文件中。 当所有的 Map 和 Reduce 作业都完成了，Master 唤醒 User Program，MapReduce 函数调用返回 User Program。 执行完毕后，MapReduce 的输出放在 R 个分区的输出文件中，即每个 Reduce 作业分别对应一个输出文件。用户可将这 R 个文件作为输入交给另一个 MapReduce 程序处理，而不需要主动合并这 R 个文件。在 MapReduce 计算过程中，输入数据来自分布式文件系统，中间数据放在本地文件系统，最终输出数据写入分布式文件系统。</description></item><item><title>HDFS 文件管理</title><link>https://sudrizzz.github.io/posts/hdfs-file-system/</link><pubDate>Mon, 12 Oct 2020 15:20:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/hdfs-file-system/</guid><description>本文所有代码均可在 https://github.com/sudrizzz/HDFSOperations 查看。
 通过命令行访问 HDFS 命令行是最简单、最直接操作文件的方式。这里介绍通过诸如读取文件、新建目录、移动文件、删除数据、列出目录等命令来进一步认识 HDFS。也可以输入 hadoop fs -help 命令获取每个命令的详细帮助。若熟悉 Linux 命令，Hadoop 命令看起来非常直观且易于使用。
@@ -134,20 +117,19 @@ MapReduce 库先把 User Program 的输入文件划分为 M 份，如上图左�
 随机访问存储器 随机访问存储器（Random Access Memory, RAM）分为两类：静态的和动态的。静态随机访问存储器（Static Random Access Memory, SRAM）比动态随机访问存储器（Dynamic Random Access Memory, DRAM）更快，但也贵得多。目前 CPU 中的三级缓存都是 SRAM。
 易失性存储器 需要注意的是，虽然 SRAM 是静态随机访问存储器，但是其“静态”是相对于动态随机访问存储器的，仍然属于“易失性存储器”，而非真正意义上的静态，同时 DRAM 也属于“易失性存储器”。通俗的说，就是断电之后保存的信息就会丢失。
 SRAM SRAM 将每个位存储在一个双稳态的存储器单元中，每个单元是用一个六晶体管来实现的，在通电的情况下，它可以无限期地保持在两个不同的电压配置或状态之一，其他任何状态都是不稳定的。当从不稳定状态开始，电路会迅速转换到两个稳定状态中的一个。这样的存储器单元类似于下图倒转的钟摆模型。
-20200918161742
 由于上述的特性（SRAM 的双稳态特性），只要有电，它就会永远保持它的值。即使有干扰（例如电子噪音）来扰乱电压，当干扰消除后，电路就会恢复到稳定值。这样体现了上述表格中的持续性和不敏感性。
 DRAM DRAM 将每个位存储位对一个电容的充电，每个单元由一个电容和一个访问晶体管组成。但是与 SRAM 不同，DRAM 存储单元对抗干扰非常敏感。当电容的电压被扰乱之后，它就永远不会恢复了。
 小结 下表总结了 SRAM 和 DRAM 存储器的特性。只要有供电，SRAM 就会保持不变。与 DRAM 不同，它不需要刷新。SRAM 的存取比 DRAM 快。SRAM 对诸如光和电噪声这样的干扰不敏感。代价是 SRAM 单元比 DRAM 单元使用更多的晶体管，因而密集度低，而且更贵，功耗更大。
 每位晶体管数 相对访问时间 持续的？ 敏感的？ 相对花费 应用 SRAM 6 1X 是 否 1000x 高速缓存存储器 DRAM 1 10X 否 是 1X 主存，帧缓冲区 非易失性存储器 显然，非易失性存储器指即使断电也不会丢失数据的存储器，非易失性存储器包括以下几种：</description></item><item><title>CMU 15-213 浮点数</title><link>https://sudrizzz.github.io/posts/cmu-15-213-lesson2/</link><pubDate>Mon, 14 Sep 2020 18:57:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/cmu-15-213-lesson2/</guid><description>前言 在 上一篇文章 中，我们了解了二进制有符号数、无符号数以及其相关的运算方法，在本篇中，我们将进一步了解浮点数在计算机中的相关知识。
 二进制小数 表示方法 二进制小数表达方式：在“二进制小数点”左侧的位表示 2 的 n 次幂，而在“二进制小数点”右侧的位则表示 2 的 -n 次幂。如下图：
-20200914190724
 用公式表达如下：
 $$ a = \sum_{k=-j}^{i}b_{k} \times 2^{k} $$
 示例 例如，将十进制小数转换为二进制小数，有以下例子：
 十进制小数 二进制小数 $ 5\frac{3}{4} $ 101.11 $ 2\frac{7}{8} $ 10.111 $ 1\frac{7}{16} $ 1.0111 以第一个为例，我们可以注意到二进制小数按位进行求和的结果是：
 $$ 5\frac{3}{4} = 2^{2}+2^{0}+2^{-1}+2^{-2} $$
 通过上面三个例子，我们可以注意到，当二进制小数整体右移一位，即相当于将十进制小数除以 2（仅针对无符号数）。相应的，当二进制小数整体左移一位，即相当于将十进制小数乘以 2。
-同时我们应特别注意到，形如 $ 0.11111&amp;hellip;_{2} $ 的二进制小数，表示略比 1 小的十进制数。用公式表示如下：</description></item><item><title>初识 Nginx（二）</title><link>https://sudrizzz.github.io/posts/getting-to-know-nginx-2/</link><pubDate>Fri, 11 Sep 2020 19:51:07 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-nginx-2/</guid><description>应用示例 本篇文章中所使用的 Nginx 是通过下载软件包手动编译安装的，详见 上一篇文章 离线安装部分。
+同时我们应特别注意到，形如 $ 0.11111&amp;hellip;_{2} $ 的二进制小数，表示略比 1 小的十进制数。用公式表示如下：
+$$ 1/2 + 1/4 + 1/8 + \dots + 1/2^{i} + \dots \to 1.</description></item><item><title>初识 Nginx（二）</title><link>https://sudrizzz.github.io/posts/getting-to-know-nginx-2/</link><pubDate>Fri, 11 Sep 2020 19:51:07 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-nginx-2/</guid><description>应用示例 本篇文章中所使用的 Nginx 是通过下载软件包手动编译安装的，详见 上一篇文章 离线安装部分。
 在上一篇文章中，我们初步接触了 Nginx 的安装以及使用方法。在本篇文章中我们将以具体的静态网页作为例子，来详细介绍 Nginx 的部分细节。
 文件准备 我们以 C++ 文档 dlib 为例做介绍，官网 http://dlib.net，点击左下角的 Download 按钮并将下载好的文件解压。将文件夹中的 docs 目录内容复制到 Nginx 安装目录中的 dlib 目录中。相关的目录结构如下。
 1drwxr-xr-x. 9 root root 258 9月 11 16:54 blog 2drwx------. 2 nobody root 6 9月 6 15:26 client_body_temp 3drwxr-xr-x. 2 root root 4096 9月 11 19:48 conf 4drwxrwxrwx. 10 root root 8192 8月 9 03:30 dlib 5drwx------. 2 nobody root 6 9月 6 15:26 fastcgi_temp 6drwxr-xr-x.</description></item><item><title>初识 Nginx</title><link>https://sudrizzz.github.io/posts/getting-to-know-nginx/</link><pubDate>Mon, 07 Sep 2020 15:47:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-nginx/</guid><description>Nginx 简介 简介内容来自 Nginx 官网 http://nginx.org/en
@@ -158,10 +140,8 @@ https://book.douban.com/subject/1230413
 本书适用于那些想要写出更快、更可靠程序的程序员。通过掌握程序是如何映射到系统上，以及程序是如何执行的，读者能够更好的理解程序的行为为什么是这样的，以及效率低下是如何造成的。粗略来看，计算机系统包括处理器和存储器硬件、编译器、操作系统和网络互连环境。而通过程序员的视角，读者可以清晰地明白学习计算机系统的内部工作原理会对他们今后作为计算机科学研究者和工程师的工作有进一步的帮助。它还有助于为进一步学习计算机体系结构、操作系统、编译器和网络互连做好准备。
 一切皆位 十进制 在计算机发展历史上，实际上只有宾夕法尼亚大学建立的第一台计算机 ENIAC 使用了十进制进行了算术运算，他们使用 10 个电子管来表示每个数字。所以他们通过控制电子管的开关来表示 10 个数字中的其中一个。
 二进制 随着计算机的发展，十进制逐渐演化为二进制。在计算机中，我们使用电学层面上的电压高低来存储位数据，如图所示，高电压（0.9v-1.1v）记作逻辑 1，而低电压（0.0v-0.2v）记作逻辑 0。
-20200904184249
 之所以这么做，是因为通过区分高低电压，可以有效地过滤噪声和杂讯。
 十六进制 二进制的成功运用也带来了一个问题，由于每一个位只能存储两种信号（即 0 和 1），对于人来说基本属于不可读的，所以我们将每四个二进制在位合并为一个十六进制位，这样大大缩减了数据的展示长度。例如
-20200904185017
 具体数据类型实际所占空间 此处以 C 语言数据类型为例，因为在 32 位与 64 位机器上所占空间不尽相同，故列下表。
 C Data Type Typical 32-bit Typical 64-bit x86-64 char 1 1 1 short 2 2 2 int 4 4 4 long 4 8 8 float 4 4 4 double 8 8 8 pointer 4 8 8 位操作 与、或、非、异或 通俗的解释如下：</description></item><item><title>初识 Docker</title><link>https://sudrizzz.github.io/posts/getting-to-know-docker/</link><pubDate>Wed, 02 Sep 2020 18:37:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-docker/</guid><description>Docker 简介 简介来自于 Docker 入门教程 - 阮一峰的网络日志
 Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。
@@ -182,14 +162,13 @@ blog_workflow 仓库 ├─archetypes ├─content │ └─cn │ └─posts
 由于 username 不方便叙述，故下文中均以 sudrizzz 为例替代 username，
 请根据实际情况进行更改。
 例如我的 Github 用户名是 sudrizzz，于是创建的仓库名就是 sudrizzz.github.io。
-20200809134438
 初始化 Hugo 安装 Hugo 应用 https://github.com/gohugoio/hugo/releases
-配置环境变量 将安装 Hugo 的目录路径配置到用户环境变量 PATH 中，如图 20200809135128
-检验配置 在命令行窗口中输入以下内容
+配置环境变量 将安装 Hugo 的目录路径配置到用户环境变量 PATH 中，如图 检验配置 在命令行窗口中输入以下内容
 1hugo version 如果得到类似以下的结果则说明配置正确。
 Hugo Static Site Generator v0.74.3-DA0437B4 windows/amd64 BuildDate: 2020-07-23T16:23:30Z 创建博客 在命令行中输入以下命令
 hugo new site &amp;lt;blog_name&amp;gt; 上述命令将会创建一个名为 blog_name 的文件夹，请按照个人喜好取名。按照我的博客为例，取名为 sudrizzz.github.io，这样也方便后续进行代码提交
-添加主题 以 yinyang 主题为例，按照文档中的安装步骤，执行以下命令</description></item><item><title>The meaning of life</title><link>https://sudrizzz.github.io/posts/the-meaning-of-life/</link><pubDate>Fri, 21 Jun 2019 00:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/the-meaning-of-life/</guid><description>……我细读来书，终觉得你不免作茧自缚。你自己去寻出一个本不成问题的问题，“人生有何意义？”其实这个问题是容易解答的。人生的意义全是各人自己寻出来、造出来的：高尚、卑劣、清贵、污浊、有用、无用，……全靠自己的作为。
+添加主题 以 yinyang 主题为例，按照文档中的安装步骤，执行以下命令
+1cd sudrizzz.github.io 2git clone git@github.com:joway/hugo-theme-yinyang.git themes/yinyang 进入 sudrizzz.</description></item><item><title>The meaning of life</title><link>https://sudrizzz.github.io/posts/the-meaning-of-life/</link><pubDate>Fri, 21 Jun 2019 00:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/the-meaning-of-life/</guid><description>……我细读来书，终觉得你不免作茧自缚。你自己去寻出一个本不成问题的问题，“人生有何意义？”其实这个问题是容易解答的。人生的意义全是各人自己寻出来、造出来的：高尚、卑劣、清贵、污浊、有用、无用，……全靠自己的作为。
  生命本身不过是一件生物学的事实，有什么意义可说？一个人与一只猎，一只狗，有什么分别？人生的意义不在于何以有生，而在自己怎样生活。你若情愿把这六尺之躯葬送在白昼作梦之上二那就是你这一生的意义。你若发愤振作起来，决心去寻求生命的意义，去创造自己的生命的意义，那么，你活一日便有一日的意义，作一事便添一事的意义，生命无穷，生命的意义也无穷了。
  总之，生命本没有意义，你要能给他什么意义，他就有什么意义。与其终日冥想人生有何意义，不如试用此生作点有意义的事……
  节选自《答某君书》—— 胡适</description></item></channel></rss>

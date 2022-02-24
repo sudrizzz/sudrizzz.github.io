@@ -3,7 +3,7 @@
 <meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Nginx 简介  简介内容来自 Nginx 官网 http://nginx.org/en
 nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress."><title>初识 Nginx</title>
 <link rel=canonical href=https://sudrizzz.github.io/posts/getting-to-know-nginx/>
-<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="初识 Nginx">
+<link rel=stylesheet href=/scss/style.min.6801b4ba48a1373a0e84194e17f1122b8c1a811307a6a68009ac579b23c0df40.css><meta property="og:title" content="初识 Nginx">
 <meta property="og:description" content="Nginx 简介  简介内容来自 Nginx 官网 http://nginx.org/en
 nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress.">
 <meta property="og:url" content="https://sudrizzz.github.io/posts/getting-to-know-nginx/">
@@ -11,14 +11,15 @@ nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a
 <meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2020-09-07T15:47:11+08:00"><meta property="article:modified_time" content="2020-09-07T15:47:11+08:00">
 <meta name=twitter:title content="初识 Nginx">
 <meta name=twitter:description content="Nginx 简介  简介内容来自 Nginx 官网 http://nginx.org/en
-nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress.">
+nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress."><style>:root{--article-font-family:"Noto Serif SC", var(--base-font-family)}</style>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
-<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>Back</span>
 </a>
 </div>
@@ -40,7 +41,7 @@ nginx
 </div>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
-4 min read
+4 minute read
 </time>
 </div>
 </footer>
@@ -223,12 +224,7 @@ tcp        0      0 0.0.0.0:8090            0.0.0.0:*               LISTEN      
 tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN      -
 ...
 </code></pre><p>在浏览器中访问 <code>虚拟机ip:8090</code>，即可看到 Nginx 的欢迎页面。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906154034.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906154034.png loading=lazy alt=20200906154034>
-</a>
-<figcaption>20200906154034</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906154034.png loading=lazy alt=20200906154034></p>
 <blockquote>
 <p>此时返回 404 是因为 Nginx 目录中并没有欢迎页面的 html 文件，但依然可以说明已经 Nginx 服务已经配置正确并启动成功。</p>
 </blockquote>
@@ -240,12 +236,7 @@ tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN      
 Nginx 服务默认的端口是 <code>80</code>，如果需要修改端口，也可以参照上一节中的内容进行手动修改，略有不同的是，通过手动编译安装的 Nginx，配置文件地址在 <code>/usr/local/nginx/conf/nginx.conf</code>，也就是编译时我们手动指定的路径下。
 其余内容此处皆不再赘述。</p>
 <p>打开宿主机浏览器，访问 <code>虚拟机ip:80</code>，就可以看到 Nginx 的欢迎页面。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906153613.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906153613.png loading=lazy alt=20200906153613>
-</a>
-<figcaption>20200906153613</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906153613.png loading=lazy alt=20200906153613></p>
 <h1 id=修改-nginxconf>修改 nginx.conf</h1>
 <p>如果后续需要修改 <code>nginx.conf</code> 中的内容，例如更改 Nginx 服务端口号，请务必在修改完成后重启服务。常用的 Nginx 命令如下。</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># 检查 nginx.conf 是否配置正确</span>
@@ -295,11 +286,11 @@ Nginx 服务默认的端口是 <code>80</code>，如果需要修改端口，也�
 <section class=copyright>
 &copy;
 2018 -
-2021 Anthony's blog
+2022 Anthony's blog
 </section>
 <section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
 </section>
 </footer>
 <div class=pswp tabindex=-1 role=dialog aria-hidden=true>
@@ -373,7 +364,7 @@ Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=
 </section>
 </aside>
 </div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
 <script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </body>
 </html>

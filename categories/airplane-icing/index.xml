@@ -2,22 +2,18 @@
 Application of Convolutional Neural Network to Predict Airfoil Lift Coefficient
 https://arxiv.org/abs/1712.10082
 摘要 本文主要介绍了 CNN 网络结构，通过 CNN 网络学习预测多种形状翼型在多种流动马赫数、雷诺数和不同攻角下的升力系数，同时使用 MLP 网络进行结果对比。实验结果表明，CNN 网络的预测结果，相比于 MLP 网络的预测结果，有更高的精度。
-网络结构 20210423164152
-本文中用到的 CNN 网络，为修改后的 LeNet-5
-20210423164230
+网络结构 本文中用到的 CNN 网络，为修改后的 LeNet-5
 本文种用到的三种网络结构
-20210423164300
 卷积方案的图示（数字非实际值，仅用于图示）
 数据准备 根据 freestreamMach 数和像素密度，通过以下方程式进行“着色“：
 $$ \overline\rho = (1 - \frac{\rho}{\rho_{max}}) \frac{M_\infty}{M_{\infty, max}} $$
 原始像素密度 $\rho$ 每个单元格的范围为[0, 100]；对于“完全”位于翼型内部的单元，为 100；对于“完全”位于翼型外部的单元 ，为 0；对于位于翼型形状边界上的单元，为（0, 100）。
-20210423164754
-上图为 NACA654421a05 型机翼在 22° 仰角时的图示。（左）经过 AoA 倾斜和数字化（通过像素密度），（中）对于 0.</description></item><item><title>飞机结冰论文阅读 1</title><link>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-1/</link><pubDate>Tue, 20 Apr 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-1/</guid><description>文章简介 来源 深度神经网络在用于飞机结冰检测和特征化的飞行中参数识别中的应用
+上图为 NACA654421a05 型机翼在 22° 仰角时的图示。（左）经过 AoA 倾斜和数字化（通过像素密度），（中）对于 0.8 马赫数未标注尺寸，（右）对于 0.6 马赫数具有相同几何形状
+本文使用的数据集来自于 UIUC 机翼数据中的 NACA 4 位数和 6 位数系列机型，总共 133 套 2D 机翼几何图形被用作训练和验证数据集。所有机翼均具有外部模型线形。</description></item><item><title>飞机结冰论文阅读 1</title><link>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-1/</link><pubDate>Tue, 20 Apr 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-1/</guid><description>文章简介 来源 深度神经网络在用于飞机结冰检测和特征化的飞行中参数识别中的应用
 An application of Deep Neural Networks to the in-flight parameter identification for detection and characterization of aircraft icing
 https://www.sciencedirect.com/science/article/pii/S1270963817318242
 摘要 本文将深度神经网络应用于飞行器结冰的检测和表征的飞行参数识别。作者为预处理输入的飞行状态数据，设计了一种类似于真实图片的“状态图像（state-image）”，然后作者设计了一个 DNN 网络结构，该结构可对飞行状态的本地连通性（local connectivity，使用 CNN）和时间特征（temporal characteristics，使用 RNN）进行建模。在文中，作者对以下几种情形进行了实验，分别是：未结冰（clean）、不同部位结冰（机翼、尾翼、机翼与尾翼）以及结冰严重程度（中等结冰、严重结冰）。同时，作者还提供了基于 DNN 的方法与基于基线 $H_{\infty}$ 的识别算法（飞机结冰的最新技术）的比较。基于测试和比较结果，基于 DNN 的方法对多参数输入数据能产生更准确的预测性能。
 实验说明 对于中度结冰的情况，$T_{cld}$ = 600（飞机结冰时间），$\eta_{ice}(T_{cld})$ = 0.20（结冰严重性参数），$\eta_{ice}(T_{cld}/2)$ = 0.12。对于快速/严重结冰情况，$T_{cld}$ = 300，$\eta_{ice}(T_{cld})$ = 0.30，$\eta_{ice}(T_{cld}/2)$ = 0.20。图 1 展示了两种结冰情形的结冰严重性参数变化，以及未结冰对照组的情况。
-20210420205418
 数据预处理 作者认为仅识别俯仰和横摆力矩稳定系数（$C_{m_a}$，$C_{n_{\beta}}$）是有用的。在纵向平面中，作者展示了 2 个稳定性系数（$C_{m_a}$，$C_{z_a}$）和 2 个控制系数（$C_{m_{\delta_e}}$，$C_{z_{\delta_e}}$）的性能，而在横向平面中，作者展示了 3 个稳定性系数（$C_{y_\beta}$，$C_{l_p}$，$C_{n_\beta}$）和 2 个控制系数（$C_{y_{\delta_r}}$，$C_{l_{\delta_a}}$）的结果。
 为进行本文的参数识别，作者在纵向中指定速度（$V$），体轴上的垂直载荷系数（$g_z$），俯仰率（$q$），俯仰角（$\theta$）和高度（$H$）作为输入数据。对于横向，作者使用速度（$V$），体轴上的横向负载系数（$g_y$），横摆率（$r$），横摆角（$\varphi$），偏航角（$r$）和偏航角（$\psi$）作为输入数据。
-20210420214213</description></item></channel></rss>
+类似于常用的图像（2D 矩阵），作者将飞机结冰数据按照时间划分，将纵向参数分割成 m * n 的矩阵，其中矩阵每行代表一个参数，每列代表某一时刻的所有参数数值；同理，横向参数也划分为 m * n 的矩阵。其中 $n = \Delta T / \Delta t$，文中采用时间窗口的方法来采集数据，设定 $\Delta T=30s$，$n=30$；m 代表参数数量，纵向参数为 5 个，横向参数为 6 个，故对于纵向数据图像尺寸为 5 * 30，横向参数图像尺寸为 6 * 30。完成数据划分后，将图像数据进行了正则化。</description></item></channel></rss>

@@ -5,7 +5,7 @@
 对文件和目录的操作 通过命令行对 HDFS 文件和目录的操作主要包括：创建、浏览、删除文件和目录，以及从本地文件系统与 HDFS 文件系统互相拷贝等。常用命令格式如下。
 1hadoop fs -ls &amp;lt;path&amp;gt; # 列出 path 目录下的所有内容（文件和目录） 2hadoop fs -lsr &amp;lt;path&amp;gt; # 递归列出 path 下的所有内容（文件或目录） 3hadoop fs -df &amp;lt;path&amp;gt; # 查看目录的使用情况 4hadoop fs -du &amp;lt;path&amp;gt; # 显示目录中所有文件及目录大小 5hadoop fs -touchz &amp;lt;path&amp;gt; # 创建一个路径为为 path 的 0 字节的 HDFS 空文件 6hadoop fs -mkdir &amp;lt;path&amp;gt; # 查看目录的使用情况 7hadoop fs -rm [-skipTrash] &amp;lt;path&amp;gt; # 将 HDFS 上路径为 &amp;lt;path&amp;gt; 的文件移动到回收站，加上 -skipTrash，则直接删除 8hadoop fs -rmr [-skipTrash] &amp;lt;path&amp;gt; # 将 HDFS 上路径为 &amp;lt;path&amp;gt; 的目录以及目录下的文件移动到回收站。如果加上 -skipTrash，则直接删除 9hadoop fs -moveFromLocal &amp;lt;localsrc&amp;gt;."><title>HDFS 文件管理</title>
 <link rel=canonical href=https://sudrizzz.github.io/posts/hdfs-file-system/>
-<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="HDFS 文件管理">
+<link rel=stylesheet href=/scss/style.min.6801b4ba48a1373a0e84194e17f1122b8c1a811307a6a68009ac579b23c0df40.css><meta property="og:title" content="HDFS 文件管理">
 <meta property="og:description" content="本文所有代码均可在 https://github.com/sudrizzz/HDFSOperations 查看。
  通过命令行访问 HDFS 命令行是最简单、最直接操作文件的方式。这里介绍通过诸如读取文件、新建目录、移动文件、删除数据、列出目录等命令来进一步认识 HDFS。也可以输入 hadoop fs -help 命令获取每个命令的详细帮助。若熟悉 Linux 命令，Hadoop 命令看起来非常直观且易于使用。
 对文件和目录的操作 通过命令行对 HDFS 文件和目录的操作主要包括：创建、浏览、删除文件和目录，以及从本地文件系统与 HDFS 文件系统互相拷贝等。常用命令格式如下。
@@ -17,14 +17,15 @@
 <meta name=twitter:description content="本文所有代码均可在 https://github.com/sudrizzz/HDFSOperations 查看。
  通过命令行访问 HDFS 命令行是最简单、最直接操作文件的方式。这里介绍通过诸如读取文件、新建目录、移动文件、删除数据、列出目录等命令来进一步认识 HDFS。也可以输入 hadoop fs -help 命令获取每个命令的详细帮助。若熟悉 Linux 命令，Hadoop 命令看起来非常直观且易于使用。
 对文件和目录的操作 通过命令行对 HDFS 文件和目录的操作主要包括：创建、浏览、删除文件和目录，以及从本地文件系统与 HDFS 文件系统互相拷贝等。常用命令格式如下。
-1hadoop fs -ls &amp;lt;path&amp;gt; # 列出 path 目录下的所有内容（文件和目录） 2hadoop fs -lsr &amp;lt;path&amp;gt; # 递归列出 path 下的所有内容（文件或目录） 3hadoop fs -df &amp;lt;path&amp;gt; # 查看目录的使用情况 4hadoop fs -du &amp;lt;path&amp;gt; # 显示目录中所有文件及目录大小 5hadoop fs -touchz &amp;lt;path&amp;gt; # 创建一个路径为为 path 的 0 字节的 HDFS 空文件 6hadoop fs -mkdir &amp;lt;path&amp;gt; # 查看目录的使用情况 7hadoop fs -rm [-skipTrash] &amp;lt;path&amp;gt; # 将 HDFS 上路径为 &amp;lt;path&amp;gt; 的文件移动到回收站，加上 -skipTrash，则直接删除 8hadoop fs -rmr [-skipTrash] &amp;lt;path&amp;gt; # 将 HDFS 上路径为 &amp;lt;path&amp;gt; 的目录以及目录下的文件移动到回收站。如果加上 -skipTrash，则直接删除 9hadoop fs -moveFromLocal &amp;lt;localsrc&amp;gt;.">
+1hadoop fs -ls &amp;lt;path&amp;gt; # 列出 path 目录下的所有内容（文件和目录） 2hadoop fs -lsr &amp;lt;path&amp;gt; # 递归列出 path 下的所有内容（文件或目录） 3hadoop fs -df &amp;lt;path&amp;gt; # 查看目录的使用情况 4hadoop fs -du &amp;lt;path&amp;gt; # 显示目录中所有文件及目录大小 5hadoop fs -touchz &amp;lt;path&amp;gt; # 创建一个路径为为 path 的 0 字节的 HDFS 空文件 6hadoop fs -mkdir &amp;lt;path&amp;gt; # 查看目录的使用情况 7hadoop fs -rm [-skipTrash] &amp;lt;path&amp;gt; # 将 HDFS 上路径为 &amp;lt;path&amp;gt; 的文件移动到回收站，加上 -skipTrash，则直接删除 8hadoop fs -rmr [-skipTrash] &amp;lt;path&amp;gt; # 将 HDFS 上路径为 &amp;lt;path&amp;gt; 的目录以及目录下的文件移动到回收站。如果加上 -skipTrash，则直接删除 9hadoop fs -moveFromLocal &amp;lt;localsrc&amp;gt;."><style>:root{--article-font-family:"Noto Serif SC", var(--base-font-family)}</style>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
-<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>Back</span>
 </a>
 </div>
@@ -46,7 +47,7 @@ hadoop
 </div>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
-5 min read
+5 minute read
 </time>
 </div>
 </footer>
@@ -259,36 +260,11 @@ hadoop
 <li>客户端调用 close，关闭输入流 DFS InputStream</li>
 </ol>
 <h1 id=hdfs-漫画>HDFS 漫画</h1>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190000.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190000.png loading=lazy alt=20201023190000>
-</a>
-<figcaption>20201023190000</figcaption>
-</figure></p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190100.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190100.png loading=lazy alt=20201023190100>
-</a>
-<figcaption>20201023190100</figcaption>
-</figure></p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190200.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190200.png loading=lazy alt=20201023190200>
-</a>
-<figcaption>20201023190200</figcaption>
-</figure></p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190300.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190300.png loading=lazy alt=20201023190300>
-</a>
-<figcaption>20201023190300</figcaption>
-</figure></p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190400.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190400.png loading=lazy alt=20201023190400>
-</a>
-<figcaption>20201023190400</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190000.png loading=lazy alt=20201023190000></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190100.png loading=lazy alt=20201023190100></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190200.png loading=lazy alt=20201023190200></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190300.png loading=lazy alt=20201023190300></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190400.png loading=lazy alt=20201023190400></p>
 <blockquote>
 <p>以上漫画版权均归原图作者所有</p>
 </blockquote>
@@ -334,11 +310,11 @@ hadoop
 <section class=copyright>
 &copy;
 2018 -
-2021 Anthony's blog
+2022 Anthony's blog
 </section>
 <section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
 </section>
 </footer>
 <div class=pswp tabindex=-1 role=dialog aria-hidden=true>
@@ -426,7 +402,7 @@ Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=
 </section>
 </aside>
 </div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
 <script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </body>
 </html>

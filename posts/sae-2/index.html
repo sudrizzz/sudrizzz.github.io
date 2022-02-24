@@ -4,16 +4,14 @@
 tiny_dnn 简介 tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。
 搭建环境 版本要求 需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 Visual Studio 2019 为例进行配置。
 创建项目 打开 VS，创建一个名为 testTinyDNN 的控制台应用。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 testTinyDNN.cpp 属于同一层级。
- 20210129112851 
-编辑配置  编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：  1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image."><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title>
+编辑配置  编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：  1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.h 文件第 378 行，将 border_width 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下：  1const size_t border_width = 0; 编写代码 打开 testTinyDNN."><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title>
 <link rel=canonical href=https://sudrizzz.github.io/posts/sae-2/>
-<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="SAE 入门（二）——基于 tiny_dnn 的手写数字重建">
+<link rel=stylesheet href=/scss/style.min.6801b4ba48a1373a0e84194e17f1122b8c1a811307a6a68009ac579b23c0df40.css><meta property="og:title" content="SAE 入门（二）——基于 tiny_dnn 的手写数字重建">
 <meta property="og:description" content="前言 在上一篇文章中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。
 tiny_dnn 简介 tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。
 搭建环境 版本要求 需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 Visual Studio 2019 为例进行配置。
 创建项目 打开 VS，创建一个名为 testTinyDNN 的控制台应用。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 testTinyDNN.cpp 属于同一层级。
- 20210129112851 
-编辑配置  编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：  1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.">
+编辑配置  编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：  1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.h 文件第 378 行，将 border_width 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下：  1const size_t border_width = 0; 编写代码 打开 testTinyDNN.">
 <meta property="og:url" content="https://sudrizzz.github.io/posts/sae-2/">
 <meta property="og:site_name" content="Anthony's blog">
 <meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2021-01-28T18:00:00+08:00"><meta property="article:modified_time" content="2021-01-28T18:00:00+08:00">
@@ -22,15 +20,15 @@ tiny_dnn 简介 tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，�
 tiny_dnn 简介 tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。
 搭建环境 版本要求 需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 Visual Studio 2019 为例进行配置。
 创建项目 打开 VS，创建一个名为 testTinyDNN 的控制台应用。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 testTinyDNN.cpp 属于同一层级。
- 20210129112851 
-编辑配置  编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：  1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.">
+编辑配置  编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：  1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.h 文件第 378 行，将 border_width 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下：  1const size_t border_width = 0; 编写代码 打开 testTinyDNN."><style>:root{--article-font-family:"Noto Serif SC", var(--base-font-family)}</style>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
-<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>Back</span>
 </a>
 </div>
@@ -55,7 +53,7 @@ Machine-Learning
 </div>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
-3 min read
+3 minute read
 </time>
 </div>
 </footer>
@@ -71,12 +69,7 @@ Machine-Learning
 <p>需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 <strong>Visual Studio 2019</strong> 为例进行配置。</p>
 <h2 id=创建项目>创建项目</h2>
 <p>打开 VS，创建一个名为 testTinyDNN 的<strong>控制台应用</strong>。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 <code>testTinyDNN.cpp</code> 属于同一层级。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129112851.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129112851.png loading=lazy alt=20210129112851>
-</a>
-<figcaption>20210129112851</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129112851.png loading=lazy alt=20210129112851></p>
 <h2 id=编辑配置>编辑配置</h2>
 <ol>
 <li>编辑 <code>config.h</code> 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：</li>
@@ -189,27 +182,12 @@ Machine-Learning
 </code></pre></div><p>在代码中，我们定义了每批次训练数据量为 256 条，总共训练 50 个批次。</p>
 <p>网络结构为 3 个编码层 + 3 个解码层。编码层将数据从 784（28 * 28） 维分别编码（降维）到 128、64、32 维，解码器再将 32 维的编码结果解码（升维）到 64、128、784 维，完成手写数字重建。各层之间的激活函数选用 <code>relu()</code> 与 <code>sigmoid()</code>。</p>
 <h1 id=结果展示>结果展示</h1>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129163100.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129163100.png loading=lazy alt=20210129163100>
-</a>
-<figcaption>20210129163100</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129163100.png loading=lazy alt=20210129163100></p>
 <p>从上到下，第一行为测试图像，第二行为 keras 搭建的 SAE 网络重建图像，第三行为 tiny_dnn 搭建的 SAE 网络重建图像。下面展示数字 2 和 5 重建的详细效果，左侧为 Python 平台重建结果，右侧为 C++ 平台重建结果。</p>
 <p>数字 2</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129182201.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129182201.png loading=lazy alt=20210129182201>
-</a>
-<figcaption>20210129182201</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129182201.png loading=lazy alt=20210129182201></p>
 <p>数字 5</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129181931.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129181931.png loading=lazy alt=20210129181931>
-</a>
-<figcaption>20210129181931</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129181931.png loading=lazy alt=20210129181931></p>
 <h1 id=性能对比>性能对比</h1>
 <p>测试使用的 CPU 型号为 Intel i5-4200H，基准频率为 2.80GHz。</p>
 <p>基于 tiny_dnn 的 C++ 平台训练时长为 2624.95 秒，基于 keras 的 Python 平台训练时长为 135.70 秒。在 50 个 epoch 测试中，Python 平台比 C++ 平台快了大约 19 倍，Python 平台 loss 大约为 0.08。由重建图片结果不难看出，Python 平台效果明显优于 C++ 平台。</p>
@@ -278,11 +256,11 @@ Machine-Learning
 <section class=copyright>
 &copy;
 2018 -
-2021 Anthony's blog
+2022 Anthony's blog
 </section>
 <section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
 </section>
 </footer>
 <div class=pswp tabindex=-1 role=dialog aria-hidden=true>
@@ -350,7 +328,7 @@ Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=
 </section>
 </aside>
 </div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
 <script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </body>
 </html>

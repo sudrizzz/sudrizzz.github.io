@@ -1,36 +1,31 @@
 <!doctype html><html lang=en-us>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="词频统计程序示例  20201014180000 
-假设将一个英文文本大文件作为输入，统计文件中单词出现的频数。最基本的操作是把输入文件的每一行传递给 map 函数完成对单词的拆分并输出中间结果，中间结果为 &amp;lt;word, 1&amp;gt; 的形式， 表示程序对一个单词，都对应一个计数 1。使用 reduce 函数收集 map 函数的结果作为输入值，并生成最终 &amp;lt;word, count&amp;gt; 形式的结果，完成对每个单词的词频统计。它们对应 MapReduce 处理数据流程如上图所示。
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="词频统计程序示例 假设将一个英文文本大文件作为输入，统计文件中单词出现的频数。最基本的操作是把输入文件的每一行传递给 map 函数完成对单词的拆分并输出中间结果，中间结果为 &amp;lt;word, 1&amp;gt; 的形式， 表示程序对一个单词，都对应一个计数 1。使用 reduce 函数收集 map 函数的结果作为输入值，并生成最终 &amp;lt;word, count&amp;gt; 形式的结果，完成对每个单词的词频统计。它们对应 MapReduce 处理数据流程如上图所示。
 MapReduce 程序的运行过程 如图所示，MapReduce 运行阶段数据传递经过输入文件、Map 阶段、中间文件、 Reduce 阶段、输出文件五个阶段，用户程序只与 Map 阶段和 Reduce 阶段的 Worker 直接相关，其他事情由 Hadoop 平台根据设置自行完成。
- 20201014190000 
 从用户程序 User Program 开始，用户程序 User Program 链接了 MapReduce 库，实现了最基本的 map 函数和 reduce 函数。
  MapReduce 库先把 User Program 的输入文件划分为 M 份，如上图左方所示，将数据分成了分片 0~4，每一份通常为 16MB~64MB；然后使用 fork 将用户进程复制到集群内其他机器上。 User Program 的副本中有一个 Master 副本和多个 Worker 副本。Master 是负责调度的，为空闲 Worker 分配 Map 作业或者 Reduce 作业。 被分配了 Map 作业的 Worker，开始读取对应分片的输入数据, Map 作业数量与输入文件划分数 M 相同，并与分片一一对应; Map 作业将输入数据转化为键值对表示形式并传递给 map 函数，map 函数产生的中间键值对被缓存在内存中。 缓存的中间键值对会被定期写入本地磁盘，而且被分为 R 个区（R 的大小是由用户定义的），每个区会对应一个 Reduce 作业；这些中间键值对的位置会被通报给 Master, Master 负责将信息转发给 Reduce Worker。 Master 通知分配了 Reduce 作业的 Worker 负责数据分区，Reduce Worker 读取键值对数据并依据键排序，使相同键的键值对聚集在一起。同一个分区可能存在多个键的键值对，而 reduce 函数的一次调用的键值是唯一的， 所以必须进行排序处理。 Reduce Worker 遍历排序后的中间键值对，对于每个唯一的键，都将键与关联的值传递给 reduce 函数，reduce 函数产生的输出会写回到数据分区的输出文件中。 当所有的 Map 和 Reduce 作业都完成了，Master 唤醒 User Program，MapReduce 函数调用返回 User Program。  执行完毕后，MapReduce 的输出放在 R 个分区的输出文件中，即每个 Reduce 作业分别对应一个输出文件。用户可将这 R 个文件作为输入交给另一个 MapReduce 程序处理，而不需要主动合并这 R 个文件。在 MapReduce 计算过程中，输入数据来自分布式文件系统，中间数据放在本地文件系统，最终输出数据写入分布式文件系统。"><title>MapReduce 分布式编程</title>
 <link rel=canonical href=https://sudrizzz.github.io/posts/mapreduce-distributed-programming/>
-<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="MapReduce 分布式编程">
-<meta property="og:description" content="词频统计程序示例  20201014180000 
-假设将一个英文文本大文件作为输入，统计文件中单词出现的频数。最基本的操作是把输入文件的每一行传递给 map 函数完成对单词的拆分并输出中间结果，中间结果为 &amp;lt;word, 1&amp;gt; 的形式， 表示程序对一个单词，都对应一个计数 1。使用 reduce 函数收集 map 函数的结果作为输入值，并生成最终 &amp;lt;word, count&amp;gt; 形式的结果，完成对每个单词的词频统计。它们对应 MapReduce 处理数据流程如上图所示。
+<link rel=stylesheet href=/scss/style.min.6801b4ba48a1373a0e84194e17f1122b8c1a811307a6a68009ac579b23c0df40.css><meta property="og:title" content="MapReduce 分布式编程">
+<meta property="og:description" content="词频统计程序示例 假设将一个英文文本大文件作为输入，统计文件中单词出现的频数。最基本的操作是把输入文件的每一行传递给 map 函数完成对单词的拆分并输出中间结果，中间结果为 &amp;lt;word, 1&amp;gt; 的形式， 表示程序对一个单词，都对应一个计数 1。使用 reduce 函数收集 map 函数的结果作为输入值，并生成最终 &amp;lt;word, count&amp;gt; 形式的结果，完成对每个单词的词频统计。它们对应 MapReduce 处理数据流程如上图所示。
 MapReduce 程序的运行过程 如图所示，MapReduce 运行阶段数据传递经过输入文件、Map 阶段、中间文件、 Reduce 阶段、输出文件五个阶段，用户程序只与 Map 阶段和 Reduce 阶段的 Worker 直接相关，其他事情由 Hadoop 平台根据设置自行完成。
- 20201014190000 
 从用户程序 User Program 开始，用户程序 User Program 链接了 MapReduce 库，实现了最基本的 map 函数和 reduce 函数。
  MapReduce 库先把 User Program 的输入文件划分为 M 份，如上图左方所示，将数据分成了分片 0~4，每一份通常为 16MB~64MB；然后使用 fork 将用户进程复制到集群内其他机器上。 User Program 的副本中有一个 Master 副本和多个 Worker 副本。Master 是负责调度的，为空闲 Worker 分配 Map 作业或者 Reduce 作业。 被分配了 Map 作业的 Worker，开始读取对应分片的输入数据, Map 作业数量与输入文件划分数 M 相同，并与分片一一对应; Map 作业将输入数据转化为键值对表示形式并传递给 map 函数，map 函数产生的中间键值对被缓存在内存中。 缓存的中间键值对会被定期写入本地磁盘，而且被分为 R 个区（R 的大小是由用户定义的），每个区会对应一个 Reduce 作业；这些中间键值对的位置会被通报给 Master, Master 负责将信息转发给 Reduce Worker。 Master 通知分配了 Reduce 作业的 Worker 负责数据分区，Reduce Worker 读取键值对数据并依据键排序，使相同键的键值对聚集在一起。同一个分区可能存在多个键的键值对，而 reduce 函数的一次调用的键值是唯一的， 所以必须进行排序处理。 Reduce Worker 遍历排序后的中间键值对，对于每个唯一的键，都将键与关联的值传递给 reduce 函数，reduce 函数产生的输出会写回到数据分区的输出文件中。 当所有的 Map 和 Reduce 作业都完成了，Master 唤醒 User Program，MapReduce 函数调用返回 User Program。  执行完毕后，MapReduce 的输出放在 R 个分区的输出文件中，即每个 Reduce 作业分别对应一个输出文件。用户可将这 R 个文件作为输入交给另一个 MapReduce 程序处理，而不需要主动合并这 R 个文件。在 MapReduce 计算过程中，输入数据来自分布式文件系统，中间数据放在本地文件系统，最终输出数据写入分布式文件系统。">
 <meta property="og:url" content="https://sudrizzz.github.io/posts/mapreduce-distributed-programming/">
 <meta property="og:site_name" content="Anthony's blog">
 <meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2020-10-17T20:00:00+08:00"><meta property="article:modified_time" content="2020-10-17T20:00:00+08:00">
 <meta name=twitter:title content="MapReduce 分布式编程">
-<meta name=twitter:description content="词频统计程序示例  20201014180000 
-假设将一个英文文本大文件作为输入，统计文件中单词出现的频数。最基本的操作是把输入文件的每一行传递给 map 函数完成对单词的拆分并输出中间结果，中间结果为 &amp;lt;word, 1&amp;gt; 的形式， 表示程序对一个单词，都对应一个计数 1。使用 reduce 函数收集 map 函数的结果作为输入值，并生成最终 &amp;lt;word, count&amp;gt; 形式的结果，完成对每个单词的词频统计。它们对应 MapReduce 处理数据流程如上图所示。
+<meta name=twitter:description content="词频统计程序示例 假设将一个英文文本大文件作为输入，统计文件中单词出现的频数。最基本的操作是把输入文件的每一行传递给 map 函数完成对单词的拆分并输出中间结果，中间结果为 &amp;lt;word, 1&amp;gt; 的形式， 表示程序对一个单词，都对应一个计数 1。使用 reduce 函数收集 map 函数的结果作为输入值，并生成最终 &amp;lt;word, count&amp;gt; 形式的结果，完成对每个单词的词频统计。它们对应 MapReduce 处理数据流程如上图所示。
 MapReduce 程序的运行过程 如图所示，MapReduce 运行阶段数据传递经过输入文件、Map 阶段、中间文件、 Reduce 阶段、输出文件五个阶段，用户程序只与 Map 阶段和 Reduce 阶段的 Worker 直接相关，其他事情由 Hadoop 平台根据设置自行完成。
- 20201014190000 
 从用户程序 User Program 开始，用户程序 User Program 链接了 MapReduce 库，实现了最基本的 map 函数和 reduce 函数。
- MapReduce 库先把 User Program 的输入文件划分为 M 份，如上图左方所示，将数据分成了分片 0~4，每一份通常为 16MB~64MB；然后使用 fork 将用户进程复制到集群内其他机器上。 User Program 的副本中有一个 Master 副本和多个 Worker 副本。Master 是负责调度的，为空闲 Worker 分配 Map 作业或者 Reduce 作业。 被分配了 Map 作业的 Worker，开始读取对应分片的输入数据, Map 作业数量与输入文件划分数 M 相同，并与分片一一对应; Map 作业将输入数据转化为键值对表示形式并传递给 map 函数，map 函数产生的中间键值对被缓存在内存中。 缓存的中间键值对会被定期写入本地磁盘，而且被分为 R 个区（R 的大小是由用户定义的），每个区会对应一个 Reduce 作业；这些中间键值对的位置会被通报给 Master, Master 负责将信息转发给 Reduce Worker。 Master 通知分配了 Reduce 作业的 Worker 负责数据分区，Reduce Worker 读取键值对数据并依据键排序，使相同键的键值对聚集在一起。同一个分区可能存在多个键的键值对，而 reduce 函数的一次调用的键值是唯一的， 所以必须进行排序处理。 Reduce Worker 遍历排序后的中间键值对，对于每个唯一的键，都将键与关联的值传递给 reduce 函数，reduce 函数产生的输出会写回到数据分区的输出文件中。 当所有的 Map 和 Reduce 作业都完成了，Master 唤醒 User Program，MapReduce 函数调用返回 User Program。  执行完毕后，MapReduce 的输出放在 R 个分区的输出文件中，即每个 Reduce 作业分别对应一个输出文件。用户可将这 R 个文件作为输入交给另一个 MapReduce 程序处理，而不需要主动合并这 R 个文件。在 MapReduce 计算过程中，输入数据来自分布式文件系统，中间数据放在本地文件系统，最终输出数据写入分布式文件系统。">
+ MapReduce 库先把 User Program 的输入文件划分为 M 份，如上图左方所示，将数据分成了分片 0~4，每一份通常为 16MB~64MB；然后使用 fork 将用户进程复制到集群内其他机器上。 User Program 的副本中有一个 Master 副本和多个 Worker 副本。Master 是负责调度的，为空闲 Worker 分配 Map 作业或者 Reduce 作业。 被分配了 Map 作业的 Worker，开始读取对应分片的输入数据, Map 作业数量与输入文件划分数 M 相同，并与分片一一对应; Map 作业将输入数据转化为键值对表示形式并传递给 map 函数，map 函数产生的中间键值对被缓存在内存中。 缓存的中间键值对会被定期写入本地磁盘，而且被分为 R 个区（R 的大小是由用户定义的），每个区会对应一个 Reduce 作业；这些中间键值对的位置会被通报给 Master, Master 负责将信息转发给 Reduce Worker。 Master 通知分配了 Reduce 作业的 Worker 负责数据分区，Reduce Worker 读取键值对数据并依据键排序，使相同键的键值对聚集在一起。同一个分区可能存在多个键的键值对，而 reduce 函数的一次调用的键值是唯一的， 所以必须进行排序处理。 Reduce Worker 遍历排序后的中间键值对，对于每个唯一的键，都将键与关联的值传递给 reduce 函数，reduce 函数产生的输出会写回到数据分区的输出文件中。 当所有的 Map 和 Reduce 作业都完成了，Master 唤醒 User Program，MapReduce 函数调用返回 User Program。  执行完毕后，MapReduce 的输出放在 R 个分区的输出文件中，即每个 Reduce 作业分别对应一个输出文件。用户可将这 R 个文件作为输入交给另一个 MapReduce 程序处理，而不需要主动合并这 R 个文件。在 MapReduce 计算过程中，输入数据来自分布式文件系统，中间数据放在本地文件系统，最终输出数据写入分布式文件系统。"><style>:root{--article-font-family:"Noto Serif SC", var(--base-font-family)}</style>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
-<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>Back</span>
 </a>
 </div>
@@ -52,7 +47,7 @@ hadoop
 </div>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
-4 min read
+4 minute read
 </time>
 </div>
 </footer>
@@ -60,21 +55,11 @@ hadoop
 </header>
 <section class=article-content>
 <h1 id=词频统计程序示例>词频统计程序示例</h1>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014180000.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014180000.png loading=lazy alt=20201014180000>
-</a>
-<figcaption>20201014180000</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014180000.png loading=lazy alt=20201014180000></p>
 <p>假设将一个英文文本大文件作为输入，统计文件中单词出现的频数。最基本的操作是把输入文件的每一行传递给 map 函数完成对单词的拆分并输出中间结果，中间结果为 &lt;word, 1> 的形式， 表示程序对一个单词，都对应一个计数 1。使用 reduce 函数收集 map 函数的结果作为输入值，并生成最终 &lt;word, count> 形式的结果，完成对每个单词的词频统计。它们对应 MapReduce 处理数据流程如上图所示。</p>
 <h1 id=mapreduce-程序的运行过程>MapReduce 程序的运行过程</h1>
 <p>如图所示，MapReduce 运行阶段数据传递经过输入文件、Map 阶段、中间文件、 Reduce 阶段、输出文件五个阶段，用户程序只与 Map 阶段和 Reduce 阶段的 Worker 直接相关，其他事情由 Hadoop 平台根据设置自行完成。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014190000.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014190000.png loading=lazy alt=20201014190000>
-</a>
-<figcaption>20201014190000</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014190000.png loading=lazy alt=20201014190000></p>
 <p>从用户程序 User Program 开始，用户程序 User Program 链接了 MapReduce 库，实现了最基本的 map 函数和 reduce 函数。</p>
 <ol>
 <li>MapReduce 库先把 User Program 的输入文件划分为 M 份，如上图左方所示，将数据分成了分片 0~4，每一份通常为 16MB~64MB；然后使用 fork 将用户进程复制到集群内其他机器上。</li>
@@ -94,12 +79,7 @@ hadoop
 </ol>
 <h1 id=经典-mapreduce-任务调度模型>经典 MapReduce 任务调度模型</h1>
 <p>经典 MapReduce 任务调度模型采用主从结构（Master/Slave），包含四个组成部分：Client、JobTracker、TaskTracker、Task。支撑 MapReduce 计算框架的是 JobTracker 和 TaskTracker 两类后台进程。框架结构如下图所示。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014200000.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014200000.png loading=lazy alt=20201014200000>
-</a>
-<figcaption>20201014200000</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014200000.png loading=lazy alt=20201014200000></p>
 <ol>
 <li>Client
 每一个 Job 在 Ciat 端将运行 MapRecdce 程序所需要的所有 Jar 文件和类的集合，打包成一个 Jar 文件存储在 HDFS 中，并把文件路径提交到 JobTracker。</li>
@@ -127,12 +107,7 @@ ApplicationMaster 负责向调度器申请、释放资源，清求 NodeManager �
 <p>Container 是 YARN 中资源的抽象，它封装了节点上一定量的资源（CPU 和内存等）。一个应用程序所需的 Container 分为两类：一类是运行 ApplicationMaster 的 Container，是由 ResourceManager（向内部的资源调度器）申请和启动的，用户提交应用程序时，可指定唯一的 ApplicationMaster 所需的资源；另一类是运行各类任务的 Container，是由 ApplicationMaster 向 ResourceManager 申请的，并由 ApplicationMaster 与 NodeManager 通信后启动。</p>
 <p>用户向 YARN 提交一个应用程序后，YARN 将分为两个阶段运行该应用程序：第一个阶段是启动 ApplicationMaster；第二个阶段是由 ApplicationMaster 创建应用程序，为它申请资源，并监控它的整个运行过程，直到运行成功。</p>
 <p>YARN 任务调度流程如下图所示。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014205100.jpg>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014205100.jpg loading=lazy alt=20201014205100>
-</a>
-<figcaption>20201014205100</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014205100.jpg loading=lazy alt=20201014205100></p>
 <ol>
 <li>用户向 YARN 提交应用程序；</li>
 <li>ResourceManager 为该应用程序在某个 NodeManagr 分配一个 Container，并要求 NodeManager 启动应用程序的 ApplicationMaster；</li>
@@ -153,7 +128,7 @@ ApplicationMaster 负责向调度器申请、释放资源，清求 NodeManager �
 <p>本例的数据来自于 Youtube 的数据集，完整的数据集以及源代码下载地址请点击以下链接
 <a class=link href=https://github.com/sudrizzz/BigDataTechnologyFoundation-SourceCodeAndDataSet/blob/main/ch04 target=_blank rel=noopener>https://github.com/sudrizzz/BigDataTechnologyFoundation-SourceCodeAndDataSet/blob/main/ch04</a></p>
 <p>该数据集各字段的具体含义如表所示：</p>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th>字段名</th>
@@ -202,10 +177,10 @@ ApplicationMaster 负责向调度器申请、释放资源，清求 NodeManager �
 <td>相关视频 ID，每个相关视频的 ID 均为单独的一列：字符串类型</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id=视频类型统计>视频类型统计</h2>
 <p>场景：从已经上传的视频中，统计每一个视频类型下的视频数量。下表所示为数据集数据格式示例。category 列代表了视频类型，因而 map 函数只需逐行读取，返回视频类型为键和数字 1 为值的键值对，再传给 reduce 函数处理即可。map 函数的输入键依然为文本文件中行的偏移量，值为行内容。reduce 函数输出键值对为视频类型和该视频类型中的视频数量。</p>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th>video ID</th>
@@ -246,7 +221,7 @@ ApplicationMaster 负责向调度器申请、释放资源，清求 NodeManager �
 <td>PkGUU_ggO3k&mldr;tpAl3iOurl4</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id=mapper-类代码实现>Mapper 类代码实现</h3>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=ln> 1</span><span class=kd>public</span> <span class=kd>static</span> <span class=kd>class</span> <span class=nc>Map</span> <span class=kd>extends</span> <span class=n>Mapper</span><span class=o>&lt;</span><span class=n>LongWritable</span><span class=o>,</span> <span class=n>Text</span><span class=o>,</span> <span class=n>Text</span><span class=o>,</span> <span class=n>IntWritable</span><span class=o>&gt;</span> <span class=o>{</span>
 <span class=ln> 2</span>    <span class=kd>private</span> <span class=kd>static</span> <span class=kd>final</span> <span class=n>IntWritable</span> <span class=n>ONE</span> <span class=o>=</span> <span class=k>new</span> <span class=n>IntWritable</span><span class=o>(</span><span class=n>1</span><span class=o>);</span>
@@ -341,11 +316,11 @@ Travel &amp; Events	113
 <section class=copyright>
 &copy;
 2018 -
-2021 Anthony's blog
+2022 Anthony's blog
 </section>
 <section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
 </section>
 </footer>
 <div class=pswp tabindex=-1 role=dialog aria-hidden=true>
@@ -414,7 +389,7 @@ Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=
 </section>
 </aside>
 </div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
 <script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </body>
 </html>

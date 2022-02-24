@@ -7,14 +7,12 @@ https://book.douban.com/subject/1230413
 本书适用于那些想要写出更快、更可靠程序的程序员。通过掌握程序是如何映射到系统上，以及程序是如何执行的，读者能够更好的理解程序的行为为什么是这样的，以及效率低下是如何造成的。粗略来看，计算机系统包括处理器和存储器硬件、编译器、操作系统和网络互连环境。而通过程序员的视角，读者可以清晰地明白学习计算机系统的内部工作原理会对他们今后作为计算机科学研究者和工程师的工作有进一步的帮助。它还有助于为进一步学习计算机体系结构、操作系统、编译器和网络互连做好准备。
  一切皆位 十进制 在计算机发展历史上，实际上只有宾夕法尼亚大学建立的第一台计算机 ENIAC 使用了十进制进行了算术运算，他们使用 10 个电子管来表示每个数字。所以他们通过控制电子管的开关来表示 10 个数字中的其中一个。
 二进制 随着计算机的发展，十进制逐渐演化为二进制。在计算机中，我们使用电学层面上的电压高低来存储位数据，如图所示，高电压（0.9v-1.1v）记作逻辑 1，而低电压（0.0v-0.2v）记作逻辑 0。
- 20200904184249 
 之所以这么做，是因为通过区分高低电压，可以有效地过滤噪声和杂讯。
 十六进制 二进制的成功运用也带来了一个问题，由于每一个位只能存储两种信号（即 0 和 1），对于人来说基本属于不可读的，所以我们将每四个二进制在位合并为一个十六进制位，这样大大缩减了数据的展示长度。例如
- 20200904185017 
 具体数据类型实际所占空间 此处以 C 语言数据类型为例，因为在 32 位与 64 位机器上所占空间不尽相同，故列下表。
    C Data Type Typical 32-bit Typical 64-bit x86-64     char 1 1 1   short 2 2 2   int 4 4 4   long 4 8 8   float 4 4 4   double 8 8 8   pointer 4 8 8    位操作 与、或、非、异或 通俗的解释如下："><title>CMU 15-213 位、字节与整数</title>
 <link rel=canonical href=https://sudrizzz.github.io/posts/cmu-15-213-lesson1/>
-<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="CMU 15-213 位、字节与整数">
+<link rel=stylesheet href=/scss/style.min.6801b4ba48a1373a0e84194e17f1122b8c1a811307a6a68009ac579b23c0df40.css><meta property="og:title" content="CMU 15-213 位、字节与整数">
 <meta property="og:description" content="简介 CSAPP 课程全程 Computer Systems: A Programmer’s Perspective，中文翻译为“从程序员的视角，看计算机系统！”或“深入理解计算机系统”。此课程是卡耐基梅隆大学开设的一门课程，官方网站 https://www.cs.cmu.edu/~213/index.html。
  内容简介节选自豆瓣
 https://book.douban.com/subject/1230413
@@ -22,10 +20,8 @@ https://book.douban.com/subject/1230413
 本书适用于那些想要写出更快、更可靠程序的程序员。通过掌握程序是如何映射到系统上，以及程序是如何执行的，读者能够更好的理解程序的行为为什么是这样的，以及效率低下是如何造成的。粗略来看，计算机系统包括处理器和存储器硬件、编译器、操作系统和网络互连环境。而通过程序员的视角，读者可以清晰地明白学习计算机系统的内部工作原理会对他们今后作为计算机科学研究者和工程师的工作有进一步的帮助。它还有助于为进一步学习计算机体系结构、操作系统、编译器和网络互连做好准备。
  一切皆位 十进制 在计算机发展历史上，实际上只有宾夕法尼亚大学建立的第一台计算机 ENIAC 使用了十进制进行了算术运算，他们使用 10 个电子管来表示每个数字。所以他们通过控制电子管的开关来表示 10 个数字中的其中一个。
 二进制 随着计算机的发展，十进制逐渐演化为二进制。在计算机中，我们使用电学层面上的电压高低来存储位数据，如图所示，高电压（0.9v-1.1v）记作逻辑 1，而低电压（0.0v-0.2v）记作逻辑 0。
- 20200904184249 
 之所以这么做，是因为通过区分高低电压，可以有效地过滤噪声和杂讯。
 十六进制 二进制的成功运用也带来了一个问题，由于每一个位只能存储两种信号（即 0 和 1），对于人来说基本属于不可读的，所以我们将每四个二进制在位合并为一个十六进制位，这样大大缩减了数据的展示长度。例如
- 20200904185017 
 具体数据类型实际所占空间 此处以 C 语言数据类型为例，因为在 32 位与 64 位机器上所占空间不尽相同，故列下表。
    C Data Type Typical 32-bit Typical 64-bit x86-64     char 1 1 1   short 2 2 2   int 4 4 4   long 4 8 8   float 4 4 4   double 8 8 8   pointer 4 8 8    位操作 与、或、非、异或 通俗的解释如下：">
 <meta property="og:url" content="https://sudrizzz.github.io/posts/cmu-15-213-lesson1/">
@@ -39,19 +35,18 @@ https://book.douban.com/subject/1230413
 本书适用于那些想要写出更快、更可靠程序的程序员。通过掌握程序是如何映射到系统上，以及程序是如何执行的，读者能够更好的理解程序的行为为什么是这样的，以及效率低下是如何造成的。粗略来看，计算机系统包括处理器和存储器硬件、编译器、操作系统和网络互连环境。而通过程序员的视角，读者可以清晰地明白学习计算机系统的内部工作原理会对他们今后作为计算机科学研究者和工程师的工作有进一步的帮助。它还有助于为进一步学习计算机体系结构、操作系统、编译器和网络互连做好准备。
  一切皆位 十进制 在计算机发展历史上，实际上只有宾夕法尼亚大学建立的第一台计算机 ENIAC 使用了十进制进行了算术运算，他们使用 10 个电子管来表示每个数字。所以他们通过控制电子管的开关来表示 10 个数字中的其中一个。
 二进制 随着计算机的发展，十进制逐渐演化为二进制。在计算机中，我们使用电学层面上的电压高低来存储位数据，如图所示，高电压（0.9v-1.1v）记作逻辑 1，而低电压（0.0v-0.2v）记作逻辑 0。
- 20200904184249 
 之所以这么做，是因为通过区分高低电压，可以有效地过滤噪声和杂讯。
 十六进制 二进制的成功运用也带来了一个问题，由于每一个位只能存储两种信号（即 0 和 1），对于人来说基本属于不可读的，所以我们将每四个二进制在位合并为一个十六进制位，这样大大缩减了数据的展示长度。例如
- 20200904185017 
 具体数据类型实际所占空间 此处以 C 语言数据类型为例，因为在 32 位与 64 位机器上所占空间不尽相同，故列下表。
-   C Data Type Typical 32-bit Typical 64-bit x86-64     char 1 1 1   short 2 2 2   int 4 4 4   long 4 8 8   float 4 4 4   double 8 8 8   pointer 4 8 8    位操作 与、或、非、异或 通俗的解释如下：">
+   C Data Type Typical 32-bit Typical 64-bit x86-64     char 1 1 1   short 2 2 2   int 4 4 4   long 4 8 8   float 4 4 4   double 8 8 8   pointer 4 8 8    位操作 与、或、非、异或 通俗的解释如下："><style>:root{--article-font-family:"Noto Serif SC", var(--base-font-family)}</style>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
-<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>Back</span>
 </a>
 </div>
@@ -73,7 +68,7 @@ CSAPP
 </div>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
-3 min read
+3 minute read
 </time>
 </div>
 </footer>
@@ -93,24 +88,14 @@ CSAPP
 <p>在计算机发展历史上，实际上只有宾夕法尼亚大学建立的第一台计算机 ENIAC 使用了十进制进行了算术运算，他们使用 10 个电子管来表示每个数字。所以他们通过控制电子管的开关来表示 10 个数字中的其中一个。</p>
 <h2 id=二进制>二进制</h2>
 <p>随着计算机的发展，十进制逐渐演化为二进制。在计算机中，我们使用电学层面上的电压高低来存储位数据，如图所示，高电压（0.9v-1.1v）记作逻辑 1，而低电压（0.0v-0.2v）记作逻辑 0。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904184249.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904184249.png loading=lazy alt=20200904184249>
-</a>
-<figcaption>20200904184249</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904184249.png loading=lazy alt=20200904184249></p>
 <p>之所以这么做，是因为通过区分高低电压，可以有效地过滤噪声和杂讯。</p>
 <h2 id=十六进制>十六进制</h2>
 <p>二进制的成功运用也带来了一个问题，由于每一个位只能存储两种信号（即 0 和 1），对于人来说基本属于不可读的，所以我们将每四个二进制在位合并为一个十六进制位，这样大大缩减了数据的展示长度。例如</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904185017.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904185017.png loading=lazy alt=20200904185017>
-</a>
-<figcaption>20200904185017</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904185017.png loading=lazy alt=20200904185017></p>
 <h2 id=具体数据类型实际所占空间>具体数据类型实际所占空间</h2>
 <p>此处以 C 语言数据类型为例，因为在 32 位与 64 位机器上所占空间不尽相同，故列下表。</p>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th>C Data Type</th>
@@ -163,7 +148,7 @@ CSAPP
 <td>8</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h1 id=位操作>位操作</h1>
 <h2 id=与或非异或>与、或、非、异或</h2>
 <p>通俗的解释如下：</p>
@@ -174,22 +159,12 @@ CSAPP
 <li>异或（^）：两者性质相同时，结果为假，否则为真。</li>
 </ol>
 <p>详细示例见下图。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904185942.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904185942.png loading=lazy alt=20200904185942>
-</a>
-<figcaption>20200904185942</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904185942.png loading=lazy alt=20200904185942></p>
 <h2 id=与集合的关系>与集合的关系</h2>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904190420.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904190420.png loading=lazy alt=20200904190420>
-</a>
-<figcaption>20200904190420</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904190420.png loading=lazy alt=20200904190420></p>
 <p>我们将二进制数据从右往左标记位置，红色数字位置代表该为值为 1，右侧集合中数据代表该二进制数据中所有位值为 1 的位置。例如第一个数据 01101001，从右往左计数，第 0、3、5、6 位对应值为 1。对第二个数进行同样的处理。</p>
 <p>此时我们对两个数据进行与、或、非、异或操作时，可以得出下述结论。</p>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th>数据操作</th>
@@ -224,11 +199,11 @@ CSAPP
 <td>{1, 3, 5, 7}</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id=移位>移位</h2>
 <h3 id=左移-x--y>左移 x &#171; y</h3>
 <p>左移即将二进数据 x 整体向左移动 y 个位置，并在其右侧补 0。例如</p>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th></th>
@@ -245,12 +220,12 @@ CSAPP
 <td>00010<em>000</em></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id=右移-x--y>右移 x &#187; y</h3>
 <p>与左移一样，右移即将二进数据 x 整体向右移动 y 个位置，并在其空缺位填充相应数据。而右移又分为逻辑右移和算数右移，具体区别如下。</p>
 <h4 id=逻辑右移>逻辑右移</h4>
 <p>在逻辑右移过程中，需要在其左侧空缺位置补 0。例如</p>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th></th>
@@ -267,10 +242,10 @@ CSAPP
 <td><em>00</em>101000</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h4 id=算术右移>算术右移</h4>
 <p>在算术右移过程中，需要在其左侧空缺位置补 1。例如</p>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th></th>
@@ -287,21 +262,16 @@ CSAPP
 <td><em>11</em>101000</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h1 id=无符号数与补码>无符号数与补码</h1>
 <p>无符号数的表达形式：<br>
 $$ B2U(X) = \sum_{i=0}^{w-1}x_{i} \cdot 2^{i} $$</p>
 <p>补码的表达形式：<br>
 $$ B2T(X) = -x_{w-1}\cdot 2^{w-1}+\sum_{i=0}^{w-2}x_{i}\cdot 2^{i} $$</p>
 <p>在补码中，最高值为 1 时，始终代表 -1，例如：</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904192825.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904192825.png loading=lazy alt=20200904192825>
-</a>
-<figcaption>20200904192825</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904192825.png loading=lazy alt=20200904192825></p>
 <p>有了补码，计算机就可正常表示负数。例如：</p>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th></th>
@@ -324,11 +294,11 @@ $$ B2T(X) = -x_{w-1}\cdot 2^{w-1}+\sum_{i=0}^{w-2}x_{i}\cdot 2^{i} $$</p>
 <td>11000100 10010011</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id=数据范围>数据范围</h2>
 <p>此处我们以 16 位二进制数（即 w=16）来探讨无符号数和补码的范围，如下表。
 其中，UMax 代表无符号数最大值，TMax 代表补码最大值，TMin 代表补码最小值。</p>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th></th>
@@ -369,9 +339,9 @@ $$ B2T(X) = -x_{w-1}\cdot 2^{w-1}+\sum_{i=0}^{w-2}x_{i}\cdot 2^{i} $$</p>
 <td>00000000 00000000</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>当数据的位宽 w 发生变化时，代表的数据最值也会发生相应的变化，如下表。</p>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th></th>
@@ -404,38 +374,28 @@ $$ B2T(X) = -x_{w-1}\cdot 2^{w-1}+\sum_{i=0}^{w-2}x_{i}\cdot 2^{i} $$</p>
 <td>-9,223,372,036,854,775,808</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>根据以上性质，我们可以得出以下结论：</p>
 <p>$$ |TMin| = TMax + 1 $$</p>
 <p>$$ UMax = 2 * TMax + 1 $$</p>
 <h2 id=补码形式转换为无符号数>补码形式转换为无符号数</h2>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905104914.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905104914.png loading=lazy alt=20200905104914>
-</a>
-<figcaption>20200905104914</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905104914.png loading=lazy alt=20200905104914></p>
 <h1 id=有符号数扩充>有符号数扩充</h1>
 <p>已知一个 w 位的有符号数 X，现在需要将其转换为 w+k 位相同值的有符号数，可以按照下述步骤进行操作。</p>
 <ol>
 <li>将符号标识位（sign bit）拷贝 k 份，填充到扩充的 k 个位置上；</li>
 <li>此时 X 就可以按位表示为</li>
 </ol>
-<p>$$ X^{'} = \underbrace{X_{w-1},&mldr;, X_{w-1}}_{k 个符号位拷贝}, X_{w-1}, X_{w-2},&mldr;, X_{0} $$</p>
+<p>$$ X^{'} = \underbrace{X_{w-1},&mldr;, X_{w-1}}<em>{k 个符号位拷贝}, X</em>{w-1}, X_{w-2},&mldr;, X_{0} $$</p>
 <p>详细信息如下图所示：</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905110036.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905110036.png loading=lazy alt=20200905110036>
-</a>
-<figcaption>20200905110036</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905110036.png loading=lazy alt=20200905110036></p>
 <h2 id=示例>示例</h2>
 <p>定义两个 <code>short</code> 变量 x 与 y，将其分别扩充为 <code>int</code> 变量，得到 ix 与 iy，详细结果如下。</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=ln>1</span><span class=kt>short</span> <span class=kt>int</span> <span class=n>x</span> <span class=o>=</span> <span class=mi>15213</span><span class=p>;</span>
 <span class=ln>2</span><span class=kt>int</span> <span class=n>ix</span> <span class=o>=</span> <span class=p>(</span><span class=kt>int</span><span class=p>)</span> <span class=n>x</span><span class=p>;</span>
 <span class=ln>3</span><span class=kt>short</span> <span class=kt>int</span> <span class=n>y</span> <span class=o>=</span> <span class=o>-</span><span class=mi>15213</span><span class=p>;</span>
 <span class=ln>4</span><span class=kt>int</span> <span class=n>iy</span> <span class=o>=</span> <span class=p>(</span><span class=kt>int</span><span class=p>)</span> <span class=n>y</span><span class=p>;</span>
-</code></pre></div><table>
+</code></pre></div><div class=table-wrapper><table>
 <thead>
 <tr>
 <th></th>
@@ -470,29 +430,19 @@ $$ B2T(X) = -x_{w-1}\cdot 2^{w-1}+\sum_{i=0}^{w-2}x_{i}\cdot 2^{i} $$</p>
 <td style=text-align:right>11111111 11111111 11000100 10010011</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h1 id=移位实现-2-的次方倍算术操作>移位实现 2 的次方倍算术操作</h1>
 <h2 id=乘法>乘法</h2>
 <p>给定一个整数 u，其 2 的次方倍乘法操作相对简单，且对于无符号数和有符号数都是统一的操作，即将数据的二进制位向左移动，再将移动产生的多余位进行舍弃，剩余位即最终结果。也即</p>
 <p>$$ u &#171; k = u * 2^{k} $$</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905111913.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905111913.png loading=lazy alt=20200905111913>
-</a>
-<figcaption>20200905111913</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905111913.png loading=lazy alt=20200905111913></p>
 <h2 id=除法>除法</h2>
 <h3 id=无符号数>无符号数</h3>
 <p>给定一个无符号数 u，对其做 2 的次方倍除法，相当于将其二进制位向右进行逻辑移位，再将小数部分进行舍弃（向下取整），剩余位即最终结果。也即</p>
 <p>$$ u &#187; k = \lfloor u / 2^{k} \rfloor $$</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905112056.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905112056.png loading=lazy alt=20200905112056>
-</a>
-<figcaption>20200905112056</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905112056.png loading=lazy alt=20200905112056></p>
 <p>例如：</p>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th></th>
@@ -532,18 +482,13 @@ $$ B2T(X) = -x_{w-1}\cdot 2^{w-1}+\sum_{i=0}^{w-2}x_{i}\cdot 2^{i} $$</p>
 <td>00000000 00111011</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id=有符号数>有符号数</h3>
 <p>给定一个有符号数 x，对其做 2 的次方倍除法，相当于将其二进制位向右进行算术移位，再将小数部分进行舍弃（向下取整），剩余位即最终结果。也即</p>
 <p>$$ x &#187; k = \lfloor x / 2^{k} \rfloor $$</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905112700.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905112700.png loading=lazy alt=20200905112700>
-</a>
-<figcaption>20200905112700</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905112700.png loading=lazy alt=20200905112700></p>
 <p>例如：</p>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th></th>
@@ -583,7 +528,7 @@ $$ B2T(X) = -x_{w-1}\cdot 2^{w-1}+\sum_{i=0}^{w-2}x_{i}\cdot 2^{i} $$</p>
 <td><em>11111111</em> 11000100</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </section>
 <footer class=article-footer>
 <section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
@@ -617,11 +562,11 @@ $$ B2T(X) = -x_{w-1}\cdot 2^{w-1}+\sum_{i=0}^{w-2}x_{i}\cdot 2^{i} $$</p>
 <section class=copyright>
 &copy;
 2018 -
-2021 Anthony's blog
+2022 Anthony's blog
 </section>
 <section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
 </section>
 </footer>
 <div class=pswp tabindex=-1 role=dialog aria-hidden=true>
@@ -723,7 +668,7 @@ Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=
 </section>
 </aside>
 </div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
 <script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </body>
 </html>

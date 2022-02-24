@@ -5,7 +5,7 @@
 文件准备 我们以 C++ 文档 dlib 为例做介绍，官网 http://dlib.net，点击左下角的 Download 按钮并将下载好的文件解压。将文件夹中的 docs 目录内容复制到 Nginx 安装目录中的 dlib 目录中。相关的目录结构如下。
 1drwxr-xr-x. 9 root root 258 9月 11 16:54 blog 2drwx------. 2 nobody root 6 9月 6 15:26 client_body_temp 3drwxr-xr-x. 2 root root 4096 9月 11 19:48 conf 4drwxrwxrwx. 10 root root 8192 8月 9 03:30 dlib 5drwx------. 2 nobody root 6 9月 6 15:26 fastcgi_temp 6drwxr-xr-x."><title>初识 Nginx（二）</title>
 <link rel=canonical href=https://sudrizzz.github.io/posts/getting-to-know-nginx-2/>
-<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="初识 Nginx（二）">
+<link rel=stylesheet href=/scss/style.min.6801b4ba48a1373a0e84194e17f1122b8c1a811307a6a68009ac579b23c0df40.css><meta property="og:title" content="初识 Nginx（二）">
 <meta property="og:description" content="应用示例  本篇文章中所使用的 Nginx 是通过下载软件包手动编译安装的，详见 上一篇文章 离线安装部分。
  在上一篇文章中，我们初步接触了 Nginx 的安装以及使用方法。在本篇文章中我们将以具体的静态网页作为例子，来详细介绍 Nginx 的部分细节。
 文件准备 我们以 C++ 文档 dlib 为例做介绍，官网 http://dlib.net，点击左下角的 Download 按钮并将下载好的文件解压。将文件夹中的 docs 目录内容复制到 Nginx 安装目录中的 dlib 目录中。相关的目录结构如下。
@@ -17,14 +17,15 @@
 <meta name=twitter:description content="应用示例  本篇文章中所使用的 Nginx 是通过下载软件包手动编译安装的，详见 上一篇文章 离线安装部分。
  在上一篇文章中，我们初步接触了 Nginx 的安装以及使用方法。在本篇文章中我们将以具体的静态网页作为例子，来详细介绍 Nginx 的部分细节。
 文件准备 我们以 C++ 文档 dlib 为例做介绍，官网 http://dlib.net，点击左下角的 Download 按钮并将下载好的文件解压。将文件夹中的 docs 目录内容复制到 Nginx 安装目录中的 dlib 目录中。相关的目录结构如下。
-1drwxr-xr-x. 9 root root 258 9月 11 16:54 blog 2drwx------. 2 nobody root 6 9月 6 15:26 client_body_temp 3drwxr-xr-x. 2 root root 4096 9月 11 19:48 conf 4drwxrwxrwx. 10 root root 8192 8月 9 03:30 dlib 5drwx------. 2 nobody root 6 9月 6 15:26 fastcgi_temp 6drwxr-xr-x.">
+1drwxr-xr-x. 9 root root 258 9月 11 16:54 blog 2drwx------. 2 nobody root 6 9月 6 15:26 client_body_temp 3drwxr-xr-x. 2 root root 4096 9月 11 19:48 conf 4drwxrwxrwx. 10 root root 8192 8月 9 03:30 dlib 5drwx------. 2 nobody root 6 9月 6 15:26 fastcgi_temp 6drwxr-xr-x."><style>:root{--article-font-family:"Noto Serif SC", var(--base-font-family)}</style>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
-<a href=https://sudrizzz.github.io/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>Back</span>
 </a>
 </div>
@@ -46,7 +47,7 @@ nginx
 </div>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
-3 min read
+3 minute read
 </time>
 </div>
 </footer>
@@ -87,29 +88,19 @@ nginx
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>nginx -s reload
 </code></pre></div><h2 id=访问>访问</h2>
 <p>执行完以上步骤后，访问 Nginx 的地址，即可看到 dlib 下的静态文件已经被正常加载了。如下图。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911201740.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911201740.png loading=lazy alt=20200911201740>
-</a>
-<figcaption>20200911201740</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911201740.png loading=lazy alt=20200911201740></p>
 <h1 id=常用配置>常用配置</h1>
 <p>以下内容均在 nginx.conf 文件中进行配置。</p>
 <h2 id=数据压缩>数据压缩</h2>
 <p>根据以上的配置，我们已经可以正常访问部署好的静态网页，但是根据开发者工具我们可以看到，首页的大小是 26.4 kB。我们还可以进一步进行优化，将所需要加载的数据进行压缩，使其所需数据量大大减少。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203709.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203709.png loading=lazy alt=优化前>
-</a>
-<figcaption>优化前</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203709.png loading=lazy alt=优化前></p>
 <p>在 http 部分中添加以下配置。</p>
 <pre tabindex=0><code class=language-config data-lang=config>gzip  on;
 gzip_min_length 1;
 gzip_comp_level 2;
 gzip_types text/plain application/x-javascript text/css application/xml text/javascript application/x- httpd- php image/jpeg image/gif image/png;
 </code></pre><p>本例中所涉及到的配置释义如下。</p>
-<table>
+<div class=table-wrapper><table>
 <thead>
 <tr>
 <th>配置</th>
@@ -134,18 +125,13 @@ gzip_types text/plain application/x-javascript text/css application/xml text/jav
 <td>设置需要压缩的 MIME 类型，非设置值不进行压缩，即匹配压缩类型</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <blockquote>
 <p>更多信息可以查看官方文档<br>
 <a class=link href=http://nginx.org/en/docs/http/ngx_http_gzip_module.html target=_blank rel=noopener>http://nginx.org/en/docs/http/ngx_http_gzip_module.html</a></p>
 </blockquote>
 <p>可以看到，开启 gzip 压缩后，加载的数据量大幅减少。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203017.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203017.png loading=lazy alt=优化后>
-</a>
-<figcaption>优化后</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203017.png loading=lazy alt=优化后></p>
 <h2 id=加载速度>加载速度</h2>
 <p>使用 limit_rate 可以对网页加载速度进行控制，详细如下。</p>
 <pre tabindex=0><code class=language-config data-lang=config>server {
@@ -259,12 +245,7 @@ real-time-html true
 </code></pre><p>然后重新加载配置即可。</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>nginx -s reload
 </code></pre></div><p>至此，日志可视化已经配置完成，我们可以直接访问 Nginx <code>服务地址/report.html</code> 查看可视化页面，如下。</p>
-<p><figure>
-<a href=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200913143610.png>
-<img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200913143610.png loading=lazy alt=20200913143610>
-</a>
-<figcaption>20200913143610</figcaption>
-</figure></p>
+<p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200913143610.png loading=lazy alt=20200913143610></p>
 <h1 id=附录>附录</h1>
 <p>Linux 查看端口占用状态</p>
 <h2 id=查看占用>查看占用</h2>
@@ -316,11 +297,11 @@ real-time-html true
 <section class=copyright>
 &copy;
 2018 -
-2021 Anthony's blog
+2022 Anthony's blog
 </section>
 <section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
 </section>
 </footer>
 <div class=pswp tabindex=-1 role=dialog aria-hidden=true>
@@ -409,7 +390,7 @@ Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=
 </section>
 </aside>
 </div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
 <script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
 </body>
 </html>
