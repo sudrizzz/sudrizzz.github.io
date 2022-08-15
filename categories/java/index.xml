@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>java on Anthony's blog</title><link>https://sudrizzz.github.io/categories/java/</link><description>Recent content in java on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Aug 2022 10:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/categories/java/index.xml" rel="self" type="application/rss+xml"/><item><title>美团 Java 岗算法笔试记录（2022/08/13）</title><link>https://sudrizzz.github.io/posts/meituan-java-note-1/</link><pubDate>Mon, 15 Aug 2022 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/meituan-java-note-1/</guid><description>第一题 题目描述 炸鸡店拥有一名会传送魔法的外卖派送员。该外卖派送员派送单子时，可以消耗时间 t 来正常派送单子（一次只能派送一个单子，不能多个同时派送），也可以使用魔法不耗费时间地隔空瞬间投送。现在炸鸡店在时刻 0 接收到了若干炸鸡订单，每个单子都有它的截止送达时间。外卖派送员需要保证送达时间小于等于这个截止时间。现在询问外卖员最少要使用几次魔法来保证没有外卖超时。
+测试样例 测试样例 1
+输入
+6 5
+5 6 7 8 9 10
+输出
+3
+测试样例 2
+输入
+6 5
+100 101 102 103 104 105
+输出
+0
+思路与代码 贪心算法。先排序，然后看看每一次送达时间是否能在截止时间前。
+1public static void main(String[] args) throws IOException { 2 Scanner in = new Scanner(System.in); 3 int n = in.nextInt(), t = in.nextInt(), time = 0; 4 int[] deadline = new int[n]; 5 6 for (int i = 0; i &amp;lt; n; i++) 7 deadline[i] = in.</description></item></channel></rss>

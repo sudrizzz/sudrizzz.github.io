@@ -6,4 +6,7 @@ Anaconda 安装教程网络上已经有很多，故此处不再赘述。
 C:\Users\xvyn\anaconda3 C:\Users\xvyn\anaconda3\Scripts C:\Users\xvyn\anaconda3\Library\bin 上述配置请根据 Anaconda 实际安装路径进行调整，配置完成的效果如下图所示。
 完成后打开 cmd 输入下列命令，如果输出内容与下列内容类似，则表示配置正确，可继续后面的步骤。
 1conda --version 输出 conda 4.9.2 创建虚拟环境 通过如下命令进行创建一个虚拟环境。
-1conda create -n handwrittendigits -n handwrittendigits 的作用是指定虚拟环境的名称，本例中指定为 handwrittendigits。</description></item></channel></rss>
+1conda create -n handwrittendigits -n handwrittendigits 的作用是指定虚拟环境的名称，本例中指定为 handwrittendigits。
+执行结束后，可通过下列命令查看 Anaconda 中所有的虚拟环境。
+1conda info --evns 输出如下
+(base) PS C:\Users\xvyn&amp;gt; conda info --envs conda environments: base * C:\Users\xvyn\anaconda3 handwrittendigits C:\Users\xvyn\anaconda3\envs\handwrittendigits 其中，标记 * 的表示目前已启用，命令行前半部分的 (base) 也表示目前启用的是哪个虚拟环境，此例中为 base 环境。</description></item></channel></rss>

@@ -7,7 +7,8 @@ Sigmoid 函数 $$ f(x) = \frac{1}{1+e^{-x}} $$
 ReLU 函数 $$ f(x) = \begin{cases} 0, &amp;amp;x&amp;lt;0; \\ x, &amp;amp;x \geq 0; \end{cases} $$
 5.2 感知机与多层网络 感知机（Perceptron）由两层神经元组成，如下图所示，输入层接收外界输入信号后传递给输出层，输出层是 M-P 神经元，亦称“阈值逻辑单元”（threshold logic unit）。感知机能容易地实现逻辑与、或、非运算。
 需注意的是,感知机只有输出层神经元进行激活函数处理,即只拥有一层功能神经元（functional neuron），其学习能力非常有限。
-一般的，常见的神经网络是形如下图所示的层级结构，每层神经元与下一层神经元全互连，神经元之间不存在同层连接，也不存在跨层连接。这样的神经网络结构通常称为“多层前馈神经网络”（multi-layer feedforward neural networks），其中输入层神经元接收外界输入，隐层与输出层神经元对信号进行加工，最终结果由输出层神经元输出；换言之，输入层神经元仅是接受输入，不进行函数处理，隐层与输出层包含功能神经元。因此，下图通常被称为“两层网络”或“单隐层网络”。只需包含隐层，即可称为多层网络。</description></item><item><title>《机器学习》笔记（第四章）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-3/</link><pubDate>Tue, 02 Feb 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-3/</guid><description>4 决策树 4.1 基本流程 一般的，一棵决策树包含一个根结点、若干个内部结点和若干个叶结点；叶结点对应于决策结果，其他每个结点则对应于一个属性测试；每个结点包含的样本集合根据属性测试的结果被划分到子结点中；根结点包含样本全集。从根结点到每个叶结点的路径对应了一个判定测试序列。决策树学习的目的是为了产生一棵泛化能力强，即处理未见示例能力强的决策树，其基本流程遵循简单且直观的“分而治之”（divide-and-conquer）策略。
+一般的，常见的神经网络是形如下图所示的层级结构，每层神经元与下一层神经元全互连，神经元之间不存在同层连接，也不存在跨层连接。这样的神经网络结构通常称为“多层前馈神经网络”（multi-layer feedforward neural networks），其中输入层神经元接收外界输入，隐层与输出层神经元对信号进行加工，最终结果由输出层神经元输出；换言之，输入层神经元仅是接受输入，不进行函数处理，隐层与输出层包含功能神经元。因此，下图通常被称为“两层网络”或“单隐层网络”。只需包含隐层，即可称为多层网络。
+神经网络的学习过程，就是根据训练数据来调整神经元之间的“连接权”（connection weight）以及每个功能神经元的阈值；换言之，神经网络“学”到的东西，蕴涵在连接权与阈值中。</description></item><item><title>《机器学习》笔记（第四章）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-3/</link><pubDate>Tue, 02 Feb 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-3/</guid><description>4 决策树 4.1 基本流程 一般的，一棵决策树包含一个根结点、若干个内部结点和若干个叶结点；叶结点对应于决策结果，其他每个结点则对应于一个属性测试；每个结点包含的样本集合根据属性测试的结果被划分到子结点中；根结点包含样本全集。从根结点到每个叶结点的路径对应了一个判定测试序列。决策树学习的目的是为了产生一棵泛化能力强，即处理未见示例能力强的决策树，其基本流程遵循简单且直观的“分而治之”（divide-and-conquer）策略。
 4.2 划分选择 一般而言，随着划分过程不断进行，我们希望决策树的分支结点所包含的样本尽可能属于同一类别，即结点的纯度（purity）越来越高。
 4.2.1 信息增益 信息熵定义为信息的期望值。如果待分类的事物可能划分在多个分类之中，则符号 $x_i$ 的信息定义为
 $$ l(x_i) = -\log_{2} p(x_i) $$
@@ -20,7 +21,7 @@ $$ Gain(D, a) = Ent(D) - \sum_{v=1}^{V} \frac{|D^v|}{|D|}Ent(D^v) $$</descriptio
 tiny_dnn 简介 tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。
 搭建环境 版本要求 需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 Visual Studio 2019 为例进行配置。
 创建项目 打开 VS，创建一个名为 testTinyDNN 的控制台应用。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 testTinyDNN.cpp 属于同一层级。
-编辑配置 编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下： 1/** 2* Enable Image API support. 3* Currently we use stb by default. 4**/ 5#define DNN_USE_IMAGE_API 编辑 image.h 文件第 378 行，将 border_width 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下： 1const size_t border_width = 0; 编写代码 打开 testTinyDNN.</description></item><item><title>SAE 入门（一）</title><link>https://sudrizzz.github.io/posts/sae-1/</link><pubDate>Wed, 20 Jan 2021 18:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/sae-1/</guid><description>Autoencoder 简介 自编码器（Autoencoder，AE），是一种利用反向传播（backpropagation，BP）算法使得输出值等于输入值的神经网络，它先将输入压缩成潜在空间表征，然后通过这种表征来重构输出。其中，空间表征可以看作是输入数据的高级抽象，通常是将高维度的数据抽象为低维度的数据。
+编辑配置 编辑 config.h 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下： 1/** 2 * Enable Image API support. 3 * Currently we use stb by default. 4 **/ 5#define DNN_USE_IMAGE_API 编辑 image.h 文件第 378 行，将 border_width 值设置为 0，这样保存的图片每个像素周围就不会存在白色边框。涉及内容如下： 1const size_t border_width = 0; 编写代码 打开 testTinyDNN.</description></item><item><title>SAE 入门（一）</title><link>https://sudrizzz.github.io/posts/sae-1/</link><pubDate>Wed, 20 Jan 2021 18:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/sae-1/</guid><description>Autoencoder 简介 自编码器（Autoencoder，AE），是一种利用反向传播（backpropagation，BP）算法使得输出值等于输入值的神经网络，它先将输入压缩成潜在空间表征，然后通过这种表征来重构输出。其中，空间表征可以看作是输入数据的高级抽象，通常是将高维度的数据抽象为低维度的数据。
 自编码器由两部分组成：
 编码器：这部分能将输入压缩成潜在空间表征，可以用编码函数 $h=f(x)$ 表示;
 解码器：这部分能重构来自潜在空间表征的输入，可以用解码函数 $r=g(h)$ 表示。
@@ -44,4 +45,7 @@ Anaconda 安装教程网络上已经有很多，故此处不再赘述。
 C:\Users\xvyn\anaconda3 C:\Users\xvyn\anaconda3\Scripts C:\Users\xvyn\anaconda3\Library\bin 上述配置请根据 Anaconda 实际安装路径进行调整，配置完成的效果如下图所示。
 完成后打开 cmd 输入下列命令，如果输出内容与下列内容类似，则表示配置正确，可继续后面的步骤。
 1conda --version 输出 conda 4.9.2 创建虚拟环境 通过如下命令进行创建一个虚拟环境。
-1conda create -n handwrittendigits -n handwrittendigits 的作用是指定虚拟环境的名称，本例中指定为 handwrittendigits。</description></item></channel></rss>
+1conda create -n handwrittendigits -n handwrittendigits 的作用是指定虚拟环境的名称，本例中指定为 handwrittendigits。
+执行结束后，可通过下列命令查看 Anaconda 中所有的虚拟环境。
+1conda info --evns 输出如下
+(base) PS C:\Users\xvyn&amp;gt; conda info --envs conda environments: base * C:\Users\xvyn\anaconda3 handwrittendigits C:\Users\xvyn\anaconda3\envs\handwrittendigits 其中，标记 * 的表示目前已启用，命令行前半部分的 (base) 也表示目前启用的是哪个虚拟环境，此例中为 base 环境。</description></item></channel></rss>

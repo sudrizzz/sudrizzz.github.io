@@ -1,95 +1,35 @@
-<!doctype html><html lang=en-us>
-<head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Docker 简介 简介来自于 Docker 入门教程 - 阮一峰的网络日志
- Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Docker 简介 简介来自于 Docker 入门教程 - 阮一峰的网络日志
+Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。
 Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。
 总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。
- 安装 Docker 在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。
+安装 Docker 在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。
 设置 Docker 仓库 根据官方教程，执行以下两条命令：
 1sudo yum install -y yum-utils 2 3sudo yum-config-manager \ 4 --add-repo \ 5 http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo 由于国内直接连接 Docker 官方镜像源十分缓慢，所以在第二个命令中将官方镜像源替换为阿里云镜像源。
 安装 Docker 引擎 1sudo yum install docker-ce docker-ce-cli containerd.io 在执行这条命令时，极有可能会报错。比如作者遇到的报错如下：
-Error: Problem: package docker-ce-3:19.03.8-3.el7.x86_64 requires containerd.io &amp;gt;= 1.2.2-3, but none of the providers can be installed - cannot install the best candidate for the job - package containerd."><title>初识 Docker</title>
-<link rel=canonical href=https://sudrizzz.github.io/posts/getting-to-know-docker/>
-<link rel=stylesheet href=/scss/style.min.6801b4ba48a1373a0e84194e17f1122b8c1a811307a6a68009ac579b23c0df40.css><meta property="og:title" content="初识 Docker">
-<meta property="og:description" content="Docker 简介 简介来自于 Docker 入门教程 - 阮一峰的网络日志
- Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。
+Error: Problem: package docker-ce-3:19.03.8-3.el7.x86_64 requires containerd.io &amp;gt;= 1.2.2-3, but none of the providers can be installed - cannot install the best candidate for the job - package containerd."><title>初识 Docker</title><link rel=canonical href=https://sudrizzz.github.io/posts/getting-to-know-docker/><link rel=stylesheet href=/scss/style.min.6801b4ba48a1373a0e84194e17f1122b8c1a811307a6a68009ac579b23c0df40.css><meta property="og:title" content="初识 Docker"><meta property="og:description" content="Docker 简介 简介来自于 Docker 入门教程 - 阮一峰的网络日志
+Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。
 Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。
 总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。
- 安装 Docker 在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。
+安装 Docker 在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。
 设置 Docker 仓库 根据官方教程，执行以下两条命令：
 1sudo yum install -y yum-utils 2 3sudo yum-config-manager \ 4 --add-repo \ 5 http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo 由于国内直接连接 Docker 官方镜像源十分缓慢，所以在第二个命令中将官方镜像源替换为阿里云镜像源。
 安装 Docker 引擎 1sudo yum install docker-ce docker-ce-cli containerd.io 在执行这条命令时，极有可能会报错。比如作者遇到的报错如下：
-Error: Problem: package docker-ce-3:19.03.8-3.el7.x86_64 requires containerd.io &amp;gt;= 1.2.2-3, but none of the providers can be installed - cannot install the best candidate for the job - package containerd.">
-<meta property="og:url" content="https://sudrizzz.github.io/posts/getting-to-know-docker/">
-<meta property="og:site_name" content="Anthony's blog">
-<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2020-09-02T18:37:11+08:00"><meta property="article:modified_time" content="2020-09-02T18:37:11+08:00">
-<meta name=twitter:title content="初识 Docker">
-<meta name=twitter:description content="Docker 简介 简介来自于 Docker 入门教程 - 阮一峰的网络日志
- Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。
+Error: Problem: package docker-ce-3:19.03.8-3.el7.x86_64 requires containerd.io &amp;gt;= 1.2.2-3, but none of the providers can be installed - cannot install the best candidate for the job - package containerd."><meta property="og:url" content="https://sudrizzz.github.io/posts/getting-to-know-docker/"><meta property="og:site_name" content="Anthony's blog"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2020-09-02T18:37:11+08:00"><meta property="article:modified_time" content="2020-09-02T18:37:11+08:00"><meta name=twitter:title content="初识 Docker"><meta name=twitter:description content="Docker 简介 简介来自于 Docker 入门教程 - 阮一峰的网络日志
+Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。
 Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。
 总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。
- 安装 Docker 在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。
+安装 Docker 在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。
 设置 Docker 仓库 根据官方教程，执行以下两条命令：
 1sudo yum install -y yum-utils 2 3sudo yum-config-manager \ 4 --add-repo \ 5 http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo 由于国内直接连接 Docker 官方镜像源十分缓慢，所以在第二个命令中将官方镜像源替换为阿里云镜像源。
 安装 Docker 引擎 1sudo yum install docker-ce docker-ce-cli containerd.io 在执行这条命令时，极有可能会报错。比如作者遇到的报错如下：
-Error: Problem: package docker-ce-3:19.03.8-3.el7.x86_64 requires containerd.io &amp;gt;= 1.2.2-3, but none of the providers can be installed - cannot install the best candidate for the job - package containerd."><style>:root{--article-font-family:"Noto Serif SC", var(--base-font-family)}</style>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</head>
-<body class="article-page has-toc">
-<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
-<div class="container main-container flex
-extended">
-<div id=article-toolbar>
-<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
-<span>Back</span>
-</a>
-</div>
-<main class="main full-width">
-<article class=main-article>
-<header class=article-header>
-<div class=article-details>
-<header class=article-category>
-<a href=/categories/docker/>
-docker
-</a>
-</header>
-<h2 class=article-title>
-<a href=/posts/getting-to-know-docker/>初识 Docker</a>
-</h2>
-<footer class=article-time>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
-<time class=article-time--published>Sep 02, 2020</time>
-</div>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading>
-3 minute read
-</time>
-</div>
-</footer>
-</div>
-</header>
-<section class=article-content>
-<h1 id=docker-简介>Docker 简介</h1>
-<p>简介来自于 <a class=link href=http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html target=_blank rel=noopener>Docker 入门教程 - 阮一峰的网络日志</a></p>
-<blockquote>
-<p>Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。</p>
-<p>Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。</p>
-<p>总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。</p>
-</blockquote>
-<h1 id=安装-docker>安装 Docker</h1>
-<p>在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。</p>
-<h2 id=设置-docker-仓库>设置 Docker 仓库</h2>
-<p>根据官方教程，执行以下两条命令：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo yum install -y yum-utils
-<span class=ln>2</span>
-<span class=ln>3</span>sudo yum-config-manager <span class=se>\
-</span><span class=ln>4</span><span class=se></span>    --add-repo <span class=se>\
-</span><span class=ln>5</span><span class=se></span>    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-</code></pre></div><p>由于国内直接连接 Docker 官方镜像源十分缓慢，所以在第二个命令中将官方镜像源替换为阿里云镜像源。</p>
-<h2 id=安装-docker-引擎>安装 Docker 引擎</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo yum install docker-ce docker-ce-cli containerd.io
-</code></pre></div><p>在执行这条命令时，极有可能会报错。比如作者遇到的报错如下：</p>
-<pre tabindex=0><code>Error:
+Error: Problem: package docker-ce-3:19.03.8-3.el7.x86_64 requires containerd.io &amp;gt;= 1.2.2-3, but none of the providers can be installed - cannot install the best candidate for the job - package containerd."><style>:root{--article-font-family:"Noto Serif SC", var(--base-font-family)}</style><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></head><body class="article-page has-toc"><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex
+extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg><span>Back</span></a></div><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/docker/>docker</a></header><h2 class=article-title><a href=/posts/getting-to-know-docker/>初识 Docker</a></h2><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Sep 02, 2020</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>3 minute read</time></div></footer></div></header><section class=article-content><h1 id=docker-简介>Docker 简介</h1><p>简介来自于 <a class=link href=http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html target=_blank rel=noopener>Docker 入门教程 - 阮一峰的网络日志</a></p><blockquote><p>Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。</p><p>Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。</p><p>总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。</p></blockquote><h1 id=安装-docker>安装 Docker</h1><p>在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。</p><h2 id=设置-docker-仓库>设置 Docker 仓库</h2><p>根据官方教程，执行以下两条命令：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>sudo yum install -y yum-utils
+</span></span><span class=line><span class=ln>2</span><span class=cl>
+</span></span><span class=line><span class=ln>3</span><span class=cl>sudo yum-config-manager <span class=se>\
+</span></span></span><span class=line><span class=ln>4</span><span class=cl><span class=se></span>    --add-repo <span class=se>\
+</span></span></span><span class=line><span class=ln>5</span><span class=cl><span class=se></span>    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+</span></span></code></pre></div><p>由于国内直接连接 Docker 官方镜像源十分缓慢，所以在第二个命令中将官方镜像源替换为阿里云镜像源。</p><h2 id=安装-docker-引擎>安装 Docker 引擎</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>sudo yum install docker-ce docker-ce-cli containerd.io
+</span></span></code></pre></div><p>在执行这条命令时，极有可能会报错。比如作者遇到的报错如下：</p><pre tabindex=0><code>Error:
  Problem: package docker-ce-3:19.03.8-3.el7.x86_64 requires containerd.io &gt;= 1.2.2-3, but none of the providers can be installed
   - cannot install the best candidate for the job
   - package containerd.io-1.2.10-3.2.el7.x86_64 is excluded
@@ -99,24 +39,15 @@ docker
   - package containerd.io-1.2.4-3.1.el7.x86_64 is excluded
   - package containerd.io-1.2.5-3.1.el7.x86_64 is excluded
   - package containerd.io-1.2.6-3.3.el7.x86_64 is excluded
-</code></pre><p>为了解决这个报错，需要先执行下述命令安装好 containerd.io 组件。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo yum install -y <span class=se>\
-</span><span class=ln>2</span><span class=se></span>    https://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.13-3.2.el7.x86_64.rpm
-<span class=ln>3</span>
-<span class=ln>4</span>sudo yum -y install ./containerd.io-1.2.13-3.1.el7.x86_64.rpm
-</code></pre></div><p>至于为什么安装的 containerd.io 组件是 centos 7 目录下的，有两个原因：</p>
-<ol>
-<li>此版本在 centos 8 环境下也可以正常使用；</li>
-<li>阿里云官方只提供了适配 centos 7 的 containerd.io 组件。</li>
-</ol>
-<p>然后重新执行上述命令即可完成 Docker 的安装。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo yum install docker-ce docker-ce-cli
-</code></pre></div><p>我们可以通过两个命令来验证 Docker 是否安装成功。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>docker version
-<span class=ln>2</span><span class=c1># 或</span>
-<span class=ln>3</span>docker info
-</code></pre></div><p>若输出类似于以下的内容，则配置正确。</p>
-<pre tabindex=0><code>[root@localhost ~]# docker version
+</code></pre><p>为了解决这个报错，需要先执行下述命令安装好 containerd.io 组件。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>sudo yum install -y <span class=se>\
+</span></span></span><span class=line><span class=ln>2</span><span class=cl><span class=se></span>    https://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.13-3.2.el7.x86_64.rpm
+</span></span><span class=line><span class=ln>3</span><span class=cl>
+</span></span><span class=line><span class=ln>4</span><span class=cl>sudo yum -y install ./containerd.io-1.2.13-3.1.el7.x86_64.rpm
+</span></span></code></pre></div><p>至于为什么安装的 containerd.io 组件是 centos 7 目录下的，有两个原因：</p><ol><li>此版本在 centos 8 环境下也可以正常使用；</li><li>阿里云官方只提供了适配 centos 7 的 containerd.io 组件。</li></ol><p>然后重新执行上述命令即可完成 Docker 的安装。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>sudo yum install docker-ce docker-ce-cli
+</span></span></code></pre></div><p>我们可以通过两个命令来验证 Docker 是否安装成功。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>docker version
+</span></span><span class=line><span class=ln>2</span><span class=cl><span class=c1># 或</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl>docker info
+</span></span></code></pre></div><p>若输出类似于以下的内容，则配置正确。</p><pre tabindex=0><code>[root@localhost ~]# docker version
 Client: Docker Engine - Community
  Version:           19.03.12
  API version:       1.40
@@ -144,31 +75,20 @@ Server: Docker Engine - Community
  docker-init:
   Version:          0.18.0
   GitCommit:        fec3683
-</code></pre><h1 id=配置-docker-仓库>配置 Docker 仓库</h1>
-<p>由于在国内连接 Docker 官方仓库 <a class=link href=https://hub.docker.com target=_blank rel=noopener>https://hub.docker.com</a> 十分缓慢，故我们可以将仓库地址更换为国内的各种源，详细步骤如下。</p>
-<ol>
-<li>在 <code>/etc/docker</code> 目录中新增一个名为 <code>daemon.json</code> 的配置文件，如果已经存在这个文件，则只需要进行修改。</li>
-<li>将该文件中的 <code>registry-mirrors</code> 项修改为如下形式。</li>
-</ol>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=ln>1</span><span class=p>{</span>
-<span class=ln>2</span>  <span class=nt>&#34;registry-mirrors&#34;</span><span class=p>:</span> <span class=p>[</span>
-<span class=ln>3</span>    <span class=s2>&#34;https://kuamavit.mirror.aliyuncs.com&#34;</span><span class=p>,</span>
-<span class=ln>4</span>    <span class=s2>&#34;https://docker.mirrors.ustc.edu.cn&#34;</span>
-<span class=ln>5</span>  <span class=p>]</span>
-<span class=ln>6</span><span class=p>}</span>
-</code></pre></div><p>到此就配置完毕了。</p>
-<h1 id=启动并运行-docker>启动并运行 Docker</h1>
-<h2 id=启动>启动</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ sudo service docker start
-<span class=ln>2</span><span class=c1># 或</span>
-<span class=ln>3</span>$ sudo systemctl start docker
-</code></pre></div><h2 id=运行-hello-world>运行 hello-world</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo docker run hello-world
-</code></pre></div><p>此时，由于本地尚未安装 hello-world 实例，Docker 会自动从上文中配置的镜像中拉取 hello-world 实例，然后运行这个实例。具体输出如下。</p>
-<pre tabindex=0><code>[root@localhost docker]# docker run hello-world
+</code></pre><h1 id=配置-docker-仓库>配置 Docker 仓库</h1><p>由于在国内连接 Docker 官方仓库 <a class=link href=https://hub.docker.com target=_blank rel=noopener>https://hub.docker.com</a> 十分缓慢，故我们可以将仓库地址更换为国内的各种源，详细步骤如下。</p><ol><li>在 <code>/etc/docker</code> 目录中新增一个名为 <code>daemon.json</code> 的配置文件，如果已经存在这个文件，则只需要进行修改。</li><li>将该文件中的 <code>registry-mirrors</code> 项修改为如下形式。</li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=ln>1</span><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl>  <span class=nt>&#34;registry-mirrors&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl>    <span class=s2>&#34;https://kuamavit.mirror.aliyuncs.com&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl>    <span class=s2>&#34;https://docker.mirrors.ustc.edu.cn&#34;</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl>  <span class=p>]</span>
+</span></span><span class=line><span class=ln>6</span><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>到此就配置完毕了。</p><h1 id=启动并运行-docker>启动并运行 Docker</h1><h2 id=启动>启动</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ sudo service docker start
+</span></span><span class=line><span class=ln>2</span><span class=cl><span class=c1># 或</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl>$ sudo systemctl start docker
+</span></span></code></pre></div><h2 id=运行-hello-world>运行 hello-world</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>sudo docker run hello-world
+</span></span></code></pre></div><p>此时，由于本地尚未安装 hello-world 实例，Docker 会自动从上文中配置的镜像中拉取 hello-world 实例，然后运行这个实例。具体输出如下。</p><pre tabindex=0><code>[root@localhost docker]# docker run hello-world
 
 # 这里提示未在本地找到 hello-world 实例，将从镜像中拉取最新版。
-Unable to find image 'hello-world:latest' locally
+Unable to find image &#39;hello-world:latest&#39; locally
 latest: Pulling from library/hello-world
 
 0e03bdcc26d7: Pull complete
@@ -181,7 +101,7 @@ This message shows that your installation appears to be working correctly.
 
 To generate this message, Docker took the following steps:
  1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.
+ 2. The Docker daemon pulled the &#34;hello-world&#34; image from the Docker Hub.
     (amd64)
  3. The Docker daemon created a new container from that image which runs the
     executable that produces the output you are currently reading.
@@ -196,135 +116,26 @@ Share images, automate workflows, and more with a free Docker ID:
 
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
-</code></pre><h1 id=容器管理>容器管理</h1>
-<p>当 image 文件开始运行之后，就会生成一个容器实例，容器实例实际上也是一个文件，故也称为实例文件。当容器实例停止运行时，容器文件并不会被删除。</p>
-<ol>
-<li>列出本机正在运行的容器</li>
-</ol>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo docker container ls
-</code></pre></div><ol start=2>
-<li>列出本机所有容器（包括已停止运行的）</li>
-</ol>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo docker container ls -all
-</code></pre></div><p>输出结果如下。</p>
-<pre tabindex=0><code>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
-d3a382fde773        hello-world         &quot;/hello&quot;            8 minutes ago       Exited (0) 8 minutes ago                       romantic_proskuriakova
-</code></pre><p>其中 <code>CONTAINER ID</code> 就是该容器的唯一标识符，在后续的终止容器运行时需要用到。</p>
-<ol start=3>
-<li>终止容器运行</li>
-</ol>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo docker container <span class=nb>kill</span> d3a382fde773
-</code></pre></div><p>当然本例中 hello-world 容器已经停止运行了，所以不能再次停止，此处仅做示例。
-即使一个容器文件已经停止运行，但是其依然会占据磁盘空间，可以使用下述命令进行删除。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo docker container rm d3a382fde773
-</code></pre></div><h1 id=镜像管理>镜像管理</h1>
-<p>当我们拉取了多个镜像，其中某些又不需要使用了，则需要对镜像进行手动管理，详细操作如下。</p>
-<ol>
-<li>罗列所有本地已经安装的镜像</li>
-</ol>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo docker image ls
-</code></pre></div><p>输出如下</p>
-<pre tabindex=0><code>REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+</code></pre><h1 id=容器管理>容器管理</h1><p>当 image 文件开始运行之后，就会生成一个容器实例，容器实例实际上也是一个文件，故也称为实例文件。当容器实例停止运行时，容器文件并不会被删除。</p><ol><li>列出本机正在运行的容器</li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>sudo docker container ls
+</span></span></code></pre></div><ol start=2><li>列出本机所有容器（包括已停止运行的）</li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>sudo docker container ls -all
+</span></span></code></pre></div><p>输出结果如下。</p><pre tabindex=0><code>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
+d3a382fde773        hello-world         &#34;/hello&#34;            8 minutes ago       Exited (0) 8 minutes ago                       romantic_proskuriakova
+</code></pre><p>其中 <code>CONTAINER ID</code> 就是该容器的唯一标识符，在后续的终止容器运行时需要用到。</p><ol start=3><li>终止容器运行</li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>sudo docker container <span class=nb>kill</span> d3a382fde773
+</span></span></code></pre></div><p>当然本例中 hello-world 容器已经停止运行了，所以不能再次停止，此处仅做示例。
+即使一个容器文件已经停止运行，但是其依然会占据磁盘空间，可以使用下述命令进行删除。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>sudo docker container rm d3a382fde773
+</span></span></code></pre></div><h1 id=镜像管理>镜像管理</h1><p>当我们拉取了多个镜像，其中某些又不需要使用了，则需要对镜像进行手动管理，详细操作如下。</p><ol><li>罗列所有本地已经安装的镜像</li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>sudo docker image ls
+</span></span></code></pre></div><p>输出如下</p><pre tabindex=0><code>REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 hello-world         latest              bf756fb1ae65        8 months ago        13.3kB
-</code></pre><ol start=2>
-<li>移除不需要的镜像</li>
-</ol>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>sudo docker image rm hello-world
-</code></pre></div><p>注意，如果 image 在运行，或者已经生成了实例文件，是不能直接删除的，需要先将实例容器停止并删除实例文件，才可以正常删除。执行结果如下。</p>
-<pre tabindex=0><code>Untagged: hello-world:latest
+</code></pre><ol start=2><li>移除不需要的镜像</li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>sudo docker image rm hello-world
+</span></span></code></pre></div><p>注意，如果 image 在运行，或者已经生成了实例文件，是不能直接删除的，需要先将实例容器停止并删除实例文件，才可以正常删除。执行结果如下。</p><pre tabindex=0><code>Untagged: hello-world:latest
 Untagged: hello-world@sha256:7f0a9f93b4aa3022c3a4c147a449bf11e0941a1fd0bf4a8e6c9408b2600777c5
 Deleted: sha256:bf756fb1ae65adf866bd8c456593cd24beb6a0a061dedf42b26a993176745f6b
 Deleted: sha256:9c27e219663c25e0f28493790cc0b88bc973ba3b1686355f221c38a36978ac63
-</code></pre>
-</section>
-<footer class=article-footer>
-<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
-<span>Licensed under CC BY-NC-SA 4.0</span>
-</section>
-</footer>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css integrity=sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js integrity=sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script>
-</article>
-<aside class=related-contents--wrapper>
-</aside>
-<footer class=site-footer>
-<section class=copyright>
-&copy;
+</code></pre></section><footer class=article-footer><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css integrity=sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js integrity=sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script></article><aside class=related-contents--wrapper></aside><footer class=site-footer><section class=copyright>&copy;
 2018 -
-2022 Anthony's blog
-</section>
-<section class=powerby>
-Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section>
-</footer>
-<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div>
-<div class=pswp__scroll-wrap>
-<div class=pswp__container>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-</div>
-<div class="pswp__ui pswp__ui--hidden">
-<div class=pswp__top-bar>
-<div class=pswp__counter></div>
-<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+2022 Anthony's blog</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-<div class=pswp__preloader>
-<div class=pswp__preloader__icn>
-<div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div>
-</div>
-</div>
-</div>
-</div>
-<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div>
-</div>
-<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-</button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-</button>
-<div class=pswp__caption>
-<div class=pswp__caption__center></div>
-</div>
-</div>
-</div>
-</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
-</main>
-<aside class="sidebar right-sidebar sticky">
-<section class="widget archives">
-<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div>
-<h2 class="widget-title section-title">Table of contents</h2>
-<div class=widget--toc>
-<nav id=TableOfContents>
-<ol>
-<li><a href=#docker-简介>Docker 简介</a></li>
-<li><a href=#安装-docker>安装 Docker</a>
-<ol>
-<li><a href=#设置-docker-仓库>设置 Docker 仓库</a></li>
-<li><a href=#安装-docker-引擎>安装 Docker 引擎</a></li>
-</ol>
-</li>
-<li><a href=#配置-docker-仓库>配置 Docker 仓库</a></li>
-<li><a href=#启动并运行-docker>启动并运行 Docker</a>
-<ol>
-<li><a href=#启动>启动</a></li>
-<li><a href=#运行-hello-world>运行 hello-world</a></li>
-</ol>
-</li>
-<li><a href=#容器管理>容器管理</a></li>
-<li><a href=#镜像管理>镜像管理</a></li>
-</ol>
-</nav>
-</div>
-</section>
-</aside>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</body>
-</html>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#docker-简介>Docker 简介</a></li><li><a href=#安装-docker>安装 Docker</a><ol><li><a href=#设置-docker-仓库>设置 Docker 仓库</a></li><li><a href=#安装-docker-引擎>安装 Docker 引擎</a></li></ol></li><li><a href=#配置-docker-仓库>配置 Docker 仓库</a></li><li><a href=#启动并运行-docker>启动并运行 Docker</a><ol><li><a href=#启动>启动</a></li><li><a href=#运行-hello-world>运行 hello-world</a></li></ol></li><li><a href=#容器管理>容器管理</a></li><li><a href=#镜像管理>镜像管理</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
