@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 16 Aug 2022 19:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>联想面试记录（2022/08/16 更新）</title><link>https://sudrizzz.github.io/posts/lenovo-java-interview/</link><pubDate>Tue, 16 Aug 2022 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/lenovo-java-interview/</guid><description>&lt;h2 id="投递岗位">投递岗位&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 16 Aug 2022 19:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>联想面试记录（2022/08/16 更新）</title><link>https://sudrizzz.github.io/posts/lenovo-java-interview/</link><pubDate>Tue, 16 Aug 2022 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/lenovo-java-interview/</guid><description>&lt;h1 id="投递岗位">投递岗位&lt;/h1>
 &lt;p>&lt;a class="link" href="https://talent.lenovo.com.cn/resume/jdlist/2173" target="_blank" rel="noopener"
 >Java 开发工程师-China Geo&lt;/a>&lt;/p>
-&lt;h2 id="一面">一面&lt;/h2>
+&lt;h1 id="一面">一面&lt;/h1>
 &lt;ol>
 &lt;li>面试官自我介绍及团队业务介绍；&lt;/li>
 &lt;li>自我介绍；&lt;/li>
@@ -20,10 +20,10 @@
 &lt;li>做项目的流程，在做项目的过程中有没有遇到问题；&lt;/li>
 &lt;li>是否可以接受工作中编码只占一小部分的情况；&lt;/li>
 &lt;li>评价与结语。&lt;/li>
-&lt;/ol></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/13）</title><link>https://sudrizzz.github.io/posts/meituan-java-note-1/</link><pubDate>Mon, 15 Aug 2022 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/meituan-java-note-1/</guid><description>&lt;h2 id="第一题">第一题&lt;/h2>
-&lt;h3 id="题目描述">题目描述&lt;/h3>
+&lt;/ol></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/13）</title><link>https://sudrizzz.github.io/posts/meituan-java-note-1/</link><pubDate>Mon, 15 Aug 2022 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/meituan-java-note-1/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
+&lt;h2 id="题目描述">题目描述&lt;/h2>
 &lt;p>炸鸡店拥有一名会传送魔法的外卖派送员。该外卖派送员派送单子时，可以消耗时间 t 来正常派送单子（一次只能派送一个单子，不能多个同时派送），也可以使用魔法不耗费时间地隔空瞬间投送。现在炸鸡店在时刻 0 接收到了若干炸鸡订单，每个单子都有它的截止送达时间。外卖派送员需要保证送达时间小于等于这个截止时间。现在询问外卖员最少要使用几次魔法来保证没有外卖超时。&lt;/p>
-&lt;h3 id="测试样例">测试样例&lt;/h3>
+&lt;h2 id="测试样例">测试样例&lt;/h2>
 &lt;p>测试样例 1&lt;/p>
 &lt;blockquote>
 &lt;p>输入&lt;br>
@@ -40,7 +40,7 @@
 输出&lt;br>
 0&lt;/p>
 &lt;/blockquote>
-&lt;h3 id="思路与代码">思路与代码&lt;/h3>
+&lt;h2 id="思路与代码">思路与代码&lt;/h2>
 &lt;p>贪心算法。先排序，然后看看每一次送达时间是否能在截止时间前。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">IOException&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl"> &lt;span class="n">Scanner&lt;/span> &lt;span class="n">in&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Scanner&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">in&lt;/span>&lt;span class="o">);&lt;/span>
@@ -60,10 +60,10 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">16&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">17&lt;/span>&lt;span class="cl"> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">res&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">18&lt;/span>&lt;span class="cl">&lt;span class="o">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="第二题">第二题&lt;/h2>
-&lt;h3 id="题目描述-1">题目描述&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="第二题">第二题&lt;/h1>
+&lt;h2 id="题目描述-1">题目描述&lt;/h2>
 &lt;p>你买了一个扫地机器人，你想要知道这个扫地机器人是否能够将房间打扫干净。为了简化问题，我们不妨假设房间被划分为 n*m 的方格。定义打扫干净为这 n*m 的方格全部被打扫过至少一次。你为扫地机器人下达了若干指令。每个指令为上下左右移动中的一种。机器人会将经过的路径上的方格打扫干净。初始时假设机器人处于第一行第一列的方格中。这个方格初始时会被机器人直接打扫干净。现在询问你机器人能否将房间打扫干净，能则输出 Yes，不能则输出 No。对于 Yes 的情况下，还要求你继续输出到哪个指令结束后，房间就打扫干净了。对于 No 的情况下，还要求你输出还有多少个地块没有打扫干净。保证机器人在打扫的过程中不会越过房间边界。换句话说机器人始终保持在 n*m 的方格图中。&lt;/p>
-&lt;h3 id="测试样例-1">测试样例&lt;/h3>
+&lt;h2 id="测试样例-1">测试样例&lt;/h2>
 &lt;p>测试样例 1&lt;/p>
 &lt;blockquote>
 &lt;p>输入&lt;br>
@@ -82,7 +82,7 @@
 &amp;ldquo;No&amp;rdquo;&lt;br>
 2&lt;/p>
 &lt;/blockquote>
-&lt;h3 id="思路与代码-1">思路与代码&lt;/h3>
+&lt;h2 id="思路与代码-1">思路与代码&lt;/h2>
 &lt;p>暴力解法即可。无须考虑边界问题，因为题目已经保证机器人不会越界。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl"> &lt;span class="n">Scanner&lt;/span> &lt;span class="n">in&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Scanner&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">in&lt;/span>&lt;span class="o">);&lt;/span>
@@ -118,10 +118,10 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">32&lt;/span>&lt;span class="cl"> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;No&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">33&lt;/span>&lt;span class="cl"> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">remain&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">34&lt;/span>&lt;span class="cl">&lt;span class="o">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="第三题">第三题&lt;/h2>
-&lt;h3 id="题目描述-2">题目描述&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="第三题">第三题&lt;/h1>
+&lt;h2 id="题目描述-2">题目描述&lt;/h2>
 &lt;p>Alice 和 Bob 在玩一个游戏。有 n 张卡牌，点数分别为 1 到 n。进行洗牌后，n 张牌从上到下叠放形成一个牌堆。每次 Alice 先将当前牌堆顶的一张牌放到牌堆底，然后 Bob 再将当前牌堆顶的一张牌放到牌堆底。（特别地，当牌堆中只有一张牌时，相当于不进行任何操作）接着，他们会翻开当前牌堆顶的牌，并记下它的点数。当所有牌都被翻开后，他们也记下了 n 个点数。现在他们想根据记下的这个序列来还原一开始的牌（从牌堆顶到牌堆底每一张牌的点数）。&lt;/p>
-&lt;h3 id="测试样例-2">测试样例&lt;/h3>
+&lt;h2 id="测试样例-2">测试样例&lt;/h2>
 &lt;p>测试样例 1&lt;/p>
 &lt;blockquote>
 &lt;p>输入&lt;br>
@@ -138,7 +138,7 @@
 &lt;li>Alice 和 Bob 分别操作后牌堆为：3 4，此时 3 被翻开，牌堆变为 4&lt;/li>
 &lt;li>Alice 和 Bob 分别操作后牌堆依旧为 4，此时 4 被翻开。&lt;/li>
 &lt;/ol>
-&lt;h3 id="思路与代码-2">思路与代码&lt;/h3>
+&lt;h2 id="思路与代码-2">思路与代码&lt;/h2>
 &lt;p>模拟倒推即可。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl"> &lt;span class="n">Scanner&lt;/span> &lt;span class="n">in&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Scanner&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">in&lt;/span>&lt;span class="o">);&lt;/span>
@@ -167,10 +167,10 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">25&lt;/span>&lt;span class="cl"> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">printf&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;%d &amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">));&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">26&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">27&lt;/span>&lt;span class="cl">&lt;span class="o">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="第四题">第四题&lt;/h2>
-&lt;h3 id="题目描述-3">题目描述&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="第四题">第四题&lt;/h1>
+&lt;h2 id="题目描述-3">题目描述&lt;/h2>
 &lt;p>给一个长度为 n 的序列 a[1], a[2], …, a[n]，请问有多少个三元组 (i,j,k) 满足 i&amp;lt;j&amp;lt;k 且 a[i]-a[j]=2a[j]-a[k]？输出符合要求的三元组的数量。&lt;/p>
-&lt;h3 id="测试样例-3">测试样例&lt;/h3>
+&lt;h2 id="测试样例-3">测试样例&lt;/h2>
 &lt;p>测试样例 1&lt;/p>
 &lt;blockquote>
 &lt;p>输入&lt;br>
@@ -179,7 +179,7 @@
 输出&lt;br>
 3&lt;/p>
 &lt;/blockquote>
-&lt;h3 id="思路与代码-3">思路与代码&lt;/h3>
+&lt;h2 id="思路与代码-3">思路与代码&lt;/h2>
 &lt;p>直接暴力解即可，注意数据范围（使用 long 而不是 int）。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl"> &lt;span class="n">Scanner&lt;/span> &lt;span class="n">in&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Scanner&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">in&lt;/span>&lt;span class="o">);&lt;/span>
@@ -208,10 +208,10 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">25&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">26&lt;/span>&lt;span class="cl"> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">count&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">27&lt;/span>&lt;span class="cl">&lt;span class="o">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="第五题">第五题&lt;/h2>
-&lt;h3 id="题目描述-4">题目描述&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="第五题">第五题&lt;/h1>
+&lt;h2 id="题目描述-4">题目描述&lt;/h2>
 &lt;p>给一棵有 n 个节点的二叉树，节点的编号从 1 到 n。其中，节点 k 的左儿子为节点 2*k（当 2*k 大于 n 时，不存在左儿子），节点 k 的右儿子为节点 2*k+1（当 2*k+1 大于 n 时，不存在右儿子），该二叉树的根节点为节点 1。对于每个节点，节点上有一些金钱。现在你可以从根节点 1 开始，每次选择左儿子或者右儿子向下走，直到走到叶子节点停止，并获得你走过的这些节点上的金钱。你的任务是求出你可以获得的最大的金钱总量。&lt;/p>
-&lt;h3 id="测试样例-4">测试样例&lt;/h3>
+&lt;h2 id="测试样例-4">测试样例&lt;/h2>
 &lt;p>第一行是一个正整数 n，表示二叉树上总共有 n 个节点。第二行有 n 个正整数，第 i 个正整数表示节点 i 上有多少数量的金钱。1 &amp;lt;= n &amp;lt;= 100000。对所有数据保证：单个节点上的金钱数量在 [1, 1000] 之间。&lt;/p>
 &lt;p>测试样例 1&lt;/p>
 &lt;blockquote>
@@ -231,7 +231,7 @@
 输出&lt;br>
 1454&lt;/p>
 &lt;/blockquote>
-&lt;h3 id="思路与代码-4">思路与代码&lt;/h3>
+&lt;h2 id="思路与代码-4">思路与代码&lt;/h2>
 &lt;p>与 &lt;a class="link" href="https://leetcode.cn/problems/binary-tree-maximum-path-sum/" target="_blank" rel="noopener"
 >leetcode 124&lt;/a> 类似，采用递归的思路，针对根节点 root，分别求得其左右子树中的路径之和较大者，再加上当前根节点 root 节点值（形成一个单臂，即根节点 + 左子节点，或根节点 + 右子节点），最后返回到上一层递归即可。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
@@ -260,7 +260,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">24&lt;/span>&lt;span class="cl"> &lt;span class="c1">// 返回左右子树最大值与根节点之和
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">25&lt;/span>&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="n">Math&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">max&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">left&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">right&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">arr&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">k&lt;/span>&lt;span class="o">];&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">26&lt;/span>&lt;span class="cl">&lt;span class="o">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考文献">参考文献&lt;/h2>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="参考文献">参考文献&lt;/h1>
 &lt;p>1.&lt;a class="link" href="https://leetcode.cn/circle/discuss/P7hf9c/" target="_blank" rel="noopener"
 >美团 | 后端笔试第二场 | 8/13&lt;/a>&lt;/p></description></item><item><title>LibTorch 上手教程</title><link>https://sudrizzz.github.io/posts/libtorch-toturial/</link><pubDate>Wed, 27 Oct 2021 15:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/libtorch-toturial/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;h2 id="libtorch-简介">LibTorch 简介&lt;/h2>
