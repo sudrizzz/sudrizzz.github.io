@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>algorithm on Anthony's blog</title><link>https://sudrizzz.github.io/categories/algorithm/</link><description>Recent content in algorithm on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Aug 2022 10:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/categories/algorithm/index.xml" rel="self" type="application/rss+xml"/><item><title>美团 Java 岗算法笔试记录（2022/08/13）</title><link>https://sudrizzz.github.io/posts/meituan-java-note-1/</link><pubDate>Mon, 15 Aug 2022 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/meituan-java-note-1/</guid><description>第一题 题目描述 炸鸡店拥有一名会传送魔法的外卖派送员。该外卖派送员派送单子时，可以消耗时间 t 来正常派送单子（一次只能派送一个单子，不能多个同时派送），也可以使用魔法不耗费时间地隔空瞬间投送。现在炸鸡店在时刻 0 接收到了若干炸鸡订单，每个单子都有它的截止送达时间。外卖派送员需要保证送达时间小于等于这个截止时间。现在询问外卖员最少要使用几次魔法来保证没有外卖超时。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>algorithm on Anthony's blog</title><link>https://sudrizzz.github.io/categories/algorithm/</link><description>Recent content in algorithm on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 24 Aug 2022 10:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/categories/algorithm/index.xml" rel="self" type="application/rss+xml"/><item><title>美团 Java 岗算法笔试记录（2022/08/20）</title><link>https://sudrizzz.github.io/posts/meituan-java-note-2/</link><pubDate>Wed, 24 Aug 2022 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/meituan-java-note-2/</guid><description>第一题 题目描述 小团想要自己来烤串！不过在烤串之前，需要串好烤串。小团有 n 个荤菜和 n 个素菜，他想按顺序分别一个荤菜一个素菜串起来，想请你帮他串好！给出两个长度分别为 n 的仅包含小写英文字母的串 A 和 B，分别代表荤菜和素菜的种类（用字母来表示菜的种类）。请你以从左到右的顺序依次串好他们！例如对于荤菜串 A1A2&amp;hellip;An 和素菜串 B1B2&amp;hellip;Bn，串好应该是 A1B1A2B2&amp;hellip;AnBn。
+测试样例 第一行一个正整数 n，表示烤串长度； 第二行为一个长度为 n 的字符串 A，表示荤菜按次序都是哪些菜； 第三行为一个长度为 n 的字符串 B，表示素菜按次序都是哪些菜； 对于 80% 的数据，n≤1000，对于 20% 的数据，n≤50000。于所有数据，A 和 B 为仅包含小写英文字母的字符串； 输出一行，包含 2n 个字符串表示串好的烤串。
+测试样例 1
+输入
+4
+abcd
+efgh
+输出
+aebfcgdh
+思路与代码 语法题，直接交替插入两个字符串的字符即可。
+1public class Main { 2 public static void main(String[] args) { 3 Scanner in = new Scanner(System.in); 4 int n = in.nextInt(); 5 in.</description></item><item><title>美团 Java 岗算法笔试记录（2022/08/13）</title><link>https://sudrizzz.github.io/posts/meituan-java-note-1/</link><pubDate>Mon, 15 Aug 2022 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/meituan-java-note-1/</guid><description>第一题 题目描述 炸鸡店拥有一名会传送魔法的外卖派送员。该外卖派送员派送单子时，可以消耗时间 t 来正常派送单子（一次只能派送一个单子，不能多个同时派送），也可以使用魔法不耗费时间地隔空瞬间投送。现在炸鸡店在时刻 0 接收到了若干炸鸡订单，每个单子都有它的截止送达时间。外卖派送员需要保证送达时间小于等于这个截止时间。现在询问外卖员最少要使用几次魔法来保证没有外卖超时。
 测试样例 测试样例 1
 输入
 6 5
