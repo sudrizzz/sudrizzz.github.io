@@ -1,4 +1,221 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 24 Aug 2022 10:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>美团 Java 岗算法笔试记录（2022/08/20）</title><link>https://sudrizzz.github.io/posts/meituan-java-note-2/</link><pubDate>Wed, 24 Aug 2022 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/meituan-java-note-2/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://sudrizzz.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 29 Aug 2022 10:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>美团 Java 岗算法笔试记录（2022/08/27）</title><link>https://sudrizzz.github.io/posts/meituan-java-note-3/</link><pubDate>Mon, 29 Aug 2022 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/meituan-java-note-3/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
+&lt;h2 id="题目描述">题目描述&lt;/h2>
+&lt;p>小美在摆弄她的字符串。最近小团送了小美一个特殊字符 &amp;lsquo;*&amp;rsquo;，这个字符可以和其他所有字符匹配，除了这个字符外，其他字符只能自己和自己匹配。小美先前有一个字符串 S，长度为 n，现在她又新组合了一个可有特殊字符 &amp;lsquo;*&amp;rsquo; 的字符串 s，长度为 m。小美想知道有多少个位置 i，使得 S[i+j] 与 s[j] 对于 1≤j≤m 均能匹配上？其中 X[y] 代表字符串 X 中第 y 位的字符。&lt;/p>
+&lt;h2 id="测试样例">测试样例&lt;/h2>
+&lt;p>第一行两个空格隔开的正整数 n 和 m，分别表示字符串 S 和字符串 s 的长度；&lt;br>
+接下来一行长度为 n 的仅包含小写英文字母的字符串 S；&lt;br>
+接下来一行长度为 m 的包含小写英文字母以及特殊字符 &amp;lsquo;*&amp;rsquo; 的字符串 s；&lt;br>
+对于所有数据，1≤m≤n≤2000，输出一行一个整数，表示满足要求的位置数量&lt;/p>
+&lt;p>测试样例 1&lt;/p>
+&lt;blockquote>
+&lt;p>输入&lt;br>
+7 3&lt;br>
+abcaacc&lt;br>
+a*c&lt;br>
+输出&lt;br>
+3&lt;/p>
+&lt;/blockquote>
+&lt;p>样例 1 解释&lt;br>
+可以对 i=0,3,4 这三个位置的子串 abc、aac、acc 匹配上 a*c，即&lt;br>
+abcaacc&lt;br>
+abcaacc&lt;br>
+abcaacc&lt;/p>
+&lt;h2 id="思路与代码">思路与代码&lt;/h2>
+&lt;p>模拟即可。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Main&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl"> &lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl"> &lt;span class="n">Scanner&lt;/span> &lt;span class="n">in&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Scanner&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">in&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">in&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">nextInt&lt;/span>&lt;span class="o">(),&lt;/span> &lt;span class="n">m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">in&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">nextInt&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl"> &lt;span class="kt">char&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">S&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">in&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">next&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">trim&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">toCharArray&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl"> &lt;span class="kt">char&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">s&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">in&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">next&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">trim&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">toCharArray&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">n&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">m&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl"> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Arrays&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">equals&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">S&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="n">1&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl"> &lt;span class="k">return&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">11&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">12&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">13&lt;/span>&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">14&lt;/span>&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">m&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">++)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">15&lt;/span>&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">S&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">||&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="sc">&amp;#39;*&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">16&lt;/span>&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">17&lt;/span>&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="o">(;&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">m&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">j&lt;/span>&lt;span class="o">++)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">18&lt;/span>&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">s&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="sc">&amp;#39;*&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="k">continue&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">19&lt;/span>&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">S&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">j&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="o">])&lt;/span> &lt;span class="k">break&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">20&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">21&lt;/span>&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">j&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">m&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">res&lt;/span>&lt;span class="o">++;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">22&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">23&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">24&lt;/span>&lt;span class="cl"> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">res&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">25&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">26&lt;/span>&lt;span class="cl">&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="第二题">第二题&lt;/h1>
+&lt;h2 id="题目描述-1">题目描述&lt;/h2>
+&lt;p>小美有一个精致的珠宝链子。初始这个链子上有 n 个宝石，从左到右分别编号为 1~n（宝石上的编号不会因为交换位置而改变编号）。接着，小美为了美观对这个项链进行微调，有 m 次操作，每次选择一个编号 x ,将编号 x 的宝石放到最左边（不改变其他宝石的相对位置）。小美想知道，所有操作完成后最终链子从左到右宝石编号是多少。&lt;/p>
+&lt;h2 id="测试样例-1">测试样例&lt;/h2>
+&lt;p>第一行两个正整数 n 和 m，分别表示链子上的宝石数和操作次数。&lt;br>
+接下来一行 m 个数 x1,x2,&amp;hellip;,xm，依次表示每次操作选择的编号 x 值。&lt;br>
+数字间两两有空格隔开&lt;br>
+对于所有数据，1≤m,n≤50000, 1≤xi≤n，输出一行 n 个整数，表示答案。&lt;/p>
+&lt;p>测试样例 1&lt;/p>
+&lt;blockquote>
+&lt;p>输入&lt;br>
+5 3&lt;br>
+2 3 4&lt;br>
+输出&lt;br>
+4 3 2 1 5&lt;/p>
+&lt;/blockquote>
+&lt;p>样例 1 解释&lt;br>
+第一次微调完，链子为 2 1 3 4 5&lt;br>
+第二次微调完，链子为 3 2 1 4 5&lt;br>
+第三次微调完，链子为 4 3 2 1 5&lt;/p>
+&lt;h2 id="思路与代码-1">思路与代码&lt;/h2>
+&lt;p>语法题，使用双端队列模拟即可。将指定的宝石从链子中移除，并将其添加到链子头部。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.util.ArrayDeque&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.util.Scanner&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Main&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl"> &lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl"> &lt;span class="n">Scanner&lt;/span> &lt;span class="n">in&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Scanner&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">in&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">in&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">nextInt&lt;/span>&lt;span class="o">(),&lt;/span> &lt;span class="n">m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">in&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">nextInt&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl"> &lt;span class="kt">int&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">ops&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="kt">int&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="o">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">m&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">++)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl"> &lt;span class="n">ops&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">in&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">nextInt&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">11&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">12&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">13&lt;/span>&lt;span class="cl"> &lt;span class="n">ArrayDeque&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">deque&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayDeque&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">14&lt;/span>&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">n&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">++)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">15&lt;/span>&lt;span class="cl"> &lt;span class="n">deque&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">offerLast&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">16&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">17&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">18&lt;/span>&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">op&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">ops&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">19&lt;/span>&lt;span class="cl"> &lt;span class="n">deque&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">remove&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">op&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">20&lt;/span>&lt;span class="cl"> &lt;span class="n">deque&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">offerFirst&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">op&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">21&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">22&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">23&lt;/span>&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">n&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">++)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">24&lt;/span>&lt;span class="cl"> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">printf&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;%d &amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">deque&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">removeFirst&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">25&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">26&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">27&lt;/span>&lt;span class="cl">&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="第三题">第三题&lt;/h1>
+&lt;h2 id="题目描述-2">题目描述&lt;/h2>
+&lt;p>小团最近获得了美美团团国的裁缝资格证，成为了一个裁缝！现在小团有一个长度为 n 的大布料 S（在这个国家布料其实是一个仅包含小写英文字母的字符串），小团可以将布料在任意位置剪切，例如布料 abcd 可以被裁剪为 a 与 bcd 或 ab 与 cd 或 abc 与 d，不过，裁剪完之后是不能拼接起来的，因为小团还不是很擅长拼接布料。现在小团想知道能不能有一种裁剪方式能让他把布料恰好裁剪成客人要求的小布料。形式化地，有一个串 S，问是否能将其划分成 m 个不相交的连续子串，使得这些连续子串可以与要求的连续子串一一对应。两个串相对应是指这两个串完全相等。例如&amp;quot;aab&amp;quot;=&amp;ldquo;aab&amp;rdquo; 但 &amp;ldquo;aab&amp;quot;≠&amp;quot;baa&amp;rdquo;。&lt;/p>
+&lt;h2 id="测试样例-2">测试样例&lt;/h2>
+&lt;p>第一行两个空格隔开的正整数 n 和 m，分别表示大布料 S 长度和客人要求的小布料数量。&lt;br>
+接下来一行一个长度为 n 的仅包含小写英文字母的串 S，表示大布料的组成。&lt;br>
+接下来一行 m 个空格隔开的数 x1,x2, &amp;hellip;,xm，依次表示所要求的小布料长度。&lt;br>
+接下来开始 m 行，每行一个长度为 xi 的仅包含小写英文字母的串 si，表示第 i 个小布料的组成。&lt;/p>
+&lt;p>如果存在这样的方案，输出方案总数。如果不存在任何方案，输出 0。&lt;br>
+两个方案 A、B 不相同当且仅当方案 A 中存在一个相对于原始长布料的裁剪位置 i，而方案 B 中并未在该位置 i 裁剪。&lt;br>
+例如 aaaaaa 裁剪方案 aaa|aaa 与方案 aaa|aaa 是相同的方案。而方案 aa|aaaa 与方案 aaaa|aa 是不同的方案，&lt;br>
+虽然划分出的结果都是 aa 与 aaaa，但前者在第二个 a 处进行了裁剪，后者并没有在这里进行裁剪，所以视为不同的裁剪方案。&lt;/p>
+&lt;p>测试样例 1&lt;/p>
+&lt;blockquote>
+&lt;p>输入&lt;br>
+6 2&lt;br>
+aaaaaa&lt;br>
+4 2&lt;br>
+aaaa&lt;br>
+aa
+输出&lt;br>
+2&lt;/p>
+&lt;/blockquote>
+&lt;p>样例 1 解释&lt;br>
+有两种方案，第一种是 aaaa|aa，第二种是 aa|aaaa，代表一次裁剪。&lt;/p>
+&lt;h2 id="思路与代码-2">思路与代码&lt;/h2>
+&lt;p>// TODO&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="c1">// TODO
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="第四题">第四题&lt;/h1>
+&lt;h2 id="题目描述-3">题目描述&lt;/h2>
+&lt;p>小团正忙着用机器人收衣服！因为快要下雨了，小团找来了不少机器人帮忙收衣服。他有 n 件衣服从左到右成一行排列，所在位置分别为 1~n，在每个位置上已经有一个就绪的机器人可以帮忙收衣服，但第 i 个位置上的机器人需要 pi 的电量来启动，然后这个机器人会用 ti 的时间收衣服，当它收完当前衣服后，会尝试去收紧邻的右边的一件衣服 (如果存在的话)，即 i+1 处的衣服，如果 i+1 处的衣服已经被其他机器人收了或者其他机器人正在收，这个机器人就会进入休眠状态，不再收衣服。不过如果机器人没有休眠，它会同样以 ti 时间来收这件 i+1 处的衣服（注意，不是 ti+1 的时间，收衣服的时间为每个机器人固有属性），然后它会做同样的检测来看能否继续收 i+2 处的衣服，一直直到它进入休眠状态或者右边没有衣服可以收了。形象地来说，机器人会一直尝试往右边收衣服，
+收 k 件的话就耗费 k*ti 的时间，但是当它遇见其他机器人工作的痕迹，就会认为后面的事情它不用管了，开始摸鱼，进入休眠状态。小团手里总共有电量 b，他准备在 0 时刻的时候将所有他想启动的机器人全部一起启动，过后不再启动新的机器人，
+并且启动的机器人的电量之和不大于 b。他想知道在最佳选择的情况下，最快多久能收完衣服。若无论如何怎样都收不完衣服，输出 -1。&lt;/p>
+&lt;h2 id="测试样例-3">测试样例&lt;/h2>
+&lt;p>第一行两个正整数 n 和 b，分别表示衣服数量和小团持有电量。&lt;br>
+接下来一行 n 个数 p1,p2, &amp;hellip;,pn，含义如题所述，为机器人唤醒需求电量。&lt;br>
+接下来一行 n 个数 t1,t2, &amp;hellip;,tn，含义如题所述，为机器人收衣服所需时间。&lt;br>
+数字间两两有空格隔开。&lt;br>
+输出最短所需时间。&lt;/p>
+&lt;p>测试样例 1&lt;/p>
+&lt;blockquote>
+&lt;p>输入&lt;br>
+3 5&lt;br>
+1 2 3&lt;br>
+7 5 3&lt;br>
+输出&lt;br>
+10&lt;/p>
+&lt;/blockquote>
+&lt;p>样例 1 解释&lt;br>
+可以同时启动第一个机器人和第二个机器人，耗电量为 1+2=3，这样花费时间为 max(7, 5&lt;em>2)=10&lt;br>
+也可以同时启动第一个机器人和第三个机器人，耗电量为 1+3=4，这样花费时间为 max(7&lt;/em>2, 3)=14&lt;br>
+所以答案为 10&lt;/p>
+&lt;p>测试样例 2&lt;/p>
+&lt;blockquote>
+&lt;p>输入&lt;br>
+3 5&lt;br>
+6 2 3&lt;br>
+7 5 3&lt;br>
+输出&lt;br>
+-1&lt;/p>
+&lt;/blockquote>
+&lt;p>样例 2 解释
+因为必须要启动第一个机器人，耗电量至少为 6，但是持有电量只有 5，因此无法收完所有衣服，输出 -1&lt;/p>
+&lt;h2 id="思路与代码-3">思路与代码&lt;/h2>
+&lt;p>// TODO&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="c1">// TODO
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="第五题">第五题&lt;/h1>
+&lt;h2 id="题目描述-4">题目描述&lt;/h2>
+&lt;p>小美在回家路上碰见很多缠人的可爱猫猫！因为猫猫太可爱了以及小美十分有爱心，每遇到一只猫猫，小美忍不住停下来花费 T 的时间抚摸猫猫让猫猫不再缠着小美。而一路上小美能捡到很多亮闪闪的小玩具，这里我们给每个小玩具的种类都编了号，从 1~k，一共 k 种小玩具，对于每个所属种类 i 的小玩具，小美可以选择将它送给遇到的一只猫猫玩，这样的话可以只花费 ti 的时间就可以让这只猫猫心满意足的离开。小美想知道，在她以最佳的对小玩具的用法下，她最少耗费多少时间在打发猫猫（即只考虑摸猫时间以及用小玩具打发猫的时间）。注意，每个捡到的小玩具只能用一次。&lt;/p>
+&lt;h2 id="测试样例-4">测试样例&lt;/h2>
+&lt;p>第一行三个正整数 n、k 和 T，分别表示小美回家遇见的事件数、小玩具种类总数以及摸猫时间！&lt;br>
+接下来一行 k 个数 t1,t2, &amp;hellip;,tk, 含义如题所述，为每种小玩具打发猫猫所用时间。&lt;br>
+接下来一行 n 个数 e1,e2, &amp;hellip;,en，表示 n 次事件，对第 i 次事件，如果 ei=0，则表示遇到了一只猫猫，小美可以选择花费 T 的时间去抚摸，或者用一个小玩具送给猫猫来打发它 (如果小美有的话)。 &lt;br>
+如果 ei&amp;gt;0，则表示小美在这里捡到了一个小玩具，种类为 ei。初始时候小美身上没有任何小玩具，她可以携带任意多个小玩具。&lt;br>
+输出最少耗费多少时间在打发猫猫（即只考虑摸猫时间以及用小玩具打发猫的时间）。&lt;/p>
+&lt;p>测试样例 1&lt;/p>
+&lt;blockquote>
+&lt;p>输入&lt;br>
+6 2 100&lt;br>
+1 50&lt;br>
+0 1 2 0 1 0&lt;br>
+输出&lt;br>
+102&lt;/p>
+&lt;/blockquote>
+&lt;p>样例 1 解释&lt;br>
+一开始没有小玩具，遇到一只猫猫只能抚摸，花费了 100 的时间。&lt;br>
+接下来获得了小玩具 1 和 2，然后遇到一只猫猫，用了小玩具 1，只花费了 1 的时间。&lt;br>
+接下来又获得一个小玩具 1 之后又遇见一只猫猫，因为又有小玩具 1 了，所以还是只用花费 1 的时间。&lt;br>
+总共用时 102&lt;/p>
+&lt;h2 id="思路与代码-4">思路与代码&lt;/h2>
+&lt;p>贪心法。使用 &lt;code>PriorityQueue&lt;/code> 将所有的玩具打发猫猫的时间存储起来，如果玩具打发猫猫的时间大于抚摸猫猫的时间，则该玩具不要也罢。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Main&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl"> &lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl"> &lt;span class="n">Scanner&lt;/span> &lt;span class="n">in&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Scanner&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">in&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">in&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">nextInt&lt;/span>&lt;span class="o">(),&lt;/span> &lt;span class="n">k&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">in&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">nextInt&lt;/span>&lt;span class="o">(),&lt;/span> &lt;span class="n">T&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">in&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">nextInt&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl"> &lt;span class="kt">int&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="kt">int&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">k&lt;/span>&lt;span class="o">],&lt;/span> &lt;span class="n">e&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="kt">int&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="o">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">k&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">++)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl"> &lt;span class="n">t&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">in&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">nextInt&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">n&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">++)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl"> &lt;span class="n">e&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">in&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">nextInt&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">11&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">12&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">13&lt;/span>&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">14&lt;/span>&lt;span class="cl"> &lt;span class="n">PriorityQueue&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">timeOfToys&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">PriorityQueue&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">15&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">16&lt;/span>&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">n&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">++)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">17&lt;/span>&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">18&lt;/span>&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">timeOfToys&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">isEmpty&lt;/span>&lt;span class="o">())&lt;/span> &lt;span class="n">res&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="n">T&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">19&lt;/span>&lt;span class="cl"> &lt;span class="k">else&lt;/span> &lt;span class="n">res&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="n">timeOfToys&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">poll&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">20&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">21&lt;/span>&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">T&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="k">continue&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">22&lt;/span>&lt;span class="cl"> &lt;span class="n">timeOfToys&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">23&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">24&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">25&lt;/span>&lt;span class="cl"> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">res&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">26&lt;/span>&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">27&lt;/span>&lt;span class="cl">&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/20）</title><link>https://sudrizzz.github.io/posts/meituan-java-note-2/</link><pubDate>Wed, 24 Aug 2022 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/meituan-java-note-2/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
 &lt;h2 id="题目描述">题目描述&lt;/h2>
 &lt;p>小团想要自己来烤串！不过在烤串之前，需要串好烤串。小团有 n 个荤菜和 n 个素菜，他想按顺序分别一个荤菜一个素菜串起来，想请你帮他串好！给出两个长度分别为 n 的仅包含小写英文字母的串 A 和 B，分别代表荤菜和素菜的种类（用字母来表示菜的种类）。请你以从左到右的顺序依次串好他们！例如对于荤菜串 A1A2&amp;hellip;An 和素菜串 B1B2&amp;hellip;Bn，串好应该是 A1B1A2B2&amp;hellip;AnBn。&lt;/p>
 &lt;h2 id="测试样例">测试样例&lt;/h2>
