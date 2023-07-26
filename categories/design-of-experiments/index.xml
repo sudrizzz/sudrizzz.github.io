@@ -1,7 +1,229 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Design Of Experiments on Anthony's blog</title><link>https://sudrizzz.github.io/categories/design-of-experiments/</link><description>Recent content in Design Of Experiments on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 28 Jul 2021 19:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/categories/design-of-experiments/index.xml" rel="self" type="application/rss+xml"/><item><title>基于 Isight 的实验设计</title><link>https://sudrizzz.github.io/posts/isight-doe/</link><pubDate>Wed, 28 Jul 2021 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/isight-doe/</guid><description>实验设计 实验设计（Design Of Experiments，DOE），一种安排实验和分析实验数据的数理统计方法。通过实验，研究并确定影响因子，通过改变因子设置以使输出达到最佳值；要严格按照计划进行实验，并进行分析，从而找到改进的途径。
-通过有效的实验方案的设计，找到可行的工艺方法和产品指标。 筛选重要因子，确定真正的影响因素，从而有目标地进行质量改进。 Isight 版本 本文采用 Isight 2016 版本，下载链接：https://dl.downloadly.ir/Files/Software2/DS_SIMULIA_Isight_2016_HF4_Downloadly.ir.rar。
-安装 安装过程不再赘述，值得一提的是，在设置 Isight FlexNet License 时，首选 License 服务器名应填写 27011@localhost，其余留空即可。 完成安装后，启动 Isight 2016.HF4 Design Gateway。
-实验 数据准备 如下图所示，定义了三个输入参数以及两个输出参数，并在 excel 中使用名称管理器为这 5 个变量设置了名称。两个输出参数的计算方法分别如下。
-$$ volume = length \times height \times width $$ $$ costs = 2 \times length^2 + 3 \times width^2 + 0.05 \times height^3 $$
-新建任务 打开 Isight 任务界面，将 Application Components 中的 Excel 组件拖拽到如下图所示的位置。
-此时会发现底部有一黄色警告，这是因为我们还没有正确配置 Excel 文件地址。双击刚刚添加的 Excel 组件即可打开配置界面，在顶部选中数据文件。由于我们在 Excel 文件中提前对变量进行命名，故此时 Isight 会提示并自动生成变量，如下图所示。确认无误后点击下方 OK 即可回到任务界面。</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Design Of Experiments on Anthony's blog</title><link>https://sudrizzz.github.io/categories/design-of-experiments/</link><description>Recent content in Design Of Experiments on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 28 Jul 2021 19:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/categories/design-of-experiments/index.xml" rel="self" type="application/rss+xml"/><item><title>基于 Isight 的实验设计</title><link>https://sudrizzz.github.io/posts/isight-doe/</link><pubDate>Wed, 28 Jul 2021 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/isight-doe/</guid><description>&lt;h1 id="实验设计">实验设计&lt;/h1>
+&lt;p>实验设计（Design Of Experiments，DOE），一种安排实验和分析实验数据的数理统计方法。通过实验，研究并确定影响因子，通过改变因子设置以使输出达到最佳值；要严格按照计划进行实验，并进行分析，从而找到改进的途径。&lt;/p>
+&lt;ul>
+&lt;li>通过有效的实验方案的设计，找到可行的工艺方法和产品指标。&lt;/li>
+&lt;li>筛选重要因子，确定真正的影响因素，从而有目标地进行质量改进。&lt;/li>
+&lt;/ul>
+&lt;h1 id="isight">Isight&lt;/h1>
+&lt;h2 id="版本">版本&lt;/h2>
+&lt;p>本文采用 Isight 2016 版本，下载链接：https://dl.downloadly.ir/Files/Software2/DS_SIMULIA_Isight_2016_HF4_Downloadly.ir.rar。&lt;/p>
+&lt;h2 id="安装">安装&lt;/h2>
+&lt;p>安装过程不再赘述，值得一提的是，在设置 Isight FlexNet License 时，&lt;strong>首选 License 服务器名&lt;/strong>应填写 &lt;code>27011@localhost&lt;/code>，其余留空即可。
+完成安装后，启动 Isight 2016.HF4 Design Gateway。&lt;/p>
+&lt;h1 id="实验">实验&lt;/h1>
+&lt;h2 id="数据准备">数据准备&lt;/h2>
+&lt;p>如下图所示，定义了三个输入参数以及两个输出参数，并在 excel 中使用名称管理器为这 5 个变量设置了名称。两个输出参数的计算方法分别如下。&lt;/p>
+&lt;p>$$ volume = length \times height \times width $$
+$$ costs = 2 \times length^2 + 3 \times width^2 + 0.05 \times height^3 $$&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729094237.png"
+loading="lazy"
+alt="20210729094237"
+>&lt;/p>
+&lt;h2 id="新建任务">新建任务&lt;/h2>
+&lt;p>打开 Isight 任务界面，将 Application Components 中的 Excel 组件拖拽到如下图所示的位置。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728195651.png"
+loading="lazy"
+alt="20210728195651"
+>&lt;/p>
+&lt;p>此时会发现底部有一黄色警告，这是因为我们还没有正确配置 Excel 文件地址。双击刚刚添加的 Excel 组件即可打开配置界面，在顶部选中数据文件。由于我们在 Excel 文件中提前对变量进行命名，故此时 Isight 会提示并自动生成变量，如下图所示。确认无误后点击下方 OK 即可回到任务界面。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728200028.png"
+loading="lazy"
+alt="20210728200028"
+>&lt;/p>
+&lt;h2 id="配置-doe">配置 DOE&lt;/h2>
+&lt;p>将 Process Components 选项组中的 DOE 组件拖拽到如下图所示的位置上。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728200342.png"
+loading="lazy"
+alt="20210728200342"
+>&lt;/p>
+&lt;p>双击 DOE 组件进行详细配置。首先配置 Factors，我们选中所有的输入参数，并将这些参数的实验区间调整为基数 -20%~20%。配置如下所示。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728200648.png"
+loading="lazy"
+alt="20210728200648"
+>&lt;/p>
+&lt;p>切换到 General 选项卡，实验技术选择拉丁方，实验点数输入 50，点击下方的 Apply 生成实验次序，此时可以在 Design Matrix 中查看样本矩阵。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728200807.png"
+loading="lazy"
+alt="20210728200807"
+>&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728201214.png"
+loading="lazy"
+alt="20210728201214"
+>&lt;/p>
+&lt;p>切换到 Postprocessing 选项卡，在这里配置两个输出参数的目标，即 costs 最小化，volume 最大化，如下图所示。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728201336.png"
+loading="lazy"
+alt="20210728201336"
+>&lt;/p>
+&lt;h2 id="进行实验">进行实验&lt;/h2>
+&lt;p>在实验之前，首先在 Graph Templates 选项卡中添加图标，方便后续的数据可视化。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728201658.png"
+loading="lazy"
+alt="20210728201658"
+>&lt;/p>
+&lt;p>在此例中，我们选择添加 Main Effect Graph 用来观察各个输入参数都两个输出参数的影响权重。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729080918.png"
+loading="lazy"
+alt="20210729080918"
+>&lt;/p>
+&lt;p>点击菜单栏中的三角形按钮，运行实验。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728201456.png"
+loading="lazy"
+alt="20210728201456"
+>&lt;/p>
+&lt;h2 id="结果分析">结果分析&lt;/h2>
+&lt;p>在 Isight Runtime Gateway 中的 History 选项卡中，如下图所示，表格中的绿色行表示最优解。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729081901.png"
+loading="lazy"
+alt="20210729081901"
+>&lt;/p>
+&lt;p>在 Graphs 选项卡中，可以看到之前添加的图表已经填充了本次运行的结果。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729085526.png"
+loading="lazy"
+alt="20210729085526"
+>&lt;/p>
+&lt;h2 id="代理模型">代理模型&lt;/h2>
+&lt;p>代理模型是工程问题中常用的一个优化方法。当实际问题（高精度模型）计算量很大、不容易求解时，可以使用计算量较小、求解迅速的简化模型来替代原模型，加速优化过程。在 Isight Runtime Gateway 中，我们切换到 Visual Design 选项卡，点击 Create Approximation 创建一个代理模型。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729085720.png"
+loading="lazy"
+alt="20210729085720"
+>&lt;/p>
+&lt;h3 id="一阶响应曲面模型">一阶响应曲面模型&lt;/h3>
+&lt;p>由于 volume 项是由三个输入参数相乘得到，故我们可以先创建一阶（线性）响应曲面模型对 volume 进行拟合。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729093344.png"
+loading="lazy"
+alt="20210729093344"
+>&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729093420.png"
+loading="lazy"
+alt="20210729093420"
+>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Polynomial term&lt;/th>
+&lt;th>Coefficient&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Constant&lt;/td>
+&lt;td>-8061.40938210593&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x01&lt;/td>
+&lt;td>273.292484060334&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x02&lt;/td>
+&lt;td>398.117601806449&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x03&lt;/td>
+&lt;td>149.130521907&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>即拟合曲线如下，R Square = 0.8935。&lt;/p>
+&lt;p>$$ costs = 273.292484060334 \times length + 398.117601806449 \times width + 149.130521907 \times height $$&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729093515.png"
+loading="lazy"
+alt="20210729093515"
+>&lt;/p>
+&lt;h3 id="三阶响应曲面模型">三阶响应曲面模型&lt;/h3>
+&lt;p>由于 costs 项是由三个输入参数高阶相乘得到，最高为 height 三阶，故我们创建一个三阶响应曲面模型对 costs 进行拟合。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729094418.png"
+loading="lazy"
+alt="20210729094418"
+>&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729091411.png"
+loading="lazy"
+alt="20210729091411"
+>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Polynomial term&lt;/th>
+&lt;th>Coefficient&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Constant&lt;/td>
+&lt;td>-4.23710301832585e-010&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x01&lt;/td>
+&lt;td>-2.10336177869166e-010&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x02&lt;/td>
+&lt;td>3.51571404416191e-010&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x03&lt;/td>
+&lt;td>3.616047694285e-011&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x01**2&lt;/td>
+&lt;td>1.44086437819406e-011&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x02**2&lt;/td>
+&lt;td>1.99999999996241&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x03**2&lt;/td>
+&lt;td>2.99999999999869&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x01*x02&lt;/td>
+&lt;td>3.92239176204056e-013&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x01*x03&lt;/td>
+&lt;td>-1.74648188795555e-013&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x02*x03&lt;/td>
+&lt;td>3.35578146664684e-013&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x01**3&lt;/td>
+&lt;td>0.0499999999996755&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x02**3&lt;/td>
+&lt;td>1.27267233735159e-012&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x03**3&lt;/td>
+&lt;td>1.52574123633321e-014&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>即拟合曲线如下，R Square = 1。&lt;/p>
+&lt;p>$$ costs = 1.99999999996241 \times length^2 + 2.99999999999869 \times width^2 \\ + 0.0499999999996755 \times height^3 $$&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729092059.png"
+loading="lazy"
+alt="20210729092059"
+>&lt;/p>
+&lt;h1 id="参考文献">参考文献&lt;/h1>
+&lt;ol>
+&lt;li>&lt;a class="link" href="https://zh.wikipedia.org/wiki/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%9E%8B" target="_blank" rel="noopener"
+>代理模型&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://mp.weixin.qq.com/s/GQ8zvKV4ngMEP6_GahsOlQ" target="_blank" rel="noopener"
+>近似模型之响应面建模&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://downloadly.net/2020/19/7856/03/isight/23/?#/7856-ds-simul-062109072929.html" target="_blank" rel="noopener"
+>DS SIMULIA Isight 2020 Windows/Linux&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://zhuanlan.zhihu.com/p/265914617" target="_blank" rel="noopener"
+>DOE 实验设计必备基础知识理解&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://zhuanlan.zhihu.com/p/349344651" target="_blank" rel="noopener"
+>半导体工业软件（八）：DOE（实验设计）&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.jianshu.com/p/c67a3c1edefb" target="_blank" rel="noopener"
+>常用实验设计方法（DOE）介绍&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.bilibili.com/video/BV1xW411q7YY" target="_blank" rel="noopener"
+>【YouTube 转载】Isight 参数优化（士盟科技出品）（中文讲解）&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.bilibili.com/video/BV1a4411v7gf" target="_blank" rel="noopener"
+>Abaqus Isight 视频合集&lt;/a>&lt;/li>
+&lt;/ol></description></item></channel></rss>

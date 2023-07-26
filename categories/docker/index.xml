@@ -1,9 +1,396 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>docker on Anthony's blog</title><link>https://sudrizzz.github.io/categories/docker/</link><description>Recent content in docker on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 02 Sep 2020 18:37:11 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/categories/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>初识 Docker</title><link>https://sudrizzz.github.io/posts/getting-to-know-docker/</link><pubDate>Wed, 02 Sep 2020 18:37:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-docker/</guid><description>Docker 简介 简介来自于 Docker 入门教程 - 阮一峰的网络日志
-Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。
-Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。
-总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。
-安装 Docker 在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。
-设置 Docker 仓库 根据官方教程，执行以下两条命令：
-1sudo yum install -y yum-utils 2 3sudo yum-config-manager \ 4 --add-repo \ 5 http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo 由于国内直接连接 Docker 官方镜像源十分缓慢，所以在第二个命令中将官方镜像源替换为阿里云镜像源。
-安装 Docker 引擎 1sudo yum install docker-ce docker-ce-cli containerd.io 在执行这条命令时，极有可能会报错。比如作者遇到的报错如下：
-Error: Problem: package docker-ce-3:19.03.8-3.el7.x86_64 requires containerd.io &amp;gt;= 1.2.2-3, but none of the providers can be installed - cannot install the best candidate for the job - package containerd.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>docker on Anthony's blog</title><link>https://sudrizzz.github.io/categories/docker/</link><description>Recent content in docker on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 02 Sep 2020 18:37:11 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/categories/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>初识 Docker</title><link>https://sudrizzz.github.io/posts/getting-to-know-docker/</link><pubDate>Wed, 02 Sep 2020 18:37:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-docker/</guid><description>&lt;h1 id="docker-简介">Docker 简介&lt;/h1>
+&lt;p>简介来自于 &lt;a class="link" href="http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html" target="_blank" rel="noopener"
+>Docker 入门教程 - 阮一峰的网络日志&lt;/a>&lt;/p>
+&lt;blockquote>
+&lt;p>Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。&lt;/p>
+&lt;p>Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。&lt;/p>
+&lt;p>总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。&lt;/p>
+&lt;/blockquote>
+&lt;h1 id="安装-docker">安装 Docker&lt;/h1>
+&lt;p>在此部分，作者使用的是 Centos 8.2 进行的操作，下述的安装命令仅保证在该环境下运行。&lt;/p>
+&lt;h2 id="设置-docker-仓库">设置 Docker 仓库&lt;/h2>
+&lt;p>根据官方教程，执行以下两条命令：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo yum install -y yum-utils
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo yum-config-manager &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> --add-repo &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>由于国内直接连接 Docker 官方镜像源十分缓慢，所以在第二个命令中将官方镜像源替换为阿里云镜像源。&lt;/p>
+&lt;h2 id="安装-docker-引擎">安装 Docker 引擎&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo yum install docker-ce docker-ce-cli containerd.io
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在执行这条命令时，极有可能会报错。比如作者遇到的报错如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-go" data-lang="go">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Error&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">Problem&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kn">package&lt;/span> &lt;span class="nx">docker&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">ce&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mf">19.03.8&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">3.&lt;/span>&lt;span class="nx">el7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">x86_64&lt;/span> &lt;span class="nx">requires&lt;/span> &lt;span class="nx">containerd&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">io&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="mf">1.2.2&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">but&lt;/span> &lt;span class="nx">none&lt;/span> &lt;span class="nx">of&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">providers&lt;/span> &lt;span class="nx">can&lt;/span> &lt;span class="nx">be&lt;/span> &lt;span class="nx">installed&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="nx">cannot&lt;/span> &lt;span class="nx">install&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">best&lt;/span> &lt;span class="nx">candidate&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">job&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="kn">package&lt;/span> &lt;span class="nx">containerd&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">io&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">1.2.10&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">3.2&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">el7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">x86_64&lt;/span> &lt;span class="nx">is&lt;/span> &lt;span class="nx">excluded&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="kn">package&lt;/span> &lt;span class="nx">containerd&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">io&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">1.2.13&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">3.1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">el7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">x86_64&lt;/span> &lt;span class="nx">is&lt;/span> &lt;span class="nx">excluded&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="kn">package&lt;/span> &lt;span class="nx">containerd&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">io&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">1.2.2&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">3.3&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">el7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">x86_64&lt;/span> &lt;span class="nx">is&lt;/span> &lt;span class="nx">excluded&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="kn">package&lt;/span> &lt;span class="nx">containerd&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">io&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">1.2.2&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">3.&lt;/span>&lt;span class="nx">el7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">x86_64&lt;/span> &lt;span class="nx">is&lt;/span> &lt;span class="nx">excluded&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="kn">package&lt;/span> &lt;span class="nx">containerd&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">io&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">1.2.4&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">3.1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">el7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">x86_64&lt;/span> &lt;span class="nx">is&lt;/span> &lt;span class="nx">excluded&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="kn">package&lt;/span> &lt;span class="nx">containerd&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">io&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">1.2.5&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">3.1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">el7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">x86_64&lt;/span> &lt;span class="nx">is&lt;/span> &lt;span class="nx">excluded&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="kn">package&lt;/span> &lt;span class="nx">containerd&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">io&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">1.2.6&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">3.3&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">el7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">x86_64&lt;/span> &lt;span class="nx">is&lt;/span> &lt;span class="nx">excluded&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>为了解决这个报错，需要先执行下述命令安装好 containerd.io 组件。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo yum install -y &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> https://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.13-3.2.el7.x86_64.rpm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo yum -y install ./containerd.io-1.2.13-3.1.el7.x86_64.rpm
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>至于为什么安装的 containerd.io 组件是 centos 7 目录下的，有两个原因：&lt;/p>
+&lt;ol>
+&lt;li>此版本在 centos 8 环境下也可以正常使用；&lt;/li>
+&lt;li>阿里云官方只提供了适配 centos 7 的 containerd.io 组件。&lt;/li>
+&lt;/ol>
+&lt;p>然后重新执行上述命令即可完成 Docker 的安装。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo yum install docker-ce docker-ce-cli
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>我们可以通过两个命令来验证 Docker 是否安装成功。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">docker version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 或&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker info
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>若输出类似于以下的内容，则配置正确。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost ~]# docker version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Client: Docker Engine - Community
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Version: 19.03.12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> API version: 1.40
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Go version: go1.13.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Git commit: 48a66213fe
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Built: Mon Jun 22 15:46:54 2020
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> OS/Arch: linux/amd64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Experimental: false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Server: Docker Engine - Community
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Engine:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Version: 19.03.12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> API version: 1.40 (minimum version 1.12)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Go version: go1.13.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Git commit: 48a66213fe
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Built: Mon Jun 22 15:45:28 2020
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> OS/Arch: linux/amd64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Experimental: false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> containerd:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Version: 1.2.6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> GitCommit: 894b81a4b802e4eb2a91d1ce216b8817763c29fb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> runc:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Version: 1.0.0-rc8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> GitCommit: 425e105d5a03fabd737a126ad93d62a9eeede87f
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> docker-init:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Version: 0.18.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> GitCommit: fec3683
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="配置-docker-仓库">配置 Docker 仓库&lt;/h1>
+&lt;p>由于在国内连接 Docker 官方仓库 &lt;a class="link" href="https://hub.docker.com" target="_blank" rel="noopener"
+>https://hub.docker.com&lt;/a> 十分缓慢，故我们可以将仓库地址更换为国内的各种源，详细步骤如下。&lt;/p>
+&lt;ol>
+&lt;li>在 &lt;code>/etc/docker&lt;/code> 目录中新增一个名为 &lt;code>daemon.json&lt;/code> 的配置文件，如果已经存在这个文件，则只需要进行修改。&lt;/li>
+&lt;li>将该文件中的 &lt;code>registry-mirrors&lt;/code> 项修改为如下形式。&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;registry-mirrors&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://kuamavit.mirror.aliyuncs.com&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://docker.mirrors.ustc.edu.cn&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>到此就配置完毕了。&lt;/p>
+&lt;h1 id="启动并运行-docker">启动并运行 Docker&lt;/h1>
+&lt;h2 id="启动">启动&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ sudo service docker start
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 或&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ sudo systemctl start docker
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="运行-hello-world">运行 hello-world&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo docker run hello-world
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>此时，由于本地尚未安装 hello-world 实例，Docker 会自动从上文中配置的镜像中拉取 hello-world 实例，然后运行这个实例。具体输出如下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost docker]# docker run hello-world
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 这里提示未在本地找到 hello-world 实例，将从镜像中拉取最新版。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Unable to find image &amp;#39;hello-world:latest&amp;#39; locally
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">latest: Pulling from library/hello-world
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">0e03bdcc26d7: Pull complete
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Digest: sha256:7f0a9f93b4aa3022c3a4c147a449bf11e0941a1fd0bf4a8e6c9408b2600777c5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Status: Downloaded newer image for hello-world:latest
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 开始运行
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Hello from Docker!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">This message shows that your installation appears to be working correctly.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">To generate this message, Docker took the following steps:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1. The Docker client contacted the Docker daemon.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2. The Docker daemon pulled the &amp;#34;hello-world&amp;#34; image from the Docker Hub.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> (amd64)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 3. The Docker daemon created a new container from that image which runs the
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> executable that produces the output you are currently reading.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 4. The Docker daemon streamed that output to the Docker client, which sent it
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> to your terminal.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">To try something more ambitious, you can run an Ubuntu container with:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> $ docker run -it ubuntu bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Share images, automate workflows, and more with a free Docker ID:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> https://hub.docker.com/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">For more examples and ideas, visit:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> https://docs.docker.com/get-started/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="容器管理">容器管理&lt;/h1>
+&lt;p>当 image 文件开始运行之后，就会生成一个容器实例，容器实例实际上也是一个文件，故也称为实例文件。当容器实例停止运行时，容器文件并不会被删除。&lt;/p>
+&lt;ol>
+&lt;li>列出本机正在运行的容器&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo docker container ls
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>列出本机所有容器（包括已停止运行的）&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo docker container ls -all
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>输出结果如下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">d3a382fde773 hello-world &amp;#34;/hello&amp;#34; 8 minutes ago Exited (0) 8 minutes ago romantic_proskuriakova
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其中 &lt;code>CONTAINER ID&lt;/code> 就是该容器的唯一标识符，在后续的终止容器运行时需要用到。&lt;/p>
+&lt;ol start="3">
+&lt;li>终止容器运行&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo docker container &lt;span class="nb">kill&lt;/span> d3a382fde773
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>当然本例中 hello-world 容器已经停止运行了，所以不能再次停止，此处仅做示例。
+即使一个容器文件已经停止运行，但是其依然会占据磁盘空间，可以使用下述命令进行删除。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo docker container rm d3a382fde773
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="镜像管理">镜像管理&lt;/h1>
+&lt;p>当我们拉取了多个镜像，其中某些又不需要使用了，则需要对镜像进行手动管理，详细操作如下。&lt;/p>
+&lt;ol>
+&lt;li>罗列所有本地已经安装的镜像&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo docker image ls
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>输出如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">REPOSITORY TAG IMAGE ID CREATED SIZE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hello-world latest bf756fb1ae65 8 months ago 13.3kB
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>移除不需要的镜像&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo docker image rm hello-world
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>注意，如果 image 在运行，或者已经生成了实例文件，是不能直接删除的，需要先将实例容器停止并删除实例文件，才可以正常删除。执行结果如下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Untagged: hello-world:latest
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Untagged: hello-world@sha256:7f0a9f93b4aa3022c3a4c147a449bf11e0941a1fd0bf4a8e6c9408b2600777c5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Deleted: sha256:bf756fb1ae65adf866bd8c456593cd24beb6a0a061dedf42b26a993176745f6b
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Deleted: sha256:9c27e219663c25e0f28493790cc0b88bc973ba3b1686355f221c38a36978ac63
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

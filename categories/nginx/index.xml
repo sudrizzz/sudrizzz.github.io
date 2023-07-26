@@ -1,5 +1,945 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>nginx on Anthony's blog</title><link>https://sudrizzz.github.io/categories/nginx/</link><description>Recent content in nginx on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 11 Sep 2020 19:51:07 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/categories/nginx/index.xml" rel="self" type="application/rss+xml"/><item><title>初识 Nginx（二）</title><link>https://sudrizzz.github.io/posts/getting-to-know-nginx-2/</link><pubDate>Fri, 11 Sep 2020 19:51:07 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-nginx-2/</guid><description>应用示例 本篇文章中所使用的 Nginx 是通过下载软件包手动编译安装的，详见 上一篇文章 离线安装部分。
-在上一篇文章中，我们初步接触了 Nginx 的安装以及使用方法。在本篇文章中我们将以具体的静态网页作为例子，来详细介绍 Nginx 的部分细节。
-文件准备 我们以 C++ 文档 dlib 为例做介绍，官网 http://dlib.net，点击左下角的 Download 按钮并将下载好的文件解压。将文件夹中的 docs 目录内容复制到 Nginx 安装目录中的 dlib 目录中。相关的目录结构如下。
-1drwxr-xr-x. 9 root root 258 9月 11 16:54 blog 2drwx------. 2 nobody root 6 9月 6 15:26 client_body_temp 3drwxr-xr-x. 2 root root 4096 9月 11 19:48 conf 4drwxrwxrwx. 10 root root 8192 8月 9 03:30 dlib 5drwx------. 2 nobody root 6 9月 6 15:26 fastcgi_temp 6drwxr-xr-x.</description></item><item><title>初识 Nginx</title><link>https://sudrizzz.github.io/posts/getting-to-know-nginx/</link><pubDate>Mon, 07 Sep 2020 15:47:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-nginx/</guid><description>Nginx 简介 简介内容来自 Nginx 官网 http://nginx.org/en
-nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>nginx on Anthony's blog</title><link>https://sudrizzz.github.io/categories/nginx/</link><description>Recent content in nginx on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 11 Sep 2020 19:51:07 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/categories/nginx/index.xml" rel="self" type="application/rss+xml"/><item><title>初识 Nginx（二）</title><link>https://sudrizzz.github.io/posts/getting-to-know-nginx-2/</link><pubDate>Fri, 11 Sep 2020 19:51:07 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-nginx-2/</guid><description>&lt;h1 id="应用示例">应用示例&lt;/h1>
+&lt;blockquote>
+&lt;p>本篇文章中所使用的 Nginx 是通过下载软件包手动编译安装的，详见 &lt;a class="link" href="https://sudrizzz.github.io/posts/getting-to-know-nginx" target="_blank" rel="noopener"
+>上一篇文章&lt;/a> 离线安装部分。&lt;/p>
+&lt;/blockquote>
+&lt;p>在上一篇文章中，我们初步接触了 Nginx 的安装以及使用方法。在本篇文章中我们将以具体的静态网页作为例子，来详细介绍 Nginx 的部分细节。&lt;/p>
+&lt;h2 id="文件准备">文件准备&lt;/h2>
+&lt;p>我们以 C++ 文档 dlib 为例做介绍，官网 &lt;a class="link" href="http://dlib.net" target="_blank" rel="noopener"
+>http://dlib.net&lt;/a>，点击左下角的 Download 按钮并将下载好的文件解压。将文件夹中的 docs 目录内容复制到 Nginx 安装目录中的 dlib 目录中。相关的目录结构如下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="line">&lt;span class="cl">drwxr-xr-x. 9 root root 258 9月 11 16:54 blog
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwx------. 2 nobody root 6 9月 6 15:26 client_body_temp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x. 2 root root 4096 9月 11 19:48 conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxrwxrwx. 10 root root 8192 8月 9 03:30 dlib
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwx------. 2 nobody root 6 9月 6 15:26 fastcgi_temp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x. 2 root root 40 9月 6 15:24 html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x. 2 root root 58 9月 11 16:20 logs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwx------. 2 nobody root 6 9月 6 15:26 proxy_temp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x. 2 root root 19 9月 6 15:24 sbin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwx------. 2 nobody root 6 9月 6 15:26 scgi_temp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwx------. 2 nobody root 6 9月 6 15:26 uwsgi_temp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="修改配置">修改配置&lt;/h2>
+&lt;p>编辑 &lt;code>conf/nginx.conf&lt;/code>，将 &lt;code>server&lt;/code> 中的 &lt;code>location&lt;/code> 部分修改为如下配置。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">location / {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> alias dlib/;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其中，&lt;code>location&lt;/code> 后的 &lt;code>/&lt;/code> 代表根域名指向括号中的目录配置，&lt;code>alias&lt;/code> 指定一个目录替代默认目录。&lt;/p>
+&lt;blockquote>
+&lt;p>更多信息可以查看官方文档&lt;br>
+&lt;a class="link" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#alias" target="_blank" rel="noopener"
+>http://nginx.org/en/docs/http/ngx_http_core_module.html#alias&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="重新加载">重新加载&lt;/h2>
+&lt;p>执行以下命令，以新加载 Nginx 服务。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">nginx -s reload
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="访问">访问&lt;/h2>
+&lt;p>执行完以上步骤后，访问 Nginx 的地址，即可看到 dlib 下的静态文件已经被正常加载了。如下图。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911201740.png"
+loading="lazy"
+alt="20200911201740"
+>&lt;/p>
+&lt;h1 id="常用配置">常用配置&lt;/h1>
+&lt;p>以下内容均在 nginx.conf 文件中进行配置。&lt;/p>
+&lt;h2 id="数据压缩">数据压缩&lt;/h2>
+&lt;p>根据以上的配置，我们已经可以正常访问部署好的静态网页，但是根据开发者工具我们可以看到，首页的大小是 26.4 kB。我们还可以进一步进行优化，将所需要加载的数据进行压缩，使其所需数据量大大减少。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203709.png"
+loading="lazy"
+alt="优化前"
+>&lt;/p>
+&lt;p>在 http 部分中添加以下配置。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">gzip on;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gzip_min_length 1;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gzip_comp_level 2;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gzip_types text/plain application/x-javascript text/css application/xml text/javascript application/x- httpd- php image/jpeg image/gif image/png;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>本例中所涉及到的配置释义如下。&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>配置&lt;/th>
+&lt;th>释义&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>gzip on | off&lt;/td>
+&lt;td>是否启用数据压缩&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>gzip_min_length&lt;/td>
+&lt;td>会被压缩的响应的最小长度（单位 kB），即返回内容大于此配置时才会被压缩&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>gzip_comp_level&lt;/td>
+&lt;td>设置 gzip 压缩等级，等级越小压缩速度越快、文件压缩比越小。压缩等级范围是 1-9，压缩等级越高对性能要求越高。&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>gzip_types&lt;/td>
+&lt;td>设置需要压缩的 MIME 类型，非设置值不进行压缩，即匹配压缩类型&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;blockquote>
+&lt;p>更多信息可以查看官方文档&lt;br>
+&lt;a class="link" href="http://nginx.org/en/docs/http/ngx_http_gzip_module.html" target="_blank" rel="noopener"
+>http://nginx.org/en/docs/http/ngx_http_gzip_module.html&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>可以看到，开启 gzip 压缩后，加载的数据量大幅减少。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203017.png"
+loading="lazy"
+alt="优化后"
+>&lt;/p>
+&lt;h2 id="加载速度">加载速度&lt;/h2>
+&lt;p>使用 limit_rate 可以对网页加载速度进行控制，详细如下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">server {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> set $limit_rate 1k;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其中，&lt;code>$limit_rate&lt;/code> 是控制访问速度的变量。后面紧跟的 &lt;code>1k&lt;/code> 是需要限制的速度，此例中的单位为 &lt;code>kB&lt;/code>，也可以设置其他单位，例如 &lt;code>1M&lt;/code>。&lt;/p>
+&lt;blockquote>
+&lt;p>更多信息可以查看官方文档&lt;br>
+&lt;a class="link" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#var_limit_rate" target="_blank" rel="noopener"
+>http://nginx.org/en/docs/http/ngx_http_core_module.html#var_limit_rate&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="记录日志">记录日志&lt;/h2>
+&lt;p>在 &lt;code>http&lt;/code> 模块中，可以配置日志记录的格式，以及日志记录的位置和文件名等等，配置如下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">http {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> log_format main &amp;#39;$remote_addr - $remote_user [$time_local] &amp;#34;$request&amp;#34; &amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#39;$status $body_bytes_sent &amp;#34;$http_referer&amp;#34; &amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#39;&amp;#34;$http_user_agent&amp;#34; &amp;#34;$http_x_forwarded_for&amp;#34;&amp;#39;;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> access_log logs/sample.log main;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>更多信息可以查看官方文档&lt;br>
+&lt;a class="link" href="http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log" target="_blank" rel="noopener"
+>http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h1 id="反向代理">反向代理&lt;/h1>
+&lt;p>在此部分，我们使用两台 Nginx 服务器作为示例，分别是 &lt;code>192.168.61.128&lt;/code> 和 &lt;code>192.168.61.129&lt;/code>，简记为 CentOS_1 与 CentOS_2。&lt;/p>
+&lt;p>修改 CentOS_1 的 Nginx 配置文件，修改部分如下，此时直接访问 &lt;code>192.168.61.128&lt;/code> 已经不能正常进行加载。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">server {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> listen 127.0.0.1:80;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> server_name localhost;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>修改 CentOS_2 的 Nginx 配置文件，修改部分如下，我们将 &lt;code>192.168.61.129:80&lt;/code> 指向了 &lt;code>192.168.61.128:80&lt;/code>。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">upstream local {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> server 192.168.61.128:80;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">server {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> listen 80;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> server_name 192.168.61.129;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> location / {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Host $host:$server_port;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Real-IP $remote_addr;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_pass http://local/;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>分别在两台机器上重新加载 Nginx 配置文件，并访问 &lt;code>192.168.61.129:80&lt;/code>，此时可以正常打开 &lt;code>192.168.61.128:80&lt;/code> 上所配置的静态文件。&lt;/p>
+&lt;blockquote>
+&lt;p>上述配置可以参考官方文档&lt;br>
+&lt;a class="link" href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header" target="_blank" rel="noopener"
+>http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h1 id="日志可视化">日志可视化&lt;/h1>
+&lt;p>在本例中，我们使用 GoAccess 首先日志试试可视化。&lt;/p>
+&lt;h2 id="安装-goaccess">安装 GoAccess&lt;/h2>
+&lt;p>由于此例中使用的系统是 CentOS 8，安装 GoAccess 之前需要先配置 epel 源。&lt;/p>
+&lt;h3 id="配置-epel-源">配置 epel 源&lt;/h3>
+&lt;ol>
+&lt;li>安装 epel 配置包&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">yum install -y https://mirrors.aliyun.com/epel/epel-release-latest-8.noarch.rpm
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>将 repo 配置中的地址替换为阿里云镜像站地址&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sed -i &amp;#39;s|^#baseurl=https://download.fedoraproject.org/pub|baseurl=https://mirrors.aliyun.com|&amp;#39; /etc/yum.repos.d/epel*
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sed -i &amp;#39;s|^metalink|#metalink|&amp;#39; /etc/yum.repos.d/epel*
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="安装-geoip">安装 GeoIP&lt;/h3>
+&lt;p>编译安装 GoAccess 需要用到 GeoIP。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo yum -y --enablerepo=epel install geoip
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="安装-goaccess-1">安装 GoAccess&lt;/h3>
+&lt;p>根据官网的文档，我们顺序执行以下命令即可。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">wget https://tar.goaccess.io/goaccess-1.4.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar -xzvf goaccess-1.4.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> goaccess-1.4/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./configure --enable-utf8 --enable-geoip&lt;span class="o">=&lt;/span>legacy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">make
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">make install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>安装完成后，使用以下命令，若得到类似结果则表明安装成功。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">goaccess -v
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="line">&lt;span class="cl">GoAccess - 1.4.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">For more details visit: http://goaccess.io
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Copyright (C) 2009-2020 by Gerardo Orellana
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Build configure arguments:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --enable-utf8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --enable-geoip=legacy
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="配置-goaccess">配置 GoAccess&lt;/h2>
+&lt;p>在使用前，我们需要对 GoAccess 的配置文件进行一些修改，以方便后续使用。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">vim /usr/local/etc/goaccess/goaccess.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在此配置文件中，将以下内容取消注释，其他内容则保持不变。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">no-ip-validation true
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">log-format COMBINED
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">time-format %H:%M:%S
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">date-format %d/%b/%Y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">real-time-html true
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="启动监听">启动监听&lt;/h2>
+&lt;p>在 Nginx 的 logs 目录中，我们以 access 为源文件，启动 GoAccess 进程后，会产生一个 websocket 长连接，持续监听客户端的请求数据，进而实时展现在 report.html 页面上。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /usr/local/nginx/logs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">goaccess access.log -o ../html/report.html
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>此时我们还需要修改 nginx.conf 使报告页面可以直接访问，在 server 部分添加如下内容。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">location /report.html {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> alias html/report.html;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后重新加载配置即可。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">nginx -s reload
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>至此，日志可视化已经配置完成，我们可以直接访问 Nginx &lt;code>服务地址/report.html&lt;/code> 查看可视化页面，如下。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200913143610.png"
+loading="lazy"
+alt="20200913143610"
+>&lt;/p>
+&lt;h1 id="附录">附录&lt;/h1>
+&lt;p>Linux 查看端口占用状态&lt;/p>
+&lt;h2 id="查看占用">查看占用&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">netstat -anp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其中，参数 anp 分别表示：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>a：显示所有活动的 TCP 连接，以及正在监听的 TCP 和 UDP 端口&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>n：以数字形式表示地址和端口号，不试图去解析其名称（number），参数 &lt;code>-n&lt;/code> 会将应用程序转为端口显示，即数字格式的地址，如：nfs-&amp;gt;2049，ftp-&amp;gt;21&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>p：列出与端口监听或连接相关的进程，即 pid&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="关闭占用">关闭占用&lt;/h2>
+&lt;p>在本例中，若要关闭 GoAccess 建立的连接，首先执行如下命令拿到其 pid。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">netstat -anp &lt;span class="p">|&lt;/span> grep goaccess
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>结果如下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="line">&lt;span class="cl">tcp 0 0 0.0.0.0:7890 0.0.0.0:* LISTEN 2323/goaccess
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcp 0 0 192.168.61.128:7890 192.168.61.1:56503 ESTABLISHED 2323/goaccess
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后手动 kill 其进程即可。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">kill&lt;/span> &lt;span class="m">2323&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>初识 Nginx</title><link>https://sudrizzz.github.io/posts/getting-to-know-nginx/</link><pubDate>Mon, 07 Sep 2020 15:47:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-nginx/</guid><description>&lt;h1 id="nginx-简介">Nginx 简介&lt;/h1>
+&lt;blockquote>
+&lt;p>简介内容来自 Nginx 官网 &lt;a class="link" href="http://nginx.org/en" target="_blank" rel="noopener"
+>http://nginx.org/en&lt;/a>&lt;/p>
+&lt;p>nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 25.75% busiest sites in August 2020. Here are some of the success stories: Dropbox, Netflix, Wordpress.com, FastMail.FM.&lt;/p>
+&lt;p>The sources and documentation are distributed under the 2-clause BSD-like license.&lt;br>
+Commercial support is available from Nginx, Inc.&lt;/p>
+&lt;/blockquote>
+&lt;p>简而言之，Nginx 是一个高性能的 HTTP 和反向代理服务器，特点是占有内存少，并发能力强。详细信息请查看 &lt;a class="link" href="http://nginx.org/en" target="_blank" rel="noopener"
+>Nginx 官网介绍页面&lt;/a>。&lt;/p>
+&lt;blockquote>
+&lt;p>以下两种安装方式，任意选择一种进行安装即可。&lt;/p>
+&lt;/blockquote>
+&lt;h1 id="在线安装-nginx">在线安装 Nginx&lt;/h1>
+&lt;p>注意，本篇文章基于 CentOS 8.2 版本，如使用其他系统，操作可能有一些变化，一切以&lt;a class="link" href="http://nginx.org/en/linux_packages.html" target="_blank" rel="noopener"
+>官方网站安装教程&lt;/a>为准。&lt;/p>
+&lt;p>首先我们需要先安装 yum-utils 包，执行以下命令即可。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo yum install yum-utils
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后配置 Nginx 仓库，我们需要在 &lt;code>/etc/yum.repo.d/&lt;/code> 中创建一个名为 &lt;code>nginx.repo&lt;/code> 的文件，并填入以下内容。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-properties" data-lang="properties">&lt;span class="line">&lt;span class="cl">&lt;span class="err">[nginx-stable]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">nginx stable repo&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">baseurl&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">http://nginx.org/packages/centos/$releasever/$basearch/&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">gpgcheck&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">enabled&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">gpgkey&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">https://nginx.org/keys/nginx_signing.key&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">module_hotfixes&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">[nginx-mainline]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">nginx mainline repo&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">baseurl&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">http://nginx.org/packages/mainline/centos/$releasever/$basearch/&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">gpgcheck&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">enabled&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">gpgkey&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">https://nginx.org/keys/nginx_signing.key&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">module_hotfixes&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>默认情况下使用的是 Nginx 稳定版仓库，即配置中的 &lt;code>nginx-stable&lt;/code>。如果需要使用主线版仓库，可以执行下面的命令进行手动指定。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo yum-config-manager --enable nginx-mainline
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>上述准备工作完成后，就可以开始安装 Nginx 了，执行下面这条命令即可。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo yum install nginx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>稍等片刻完成安装后，可使用下述命令来验证是否安装成功。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">nginx -v
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">whereis nginx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>得到类似于下面的输出，即代表安装成功。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">nginx version: nginx/1.18.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="离线安装-nginx">离线安装 Nginx&lt;/h1>
+&lt;h2 id="下载并解压">下载并解压&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /usr/local/software
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 下载&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo wget http://nginx.org/download/nginx-1.18.0.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 解压&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar -zxvf nginx-1.18.0.tar.gz -C ./
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="编译">编译&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> nginx-1.18.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo ./configure --prefix&lt;span class="o">=&lt;/span>/usr/local/nginx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其中 &lt;code>--prefix&lt;/code> 的作用是指定编译后的文件存放位置，可以根据实际情况自由确定。&lt;br>
+编译过程中可能会遇到一些报错，详细信息和解决方案如下。&lt;/p>
+&lt;blockquote>
+&lt;p>此部分内容参照文章 &lt;a class="link" href="https://www.cnblogs.com/crazylqy/p/6891929.html" target="_blank" rel="noopener"
+>Nginx 教程(一) Nginx 入门教程&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;ol>
+&lt;li>
+&lt;p>./configure: error: C compiler cc is not found&lt;br>
+错误原因：缺少编译环境，安装编译源码所需要的工具和库：&lt;br>
+执行命令：sudo yum install gcc gcc-c++ ncurses-devel perl&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>./configure: error: the HTTP rewrite module requires the PCRE library&lt;br>
+错误原因：缺少 HTTP rewrite module 模块&lt;br>
+执行命令：sudo yum install pcre pcre-devel&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>./configure: error: the HTTP gzip module requires the zlib library&lt;br>
+错误原因：缺少 HTTP zlib 类库，我们选择安装模块：&lt;br>
+执行命令：sudo yum install zlib gzip zlib-devel&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>上述报错都解决了之后，再次执行编译命令，可以得到如下输出。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Configuration summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> + using system PCRE library
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> + OpenSSL library is not used
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> + using system zlib library
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> nginx path prefix: &amp;#34;/usr/local/nginx&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> nginx binary file: &amp;#34;/usr/local/nginx/sbin/nginx&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> nginx modules path: &amp;#34;/usr/local/nginx/modules&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> nginx configuration prefix: &amp;#34;/usr/local/nginx/conf&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> nginx configuration file: &amp;#34;/usr/local/nginx/conf/nginx.conf&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> nginx pid file: &amp;#34;/usr/local/nginx/logs/nginx.pid&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> nginx error log file: &amp;#34;/usr/local/nginx/logs/error.log&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> nginx http access log file: &amp;#34;/usr/local/nginx/logs/access.log&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> nginx http client request body temporary files: &amp;#34;client_body_temp&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> nginx http proxy temporary files: &amp;#34;proxy_temp&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> nginx http fastcgi temporary files: &amp;#34;fastcgi_temp&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> nginx http uwsgi temporary files: &amp;#34;uwsgi_temp&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> nginx http scgi temporary files: &amp;#34;scgi_temp&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="安装">安装&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /usr/local/software/nginx-1.18.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo make &lt;span class="p">&amp;amp;&lt;/span> make install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>得到如下输出时，即表明 Nginx 已经安装成功。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">test -d &amp;#39;/usr/local/nginx/logs&amp;#39; \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> || mkdir -p &amp;#39;/usr/local/nginx/logs&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">make[1]: 离开目录“/usr/local/software/nginx-1.18.0”
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[1]+ 已完成 make
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="在线安装-nginx-的启动方式">在线安装 Nginx 的启动方式&lt;/h1>
+&lt;blockquote>
+&lt;p>如果是采用手动编译安装 Nginx 的方式，请跳过本节查看下一节内容。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="配置-nginxconf">配置 nginx.conf&lt;/h2>
+&lt;p>首先编辑 &lt;code>/etc/nginx/nginx.conf&lt;/code> 文件，配置 Nginx 端口与访问地址（即 server 部分）。在配置端口时，不建议设置为 &lt;code>80&lt;/code>，以免与其他服务冲突。具体配置如下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">user nginx;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">worker_processes 1;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">error_log /var/log/nginx/error.log warn;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pid /var/run/nginx.pid;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">events {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> worker_connections 1024;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">http {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> include /etc/nginx/mime.types;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> default_type application/octet-stream;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> log_format main &amp;#39;$remote_addr - $remote_user [$time_local] &amp;#34;$request&amp;#34; &amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#39;$status $body_bytes_sent &amp;#34;$http_referer&amp;#34; &amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#39;&amp;#34;$http_user_agent&amp;#34; &amp;#34;$http_x_forwarded_for&amp;#34;&amp;#39;;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> access_log /var/log/nginx/access.log main;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sendfile on;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #tcp_nopush on;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> keepalive_timeout 65;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #gzip on;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> include /etc/nginx/conf.d/*.conf;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 在这里新增 server 配置
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> server {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> listen 8090;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> server_name localhost;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> location / {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> root html;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> index index.html index.htm;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="系统防火墙">系统防火墙&lt;/h2>
+&lt;p>由于我的 CentOS 是安装在虚拟机中，未安装图形界面，故需要在宿主机上进行测试并访问虚拟机地址，所以需要增加一步禁用 CentOS 防火墙的操作，具体命令如下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 关闭防火墙&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl stop firewalld.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 禁止防火墙开机自启&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl disable firewalld.service
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>现在可以正式启动 Nginx 服务了，执行下述命令即可。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo nginx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>执行之后，可以使用下面命令检查是否启动成功，以及访问地址和端口是否生效。&lt;/p>
+&lt;h2 id="查看包含-nginx-关键词的进程">查看包含 nginx 关键词的进程&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ps -ef &lt;span class="p">|&lt;/span> grep nginx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>结果如下，可以看到已经成功启动了。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">root 4781 1 0 14:31 ? 00:00:00 nginx: master process nginx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx 5055 4781 0 14:36 ? 00:00:00 nginx: worker process
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="查看本机所有暴露的端口">查看本机所有暴露的端口&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">netstat -ntlp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>结果如下，可以看到此前配置的 &lt;code>8090&lt;/code> 端口已经是 &lt;code>listen&lt;/code> 状态，接下来就可以在浏览器中访问了。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Active Internet connections (only servers)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Proto Recv-Q Send-Q Local Address Foreign Address State PID/Program name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcp 0 0 0.0.0.0:22 0.0.0.0:* LISTEN -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcp 0 0 0.0.0.0:8090 0.0.0.0:* LISTEN -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcp 0 0 127.0.0.1:6010 0.0.0.0:* LISTEN -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在浏览器中访问 &lt;code>虚拟机ip:8090&lt;/code>，即可看到 Nginx 的欢迎页面。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906154034.png"
+loading="lazy"
+alt="20200906154034"
+>&lt;/p>
+&lt;blockquote>
+&lt;p>此时返回 404 是因为 Nginx 目录中并没有欢迎页面的 html 文件，但依然可以说明已经 Nginx 服务已经配置正确并启动成功。&lt;/p>
+&lt;/blockquote>
+&lt;h1 id="离线安装-nginx-的启动方式">离线安装 Nginx 的启动方式&lt;/h1>
+&lt;p>首先执行下述命令来启动 Nginx。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /usr/local/nginx/sbin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo ./nginx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>同样的，我们可以按照上一节中介绍的方法，来验证 Nginx 是否启动成功，以及端口是否开放。&lt;br>
+Nginx 服务默认的端口是 &lt;code>80&lt;/code>，如果需要修改端口，也可以参照上一节中的内容进行手动修改，略有不同的是，通过手动编译安装的 Nginx，配置文件地址在 &lt;code>/usr/local/nginx/conf/nginx.conf&lt;/code>，也就是编译时我们手动指定的路径下。
+其余内容此处皆不再赘述。&lt;/p>
+&lt;p>打开宿主机浏览器，访问 &lt;code>虚拟机ip:80&lt;/code>，就可以看到 Nginx 的欢迎页面。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906153613.png"
+loading="lazy"
+alt="20200906153613"
+>&lt;/p>
+&lt;h1 id="修改-nginxconf">修改 nginx.conf&lt;/h1>
+&lt;p>如果后续需要修改 &lt;code>nginx.conf&lt;/code> 中的内容，例如更改 Nginx 服务端口号，请务必在修改完成后重启服务。常用的 Nginx 命令如下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 检查 nginx.conf 是否配置正确&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo nginx -t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重启 Nginx 服务&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo nginx -s reload
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 停止 Nginx 服务&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo nginx -s stop
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="附录">附录&lt;/h1>
+&lt;p>在 Linux 中查找某一个具体文件路径时，可以使用以下命令。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo find / -name filename
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>&lt;code>/&lt;/code> 代表查找的目录，此例是根目录&lt;/li>
+&lt;li>&lt;code>-name&lt;/code> 代表按照文件名进行查找&lt;/li>
+&lt;li>&lt;code>filename&lt;/code> 代表具体的文件名，例如 &lt;code>nginx.conf&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>以本文章为例，在根目录中查找 &lt;code>nginx.conf&lt;/code> 的结果如下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">/etc/nginx/nginx.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/usr/local/software/nginx-1.18.0/conf/nginx.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/usr/local/nginx/conf/nginx.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
