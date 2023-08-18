@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ONNX on Anthony's blog</title><link>https://sudrizzz.github.io/categories/onnx/</link><description>Recent content in ONNX on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://sudrizzz.github.io/categories/onnx/index.xml" rel="self" type="application/rss+xml"/><item><title>使用C#、WPF与ONNX模型实现手写数字识别</title><link>https://sudrizzz.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sudrizzz.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+&lt;blockquote>
+&lt;p>项目完整代码见 GitHub 仓库： &lt;a class="link" href="https://github.com/sudrizzz/MLNetDemo" target="_blank" rel="noopener"
+>sudrizzz/MLNetDemo&lt;/a>。&lt;/p>
+&lt;/blockquote>
+&lt;p>本文将介绍如何使用 C#、WPF 与 ONNX 模型实现一个简单的手写数字识别项目。整个流程跑通后，即可应用更加复杂的深度学习模型。&lt;/p>
+&lt;h1 id="wpf-界面开发">WPF 界面开发&lt;/h1>
+&lt;p>项目的用户界面相对简单，主要包含一个 InkCanvas（Name 设置为 inkCanvas） 用于用户绘制数字，一个识别按钮与一个清除 Canvas 内容的按钮。软件用户界面如下图所示。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20230818102257.png"
+loading="lazy"
+alt="软件用户界面"
+>&lt;/p>
+&lt;p>项目最终效果图如下图所示。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20230818110324.png"
+loading="lazy"
+alt="项目最终效果图"
+>&lt;/p>
+&lt;p>WPF 界面采用 xaml 文件进行定义，项目界面源代码详见 GitHub 仓库。&lt;/p>
+&lt;h1 id="onnx">ONNX&lt;/h1>
+&lt;h2 id="onnx-简介">ONNX 简介&lt;/h2>
+&lt;p>ONNX 是一种用于表示机器学习模型的开放格式。ONNX 定义了一组通用运算符（机器学习和深度学习模型的构建基块）和通用文件格式，使 AI 开发人员能够使用具有各种框架、工具、运行时和编译器的模型。详见&lt;a class="link" href="https://onnx.ai/" target="_blank" rel="noopener"
+>ONNX 官方网站&lt;/a>。&lt;/p>
+&lt;h2 id="onnx-模型库及项目模型选用">ONNX 模型库及项目模型选用&lt;/h2>
+&lt;p>&lt;a class="link" href="https://github.com/onnx/models" target="_blank" rel="noopener"
+>ONNX Model Zoo&lt;/a> 收录了大量的预训练模型，包括计算机视觉领域常用的目标检测、图像分类及自然语言处理领域的 GPT 模型。处于演示需要，本项目选择 ONNX Model Zoo 中的&lt;a class="link" href="https://github.com/onnx/models/tree/main/vision/classification/mnist#mnist---handwritten-digit-recognition" target="_blank" rel="noopener"
+>手写数字识别模型&lt;/a>作为实验模型。&lt;/p>
+&lt;h2 id="查看模型结构">查看模型结构&lt;/h2>
+&lt;p>下载 ONNX 模型后，我们还需要找到模型中的输入变量名与输出变量名。因此使用 &lt;a class="link" href="https://github.com/lutzroeder/netron" target="_blank" rel="noopener"
+>Netron&lt;/a> 来检视模型。Netron 打开 ONNX 模型后的效果如下图所示。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20230818135201.png"
+loading="lazy"
+alt="手写数字识别 ONNX 模型结构"
+>&lt;/p>
+&lt;p>从图中右侧可以看到，模型输入变量名为 &lt;code>Input3&lt;/code>，数据类型为 float 数组，尺寸为 1×1×28×28。输出变量名为 &lt;code>Plus214_Output_0&lt;/code>，数据类型为 float 数组，尺寸为 1×10，即为十分类中的每个类别概率值。&lt;/p>
+&lt;h1 id="整合模型">整合模型&lt;/h1>
+&lt;h2 id="visual-studio-安装深度学习插件">Visual Studio 安装深度学习插件&lt;/h2>
+&lt;p>针对不同的平台，可以在 ONNX Runtime 官网选择对应的插件或依赖，详见&lt;a class="link" href="https://onnxruntime.ai/#:~:text=Use%20ONNX%20Runtime%20with%20the%20platform%20of%20your%20choice" target="_blank" rel="noopener"
+>ONNX Runtime&lt;/a>。&lt;/p>
+&lt;p>本项目采用 Visual Studio 2022 开发，按照官方说明需要安装 &lt;a class="link" href="https://www.nuget.org/packages/Microsoft.ML.OnnxRuntime" target="_blank" rel="noopener"
+>Microsoft.ML.OnnxRuntime&lt;/a>，读者可以在 Visual Studio 中解决方案资源管理器中右键单击解决方案名称，选择&lt;code>管理 NuGet 程序包&lt;/code>选项，搜索安装 Microsoft.ML.OnnxRuntime。&lt;/p>
+&lt;p>除了安装上述插件外，还需要安装微软开发的应用于.Net 平台的机器学习开发包，同时本项目还涉及到图像处理，因此也需要安装图像处理相关的包。故需要安装的所有依赖包如下：&lt;/p>
+&lt;ul>
+&lt;li>Microsoft.ML&lt;/li>
+&lt;li>Microsoft.ML.OnnxRuntime&lt;/li>
+&lt;li>Microsoft.ML.OnnxTransformer&lt;/li>
+&lt;li>System.Drawing.Common&lt;/li>
+&lt;/ul>
+&lt;h2 id="输入输出数据定义">输入输出数据定义&lt;/h2>
+&lt;p>对于输入数据，通过 Netron 得到输入变量名和数据类型后，即可得到如下的输入数据定义。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-csharp" data-lang="csharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">public&lt;/span> &lt;span class="k">class&lt;/span> &lt;span class="nc">InputData&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na"> [VectorType(1 * 1 * 28 * 28)]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na"> [ColumnName(&amp;#34;Input3&amp;#34;)]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">public&lt;/span> &lt;span class="kt">float&lt;/span>&lt;span class="p">[]&lt;/span> &lt;span class="n">Image&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">get&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="k">set&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其中 VectorType 用于表征数据尺寸，由于本项目不涉及输入批次，仅为单张图片输入模型，因此第一维的 Batch Size 设置为 1，第二维的通道数也设置为 1。因此省略前两个维度，写成 &lt;code>[VectorType(28 * 28)]&lt;/code> 也是可以的。&lt;code>ColumnName&lt;/code> 需要与上述 Netron 中展示的输入变量名严格对应。&lt;/p>
+&lt;p>对于输出数据，同上可得到如下的数据定义，不再赘述。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-csharp" data-lang="csharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">public&lt;/span> &lt;span class="k">class&lt;/span> &lt;span class="nc">OutputData&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na"> [ColumnName(&amp;#34;Plus214_Output_0&amp;#34;)]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">public&lt;/span> &lt;span class="kt">float&lt;/span>&lt;span class="p">[]&lt;/span> &lt;span class="n">Result&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">get&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="k">set&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="c-图像处理">C# 图像处理&lt;/h2>
+&lt;p>本项目涉及的图像处理总体流程：&lt;/p>
+&lt;ol>
+&lt;li>获取 InkCanvas 的内容并转为位图 Bitmap&lt;/li>
+&lt;li>将 Bitmap 从原始尺寸变换到到模型输入规定的尺寸&lt;/li>
+&lt;li>将变换尺寸后的 Bitmap 转为单通道 8 位灰度图&lt;/li>
+&lt;li>将 Bitmap 对象转为 float 一维数组&lt;/li>
+&lt;/ol>
+&lt;h3 id="获取-inkcanvas-的内容并转为位图">获取 InkCanvas 的内容并转为位图&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-csharp" data-lang="csharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">private&lt;/span> &lt;span class="kt">float&lt;/span>&lt;span class="p">[]&lt;/span> &lt;span class="n">ConvertInkCanvasToFloatArray&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 获取InkCanvas的大小&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">width&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">inkCanvas&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">ActualWidth&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">height&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">inkCanvas&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">ActualHeight&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 创建RenderTargetBitmap&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">RenderTargetBitmap&lt;/span> &lt;span class="n">rtb&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">RenderTargetBitmap&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">width&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">height&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">96&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">96&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">PixelFormats&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Default&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">rtb&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Render&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">inkCanvas&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 转换为8位灰度图&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">FormatConvertedBitmap&lt;/span> &lt;span class="n">grayscaleBitmap&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">FormatConvertedBitmap&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">grayscaleBitmap&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">BeginInit&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">grayscaleBitmap&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Source&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">rtb&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">grayscaleBitmap&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">DestinationFormat&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">PixelFormats&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Gray8&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// 8-bit grayscale&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">grayscaleBitmap&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">EndInit&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 将WPF的BitmapSource转换为System.Drawing.Bitmap&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Bitmap&lt;/span> &lt;span class="n">bitmap&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">using&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">MemoryStream&lt;/span> &lt;span class="n">outStream&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">MemoryStream&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">BitmapEncoder&lt;/span> &lt;span class="n">enc&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">BmpBitmapEncoder&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">enc&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Frames&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">BitmapFrame&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Create&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">grayscaleBitmap&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">enc&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Save&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">outStream&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">bitmap&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Bitmap&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">outStream&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 变换 Bitmap 尺寸&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Bitmap&lt;/span> &lt;span class="n">bmp&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">ReSizeImage&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">bitmap&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">inputWidth&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">inputHeight&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 通道变换，获取单通道灰度图&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Bitmap&lt;/span> &lt;span class="n">graybmp&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">GetGaryImage&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">bmp&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 将图像转为一维数组并返回&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">ConvertBitmapToFloatArray&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">graybmp&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="变换-bitmap-尺寸">变换 Bitmap 尺寸&lt;/h3>
+&lt;p>本项目中画布的尺寸为 336×336，但手写数组识别模型使用的训练数据集为 MNIST，从模型输入数据中可以看到其图像尺寸为 28×28，因此需要变换位图的尺寸。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-csharp" data-lang="csharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">private&lt;/span> &lt;span class="k">static&lt;/span> &lt;span class="n">Bitmap&lt;/span> &lt;span class="n">ReSizeImage&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Image&lt;/span> &lt;span class="n">img&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">width&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">height&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Bitmap&lt;/span> &lt;span class="n">bitmap&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Bitmap&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">width&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">height&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Graphics&lt;/span> &lt;span class="n">g&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">Graphics&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">FromImage&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">bitmap&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">g&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">InterpolationMode&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">InterpolationMode&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">HighQualityBicubic&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">g&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">DrawImage&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">img&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">bitmap&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Width&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">bitmap&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Height&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">g&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Dispose&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">bitmap&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="通道变换">通道变换&lt;/h3>
+&lt;p>由于上述过程中生成的图像为 RGB 图像，但本例仅需要单通道灰度图，即与 MNIST 数据集保持一致，因此需要对其进行通道变换。此处选用 GDI+ 的 &lt;a class="link" href="https://learn.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-using-a-color-matrix-to-transform-a-single-color-use" target="_blank" rel="noopener"
+>ColorMatrix&lt;/a> 特性实现通道变换，代码参考自&lt;a class="link" href="https://zhuanlan.zhihu.com/p/367047382" target="_blank" rel="noopener"
+>ML.NET (。・∀・)ノ 来用 C# 跑机器学习吧!&lt;/a>。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-csharp" data-lang="csharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">private&lt;/span> &lt;span class="k">static&lt;/span> &lt;span class="n">Bitmap&lt;/span> &lt;span class="n">GetGaryImage&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Bitmap&lt;/span> &lt;span class="n">src&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">float&lt;/span>&lt;span class="p">[][]&lt;/span> &lt;span class="n">colorMatrix&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">new&lt;/span> &lt;span class="kt">float&lt;/span>&lt;span class="p">[]&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="m">0.299f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0.299f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0.299f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">new&lt;/span> &lt;span class="kt">float&lt;/span>&lt;span class="p">[]&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="m">0.587f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0.587f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0.587f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">new&lt;/span> &lt;span class="kt">float&lt;/span>&lt;span class="p">[]&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="m">0.114f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0.114f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0.114f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">new&lt;/span> &lt;span class="kt">float&lt;/span>&lt;span class="p">[]&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">new&lt;/span> &lt;span class="kt">float&lt;/span>&lt;span class="p">[]&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">1&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ImageAttributes&lt;/span> &lt;span class="n">ia&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ImageAttributes&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ColorMatrix&lt;/span> &lt;span class="n">cm&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ColorMatrix&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">colorMatrix&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ia&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">SetColorMatrix&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">cm&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ColorMatrixFlag&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Default&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ColorAdjustType&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Bitmap&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Graphics&lt;/span> &lt;span class="n">g&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">Graphics&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">FromImage&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">src&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">g&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">DrawImage&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">src&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">new&lt;/span> &lt;span class="n">Rectangle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">src&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Width&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">src&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Height&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">src&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Width&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">src&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Height&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">GraphicsUnit&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Pixel&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ia&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">g&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Dispose&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">src&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>变换后得到的灰度图如下图所示（28×28，图片显示效果较小）。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20230818143813.png"
+loading="lazy"
+alt="灰度图"
+>&lt;/p>
+&lt;h3 id="将图像转为一维数组">将图像转为一维数组&lt;/h3>
+&lt;p>根据上述分析，输入数据为一维 float 数组，因此还需要将灰度图转换为一维数组。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-csharp" data-lang="csharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">private&lt;/span> &lt;span class="kt">float&lt;/span>&lt;span class="p">[]&lt;/span> &lt;span class="n">ConvertBitmapToFloatArray&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Bitmap&lt;/span> &lt;span class="n">graybmp&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">float&lt;/span>&lt;span class="p">[]&lt;/span> &lt;span class="n">graydata&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="kt">float&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">inputWidth&lt;/span> &lt;span class="p">*&lt;/span> &lt;span class="n">inputHeight&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="p">&amp;lt;&lt;/span> &lt;span class="n">inputWidth&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="p">+=&lt;/span> &lt;span class="m">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="p">&amp;lt;&lt;/span> &lt;span class="n">inputHeight&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="p">+=&lt;/span> &lt;span class="m">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Drawing&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Color&lt;/span> &lt;span class="n">rescolor&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">graybmp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">GetPixel&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">graydata&lt;/span>&lt;span class="p">[(&lt;/span>&lt;span class="n">i&lt;/span> &lt;span class="p">*&lt;/span> &lt;span class="n">inputWidth&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">+&lt;/span> &lt;span class="n">j&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">rescolor&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">R&lt;/span> &lt;span class="p">/&lt;/span> &lt;span class="m">255.0f&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">graydata&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="初始化模型">初始化模型&lt;/h2>
+&lt;p>首先定义两个全局变量 &lt;code>_modelPath&lt;/code> 和 &lt;code>_predictionEngine&lt;/code>，分别代表 ONNX 的模型存放地址与 TTransformer 模型推理变量。在初始化模型时，加载模型后给模型传入一组空输入参数以创建推理变量。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-csharp" data-lang="csharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">private&lt;/span> &lt;span class="k">readonly&lt;/span> &lt;span class="kt">string&lt;/span> &lt;span class="n">_modelPath&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s">&amp;#34;../../../assets/mnist.onnx&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">private&lt;/span> &lt;span class="n">PredictionEngine&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">InputData&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">OutputData&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="n">_predictionEngine&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">private&lt;/span> &lt;span class="k">void&lt;/span> &lt;span class="n">InitializeModel&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">MLContext&lt;/span> &lt;span class="n">context&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">MLContext&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">var&lt;/span> &lt;span class="n">pipeline&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">context&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Transforms&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">ApplyOnnxModel&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">_modelPath&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">var&lt;/span> &lt;span class="n">emptyData&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">InputData&lt;/span>&lt;span class="p">&amp;gt;();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">var&lt;/span> &lt;span class="n">data&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">context&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">LoadFromEnumerable&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">emptyData&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">var&lt;/span> &lt;span class="n">model&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">pipeline&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Fit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">_predictionEngine&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">context&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Model&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">CreatePredictionEngine&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">InputData&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">OutputData&lt;/span>&lt;span class="p">&amp;gt;(&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="清除画布">清除画布&lt;/h2>
+&lt;p>为了清除画布，需要为 WPF 布局中的 Clear Digit 按钮绑定名为 &lt;code>ClearButtonClick&lt;/code> 的事件，事件实现如下。其中，&lt;code>numberLabel&lt;/code>为显示识别结果的标签，清除画布时需要同时将其置空。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-csharp" data-lang="csharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">private&lt;/span> &lt;span class="k">void&lt;/span> &lt;span class="n">ClearButtonClick&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">object&lt;/span> &lt;span class="n">sender&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">RoutedEventArgs&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">inkCanvas&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Strokes&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Clear&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">numberLabel&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Text&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="预测结果">预测结果&lt;/h2>
+&lt;p>在上述图像处理的基础上，调用模型预测结果之前还需要将图像处理结果传给模型，同时为 recognize 按钮绑定 &lt;code>RecognizeDigit&lt;/code>。其中，&lt;code>numberLabel&lt;/code>为显示识别结果的标签，因此需要将模型预测结果（1×10 个概率值）中最大的概率值所代表的数字，赋值给 &lt;code>numberLabel&lt;/code>。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-csharp" data-lang="csharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">private&lt;/span> &lt;span class="k">void&lt;/span> &lt;span class="n">RecognizeDigit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">object&lt;/span> &lt;span class="n">sender&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">RoutedEventArgs&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">var&lt;/span> &lt;span class="n">result&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">_predictionEngine&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Predict&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">InputData&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">Image&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">ConvertInkCanvasToFloatArray&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">numberLabel&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Text&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Result&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">ToList&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">IndexOf&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="kt">float&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">result&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Result&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Max&lt;/span>&lt;span class="p">()).&lt;/span>&lt;span class="n">ToString&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="参考文献">参考文献&lt;/h1>
+&lt;ol>
+&lt;li>&lt;a class="link" href="https://zhuanlan.zhihu.com/p/367047382" target="_blank" rel="noopener"
+>ML.NET (。・∀・)ノ 来用 C# 跑机器学习吧!&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.cnblogs.com/Big-Head/p/17429185.html" target="_blank" rel="noopener"
+>使用 ML.Net 轻松接入 AI 模型！&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="chat.openai.com" >Chat GPT 4&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://learn.microsoft.com/en-us/windows/ai/windows-ml/get-started-uwp" target="_blank" rel="noopener"
+>Tutorial: Create a Windows Machine Learning UWP application (C#)&lt;/a>&lt;/li>
+&lt;/ol></description></item></channel></rss>
