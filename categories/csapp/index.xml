@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CSAPP on Anthony's blog</title><link>https://sudrizzz.github.io/categories/csapp/</link><description>Recent content in CSAPP on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 20 Sep 2020 15:20:11 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/categories/csapp/index.xml" rel="self" type="application/rss+xml"/><item><title>CMU 15-213 存储器层次结构</title><link>https://sudrizzz.github.io/posts/cmu-15-213-lesson3/</link><pubDate>Sun, 20 Sep 2020 15:20:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/cmu-15-213-lesson3/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CSAPP on Anthony's blog</title><link>https://meetqu.github.io/categories/csapp/</link><description>Recent content in CSAPP on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 20 Sep 2020 15:20:11 +0800</lastBuildDate><atom:link href="https://meetqu.github.io/categories/csapp/index.xml" rel="self" type="application/rss+xml"/><item><title>CMU 15-213 存储器层次结构</title><link>https://meetqu.github.io/posts/cmu-15-213-lesson3/</link><pubDate>Sun, 20 Sep 2020 15:20:11 +0800</pubDate><guid>https://meetqu.github.io/posts/cmu-15-213-lesson3/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>本课的第三、四章分别是程序的机器级表示和处理器体系结构，由于过于硬核，此处略过。第五章是优化程序性能，讲解了如何最大限度地提高程序执行效能，此处也略过。本文基于第六章存储器层级结构。&lt;/p>
 &lt;h1 id="存储技术">存储技术&lt;/h1>
 &lt;p>在本节中主要介绍 SRAM 存储器、DRAM 存储器、ROM 存储器以及机械和固态硬盘。&lt;/p>
@@ -174,7 +174,7 @@ alt="20200924155525"
 >https://zh.wikipedia.org/wiki/%E9%97%AA%E5%AD%98&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://www.bilibili.com/video/av61437877" target="_blank" rel="noopener"
 >https://www.bilibili.com/video/av61437877&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>CMU 15-213 浮点数</title><link>https://sudrizzz.github.io/posts/cmu-15-213-lesson2/</link><pubDate>Mon, 14 Sep 2020 18:57:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/cmu-15-213-lesson2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+&lt;/ol></description></item><item><title>CMU 15-213 浮点数</title><link>https://meetqu.github.io/posts/cmu-15-213-lesson2/</link><pubDate>Mon, 14 Sep 2020 18:57:11 +0800</pubDate><guid>https://meetqu.github.io/posts/cmu-15-213-lesson2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>在 &lt;a class="link" href="https://sudrizzz.github.io/posts/cmu-15-213-lesson1/" target="_blank" rel="noopener"
 >上一篇文章&lt;/a> 中，我们了解了二进制有符号数、无符号数以及其相关的运算方法，在本篇中，我们将进一步了解浮点数在计算机中的相关知识。&lt;/p>
 &lt;h1 id="二进制小数">二进制小数&lt;/h1>
@@ -418,7 +418,7 @@ alt="20200917101541"
 &lt;ol>
 &lt;li>&lt;a class="link" href="https://qiankun214.github.io/2019/05/28/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%A4%84%E7%90%86/" target="_blank" rel="noopener"
 >https://qiankun214.github.io/2019/05/28/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%A4%84%E7%90%86/&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>CMU 15-213 位、字节与整数</title><link>https://sudrizzz.github.io/posts/cmu-15-213-lesson1/</link><pubDate>Fri, 04 Sep 2020 19:02:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/cmu-15-213-lesson1/</guid><description>&lt;h1 id="简介">简介&lt;/h1>
+&lt;/ol></description></item><item><title>CMU 15-213 位、字节与整数</title><link>https://meetqu.github.io/posts/cmu-15-213-lesson1/</link><pubDate>Fri, 04 Sep 2020 19:02:11 +0800</pubDate><guid>https://meetqu.github.io/posts/cmu-15-213-lesson1/</guid><description>&lt;h1 id="简介">简介&lt;/h1>
 &lt;p>CSAPP 课程全程 Computer Systems: A Programmer’s Perspective，中文翻译为“从程序员的视角，看计算机系统！”或“深入理解计算机系统”。此课程是卡耐基梅隆大学开设的一门课程，官方网站 &lt;a class="link" href="https://www.cs.cmu.edu/~213/index.html" target="_blank" rel="noopener"
 >https://www.cs.cmu.edu/~213/index.html&lt;/a>。&lt;/p>
 &lt;blockquote>

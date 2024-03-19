@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Anthony's blog</title><link>https://sudrizzz.github.io/post/</link><description>Recent content in Posts on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 18 Aug 2023 15:00:00 +0800</lastBuildDate><atom:link href="https://sudrizzz.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>使用C#、WPF与ONNX模型实现手写数字识别</title><link>https://sudrizzz.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</link><pubDate>Fri, 18 Aug 2023 15:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Anthony's blog</title><link>https://meetqu.github.io/post/</link><description>Recent content in Posts on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 13 Nov 2023 21:00:00 +0800</lastBuildDate><atom:link href="https://meetqu.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>使用C#、WPF与ONNX模型实现手写数字识别</title><link>https://meetqu.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</link><pubDate>Fri, 18 Aug 2023 15:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;blockquote>
 &lt;p>项目完整代码见 GitHub 仓库： &lt;a class="link" href="https://github.com/sudrizzz/MLNetDemo" target="_blank" rel="noopener"
 >sudrizzz/MLNetDemo&lt;/a>。&lt;/p>
@@ -380,7 +380,7 @@ alt="灰度图"
 &lt;li>&lt;a class="link" href="chat.openai.com" >Chat GPT 4&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://learn.microsoft.com/en-us/windows/ai/windows-ml/get-started-uwp" target="_blank" rel="noopener"
 >Tutorial: Create a Windows Machine Learning UWP application (C#)&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>一个月突破雅思 7.0</title><link>https://sudrizzz.github.io/posts/ielts-7.0/</link><pubDate>Wed, 12 Jul 2023 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/ielts-7.0/</guid><description>&lt;p>笔者使用六月一整个月时间备考，平均每天 4 小时，备考后半程几乎每天都会严格按照雅思考试的时间限制做一套雅思真题。7 月 10 号参加了雅思考试，最终取得如下成绩。&lt;/p>
+&lt;/ol></description></item><item><title>一个月突破雅思 7.0</title><link>https://meetqu.github.io/posts/ielts-7.0/</link><pubDate>Wed, 12 Jul 2023 19:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/ielts-7.0/</guid><description>&lt;p>笔者使用六月一整个月时间备考，平均每天 4 小时，备考后半程几乎每天都会严格按照雅思考试的时间限制做一套雅思真题。7 月 10 号参加了雅思考试，最终取得如下成绩。&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -584,7 +584,7 @@ Future / Feelings: 描述对未来的规划或事后的感受&lt;/p>
 &lt;p>最后，下面这句话送给阅读本文的读者，预祝雅思考试顺利。&lt;/p>
 &lt;blockquote>
 &lt;p>纸上得来终觉浅，绝知此事要躬行&lt;/p>
-&lt;/blockquote></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/27）</title><link>https://sudrizzz.github.io/posts/meituan-java-note-3/</link><pubDate>Mon, 29 Aug 2022 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/meituan-java-note-3/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
+&lt;/blockquote></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/27）</title><link>https://meetqu.github.io/posts/meituan-java-note-3/</link><pubDate>Mon, 29 Aug 2022 10:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/meituan-java-note-3/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
 &lt;h2 id="题目描述">题目描述&lt;/h2>
 &lt;p>小美在摆弄她的字符串。最近小团送了小美一个特殊字符 &amp;lsquo;*&amp;rsquo;，这个字符可以和其他所有字符匹配，除了这个字符外，其他字符只能自己和自己匹配。小美先前有一个字符串 S，长度为 n，现在她又新组合了一个可有特殊字符 &amp;lsquo;*&amp;rsquo; 的字符串 s，长度为 m。小美想知道有多少个位置 i，使得 S[i+j] 与 s[j] 对于 1≤j≤m 均能匹配上？其中 X[y] 代表字符串 X 中第 y 位的字符。&lt;/p>
 &lt;h2 id="测试样例">测试样例&lt;/h2>
@@ -750,7 +750,7 @@ abcaacc&lt;/p>
 &lt;/div>
 &lt;/div>&lt;h1 id="第三题">第三题&lt;/h1>
 &lt;h2 id="题目描述-2">题目描述&lt;/h2>
-&lt;p>小团最近获得了美美团团国的裁缝资格证，成为了一个裁缝！现在小团有一个长度为 n 的大布料 S（在这个国家布料其实是一个仅包含小写英文字母的字符串），小团可以将布料在任意位置剪切，例如布料 abcd 可以被裁剪为 a 与 bcd 或 ab 与 cd 或 abc 与 d，不过，裁剪完之后是不能拼接起来的，因为小团还不是很擅长拼接布料。现在小团想知道能不能有一种裁剪方式能让他把布料恰好裁剪成客人要求的小布料。形式化地，有一个串 S，问是否能将其划分成 m 个不相交的连续子串，使得这些连续子串可以与要求的连续子串一一对应。两个串相对应是指这两个串完全相等。例如&amp;quot;aab&amp;quot;=&amp;ldquo;aab&amp;rdquo; 但 &amp;ldquo;aab&amp;quot;≠&amp;quot;baa&amp;rdquo;。&lt;/p>
+&lt;p>小团最近获得了美美团团国的裁缝资格证，成为了一个裁缝！现在小团有一个长度为 n 的大布料 S（在这个国家布料其实是一个仅包含小写英文字母的字符串），小团可以将布料在任意位置剪切，例如布料 abcd 可以被裁剪为 a 与 bcd 或 ab 与 cd 或 abc 与 d，不过，裁剪完之后是不能拼接起来的，因为小团还不是很擅长拼接布料。现在小团想知道能不能有一种裁剪方式能让他把布料恰好裁剪成客人要求的小布料。形式化地，有一个串 S，问是否能将其划分成 m 个不相交的连续子串，使得这些连续子串可以与要求的连续子串一一对应。两个串相对应是指这两个串完全相等。例如&amp;quot;aab&amp;quot;=&amp;ldquo;aab&amp;rdquo; 但 &amp;ldquo;aab&amp;rdquo;≠&amp;ldquo;baa&amp;rdquo;。&lt;/p>
 &lt;h2 id="测试样例-2">测试样例&lt;/h2>
 &lt;p>第一行两个空格隔开的正整数 n 和 m，分别表示大布料 S 长度和客人要求的小布料数量。&lt;br>
 接下来一行一个长度为 n 的仅包含小写英文字母的串 S，表示大布料的组成。&lt;br>
@@ -995,7 +995,7 @@ aa
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/20）</title><link>https://sudrizzz.github.io/posts/meituan-java-note-2/</link><pubDate>Wed, 24 Aug 2022 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/meituan-java-note-2/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
+&lt;/div></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/20）</title><link>https://meetqu.github.io/posts/meituan-java-note-2/</link><pubDate>Wed, 24 Aug 2022 10:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/meituan-java-note-2/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
 &lt;h2 id="题目描述">题目描述&lt;/h2>
 &lt;p>小团想要自己来烤串！不过在烤串之前，需要串好烤串。小团有 n 个荤菜和 n 个素菜，他想按顺序分别一个荤菜一个素菜串起来，想请你帮他串好！给出两个长度分别为 n 的仅包含小写英文字母的串 A 和 B，分别代表荤菜和素菜的种类（用字母来表示菜的种类）。请你以从左到右的顺序依次串好他们！例如对于荤菜串 A1A2&amp;hellip;An 和素菜串 B1B2&amp;hellip;Bn，串好应该是 A1B1A2B2&amp;hellip;AnBn。&lt;/p>
 &lt;h2 id="测试样例">测试样例&lt;/h2>
@@ -1487,7 +1487,7 @@ aebfcgdh&lt;/p>
 &lt;p>1.&lt;a class="link" href="https://www.nowcoder.com/discuss/1021869" target="_blank" rel="noopener"
 >08/20 美团后端笔试&lt;/a>&lt;br>
 2.&lt;a class="link" href="https://www.nowcoder.com/discuss/1021857" target="_blank" rel="noopener"
->20220820 美团笔试题解&lt;/a>&lt;/p></description></item><item><title>联想面试记录（2022/08/23 更新）</title><link>https://sudrizzz.github.io/posts/lenovo-java-interview/</link><pubDate>Tue, 16 Aug 2022 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/lenovo-java-interview/</guid><description>&lt;h1 id="投递岗位">投递岗位&lt;/h1>
+>20220820 美团笔试题解&lt;/a>&lt;/p></description></item><item><title>联想面试记录（2022/08/23 更新）</title><link>https://meetqu.github.io/posts/lenovo-java-interview/</link><pubDate>Tue, 16 Aug 2022 19:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/lenovo-java-interview/</guid><description>&lt;h1 id="投递岗位">投递岗位&lt;/h1>
 &lt;p>&lt;a class="link" href="https://talent.lenovo.com.cn/resume/jdlist/2173" target="_blank" rel="noopener"
 >Java 开发工程师-China Geo&lt;/a>&lt;/p>
 &lt;h1 id="一面20220816">一面（2022/08/16）&lt;/h1>
@@ -1530,7 +1530,7 @@ aebfcgdh&lt;/p>
 &lt;li>线下及线上服务的调试方法都有哪些，以及相应的工具；&lt;/li>
 &lt;li>未来的职业规划；&lt;/li>
 &lt;li>有没有什么想问的？（ChinaGeo 与 SSG 的区别，剩下几次面试，本次面试表现）&lt;/li>
-&lt;/ol></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/13）</title><link>https://sudrizzz.github.io/posts/meituan-java-note-1/</link><pubDate>Mon, 15 Aug 2022 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/meituan-java-note-1/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
+&lt;/ol></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/13）</title><link>https://meetqu.github.io/posts/meituan-java-note-1/</link><pubDate>Mon, 15 Aug 2022 10:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/meituan-java-note-1/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
 &lt;h2 id="题目描述">题目描述&lt;/h2>
 &lt;p>炸鸡店拥有一名会传送魔法的外卖派送员。该外卖派送员派送单子时，可以消耗时间 t 来正常派送单子（一次只能派送一个单子，不能多个同时派送），也可以使用魔法不耗费时间地隔空瞬间投送。现在炸鸡店在时刻 0 接收到了若干炸鸡订单，每个单子都有它的截止送达时间。外卖派送员需要保证送达时间小于等于这个截止时间。现在询问外卖员最少要使用几次魔法来保证没有外卖超时。&lt;/p>
 &lt;h2 id="测试样例">测试样例&lt;/h2>
@@ -1934,7 +1934,7 @@ aebfcgdh&lt;/p>
 &lt;/div>
 &lt;/div>&lt;h1 id="参考文献">参考文献&lt;/h1>
 &lt;p>1.&lt;a class="link" href="https://leetcode.cn/circle/discuss/P7hf9c/" target="_blank" rel="noopener"
->美团 | 后端笔试第二场 | 8/13&lt;/a>&lt;/p></description></item><item><title>LibTorch 上手教程</title><link>https://sudrizzz.github.io/posts/libtorch-toturial/</link><pubDate>Wed, 27 Oct 2021 15:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/libtorch-toturial/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+>美团 | 后端笔试第二场 | 8/13&lt;/a>&lt;/p></description></item><item><title>LibTorch 上手教程</title><link>https://meetqu.github.io/posts/libtorch-toturial/</link><pubDate>Wed, 27 Oct 2021 15:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/libtorch-toturial/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;h2 id="libtorch-简介">LibTorch 简介&lt;/h2>
 &lt;p>在 Python 深度学习圈，PyTorch 具有举足轻重的地位。同样的，C++ 平台上的 LibTorch 作为 PyTorch 的纯 C++ 接口，它遵循 PyTorch 的设计和架构，旨在支持高性能、低延迟的 C++ 深度学习应用研究。本文基于 Windows 环境与 Visual Studio 2019 开发工具，将从零开始搭建一个完整的深度学习开发环境，包括环境配置、项目演示、自定义数据集及问题排查等部分。&lt;/p>
 &lt;h2 id="libtorch-安装">LibTorch 安装&lt;/h2>
@@ -2362,7 +2362,7 @@ alt="20211028114206"
 >Does LibTorch not support float64 data training?&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://discuss.pytorch.org/t/after-torch-load-model-and-predict-then-got-nan/133142/4" target="_blank" rel="noopener"
 >After torch::load model and predict, then got NaN&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>Anaconda 克隆到离线环境</title><link>https://sudrizzz.github.io/posts/conda-clone/</link><pubDate>Thu, 05 Aug 2021 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/conda-clone/</guid><description>&lt;h1 id="配置-conda-环境">配置 conda 环境&lt;/h1>
+&lt;/ol></description></item><item><title>Anaconda 克隆到离线环境</title><link>https://meetqu.github.io/posts/conda-clone/</link><pubDate>Thu, 05 Aug 2021 19:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/conda-clone/</guid><description>&lt;h1 id="配置-conda-环境">配置 conda 环境&lt;/h1>
 &lt;p>首先我们需要在在线环境中配置好 conda 环境，安装好所需要的包，方可开始打包。此处假设我们创建的环境名为 baseenv。&lt;/p>
 &lt;h1 id="打包">打包&lt;/h1>
 &lt;p>首先进入 Anaconda 的安装目录，将以下目录进行打包：&lt;/p>
@@ -2415,7 +2415,7 @@ alt="20211028114206"
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210805185700.png"
 loading="lazy"
 alt="20210805185700"
->&lt;/p></description></item><item><title>增肌训练计划笔记</title><link>https://sudrizzz.github.io/posts/fitness/</link><pubDate>Sun, 01 Aug 2021 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/fitness/</guid><description>&lt;h1 id="时间安排">时间安排&lt;/h1>
+>&lt;/p></description></item><item><title>增肌训练计划笔记</title><link>https://meetqu.github.io/posts/fitness/</link><pubDate>Sun, 01 Aug 2021 10:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/fitness/</guid><description>&lt;h1 id="时间安排">时间安排&lt;/h1>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801191101.png"
 loading="lazy"
 alt="20210801191101"
@@ -2833,7 +2833,7 @@ alt="20210801202042"
 &lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801201923.png"
 loading="lazy"
 alt="20210801201923"
->&lt;/p></description></item><item><title>基于 Isight 的实验设计</title><link>https://sudrizzz.github.io/posts/isight-doe/</link><pubDate>Wed, 28 Jul 2021 19:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/isight-doe/</guid><description>&lt;h1 id="实验设计">实验设计&lt;/h1>
+>&lt;/p></description></item><item><title>基于 Isight 的实验设计</title><link>https://meetqu.github.io/posts/isight-doe/</link><pubDate>Wed, 28 Jul 2021 19:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/isight-doe/</guid><description>&lt;h1 id="实验设计">实验设计&lt;/h1>
 &lt;p>实验设计（Design Of Experiments，DOE），一种安排实验和分析实验数据的数理统计方法。通过实验，研究并确定影响因子，通过改变因子设置以使输出达到最佳值；要严格按照计划进行实验，并进行分析，从而找到改进的途径。&lt;/p>
 &lt;ul>
 &lt;li>通过有效的实验方案的设计，找到可行的工艺方法和产品指标。&lt;/li>
@@ -3061,7 +3061,7 @@ alt="20210729092059"
 >【YouTube 转载】Isight 参数优化（士盟科技出品）（中文讲解）&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://www.bilibili.com/video/BV1a4411v7gf" target="_blank" rel="noopener"
 >Abaqus Isight 视频合集&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>飞机结冰论文阅读 2</title><link>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-2/</link><pubDate>Thu, 22 Apr 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-2/</guid><description>&lt;h1 id="文章简介">文章简介&lt;/h1>
+&lt;/ol></description></item><item><title>飞机结冰论文阅读 2</title><link>https://meetqu.github.io/posts/airplane-icing-paper-reading-note-2/</link><pubDate>Thu, 22 Apr 2021 08:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/airplane-icing-paper-reading-note-2/</guid><description>&lt;h1 id="文章简介">文章简介&lt;/h1>
 &lt;h2 id="来源">来源&lt;/h2>
 &lt;p>卷积神经网络在机翼升力系数预测中的应用&lt;br>
 Application of Convolutional Neural Network to Predict Airfoil Lift Coefficient&lt;br>
@@ -3133,7 +3133,7 @@ loading="lazy"
 alt="20210423194847"
 >&lt;/p>
 &lt;h1 id="结论">结论&lt;/h1>
-&lt;p>通过以上结果可以得知，对于将流体条件与翼型数据整合而成的”人工图像“，使用 CNN 网络对其进行训练是一个可行的方向。在运行时间方面，在训练 500 个批次的情况下，CNN 耗时 3206 秒，MLP 耗时 1700 秒，CNN 网络结构训练的每个 EPOCH 所需的计算步骤和时间要比 MLP 网络多得多。总之，作为概念的证明，提出的 CNN 架构在从给定的示例中学习以及预测样本以外的翼型的升力系数方面都表现出了合理的性能。&lt;/p></description></item><item><title>飞机结冰论文阅读 1</title><link>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-1/</link><pubDate>Tue, 20 Apr 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/airplane-icing-paper-reading-note-1/</guid><description>&lt;h1 id="文章简介">文章简介&lt;/h1>
+&lt;p>通过以上结果可以得知，对于将流体条件与翼型数据整合而成的”人工图像“，使用 CNN 网络对其进行训练是一个可行的方向。在运行时间方面，在训练 500 个批次的情况下，CNN 耗时 3206 秒，MLP 耗时 1700 秒，CNN 网络结构训练的每个 EPOCH 所需的计算步骤和时间要比 MLP 网络多得多。总之，作为概念的证明，提出的 CNN 架构在从给定的示例中学习以及预测样本以外的翼型的升力系数方面都表现出了合理的性能。&lt;/p></description></item><item><title>飞机结冰论文阅读 1</title><link>https://meetqu.github.io/posts/airplane-icing-paper-reading-note-1/</link><pubDate>Tue, 20 Apr 2021 08:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/airplane-icing-paper-reading-note-1/</guid><description>&lt;h1 id="文章简介">文章简介&lt;/h1>
 &lt;h2 id="来源">来源&lt;/h2>
 &lt;p>深度神经网络在用于飞机结冰检测和特征化的飞行中参数识别中的应用&lt;br>
 An application of Deep Neural Networks to the in-flight parameter identification for detection and characterization of aircraft icing&lt;br>
@@ -3203,7 +3203,7 @@ alt="20210421154045"
 loading="lazy"
 alt="20210421171746"
 >&lt;/p>
-&lt;p>当我们将参数识别问题建模为状态跟踪问题时；跟踪误差的 RMSE 值越低，表明跟踪越准确且更及时。因此，基于 DNN 的框架的参数识别性能被认为优于基于基线 $H_{\infty}$ 的方法。&lt;/p></description></item><item><title>Docker 搭建 ShareLaTeX</title><link>https://sudrizzz.github.io/posts/docker-host-sharelatex/</link><pubDate>Thu, 11 Mar 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/docker-host-sharelatex/</guid><description>&lt;h1 id="安装-sharelatex">安装 ShareLaTeX&lt;/h1>
+&lt;p>当我们将参数识别问题建模为状态跟踪问题时；跟踪误差的 RMSE 值越低，表明跟踪越准确且更及时。因此，基于 DNN 的框架的参数识别性能被认为优于基于基线 $H_{\infty}$ 的方法。&lt;/p></description></item><item><title>Docker 搭建 ShareLaTeX</title><link>https://meetqu.github.io/posts/docker-host-sharelatex/</link><pubDate>Thu, 11 Mar 2021 08:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/docker-host-sharelatex/</guid><description>&lt;h1 id="安装-sharelatex">安装 ShareLaTeX&lt;/h1>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -3443,7 +3443,7 @@ alt="20210421171746"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker restart mongo
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>《机器学习》笔记（第五章）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-4/</link><pubDate>Tue, 16 Feb 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-4/</guid><description>&lt;h1 id="5-神经网络">5 神经网络&lt;/h1>
+&lt;/div></description></item><item><title>《机器学习》笔记（第五章）</title><link>https://meetqu.github.io/posts/machine-learning-note-4/</link><pubDate>Tue, 16 Feb 2021 08:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/machine-learning-note-4/</guid><description>&lt;h1 id="5-神经网络">5 神经网络&lt;/h1>
 &lt;h2 id="51-神经元模型">5.1 神经元模型&lt;/h2>
 &lt;p>神经网络是由具有适应性的简单单元组成的广泛并行互连的网络，它的组织能够模拟生物神经系统对真实世界物体所作出的交互反应。我们在机器学习中谈论神经网络时指的是“神经网络学习”。&lt;/p>
 &lt;p>神经网络中最基本的成分是神经元（neuron）模型，即上述定义中的“简单单元”。在生物神经网络中，每个神经元与其他神经元相连，当它“兴奋”时，就会向相连的神经元发送化学物质，从而改变这些神经元内的电位；如果某神经元的电位超过了一个“阈值”（threshold），那么它就会被激活。即“兴奋”起来，向其他神经元发送化学物质。&lt;/p>
@@ -3529,7 +3529,7 @@ alt="20210218145023"
 &lt;p>典型的深度学习模型就是很深层的神经网络。显然，对神经网络模型，提高容量的一个简单办法是增加隐层的数目。隐层多了，相应的神经元连接权、阈值等参数就会更多。模型复杂度也可通过单纯增加隐层神经元的数目来实现，前面我们谈到过，单隐层的多层前馈网络已具有很强大的学习能力；但从增加模型复杂度的角度来看，增加隐层的数目显然比增加隐层神经元的数目更有效，因为增加隐层数不仅增加了拥有激活函数的神经元数目，还增加了激活函数嵌套的层数。然而，多隐层神经网络难以直接用经典算法（例如标准 BP 算法）进行训练，因为误差在多隐层内逆传播时，往往会“发散”（diverge）而不能收敛到稳定状态。&lt;/p>
 &lt;p>无监督逐层训练（unsupervised layer-wise training）是多隐层网络训练的有效手段，其基本思想是每次训练一层隐结点，训练时将上一层隐结点的输出作为输入，而本层隐结点的输出作为下一层隐结点的输入，这称为“预训练”（pre-training）；在预训练全部完成后，再对整个网络进行“微调”（fine-tuning）训练。&lt;/p>
 &lt;p>事实上，“预训练+微调”的做法可视为将大量参数分组，对每组先找到局部看来比较好的设置，然后再基于这些局部较优的结果联合起来进行全局寻优。这样就在利用了模型大量参数所提供的自由度的同时，有效地节省了训练开销。&lt;/p>
-&lt;p>另一种节省训练开销的策略是“权共享”（weight sharing），即让一组神经元使用相同的连接权。&lt;/p></description></item><item><title>《机器学习》笔记（第四章）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-3/</link><pubDate>Tue, 02 Feb 2021 08:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-3/</guid><description>&lt;h1 id="4-决策树">4 决策树&lt;/h1>
+&lt;p>另一种节省训练开销的策略是“权共享”（weight sharing），即让一组神经元使用相同的连接权。&lt;/p></description></item><item><title>《机器学习》笔记（第四章）</title><link>https://meetqu.github.io/posts/machine-learning-note-3/</link><pubDate>Tue, 02 Feb 2021 08:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/machine-learning-note-3/</guid><description>&lt;h1 id="4-决策树">4 决策树&lt;/h1>
 &lt;h2 id="41-基本流程">4.1 基本流程&lt;/h2>
 &lt;p>一般的，一棵决策树包含一个根结点、若干个内部结点和若干个叶结点；叶结点对应于决策结果，其他每个结点则对应于一个属性测试；每个结点包含的样本集合根据属性测试的结果被划分到子结点中；根结点包含样本全集。从根结点到每个叶结点的路径对应了一个判定测试序列。决策树学习的目的是为了产生一棵泛化能力强，即处理未见示例能力强的决策树，其基本流程遵循简单且直观的“分而治之”（divide-and-conquer）策略。&lt;/p>
 &lt;h2 id="42-划分选择">4.2 划分选择&lt;/h2>
@@ -3585,7 +3585,7 @@ alt="20210218145023"
 &lt;p>对于离散值属性，可以采用&lt;strong>众数填充&lt;/strong>或&lt;strong>相关性最高的列填充&lt;/strong>的方式，来填充缺失值。&lt;/p>
 &lt;p>对于连续值属性，可以对使用&lt;strong>中位数填充&lt;/strong>，也可以对&lt;strong>相关性最高的列做线性回归进行估计&lt;/strong>。&lt;/p>
 &lt;h2 id="45-多变量决策树">4.5 多变量决策树&lt;/h2>
-&lt;p>简而言之，单变量决策树（上述决策树）非叶节点，只针对某个（单个）属性取值进行测试分类；而多变量决策树非叶节点，不仅仅局限于单个属性取值，而是对&lt;strong>多个属性取值的线性组合&lt;/strong>进行测试分类。&lt;/p></description></item><item><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title><link>https://sudrizzz.github.io/posts/sae-2/</link><pubDate>Thu, 28 Jan 2021 18:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/sae-2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>简而言之，单变量决策树（上述决策树）非叶节点，只针对某个（单个）属性取值进行测试分类；而多变量决策树非叶节点，不仅仅局限于单个属性取值，而是对&lt;strong>多个属性取值的线性组合&lt;/strong>进行测试分类。&lt;/p></description></item><item><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title><link>https://meetqu.github.io/posts/sae-2/</link><pubDate>Thu, 28 Jan 2021 18:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/sae-2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>在&lt;a class="link" href="https://sudrizzz.github.io/posts/sae-1/" target="_blank" rel="noopener"
 >上一篇文章&lt;/a>中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。&lt;/p>
 &lt;h1 id="tiny_dnn-简介">tiny_dnn 简介&lt;/h1>
@@ -3860,7 +3860,7 @@ alt="20210129181931"
 >A quick introduction to tiny-dnn&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://tiny-dnn.readthedocs.io/en/latest/how_tos/How-Tos.html#construct-the-network-model" target="_blank" rel="noopener"
 >Details about tiny-dnn’s API and short examples&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>SAE 入门（一）</title><link>https://sudrizzz.github.io/posts/sae-1/</link><pubDate>Wed, 20 Jan 2021 18:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/sae-1/</guid><description>&lt;h1 id="autoencoder-简介">Autoencoder 简介&lt;/h1>
+&lt;/ol></description></item><item><title>SAE 入门（一）</title><link>https://meetqu.github.io/posts/sae-1/</link><pubDate>Wed, 20 Jan 2021 18:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/sae-1/</guid><description>&lt;h1 id="autoencoder-简介">Autoencoder 简介&lt;/h1>
 &lt;p>自编码器（Autoencoder，AE），是一种利用反向传播（backpropagation，BP）算法&lt;strong>使得输出值等于输入值&lt;/strong>的神经网络，它先将输入压缩成潜在空间表征，然后通过这种表征来重构输出。其中，空间表征可以看作是输入数据的高级抽象，通常是将高维度的数据抽象为低维度的数据。&lt;/p>
 &lt;p>自编码器由两部分组成：&lt;br>
 编码器：这部分能将输入压缩成潜在空间表征，可以用编码函数 $h=f(x)$ 表示;&lt;br>
@@ -4200,7 +4200,7 @@ alt="20210122160643"
 >反向传播算法 - 维基百科&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://github.com/Nana0606/autoencoder" target="_blank" rel="noopener"
 >Autoencoder - Github&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>《机器学习》笔记（第三章）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-2/</link><pubDate>Wed, 30 Dec 2020 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-2/</guid><description>&lt;h1 id="3-线性模型">3 线性模型&lt;/h1>
+&lt;/ol></description></item><item><title>《机器学习》笔记（第三章）</title><link>https://meetqu.github.io/posts/machine-learning-note-2/</link><pubDate>Wed, 30 Dec 2020 17:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/machine-learning-note-2/</guid><description>&lt;h1 id="3-线性模型">3 线性模型&lt;/h1>
 &lt;h2 id="31-基本形式">3.1 基本形式&lt;/h2>
 &lt;p>给定由 $d$ 个属性描述的示例 $\boldsymbol{x}=\{x_1; x_2;\cdots;x_d\}$，其中 $x_i$ 是 $\boldsymbol{x}$ 在第 $i$ 个属性上的取值，线性模型（linear model）试图学得一个通过属性的线性组合来进行预测的函数，即&lt;/p>
 &lt;p>$$ f(\boldsymbol{x}) = w_1x_1 + w_2x_2 + \cdots + w_dx_d + b $$&lt;/p>
@@ -4326,7 +4326,7 @@ alt="20201231162236"
 &lt;ol>
 &lt;li>&lt;a class="link" href="https://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB" target="_blank" rel="noopener"
 >海明距离&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>《机器学习》笔记（第一、二章）</title><link>https://sudrizzz.github.io/posts/machine-learning-note-1/</link><pubDate>Tue, 22 Dec 2020 09:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/machine-learning-note-1/</guid><description>&lt;p>《机器学习》笔记系列文章内容按照《机器学习》书本章节进行排布，节号与书中节号一一对应。&lt;/p>
+&lt;/ol></description></item><item><title>《机器学习》笔记（第一、二章）</title><link>https://meetqu.github.io/posts/machine-learning-note-1/</link><pubDate>Tue, 22 Dec 2020 09:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/machine-learning-note-1/</guid><description>&lt;p>《机器学习》笔记系列文章内容按照《机器学习》书本章节进行排布，节号与书中节号一一对应。&lt;/p>
 &lt;h1 id="1-绪论">1 绪论&lt;/h1>
 &lt;h2 id="12-基本术语">1.2 基本术语&lt;/h2>
 &lt;table>
@@ -4530,7 +4530,7 @@ alt="20201225171957"
 >分层抽样&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://datawhalechina.github.io/leeml-notes/" target="_blank" rel="noopener"
 >李宏毅机器学习笔记(LeeML-Notes)&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>GAN 网络之手写数字生成</title><link>https://sudrizzz.github.io/posts/gan-for-hand-written-digits/</link><pubDate>Tue, 08 Dec 2020 10:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/gan-for-hand-written-digits/</guid><description>&lt;h1 id="环境搭建">环境搭建&lt;/h1>
+&lt;/ol></description></item><item><title>GAN 网络之手写数字生成</title><link>https://meetqu.github.io/posts/gan-for-hand-written-digits/</link><pubDate>Tue, 08 Dec 2020 10:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/gan-for-hand-written-digits/</guid><description>&lt;h1 id="环境搭建">环境搭建&lt;/h1>
 &lt;p>本例中，所涉及的系统与软件版本列表如下。&lt;/p>
 &lt;table>
 &lt;thead>
@@ -5092,7 +5092,7 @@ alt="20201208201913"
 >conda 安装指定版本的指定包&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://luanlengli.github.io/2019/12/19/Python-pip%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AE%BE%E7%BD%AE%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90.html" target="_blank" rel="noopener"
 >Python pip 命令行设置国内镜像源&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>FastDFS 搭建分布式文件管理系统</title><link>https://sudrizzz.github.io/posts/getting-to-know-fastdfs/</link><pubDate>Wed, 04 Nov 2020 17:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-fastdfs/</guid><description>&lt;h1 id="fastdfs-简介">FastDFS 简介&lt;/h1>
+&lt;/ol></description></item><item><title>FastDFS 搭建分布式文件管理系统</title><link>https://meetqu.github.io/posts/getting-to-know-fastdfs/</link><pubDate>Wed, 04 Nov 2020 17:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/getting-to-know-fastdfs/</guid><description>&lt;h1 id="fastdfs-简介">FastDFS 简介&lt;/h1>
 &lt;p>FastDFS 是一个开源的高性能分布式文件系统（Distributed File System）。它的主要功能包括：文件存储、文件同步和文件访问以及高容量和负载平衡。主要解决了海量数据存储问题，特别适合以中小文件（建议范围：4KB &amp;lt; file_size &amp;lt; 500MB）为载体的在线服务。&lt;/p>
 &lt;p>FastDFS 开源地址：https://github.com/happyfish100/fastdfs&lt;/p>
 &lt;p>由于网络上已有很多详细的关于 FastDFS 的介绍，故此处不再赘述。请查看参考文章中的第 1、2 条。&lt;/p>
@@ -5726,7 +5726,7 @@ alt="20201104104028"
 >初识 Nginx&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://github.com/happyfish100/fastdfs-nginx-module/blob/master/INSTALL" target="_blank" rel="noopener"
 >fastdfs nginx module installation introduction&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>Spark 分布式内存计算框架</title><link>https://sudrizzz.github.io/posts/spark-distributed-programming/</link><pubDate>Fri, 23 Oct 2020 20:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/spark-distributed-programming/</guid><description>&lt;h1 id="spark-简介">Spark 简介&lt;/h1>
+&lt;/ol></description></item><item><title>Spark 分布式内存计算框架</title><link>https://meetqu.github.io/posts/spark-distributed-programming/</link><pubDate>Fri, 23 Oct 2020 20:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/spark-distributed-programming/</guid><description>&lt;h1 id="spark-简介">Spark 简介&lt;/h1>
 &lt;p>Spark 是一种基于内存的、用以实现高效集群计算的平台。准确地讲，Spark 是一个大数据并行计算框架，是对广泛使用的 MapReduce 计算模型的扩展。Spark 有着自己的生态系统，但同时兼容
 HDFS、Hive 等分布式存储系统，可以完美融入 Hadoop 的生态圈中，代替 MapReduce 去执行更为高效的分布式计算。两者的区别在于：基于 MapReduce 的计算引擎通常会将中间结果输出到磁盘上进行存储和容错；而 Spark 则是将中间结果尽量保存在内存中以减少底层存储系统的 I/O，以提高计算速度。&lt;/p>
 &lt;h1 id="spark-编程模型">Spark 编程模型&lt;/h1>
@@ -6166,7 +6166,7 @@ User: davidisbetterthenyou, Number of videos: 16
 >RDD Aggregate in spark&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="http://dblab.xmu.edu.cn/blog/1327/" target="_blank" rel="noopener"
 >利用开发工具 IntelliJ IDEA 编写 Spark 应用程序（Scala+Maven）&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>MapReduce 分布式编程</title><link>https://sudrizzz.github.io/posts/mapreduce-distributed-programming/</link><pubDate>Sat, 17 Oct 2020 20:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/mapreduce-distributed-programming/</guid><description>&lt;h1 id="词频统计程序示例">词频统计程序示例&lt;/h1>
+&lt;/ol></description></item><item><title>MapReduce 分布式编程</title><link>https://meetqu.github.io/posts/mapreduce-distributed-programming/</link><pubDate>Sat, 17 Oct 2020 20:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/mapreduce-distributed-programming/</guid><description>&lt;h1 id="词频统计程序示例">词频统计程序示例&lt;/h1>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014180000.png"
 loading="lazy"
 alt="20201014180000"
@@ -6448,7 +6448,7 @@ Pets &amp;amp; Animals 95
 Science &amp;amp; Technology 80
 Sports 253
 Travel &amp;amp; Events 113
-&lt;/code>&lt;/pre></description></item><item><title>HDFS 文件管理</title><link>https://sudrizzz.github.io/posts/hdfs-file-system/</link><pubDate>Mon, 12 Oct 2020 15:20:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/hdfs-file-system/</guid><description>&lt;blockquote>
+&lt;/code>&lt;/pre></description></item><item><title>HDFS 文件管理</title><link>https://meetqu.github.io/posts/hdfs-file-system/</link><pubDate>Mon, 12 Oct 2020 15:20:11 +0800</pubDate><guid>https://meetqu.github.io/posts/hdfs-file-system/</guid><description>&lt;blockquote>
 &lt;p>本文所有代码均可在 &lt;a class="link" href="https://github.com/sudrizzz/HDFSOperations" target="_blank" rel="noopener"
 >https://github.com/sudrizzz/HDFSOperations&lt;/a> 查看。&lt;/p>
 &lt;/blockquote>
@@ -6825,7 +6825,7 @@ alt="20201023190400"
 &lt;/blockquote>
 &lt;h1 id="参考文章">参考文章&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.cnblogs.com/qingyunzong/p/8548806.html" target="_blank" rel="noopener"
->https://www.cnblogs.com/qingyunzong/p/8548806.html&lt;/a>&lt;/p></description></item><item><title>初识 Hadoop</title><link>https://sudrizzz.github.io/posts/getting-to-know-hadoop/</link><pubDate>Thu, 24 Sep 2020 09:20:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-hadoop/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+>https://www.cnblogs.com/qingyunzong/p/8548806.html&lt;/a>&lt;/p></description></item><item><title>初识 Hadoop</title><link>https://meetqu.github.io/posts/getting-to-know-hadoop/</link><pubDate>Thu, 24 Sep 2020 09:20:11 +0800</pubDate><guid>https://meetqu.github.io/posts/getting-to-know-hadoop/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>本系列文章是基于《大数据技术基础》与 &lt;a class="link" href="https://coding.imooc.com/class/128.html" target="_blank" rel="noopener"
 >10 小时入门大数据&lt;/a> 课程，如果有兴趣可以先阅读该书并观看视频教程。本系列文章中所用到的软件版本及其下载地址如下：&lt;/p>
 &lt;table>
@@ -7622,7 +7622,7 @@ alt="20200926211331"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nt">&amp;lt;/property&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>CMU 15-213 存储器层次结构</title><link>https://sudrizzz.github.io/posts/cmu-15-213-lesson3/</link><pubDate>Sun, 20 Sep 2020 15:20:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/cmu-15-213-lesson3/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+&lt;/div></description></item><item><title>CMU 15-213 存储器层次结构</title><link>https://meetqu.github.io/posts/cmu-15-213-lesson3/</link><pubDate>Sun, 20 Sep 2020 15:20:11 +0800</pubDate><guid>https://meetqu.github.io/posts/cmu-15-213-lesson3/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>本课的第三、四章分别是程序的机器级表示和处理器体系结构，由于过于硬核，此处略过。第五章是优化程序性能，讲解了如何最大限度地提高程序执行效能，此处也略过。本文基于第六章存储器层级结构。&lt;/p>
 &lt;h1 id="存储技术">存储技术&lt;/h1>
 &lt;p>在本节中主要介绍 SRAM 存储器、DRAM 存储器、ROM 存储器以及机械和固态硬盘。&lt;/p>
@@ -7798,7 +7798,7 @@ alt="20200924155525"
 >https://zh.wikipedia.org/wiki/%E9%97%AA%E5%AD%98&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://www.bilibili.com/video/av61437877" target="_blank" rel="noopener"
 >https://www.bilibili.com/video/av61437877&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>CMU 15-213 浮点数</title><link>https://sudrizzz.github.io/posts/cmu-15-213-lesson2/</link><pubDate>Mon, 14 Sep 2020 18:57:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/cmu-15-213-lesson2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+&lt;/ol></description></item><item><title>CMU 15-213 浮点数</title><link>https://meetqu.github.io/posts/cmu-15-213-lesson2/</link><pubDate>Mon, 14 Sep 2020 18:57:11 +0800</pubDate><guid>https://meetqu.github.io/posts/cmu-15-213-lesson2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>在 &lt;a class="link" href="https://sudrizzz.github.io/posts/cmu-15-213-lesson1/" target="_blank" rel="noopener"
 >上一篇文章&lt;/a> 中，我们了解了二进制有符号数、无符号数以及其相关的运算方法，在本篇中，我们将进一步了解浮点数在计算机中的相关知识。&lt;/p>
 &lt;h1 id="二进制小数">二进制小数&lt;/h1>
@@ -8042,7 +8042,7 @@ alt="20200917101541"
 &lt;ol>
 &lt;li>&lt;a class="link" href="https://qiankun214.github.io/2019/05/28/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%A4%84%E7%90%86/" target="_blank" rel="noopener"
 >https://qiankun214.github.io/2019/05/28/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%A4%84%E7%90%86/&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>初识 Nginx（二）</title><link>https://sudrizzz.github.io/posts/getting-to-know-nginx-2/</link><pubDate>Fri, 11 Sep 2020 19:51:07 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-nginx-2/</guid><description>&lt;h1 id="应用示例">应用示例&lt;/h1>
+&lt;/ol></description></item><item><title>初识 Nginx（二）</title><link>https://meetqu.github.io/posts/getting-to-know-nginx-2/</link><pubDate>Fri, 11 Sep 2020 19:51:07 +0800</pubDate><guid>https://meetqu.github.io/posts/getting-to-know-nginx-2/</guid><description>&lt;h1 id="应用示例">应用示例&lt;/h1>
 &lt;blockquote>
 &lt;p>本篇文章中所使用的 Nginx 是通过下载软件包手动编译安装的，详见 &lt;a class="link" href="https://sudrizzz.github.io/posts/getting-to-know-nginx" target="_blank" rel="noopener"
 >上一篇文章&lt;/a> 离线安装部分。&lt;/p>
@@ -8507,7 +8507,7 @@ alt="20200913143610"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">kill&lt;/span> &lt;span class="m">2323&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>初识 Nginx</title><link>https://sudrizzz.github.io/posts/getting-to-know-nginx/</link><pubDate>Mon, 07 Sep 2020 15:47:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-nginx/</guid><description>&lt;h1 id="nginx-简介">Nginx 简介&lt;/h1>
+&lt;/div></description></item><item><title>初识 Nginx</title><link>https://meetqu.github.io/posts/getting-to-know-nginx/</link><pubDate>Mon, 07 Sep 2020 15:47:11 +0800</pubDate><guid>https://meetqu.github.io/posts/getting-to-know-nginx/</guid><description>&lt;h1 id="nginx-简介">Nginx 简介&lt;/h1>
 &lt;blockquote>
 &lt;p>简介内容来自 Nginx 官网 &lt;a class="link" href="http://nginx.org/en" target="_blank" rel="noopener"
 >http://nginx.org/en&lt;/a>&lt;/p>
@@ -8986,7 +8986,7 @@ alt="20200906153613"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/usr/local/nginx/conf/nginx.conf
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>CMU 15-213 位、字节与整数</title><link>https://sudrizzz.github.io/posts/cmu-15-213-lesson1/</link><pubDate>Fri, 04 Sep 2020 19:02:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/cmu-15-213-lesson1/</guid><description>&lt;h1 id="简介">简介&lt;/h1>
+&lt;/div></description></item><item><title>CMU 15-213 位、字节与整数</title><link>https://meetqu.github.io/posts/cmu-15-213-lesson1/</link><pubDate>Fri, 04 Sep 2020 19:02:11 +0800</pubDate><guid>https://meetqu.github.io/posts/cmu-15-213-lesson1/</guid><description>&lt;h1 id="简介">简介&lt;/h1>
 &lt;p>CSAPP 课程全程 Computer Systems: A Programmer’s Perspective，中文翻译为“从程序员的视角，看计算机系统！”或“深入理解计算机系统”。此课程是卡耐基梅隆大学开设的一门课程，官方网站 &lt;a class="link" href="https://www.cs.cmu.edu/~213/index.html" target="_blank" rel="noopener"
 >https://www.cs.cmu.edu/~213/index.html&lt;/a>。&lt;/p>
 &lt;blockquote>
@@ -9481,7 +9481,7 @@ alt="20200905112700"
 &lt;td>&lt;em>11111111&lt;/em> 11000100&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>初识 Docker</title><link>https://sudrizzz.github.io/posts/getting-to-know-docker/</link><pubDate>Wed, 02 Sep 2020 18:37:11 +0800</pubDate><guid>https://sudrizzz.github.io/posts/getting-to-know-docker/</guid><description>&lt;h1 id="docker-简介">Docker 简介&lt;/h1>
+&lt;/table></description></item><item><title>初识 Docker</title><link>https://meetqu.github.io/posts/getting-to-know-docker/</link><pubDate>Wed, 02 Sep 2020 18:37:11 +0800</pubDate><guid>https://meetqu.github.io/posts/getting-to-know-docker/</guid><description>&lt;h1 id="docker-简介">Docker 简介&lt;/h1>
 &lt;p>简介来自于 &lt;a class="link" href="http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html" target="_blank" rel="noopener"
 >Docker 入门教程 - 阮一峰的网络日志&lt;/a>&lt;/p>
 &lt;blockquote>
@@ -9876,7 +9876,7 @@ alt="20200905112700"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Deleted: sha256:9c27e219663c25e0f28493790cc0b88bc973ba3b1686355f221c38a36978ac63
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>从零搭建 Github Pages</title><link>https://sudrizzz.github.io/posts/build-blog-from-scratch/</link><pubDate>Sun, 09 Aug 2020 12:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/build-blog-from-scratch/</guid><description>&lt;h1 id="创建仓库">创建仓库&lt;/h1>
+&lt;/div></description></item><item><title>从零搭建 Github Pages</title><link>https://meetqu.github.io/posts/build-blog-from-scratch/</link><pubDate>Sun, 09 Aug 2020 12:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/build-blog-from-scratch/</guid><description>&lt;h1 id="创建仓库">创建仓库&lt;/h1>
 &lt;p>首先需要在 Github 中创建一个名为 &lt;code>&amp;lt;username&amp;gt;.github.io&lt;/code> 的仓库，其中 &lt;code>&amp;lt;username&amp;gt;&lt;/code> 为你的 Github 用户名。&lt;/p>
 &lt;blockquote>
 &lt;p>注意：&lt;br>
@@ -10274,7 +10274,7 @@ alt="20200809144430"
 &lt;li>执行 &lt;code>hugo --minify --cleanDestinationDir&lt;/code>；&lt;/li>
 &lt;li>进入 &lt;code>/public&lt;/code> 目录，将新生成或编辑过的内容推送到 Github，此处不再赘述。&lt;/li>
 &lt;/ol>
-&lt;p>此时我们的博客就创建好了，但是创建文章内容的操作有一些复杂和繁琐，且本文中并未讲解关于 markdown 中插入图片的相关问题。所以在下文中，我们将简化操作步骤，并实现将图片也托管到 Github 的操作。&lt;/p></description></item><item><title>The meaning of life</title><link>https://sudrizzz.github.io/posts/the-meaning-of-life/</link><pubDate>Fri, 21 Jun 2019 00:00:00 +0800</pubDate><guid>https://sudrizzz.github.io/posts/the-meaning-of-life/</guid><description>&lt;p>  ……我细读来书，终觉得你不免作茧自缚。你自己去寻出一个本不成问题的问题，“人生有何意义？”其实这个问题是容易解答的。人生的意义全是各人自己寻出来、造出来的：高尚、卑劣、清贵、污浊、有用、无用，……全靠自己的作为。&lt;/p>
+&lt;p>此时我们的博客就创建好了，但是创建文章内容的操作有一些复杂和繁琐，且本文中并未讲解关于 markdown 中插入图片的相关问题。所以在下文中，我们将简化操作步骤，并实现将图片也托管到 Github 的操作。&lt;/p></description></item><item><title>The meaning of life</title><link>https://meetqu.github.io/posts/the-meaning-of-life/</link><pubDate>Fri, 21 Jun 2019 00:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/the-meaning-of-life/</guid><description>&lt;p>  ……我细读来书，终觉得你不免作茧自缚。你自己去寻出一个本不成问题的问题，“人生有何意义？”其实这个问题是容易解答的。人生的意义全是各人自己寻出来、造出来的：高尚、卑劣、清贵、污浊、有用、无用，……全靠自己的作为。&lt;/p>
 &lt;p>  生命本身不过是一件生物学的事实，有什么意义可说？一个人与一只猎，一只狗，有什么分别？人生的意义不在于何以有生，而在自己怎样生活。你若情愿把这六尺之躯葬送在白昼作梦之上二那就是你这一生的意义。你若发愤振作起来，决心去寻求生命的意义，去创造自己的生命的意义，那么，你活一日便有一日的意义，作一事便添一事的意义，生命无穷，生命的意义也无穷了。&lt;/p>
 &lt;p>  总之，生命本没有意义，你要能给他什么意义，他就有什么意义。与其终日冥想人生有何意义，不如试用此生作点有意义的事……&lt;/p>
 &lt;p>  &lt;em>节选自《答某君书》—— 胡适&lt;/em>&lt;/p></description></item></channel></rss>
