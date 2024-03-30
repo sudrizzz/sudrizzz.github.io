@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on Anthony's blog</title><link>https://meetqu.github.io/categories/java/</link><description>Recent content in Java on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 29 Aug 2022 10:00:00 +0800</lastBuildDate><atom:link href="https://meetqu.github.io/categories/java/index.xml" rel="self" type="application/rss+xml"/><item><title>美团 Java 岗算法笔试记录（2022/08/27）</title><link>https://meetqu.github.io/posts/meituan-java-note-3/</link><pubDate>Mon, 29 Aug 2022 10:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/meituan-java-note-3/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on Anthony's blog</title><link>https://jinggqu.github.io/categories/java/</link><description>Recent content in Java on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 29 Aug 2022 10:00:00 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/categories/java/index.xml" rel="self" type="application/rss+xml"/><item><title>美团 Java 岗算法笔试记录（2022/08/27）</title><link>https://jinggqu.github.io/posts/meituan-java-note-3/</link><pubDate>Mon, 29 Aug 2022 10:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/meituan-java-note-3/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
 &lt;h2 id="题目描述">题目描述&lt;/h2>
 &lt;p>小美在摆弄她的字符串。最近小团送了小美一个特殊字符 &amp;lsquo;*&amp;rsquo;，这个字符可以和其他所有字符匹配，除了这个字符外，其他字符只能自己和自己匹配。小美先前有一个字符串 S，长度为 n，现在她又新组合了一个可有特殊字符 &amp;lsquo;*&amp;rsquo; 的字符串 s，长度为 m。小美想知道有多少个位置 i，使得 S[i+j] 与 s[j] 对于 1≤j≤m 均能匹配上？其中 X[y] 代表字符串 X 中第 y 位的字符。&lt;/p>
 &lt;h2 id="测试样例">测试样例&lt;/h2>
@@ -409,7 +409,7 @@ aa
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/20）</title><link>https://meetqu.github.io/posts/meituan-java-note-2/</link><pubDate>Wed, 24 Aug 2022 10:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/meituan-java-note-2/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
+&lt;/div></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/20）</title><link>https://jinggqu.github.io/posts/meituan-java-note-2/</link><pubDate>Wed, 24 Aug 2022 10:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/meituan-java-note-2/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
 &lt;h2 id="题目描述">题目描述&lt;/h2>
 &lt;p>小团想要自己来烤串！不过在烤串之前，需要串好烤串。小团有 n 个荤菜和 n 个素菜，他想按顺序分别一个荤菜一个素菜串起来，想请你帮他串好！给出两个长度分别为 n 的仅包含小写英文字母的串 A 和 B，分别代表荤菜和素菜的种类（用字母来表示菜的种类）。请你以从左到右的顺序依次串好他们！例如对于荤菜串 A1A2&amp;hellip;An 和素菜串 B1B2&amp;hellip;Bn，串好应该是 A1B1A2B2&amp;hellip;AnBn。&lt;/p>
 &lt;h2 id="测试样例">测试样例&lt;/h2>
@@ -901,7 +901,7 @@ aebfcgdh&lt;/p>
 &lt;p>1.&lt;a class="link" href="https://www.nowcoder.com/discuss/1021869" target="_blank" rel="noopener"
 >08/20 美团后端笔试&lt;/a>&lt;br>
 2.&lt;a class="link" href="https://www.nowcoder.com/discuss/1021857" target="_blank" rel="noopener"
->20220820 美团笔试题解&lt;/a>&lt;/p></description></item><item><title>联想面试记录（2022/08/23 更新）</title><link>https://meetqu.github.io/posts/lenovo-java-interview/</link><pubDate>Tue, 16 Aug 2022 19:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/lenovo-java-interview/</guid><description>&lt;h1 id="投递岗位">投递岗位&lt;/h1>
+>20220820 美团笔试题解&lt;/a>&lt;/p></description></item><item><title>联想面试记录（2022/08/23 更新）</title><link>https://jinggqu.github.io/posts/lenovo-java-interview/</link><pubDate>Tue, 16 Aug 2022 19:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/lenovo-java-interview/</guid><description>&lt;h1 id="投递岗位">投递岗位&lt;/h1>
 &lt;p>&lt;a class="link" href="https://talent.lenovo.com.cn/resume/jdlist/2173" target="_blank" rel="noopener"
 >Java 开发工程师-China Geo&lt;/a>&lt;/p>
 &lt;h1 id="一面20220816">一面（2022/08/16）&lt;/h1>
@@ -944,7 +944,7 @@ aebfcgdh&lt;/p>
 &lt;li>线下及线上服务的调试方法都有哪些，以及相应的工具；&lt;/li>
 &lt;li>未来的职业规划；&lt;/li>
 &lt;li>有没有什么想问的？（ChinaGeo 与 SSG 的区别，剩下几次面试，本次面试表现）&lt;/li>
-&lt;/ol></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/13）</title><link>https://meetqu.github.io/posts/meituan-java-note-1/</link><pubDate>Mon, 15 Aug 2022 10:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/meituan-java-note-1/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
+&lt;/ol></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/13）</title><link>https://jinggqu.github.io/posts/meituan-java-note-1/</link><pubDate>Mon, 15 Aug 2022 10:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/meituan-java-note-1/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
 &lt;h2 id="题目描述">题目描述&lt;/h2>
 &lt;p>炸鸡店拥有一名会传送魔法的外卖派送员。该外卖派送员派送单子时，可以消耗时间 t 来正常派送单子（一次只能派送一个单子，不能多个同时派送），也可以使用魔法不耗费时间地隔空瞬间投送。现在炸鸡店在时刻 0 接收到了若干炸鸡订单，每个单子都有它的截止送达时间。外卖派送员需要保证送达时间小于等于这个截止时间。现在询问外卖员最少要使用几次魔法来保证没有外卖超时。&lt;/p>
 &lt;h2 id="测试样例">测试样例&lt;/h2>

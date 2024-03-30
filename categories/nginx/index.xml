@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nginx on Anthony's blog</title><link>https://meetqu.github.io/categories/nginx/</link><description>Recent content in Nginx on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 11 Sep 2020 19:51:07 +0800</lastBuildDate><atom:link href="https://meetqu.github.io/categories/nginx/index.xml" rel="self" type="application/rss+xml"/><item><title>初识 Nginx（二）</title><link>https://meetqu.github.io/posts/getting-to-know-nginx-2/</link><pubDate>Fri, 11 Sep 2020 19:51:07 +0800</pubDate><guid>https://meetqu.github.io/posts/getting-to-know-nginx-2/</guid><description>&lt;h1 id="应用示例">应用示例&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nginx on Anthony's blog</title><link>https://jinggqu.github.io/categories/nginx/</link><description>Recent content in Nginx on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 11 Sep 2020 19:51:07 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/categories/nginx/index.xml" rel="self" type="application/rss+xml"/><item><title>初识 Nginx（二）</title><link>https://jinggqu.github.io/posts/getting-to-know-nginx-2/</link><pubDate>Fri, 11 Sep 2020 19:51:07 +0800</pubDate><guid>https://jinggqu.github.io/posts/getting-to-know-nginx-2/</guid><description>&lt;h1 id="应用示例">应用示例&lt;/h1>
 &lt;blockquote>
 &lt;p>本篇文章中所使用的 Nginx 是通过下载软件包手动编译安装的，详见 &lt;a class="link" href="https://sudrizzz.github.io/posts/getting-to-know-nginx" target="_blank" rel="noopener"
 >上一篇文章&lt;/a> 离线安装部分。&lt;/p>
@@ -463,7 +463,7 @@ alt="20200913143610"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">kill&lt;/span> &lt;span class="m">2323&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>初识 Nginx</title><link>https://meetqu.github.io/posts/getting-to-know-nginx/</link><pubDate>Mon, 07 Sep 2020 15:47:11 +0800</pubDate><guid>https://meetqu.github.io/posts/getting-to-know-nginx/</guid><description>&lt;h1 id="nginx-简介">Nginx 简介&lt;/h1>
+&lt;/div></description></item><item><title>初识 Nginx</title><link>https://jinggqu.github.io/posts/getting-to-know-nginx/</link><pubDate>Mon, 07 Sep 2020 15:47:11 +0800</pubDate><guid>https://jinggqu.github.io/posts/getting-to-know-nginx/</guid><description>&lt;h1 id="nginx-简介">Nginx 简介&lt;/h1>
 &lt;blockquote>
 &lt;p>简介内容来自 Nginx 官网 &lt;a class="link" href="http://nginx.org/en" target="_blank" rel="noopener"
 >http://nginx.org/en&lt;/a>&lt;/p>

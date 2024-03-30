@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine-Learning on Anthony's blog</title><link>https://meetqu.github.io/categories/machine-learning/</link><description>Recent content in Machine-Learning on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 16 Feb 2021 08:00:00 +0800</lastBuildDate><atom:link href="https://meetqu.github.io/categories/machine-learning/index.xml" rel="self" type="application/rss+xml"/><item><title>《机器学习》笔记（第五章）</title><link>https://meetqu.github.io/posts/machine-learning-note-4/</link><pubDate>Tue, 16 Feb 2021 08:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/machine-learning-note-4/</guid><description>&lt;h1 id="5-神经网络">5 神经网络&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine-Learning on Anthony's blog</title><link>https://jinggqu.github.io/categories/machine-learning/</link><description>Recent content in Machine-Learning on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 16 Feb 2021 08:00:00 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/categories/machine-learning/index.xml" rel="self" type="application/rss+xml"/><item><title>《机器学习》笔记（第五章）</title><link>https://jinggqu.github.io/posts/machine-learning-note-4/</link><pubDate>Tue, 16 Feb 2021 08:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/machine-learning-note-4/</guid><description>&lt;h1 id="5-神经网络">5 神经网络&lt;/h1>
 &lt;h2 id="51-神经元模型">5.1 神经元模型&lt;/h2>
 &lt;p>神经网络是由具有适应性的简单单元组成的广泛并行互连的网络，它的组织能够模拟生物神经系统对真实世界物体所作出的交互反应。我们在机器学习中谈论神经网络时指的是“神经网络学习”。&lt;/p>
 &lt;p>神经网络中最基本的成分是神经元（neuron）模型，即上述定义中的“简单单元”。在生物神经网络中，每个神经元与其他神经元相连，当它“兴奋”时，就会向相连的神经元发送化学物质，从而改变这些神经元内的电位；如果某神经元的电位超过了一个“阈值”（threshold），那么它就会被激活。即“兴奋”起来，向其他神经元发送化学物质。&lt;/p>
@@ -84,7 +84,7 @@ alt="20210218145023"
 &lt;p>典型的深度学习模型就是很深层的神经网络。显然，对神经网络模型，提高容量的一个简单办法是增加隐层的数目。隐层多了，相应的神经元连接权、阈值等参数就会更多。模型复杂度也可通过单纯增加隐层神经元的数目来实现，前面我们谈到过，单隐层的多层前馈网络已具有很强大的学习能力；但从增加模型复杂度的角度来看，增加隐层的数目显然比增加隐层神经元的数目更有效，因为增加隐层数不仅增加了拥有激活函数的神经元数目，还增加了激活函数嵌套的层数。然而，多隐层神经网络难以直接用经典算法（例如标准 BP 算法）进行训练，因为误差在多隐层内逆传播时，往往会“发散”（diverge）而不能收敛到稳定状态。&lt;/p>
 &lt;p>无监督逐层训练（unsupervised layer-wise training）是多隐层网络训练的有效手段，其基本思想是每次训练一层隐结点，训练时将上一层隐结点的输出作为输入，而本层隐结点的输出作为下一层隐结点的输入，这称为“预训练”（pre-training）；在预训练全部完成后，再对整个网络进行“微调”（fine-tuning）训练。&lt;/p>
 &lt;p>事实上，“预训练+微调”的做法可视为将大量参数分组，对每组先找到局部看来比较好的设置，然后再基于这些局部较优的结果联合起来进行全局寻优。这样就在利用了模型大量参数所提供的自由度的同时，有效地节省了训练开销。&lt;/p>
-&lt;p>另一种节省训练开销的策略是“权共享”（weight sharing），即让一组神经元使用相同的连接权。&lt;/p></description></item><item><title>《机器学习》笔记（第四章）</title><link>https://meetqu.github.io/posts/machine-learning-note-3/</link><pubDate>Tue, 02 Feb 2021 08:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/machine-learning-note-3/</guid><description>&lt;h1 id="4-决策树">4 决策树&lt;/h1>
+&lt;p>另一种节省训练开销的策略是“权共享”（weight sharing），即让一组神经元使用相同的连接权。&lt;/p></description></item><item><title>《机器学习》笔记（第四章）</title><link>https://jinggqu.github.io/posts/machine-learning-note-3/</link><pubDate>Tue, 02 Feb 2021 08:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/machine-learning-note-3/</guid><description>&lt;h1 id="4-决策树">4 决策树&lt;/h1>
 &lt;h2 id="41-基本流程">4.1 基本流程&lt;/h2>
 &lt;p>一般的，一棵决策树包含一个根结点、若干个内部结点和若干个叶结点；叶结点对应于决策结果，其他每个结点则对应于一个属性测试；每个结点包含的样本集合根据属性测试的结果被划分到子结点中；根结点包含样本全集。从根结点到每个叶结点的路径对应了一个判定测试序列。决策树学习的目的是为了产生一棵泛化能力强，即处理未见示例能力强的决策树，其基本流程遵循简单且直观的“分而治之”（divide-and-conquer）策略。&lt;/p>
 &lt;h2 id="42-划分选择">4.2 划分选择&lt;/h2>
@@ -140,7 +140,7 @@ alt="20210218145023"
 &lt;p>对于离散值属性，可以采用&lt;strong>众数填充&lt;/strong>或&lt;strong>相关性最高的列填充&lt;/strong>的方式，来填充缺失值。&lt;/p>
 &lt;p>对于连续值属性，可以对使用&lt;strong>中位数填充&lt;/strong>，也可以对&lt;strong>相关性最高的列做线性回归进行估计&lt;/strong>。&lt;/p>
 &lt;h2 id="45-多变量决策树">4.5 多变量决策树&lt;/h2>
-&lt;p>简而言之，单变量决策树（上述决策树）非叶节点，只针对某个（单个）属性取值进行测试分类；而多变量决策树非叶节点，不仅仅局限于单个属性取值，而是对&lt;strong>多个属性取值的线性组合&lt;/strong>进行测试分类。&lt;/p></description></item><item><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title><link>https://meetqu.github.io/posts/sae-2/</link><pubDate>Thu, 28 Jan 2021 18:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/sae-2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>简而言之，单变量决策树（上述决策树）非叶节点，只针对某个（单个）属性取值进行测试分类；而多变量决策树非叶节点，不仅仅局限于单个属性取值，而是对&lt;strong>多个属性取值的线性组合&lt;/strong>进行测试分类。&lt;/p></description></item><item><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title><link>https://jinggqu.github.io/posts/sae-2/</link><pubDate>Thu, 28 Jan 2021 18:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/sae-2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>在&lt;a class="link" href="https://sudrizzz.github.io/posts/sae-1/" target="_blank" rel="noopener"
 >上一篇文章&lt;/a>中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。&lt;/p>
 &lt;h1 id="tiny_dnn-简介">tiny_dnn 简介&lt;/h1>
@@ -415,7 +415,7 @@ alt="20210129181931"
 >A quick introduction to tiny-dnn&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://tiny-dnn.readthedocs.io/en/latest/how_tos/How-Tos.html#construct-the-network-model" target="_blank" rel="noopener"
 >Details about tiny-dnn’s API and short examples&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>SAE 入门（一）</title><link>https://meetqu.github.io/posts/sae-1/</link><pubDate>Wed, 20 Jan 2021 18:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/sae-1/</guid><description>&lt;h1 id="autoencoder-简介">Autoencoder 简介&lt;/h1>
+&lt;/ol></description></item><item><title>SAE 入门（一）</title><link>https://jinggqu.github.io/posts/sae-1/</link><pubDate>Wed, 20 Jan 2021 18:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/sae-1/</guid><description>&lt;h1 id="autoencoder-简介">Autoencoder 简介&lt;/h1>
 &lt;p>自编码器（Autoencoder，AE），是一种利用反向传播（backpropagation，BP）算法&lt;strong>使得输出值等于输入值&lt;/strong>的神经网络，它先将输入压缩成潜在空间表征，然后通过这种表征来重构输出。其中，空间表征可以看作是输入数据的高级抽象，通常是将高维度的数据抽象为低维度的数据。&lt;/p>
 &lt;p>自编码器由两部分组成：&lt;br>
 编码器：这部分能将输入压缩成潜在空间表征，可以用编码函数 $h=f(x)$ 表示;&lt;br>
@@ -755,7 +755,7 @@ alt="20210122160643"
 >反向传播算法 - 维基百科&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://github.com/Nana0606/autoencoder" target="_blank" rel="noopener"
 >Autoencoder - Github&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>《机器学习》笔记（第三章）</title><link>https://meetqu.github.io/posts/machine-learning-note-2/</link><pubDate>Wed, 30 Dec 2020 17:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/machine-learning-note-2/</guid><description>&lt;h1 id="3-线性模型">3 线性模型&lt;/h1>
+&lt;/ol></description></item><item><title>《机器学习》笔记（第三章）</title><link>https://jinggqu.github.io/posts/machine-learning-note-2/</link><pubDate>Wed, 30 Dec 2020 17:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/machine-learning-note-2/</guid><description>&lt;h1 id="3-线性模型">3 线性模型&lt;/h1>
 &lt;h2 id="31-基本形式">3.1 基本形式&lt;/h2>
 &lt;p>给定由 $d$ 个属性描述的示例 $\boldsymbol{x}=\{x_1; x_2;\cdots;x_d\}$，其中 $x_i$ 是 $\boldsymbol{x}$ 在第 $i$ 个属性上的取值，线性模型（linear model）试图学得一个通过属性的线性组合来进行预测的函数，即&lt;/p>
 &lt;p>$$ f(\boldsymbol{x}) = w_1x_1 + w_2x_2 + \cdots + w_dx_d + b $$&lt;/p>
@@ -881,7 +881,7 @@ alt="20201231162236"
 &lt;ol>
 &lt;li>&lt;a class="link" href="https://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB" target="_blank" rel="noopener"
 >海明距离&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>《机器学习》笔记（第一、二章）</title><link>https://meetqu.github.io/posts/machine-learning-note-1/</link><pubDate>Tue, 22 Dec 2020 09:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/machine-learning-note-1/</guid><description>&lt;p>《机器学习》笔记系列文章内容按照《机器学习》书本章节进行排布，节号与书中节号一一对应。&lt;/p>
+&lt;/ol></description></item><item><title>《机器学习》笔记（第一、二章）</title><link>https://jinggqu.github.io/posts/machine-learning-note-1/</link><pubDate>Tue, 22 Dec 2020 09:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/machine-learning-note-1/</guid><description>&lt;p>《机器学习》笔记系列文章内容按照《机器学习》书本章节进行排布，节号与书中节号一一对应。&lt;/p>
 &lt;h1 id="1-绪论">1 绪论&lt;/h1>
 &lt;h2 id="12-基本术语">1.2 基本术语&lt;/h2>
 &lt;table>
@@ -1085,7 +1085,7 @@ alt="20201225171957"
 >分层抽样&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://datawhalechina.github.io/leeml-notes/" target="_blank" rel="noopener"
 >李宏毅机器学习笔记(LeeML-Notes)&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>GAN 网络之手写数字生成</title><link>https://meetqu.github.io/posts/gan-for-hand-written-digits/</link><pubDate>Tue, 08 Dec 2020 10:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/gan-for-hand-written-digits/</guid><description>&lt;h1 id="环境搭建">环境搭建&lt;/h1>
+&lt;/ol></description></item><item><title>GAN 网络之手写数字生成</title><link>https://jinggqu.github.io/posts/gan-for-hand-written-digits/</link><pubDate>Tue, 08 Dec 2020 10:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/gan-for-hand-written-digits/</guid><description>&lt;h1 id="环境搭建">环境搭建&lt;/h1>
 &lt;p>本例中，所涉及的系统与软件版本列表如下。&lt;/p>
 &lt;table>
 &lt;thead>

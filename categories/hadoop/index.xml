@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hadoop on Anthony's blog</title><link>https://meetqu.github.io/categories/hadoop/</link><description>Recent content in Hadoop on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 23 Oct 2020 20:00:00 +0800</lastBuildDate><atom:link href="https://meetqu.github.io/categories/hadoop/index.xml" rel="self" type="application/rss+xml"/><item><title>Spark 分布式内存计算框架</title><link>https://meetqu.github.io/posts/spark-distributed-programming/</link><pubDate>Fri, 23 Oct 2020 20:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/spark-distributed-programming/</guid><description>&lt;h1 id="spark-简介">Spark 简介&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hadoop on Anthony's blog</title><link>https://jinggqu.github.io/categories/hadoop/</link><description>Recent content in Hadoop on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 23 Oct 2020 20:00:00 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/categories/hadoop/index.xml" rel="self" type="application/rss+xml"/><item><title>Spark 分布式内存计算框架</title><link>https://jinggqu.github.io/posts/spark-distributed-programming/</link><pubDate>Fri, 23 Oct 2020 20:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/spark-distributed-programming/</guid><description>&lt;h1 id="spark-简介">Spark 简介&lt;/h1>
 &lt;p>Spark 是一种基于内存的、用以实现高效集群计算的平台。准确地讲，Spark 是一个大数据并行计算框架，是对广泛使用的 MapReduce 计算模型的扩展。Spark 有着自己的生态系统，但同时兼容
 HDFS、Hive 等分布式存储系统，可以完美融入 Hadoop 的生态圈中，代替 MapReduce 去执行更为高效的分布式计算。两者的区别在于：基于 MapReduce 的计算引擎通常会将中间结果输出到磁盘上进行存储和容错；而 Spark 则是将中间结果尽量保存在内存中以减少底层存储系统的 I/O，以提高计算速度。&lt;/p>
 &lt;h1 id="spark-编程模型">Spark 编程模型&lt;/h1>
@@ -438,7 +438,7 @@ User: davidisbetterthenyou, Number of videos: 16
 >RDD Aggregate in spark&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="http://dblab.xmu.edu.cn/blog/1327/" target="_blank" rel="noopener"
 >利用开发工具 IntelliJ IDEA 编写 Spark 应用程序（Scala+Maven）&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>MapReduce 分布式编程</title><link>https://meetqu.github.io/posts/mapreduce-distributed-programming/</link><pubDate>Sat, 17 Oct 2020 20:00:00 +0800</pubDate><guid>https://meetqu.github.io/posts/mapreduce-distributed-programming/</guid><description>&lt;h1 id="词频统计程序示例">词频统计程序示例&lt;/h1>
+&lt;/ol></description></item><item><title>MapReduce 分布式编程</title><link>https://jinggqu.github.io/posts/mapreduce-distributed-programming/</link><pubDate>Sat, 17 Oct 2020 20:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/mapreduce-distributed-programming/</guid><description>&lt;h1 id="词频统计程序示例">词频统计程序示例&lt;/h1>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014180000.png"
 loading="lazy"
 alt="20201014180000"
@@ -720,7 +720,7 @@ Pets &amp;amp; Animals 95
 Science &amp;amp; Technology 80
 Sports 253
 Travel &amp;amp; Events 113
-&lt;/code>&lt;/pre></description></item><item><title>HDFS 文件管理</title><link>https://meetqu.github.io/posts/hdfs-file-system/</link><pubDate>Mon, 12 Oct 2020 15:20:11 +0800</pubDate><guid>https://meetqu.github.io/posts/hdfs-file-system/</guid><description>&lt;blockquote>
+&lt;/code>&lt;/pre></description></item><item><title>HDFS 文件管理</title><link>https://jinggqu.github.io/posts/hdfs-file-system/</link><pubDate>Mon, 12 Oct 2020 15:20:11 +0800</pubDate><guid>https://jinggqu.github.io/posts/hdfs-file-system/</guid><description>&lt;blockquote>
 &lt;p>本文所有代码均可在 &lt;a class="link" href="https://github.com/sudrizzz/HDFSOperations" target="_blank" rel="noopener"
 >https://github.com/sudrizzz/HDFSOperations&lt;/a> 查看。&lt;/p>
 &lt;/blockquote>
@@ -1097,7 +1097,7 @@ alt="20201023190400"
 &lt;/blockquote>
 &lt;h1 id="参考文章">参考文章&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.cnblogs.com/qingyunzong/p/8548806.html" target="_blank" rel="noopener"
->https://www.cnblogs.com/qingyunzong/p/8548806.html&lt;/a>&lt;/p></description></item><item><title>初识 Hadoop</title><link>https://meetqu.github.io/posts/getting-to-know-hadoop/</link><pubDate>Thu, 24 Sep 2020 09:20:11 +0800</pubDate><guid>https://meetqu.github.io/posts/getting-to-know-hadoop/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+>https://www.cnblogs.com/qingyunzong/p/8548806.html&lt;/a>&lt;/p></description></item><item><title>初识 Hadoop</title><link>https://jinggqu.github.io/posts/getting-to-know-hadoop/</link><pubDate>Thu, 24 Sep 2020 09:20:11 +0800</pubDate><guid>https://jinggqu.github.io/posts/getting-to-know-hadoop/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>本系列文章是基于《大数据技术基础》与 &lt;a class="link" href="https://coding.imooc.com/class/128.html" target="_blank" rel="noopener"
 >10 小时入门大数据&lt;/a> 课程，如果有兴趣可以先阅读该书并观看视频教程。本系列文章中所用到的软件版本及其下载地址如下：&lt;/p>
 &lt;table>
