@@ -26,18 +26,18 @@
 &lt;p>source: &lt;a class="link" href="https://book.douban.com/subject/30184215/" target="_blank" rel="noopener"
 >https://book.douban.com/subject/30184215/&lt;/a>&lt;/p></description></item><item><title>使用C#、WPF与ONNX模型实现手写数字识别</title><link>https://jinggqu.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</link><pubDate>Fri, 18 Aug 2023 15:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;blockquote>
-&lt;p>项目完整代码见 GitHub 仓库： &lt;a class="link" href="https://github.com/sudrizzz/MLNetDemo" target="_blank" rel="noopener"
->sudrizzz/MLNetDemo&lt;/a>。&lt;/p>
+&lt;p>项目完整代码见 GitHub 仓库： &lt;a class="link" href="https://github.com/jinggqu/MLNetDemo" target="_blank" rel="noopener"
+>jinggqu/MLNetDemo&lt;/a>。&lt;/p>
 &lt;/blockquote>
 &lt;p>本文将介绍如何使用 C#、WPF 与 ONNX 模型实现一个简单的手写数字识别项目。整个流程跑通后，即可应用更加复杂的深度学习模型。&lt;/p>
 &lt;h1 id="wpf-界面开发">WPF 界面开发&lt;/h1>
 &lt;p>项目的用户界面相对简单，主要包含一个 InkCanvas（Name 设置为 inkCanvas） 用于用户绘制数字，一个识别按钮与一个清除 Canvas 内容的按钮。软件用户界面如下图所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20230818102257.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20230818102257.png"
 loading="lazy"
 alt="软件用户界面"
 >&lt;/p>
 &lt;p>项目最终效果图如下图所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20230818110324.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20230818110324.png"
 loading="lazy"
 alt="项目最终效果图"
 >&lt;/p>
@@ -53,7 +53,7 @@ alt="项目最终效果图"
 &lt;h2 id="查看模型结构">查看模型结构&lt;/h2>
 &lt;p>下载 ONNX 模型后，我们还需要找到模型中的输入变量名与输出变量名。因此使用 &lt;a class="link" href="https://github.com/lutzroeder/netron" target="_blank" rel="noopener"
 >Netron&lt;/a> 来检视模型。Netron 打开 ONNX 模型后的效果如下图所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20230818135201.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20230818135201.png"
 loading="lazy"
 alt="手写数字识别 ONNX 模型结构"
 >&lt;/p>
@@ -287,7 +287,7 @@ alt="手写数字识别 ONNX 模型结构"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>变换后得到的灰度图如下图所示（28×28，图片显示效果较小）。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20230818143813.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20230818143813.png"
 loading="lazy"
 alt="灰度图"
 >&lt;/p>
@@ -1969,7 +1969,7 @@ aebfcgdh&lt;/p>
 &lt;h1 id="环境配置">环境配置&lt;/h1>
 &lt;h2 id="创建项目">创建项目&lt;/h2>
 &lt;p>首先，在 Visual Studio 中创建一个名为 libtorch-toturial 的控制台项目。创建完成后，将项目设置为 &lt;code>Release&lt;/code> 模式，&lt;code>x64&lt;/code> 平台，如下图。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027154904.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20211027154904.png"
 loading="lazy"
 alt="20211027154904"
 >&lt;/p>
@@ -1998,7 +1998,7 @@ alt="20211027154904"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>配置结果如下图，注意检查窗口顶栏 &lt;code>配置&lt;/code> 是否为 &lt;code>Release&lt;/code>，&lt;code>平台&lt;/code> 是否为 &lt;code>x64&lt;/code>。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027160310.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20211027160310.png"
 loading="lazy"
 alt="20211027160310"
 >&lt;/p>
@@ -2050,7 +2050,7 @@ alt="20211027160310"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>最后，将 &lt;code>D:\Software\libtorch-lts\lib&lt;/code> 路径下所有的 &lt;code>*.dll&lt;/code> 文件拷贝至 &lt;code>项目路径 -&amp;gt; x64 -&amp;gt; Release&lt;/code> 路径下，如下图。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027163802.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20211027163802.png"
 loading="lazy"
 alt="20211027163802"
 >&lt;/p>
@@ -2076,7 +2076,7 @@ alt="20211027163802"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027170451.png"
+&lt;/div>&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20211027170451.png"
 loading="lazy"
 alt="20211027170451"
 >&lt;/p>
@@ -2113,7 +2113,7 @@ alt="20211027170451"
 >LibTorch 官方示例&lt;/a> 中找到，请将其拷贝到项目的 &lt;code>libtorch-toturial.cpp&lt;/code> 中。&lt;/p>
 &lt;h2 id="结果">结果&lt;/h2>
 &lt;p>与 PyTorch 类似，LibTorch 创建深度学习应用同样包含与其相似的步骤：定义网络、初始化网络、加载数据集、训练、验证及保存模型等，详细代码可以参照上述官方示例，此处不再赘述。训练 10 个 epoch 之后，识别准确率已经达到了 98.4%.&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211028114206.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20211028114206.png"
 loading="lazy"
 alt="20211028114206"
 >&lt;/p>
@@ -2438,11 +2438,11 @@ alt="20211028114206"
 &lt;/table>
 &lt;h1 id="测试">测试&lt;/h1>
 &lt;p>经过上述步骤，环境就已经恢复成功了，可以通过命令行运行 python 并引入包的方式来进行测试。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210805185700.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210805185700.png"
 loading="lazy"
 alt="20210805185700"
 >&lt;/p></description></item><item><title>增肌训练计划笔记</title><link>https://jinggqu.github.io/posts/fitness/</link><pubDate>Sun, 01 Aug 2021 10:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/fitness/</guid><description>&lt;h1 id="时间安排">时间安排&lt;/h1>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801191101.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801191101.png"
 loading="lazy"
 alt="20210801191101"
 >&lt;/p>
@@ -2473,15 +2473,15 @@ alt="20210801191101"
 &lt;h3 id="注意">注意&lt;/h3>
 &lt;p>小臂全程垂直地面。&lt;/p>
 &lt;p>后期可以考虑杠铃卧推。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801191327.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801191327.png"
 loading="lazy"
 alt="20210801191327"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801191356.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801191356.png"
 loading="lazy"
 alt="20210801191356"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801191632.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801191632.png"
 loading="lazy"
 alt="20210801191632"
 >&lt;/p>
@@ -2519,19 +2519,19 @@ alt="20210801191632"
 间歇：1~2 分钟&lt;br>
 练法：最后一组力竭&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801192424.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801192424.png"
 loading="lazy"
 alt="20210801192424"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801192452.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801192452.png"
 loading="lazy"
 alt="20210801192452"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801192506.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801192506.png"
 loading="lazy"
 alt="20210801192506"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801192713.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801192713.png"
 loading="lazy"
 alt="20210801192713"
 >&lt;/p>
@@ -2558,7 +2558,7 @@ alt="20210801192713"
 &lt;/ol>
 &lt;h3 id="注意-2">注意&lt;/h3>
 &lt;p>小臂全程垂直地面。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801193035.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801193035.png"
 loading="lazy"
 alt="20210801193035"
 >&lt;/p>
@@ -2585,11 +2585,11 @@ alt="20210801193035"
 &lt;/ol>
 &lt;h3 id="注意-3">注意&lt;/h3>
 &lt;p>往后拉的时候，背部使劲往中间夹。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801193221.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801193221.png"
 loading="lazy"
 alt="20210801193221"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801193330.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801193330.png"
 loading="lazy"
 alt="20210801193330"
 >&lt;/p>
@@ -2623,23 +2623,23 @@ alt="20210801193330"
 &lt;li>膝盖的朝向和脚尖的方向一致，没有内扣&lt;/li>
 &lt;li>膝盖的位置可以超过脚尖，但不要超过太多。&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801194014.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801194014.png"
 loading="lazy"
 alt="20210801194014"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801194727.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801194727.png"
 loading="lazy"
 alt="20210801194727"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801194816.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801194816.png"
 loading="lazy"
 alt="20210801194816"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801194853.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801194853.png"
 loading="lazy"
 alt="20210801194853"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801195009.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801195009.png"
 loading="lazy"
 alt="20210801195009"
 >&lt;/p>
@@ -2668,11 +2668,11 @@ alt="20210801195009"
 &lt;li>不是用腰部发力，要用臀部发力&lt;/li>
 &lt;li>俯身下去是屈髋俯身，而不是弯腰，腰部要挺直&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801195255.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801195255.png"
 loading="lazy"
 alt="20210801195255"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801200035.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801200035.png"
 loading="lazy"
 alt="20210801200035"
 >&lt;/p>
@@ -2701,19 +2701,19 @@ alt="20210801200035"
 &lt;ol>
 &lt;li>身体要稳住，不要前后晃动，不要耸肩&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801200200.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801200200.png"
 loading="lazy"
 alt="20210801200200"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801200301.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801200301.png"
 loading="lazy"
 alt="20210801200301"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801200355.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801200355.png"
 loading="lazy"
 alt="20210801200355"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801200532.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801200532.png"
 loading="lazy"
 alt="20210801200532"
 >&lt;/p>
@@ -2741,11 +2741,11 @@ alt="20210801200532"
 &lt;li>手肘不低于肩&lt;/li>
 &lt;li>双手不低于手肘&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801200630.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801200630.png"
 loading="lazy"
 alt="20210801200630"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801200745.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801200745.png"
 loading="lazy"
 alt="20210801200745"
 >&lt;/p>
@@ -2772,11 +2772,11 @@ alt="20210801200745"
 &lt;ol>
 &lt;li>要做完全程&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801200923.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801200923.png"
 loading="lazy"
 alt="20210801200923"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801201004.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801201004.png"
 loading="lazy"
 alt="20210801201004"
 >&lt;/p>
@@ -2803,60 +2803,60 @@ alt="20210801201004"
 &lt;ol>
 &lt;li>身体不要乱晃&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801201117.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801201117.png"
 loading="lazy"
 alt="20210801201117"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801201239.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801201239.png"
 loading="lazy"
 alt="20210801201239"
 >&lt;/p>
 &lt;h1 id="练后放松">练后放松&lt;/h1>
 &lt;h2 id="拉伸大腿前侧">拉伸大腿前侧&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801201333.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801201333.png"
 loading="lazy"
 alt="20210801201333"
 >&lt;/p>
 &lt;h2 id="拉伸大腿后侧">拉伸大腿后侧&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801201351.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801201351.png"
 loading="lazy"
 alt="20210801201351"
 >&lt;/p>
 &lt;h2 id="蛙趴-大腿内侧">蛙趴-大腿内侧&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801201444.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801201444.png"
 loading="lazy"
 alt="20210801201444"
 >&lt;/p>
 &lt;h2 id="拉伸肩部">拉伸肩部&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801201504.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801201504.png"
 loading="lazy"
 alt="20210801201504"
 >&lt;/p>
 &lt;h2 id="拉伸肱二头肌">拉伸肱二头肌&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801201613.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801201613.png"
 loading="lazy"
 alt="20210801201613"
 >&lt;/p>
 &lt;h2 id="放松髂胫束">放松髂胫束&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801201703.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801201703.png"
 loading="lazy"
 alt="20210801201703"
 >&lt;/p>
 &lt;h2 id="放松股四头肌">放松股四头肌&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801201852.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801201852.png"
 loading="lazy"
 alt="20210801201852"
 >&lt;/p>
 &lt;h1 id="总结">总结&lt;/h1>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801202017.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801202017.png"
 loading="lazy"
 alt="20210801202017"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801202042.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801202042.png"
 loading="lazy"
 alt="20210801202042"
 >
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210801201923.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210801201923.png"
 loading="lazy"
 alt="20210801201923"
 >&lt;/p></description></item><item><title>基于 Isight 的实验设计</title><link>https://jinggqu.github.io/posts/isight-doe/</link><pubDate>Wed, 28 Jul 2021 19:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/isight-doe/</guid><description>&lt;h1 id="实验设计">实验设计&lt;/h1>
@@ -2876,86 +2876,86 @@ alt="20210801201923"
 &lt;p>如下图所示，定义了三个输入参数以及两个输出参数，并在 excel 中使用名称管理器为这 5 个变量设置了名称。两个输出参数的计算方法分别如下。&lt;/p>
 &lt;p>$$ volume = length \times height \times width $$
 $$ costs = 2 \times length^2 + 3 \times width^2 + 0.05 \times height^3 $$&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729094237.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210729094237.png"
 loading="lazy"
 alt="20210729094237"
 >&lt;/p>
 &lt;h2 id="新建任务">新建任务&lt;/h2>
 &lt;p>打开 Isight 任务界面，将 Application Components 中的 Excel 组件拖拽到如下图所示的位置。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728195651.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210728195651.png"
 loading="lazy"
 alt="20210728195651"
 >&lt;/p>
 &lt;p>此时会发现底部有一黄色警告，这是因为我们还没有正确配置 Excel 文件地址。双击刚刚添加的 Excel 组件即可打开配置界面，在顶部选中数据文件。由于我们在 Excel 文件中提前对变量进行命名，故此时 Isight 会提示并自动生成变量，如下图所示。确认无误后点击下方 OK 即可回到任务界面。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728200028.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210728200028.png"
 loading="lazy"
 alt="20210728200028"
 >&lt;/p>
 &lt;h2 id="配置-doe">配置 DOE&lt;/h2>
 &lt;p>将 Process Components 选项组中的 DOE 组件拖拽到如下图所示的位置上。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728200342.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210728200342.png"
 loading="lazy"
 alt="20210728200342"
 >&lt;/p>
 &lt;p>双击 DOE 组件进行详细配置。首先配置 Factors，我们选中所有的输入参数，并将这些参数的实验区间调整为基数 -20%~20%。配置如下所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728200648.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210728200648.png"
 loading="lazy"
 alt="20210728200648"
 >&lt;/p>
 &lt;p>切换到 General 选项卡，实验技术选择拉丁方，实验点数输入 50，点击下方的 Apply 生成实验次序，此时可以在 Design Matrix 中查看样本矩阵。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728200807.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210728200807.png"
 loading="lazy"
 alt="20210728200807"
 >&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728201214.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210728201214.png"
 loading="lazy"
 alt="20210728201214"
 >&lt;/p>
 &lt;p>切换到 Postprocessing 选项卡，在这里配置两个输出参数的目标，即 costs 最小化，volume 最大化，如下图所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728201336.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210728201336.png"
 loading="lazy"
 alt="20210728201336"
 >&lt;/p>
 &lt;h2 id="进行实验">进行实验&lt;/h2>
 &lt;p>在实验之前，首先在 Graph Templates 选项卡中添加图标，方便后续的数据可视化。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728201658.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210728201658.png"
 loading="lazy"
 alt="20210728201658"
 >&lt;/p>
 &lt;p>在此例中，我们选择添加 Main Effect Graph 用来观察各个输入参数都两个输出参数的影响权重。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729080918.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210729080918.png"
 loading="lazy"
 alt="20210729080918"
 >&lt;/p>
 &lt;p>点击菜单栏中的三角形按钮，运行实验。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210728201456.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210728201456.png"
 loading="lazy"
 alt="20210728201456"
 >&lt;/p>
 &lt;h2 id="结果分析">结果分析&lt;/h2>
 &lt;p>在 Isight Runtime Gateway 中的 History 选项卡中，如下图所示，表格中的绿色行表示最优解。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729081901.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210729081901.png"
 loading="lazy"
 alt="20210729081901"
 >&lt;/p>
 &lt;p>在 Graphs 选项卡中，可以看到之前添加的图表已经填充了本次运行的结果。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729085526.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210729085526.png"
 loading="lazy"
 alt="20210729085526"
 >&lt;/p>
 &lt;h2 id="代理模型">代理模型&lt;/h2>
 &lt;p>代理模型是工程问题中常用的一个优化方法。当实际问题（高精度模型）计算量很大、不容易求解时，可以使用计算量较小、求解迅速的简化模型来替代原模型，加速优化过程。在 Isight Runtime Gateway 中，我们切换到 Visual Design 选项卡，点击 Create Approximation 创建一个代理模型。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729085720.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210729085720.png"
 loading="lazy"
 alt="20210729085720"
 >&lt;/p>
 &lt;h3 id="一阶响应曲面模型">一阶响应曲面模型&lt;/h3>
 &lt;p>由于 volume 项是由三个输入参数相乘得到，故我们可以先创建一阶（线性）响应曲面模型对 volume 进行拟合。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729093344.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210729093344.png"
 loading="lazy"
 alt="20210729093344"
 >&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729093420.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210729093420.png"
 loading="lazy"
 alt="20210729093420"
 >&lt;/p>
@@ -2987,17 +2987,17 @@ alt="20210729093420"
 &lt;/table>
 &lt;p>即拟合曲线如下，R Square = 0.8935。&lt;/p>
 &lt;p>$$ costs = 273.292484060334 \times length + 398.117601806449 \times width + 149.130521907 \times height $$&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729093515.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210729093515.png"
 loading="lazy"
 alt="20210729093515"
 >&lt;/p>
 &lt;h3 id="三阶响应曲面模型">三阶响应曲面模型&lt;/h3>
 &lt;p>由于 costs 项是由三个输入参数高阶相乘得到，最高为 height 三阶，故我们创建一个三阶响应曲面模型对 costs 进行拟合。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729094418.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210729094418.png"
 loading="lazy"
 alt="20210729094418"
 >&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729091411.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210729091411.png"
 loading="lazy"
 alt="20210729091411"
 >&lt;/p>
@@ -3065,7 +3065,7 @@ alt="20210729091411"
 &lt;/table>
 &lt;p>即拟合曲线如下，R Square = 1。&lt;/p>
 &lt;p>$$ costs = 1.99999999996241 \times length^2 + 2.99999999999869 \times width^2 \\ + 0.0499999999996755 \times height^3 $$&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210729092059.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210729092059.png"
 loading="lazy"
 alt="20210729092059"
 >&lt;/p>
@@ -3096,17 +3096,17 @@ Application of Convolutional Neural Network to Predict Airfoil Lift Coefficient&
 &lt;h2 id="摘要">摘要&lt;/h2>
 &lt;p>本文主要介绍了 CNN 网络结构，通过 CNN 网络学习预测多种形状翼型在多种流动马赫数、雷诺数和不同攻角下的升力系数，同时使用 MLP 网络进行结果对比。实验结果表明，CNN 网络的预测结果，相比于 MLP 网络的预测结果，有更高的精度。&lt;/p>
 &lt;h1 id="网络结构">网络结构&lt;/h1>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210423164152.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210423164152.png"
 loading="lazy"
 alt="20210423164152"
 >&lt;/p>
 &lt;p>本文中用到的 CNN 网络，为修改后的 LeNet-5&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210423164230.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210423164230.png"
 loading="lazy"
 alt="20210423164230"
 >&lt;/p>
 &lt;p>本文种用到的三种网络结构&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210423164300.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210423164300.png"
 loading="lazy"
 alt="20210423164300"
 >&lt;/p>
@@ -3116,7 +3116,7 @@ alt="20210423164300"
 &lt;p>$$ \overline\rho = (1 - \frac{\rho}{\rho_{max}}) \frac{M_\infty}{M_{\infty, max}} $$&lt;/p>
 &lt;p>原始像素密度 $\rho$ 每个单元格的范围为[0, 100]；对于“完全”位于翼型内部的单元，为 100；对于“完全”位于翼型外部的单元
 ，为 0；对于位于翼型形状边界上的单元，为（0, 100）。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210423164754.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210423164754.png"
 loading="lazy"
 alt="20210423164754"
 >&lt;/p>
@@ -3126,35 +3126,35 @@ alt="20210423164754"
 &lt;p>考虑到流动条件和机翼形状所需的多样性，选择 XFOIL 作为获得空气动力学系数的仿真工具。使用 XFOIL 软件模拟每种翼型在不同流动条件下的升力系数（−10° − 30°），雷诺数（30,000 - 6,500,000）和和自由流马赫数（ 0.3 ‑ 0.8），生成了 40000 条数据，为了提高数据质量和数量，对于具有马赫数和雷诺数的给定组合的每个翼型，还使用对称的升力创建了其“上下颠倒”或翻转的翼型数据，使用以下公式使得数据量增加到 80000 条。&lt;/p>
 &lt;p>$$ C_{l, upside-down}(\alpha) = - C_{l,original}(-\alpha)$$&lt;/p>
 &lt;p>具体过程图示如下。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210423194124.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210423194124.png"
 loading="lazy"
 alt="20210423194124"
 >&lt;/p>
 &lt;h1 id="激活函数">激活函数&lt;/h1>
 &lt;p>本文探讨了 tanh 与 ReLU 的训练效果，具体结果图示如下。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210423194257.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210423194257.png"
 loading="lazy"
 alt="20210423194257"
 >&lt;/p>
 &lt;p>故 MLP，AeroCNN‑I 和 AeroCNN‑II 网络采用 ReLU 作为唯一的激活函数，池化和线性单位除外。&lt;/p>
 &lt;h1 id="实验结果">实验结果&lt;/h1>
 &lt;p>下图为 MLP 与 AeroCNN-I 的训练过程记录。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210423194519.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210423194519.png"
 loading="lazy"
 alt="20210423194519"
 >&lt;/p>
 &lt;p>下图为 AeroCNN-II 的训练结果。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210423194612.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210423194612.png"
 loading="lazy"
 alt="20210423194612"
 >&lt;/p>
 &lt;p>下图为真实值与预测 $C_{l-\alpha}$ 曲线在 $M_\infty = 0.3$ 时的对比，翼型为 NACA64a410，包含在训练集中。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210423194648.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210423194648.png"
 loading="lazy"
 alt="20210423194648"
 >&lt;/p>
 &lt;p>下图为真实值与预测 $C_{l-\alpha}$ 曲线的对比，翼型未包含在训练集中。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210423194847.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210423194847.png"
 loading="lazy"
 alt="20210423194847"
 >&lt;/p>
@@ -3169,7 +3169,7 @@ An application of Deep Neural Networks to the in-flight parameter identification
 &lt;p>本文将深度神经网络应用于飞行器结冰的检测和表征的飞行参数识别。作者为预处理输入的飞行状态数据，设计了一种类似于真实图片的“状态图像（state-image）”，然后作者设计了一个 DNN 网络结构，该结构可对飞行状态的本地连通性（local connectivity，使用 CNN）和时间特征（temporal characteristics，使用 RNN）进行建模。在文中，作者对以下几种情形进行了实验，分别是：未结冰（clean）、不同部位结冰（机翼、尾翼、机翼与尾翼）以及结冰严重程度（中等结冰、严重结冰）。同时，作者还提供了基于 DNN 的方法与基于基线 $H_{\infty}$ 的识别算法（飞机结冰的最新技术）的比较。基于测试和比较结果，基于 DNN 的方法对多参数输入数据能产生更准确的预测性能。&lt;/p>
 &lt;h1 id="实验说明">实验说明&lt;/h1>
 &lt;p>对于中度结冰的情况，$T_{cld}$ = 600（飞机结冰时间），$\eta_{ice}(T_{cld})$ = 0.20（结冰严重性参数），$\eta_{ice}(T_{cld}/2)$ = 0.12。对于快速/严重结冰情况，$T_{cld}$ = 300，$\eta_{ice}(T_{cld})$ = 0.30，$\eta_{ice}(T_{cld}/2)$ = 0.20。图 1 展示了两种结冰情形的结冰严重性参数变化，以及未结冰对照组的情况。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210420205418.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210420205418.png"
 loading="lazy"
 alt="20210420205418"
 >&lt;/p>
@@ -3178,26 +3178,26 @@ alt="20210420205418"
 &lt;p>作者认为仅识别俯仰和横摆力矩稳定系数（$C_{m_a}$，$C_{n_{\beta}}$）是有用的。在纵向平面中，作者展示了 2 个稳定性系数（$C_{m_a}$，$C_{z_a}$）和 2 个控制系数（$C_{m_{\delta_e}}$，$C_{z_{\delta_e}}$）的性能，而在横向平面中，作者展示了 3 个稳定性系数（$C_{y_\beta}$，$C_{l_p}$，$C_{n_\beta}$）和 2 个控制系数（$C_{y_{\delta_r}}$，$C_{l_{\delta_a}}$）的结果。&lt;/p>
 &lt;/blockquote>
 &lt;p>为进行本文的参数识别，作者在纵向中指定速度（$V$），体轴上的垂直载荷系数（$g_z$），俯仰率（$q$），俯仰角（$\theta$）和高度（$H$）作为输入数据。对于横向，作者使用速度（$V$），体轴上的横向负载系数（$g_y$），横摆率（$r$），横摆角（$\varphi$），偏航角（$r$）和偏航角（$\psi$）作为输入数据。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210420214213.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210420214213.png"
 loading="lazy"
 alt="20210420214213"
 >&lt;/p>
 &lt;p>类似于常用的图像（2D 矩阵），作者将飞机结冰数据按照时间划分，将纵向参数分割成 m * n 的矩阵，其中矩阵每行代表一个参数，每列代表某一时刻的所有参数数值；同理，横向参数也划分为 m * n 的矩阵。其中 $n = \Delta T / \Delta t$，文中采用&lt;strong>时间窗口&lt;/strong>的方法来采集数据，设定 $\Delta T=30s$，$n=30$；m 代表参数数量，纵向参数为 5 个，横向参数为 6 个，故对于纵向数据图像尺寸为 5 * 30，横向参数图像尺寸为 6 * 30。完成数据划分后，将图像数据进行了正则化。&lt;/p>
 &lt;h1 id="网络结构">网络结构&lt;/h1>
 &lt;h2 id="纵向参数">纵向参数&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210420220508.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210420220508.png"
 loading="lazy"
 alt="20210420220508"
 >&lt;/p>
 &lt;p>输入为 5 * 30 的数据图像，上半部分为 LSTM 网络，下半部分为 CNN 网络，右半部分为全连接网络，输出为 4 个参数，分别为 $C_{m_a}$、 $C_{m_{\delta_e}}$、$C_{z_a}$ 与 $C_{z_{\delta_e}}$。&lt;/p>
 &lt;h2 id="横向参数">横向参数&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210420220652.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210420220652.png"
 loading="lazy"
 alt="20210420220652"
 >&lt;/p>
 &lt;p>与纵向参数网络类似，输入为 6 * 30 的数据图像，上半部分为 LSTM 网络，下半部分为 CNN 网络，右半部分为全连接网络，输出为 5 个参数，分别为 $C_{y_\beta}$、$C_{l_p}$、$C_{n_\beta}$、$C_{y_{\delta_r}}$ 与 $C_{l_{\delta_a}}$。&lt;/p>
 &lt;h1 id="模拟数据">模拟数据&lt;/h1>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210420221433.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210420221433.png"
 loading="lazy"
 alt="20210420221433"
 >&lt;/p>
@@ -3214,18 +3214,18 @@ alt="20210420221433"
 &lt;p>作者总共生成了 210 组模拟数据，其中 140 组数据用于训练，70 组数据用于测试。每一份模拟数据总时长 900 秒，因此对于训练集，数据总时长达 35 小时（140 * 900 秒），对于测试集，数据总时长达 17.5 小时（70 * 900 秒）。&lt;/p>
 &lt;h1 id="实验结果">实验结果&lt;/h1>
 &lt;h2 id="纵向平面">纵向平面&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210421153323.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210421153323.png"
 loading="lazy"
 alt="20210421153323"
 >&lt;/p>
 &lt;h2 id="横向平面">横向平面&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210421154045.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210421154045.png"
 loading="lazy"
 alt="20210421154045"
 >&lt;/p>
 &lt;p>如上图所述，红色粗实线表示真实值，绿色实线表示 DNN 网络预测值，蓝色虚线表示 $H_{\infty}$ 识别算法得到的结果。根据 $H_{\infty}$ 算法，只有纵向的 $C_{m_a}$ 和横向的 $C_{n_\beta}$ 足够精确。如图所示，这两个参数的 $H_{\infty}$ 识别结果相当准确。$H_{\infty}$ 的其他结果可能会出现不稳定的漂移（$C_{z_a}$，$C_{y_\beta}$ 等），或者毫无意义。与基于 $H_{\infty}$ 的方法相比，对于 $H_{\infty}$ 所要求的参数，DNN 也能产生准确的结果（$C_{m_a}$，$C_{n_\beta}$）。并且对于 $H_{\infty}$ 无法处理的参数（$C_{z_a}$，$C_{m_{\delta_e}}$，$C_{y_\beta}$，$C_{l_{\delta_a}}$ 等），DNN 输出仍然相当准确。&lt;/p>
 &lt;h2 id="误差定量分析">误差定量分析&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210421171746.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210421171746.png"
 loading="lazy"
 alt="20210421171746"
 >&lt;/p>
@@ -3474,7 +3474,7 @@ alt="20210421171746"
 &lt;p>神经网络是由具有适应性的简单单元组成的广泛并行互连的网络，它的组织能够模拟生物神经系统对真实世界物体所作出的交互反应。我们在机器学习中谈论神经网络时指的是“神经网络学习”。&lt;/p>
 &lt;p>神经网络中最基本的成分是神经元（neuron）模型，即上述定义中的“简单单元”。在生物神经网络中，每个神经元与其他神经元相连，当它“兴奋”时，就会向相连的神经元发送化学物质，从而改变这些神经元内的电位；如果某神经元的电位超过了一个“阈值”（threshold），那么它就会被激活。即“兴奋”起来，向其他神经元发送化学物质。&lt;/p>
 &lt;p>1943 年，[McCulloch and Pitts,1943] 将上述情形抽象为下图所示的简单模型，这就是一直沿用至今的“M-P 神经元模型”。在这个模型中，神经元接收到来自 n 个其他神经元传递过来的输入信号，这些输入信号通过带权重的连接（connection）进行传递，神经元接收到的总输入值将与神经元的阈值进行比较，然后通过“激活函数”（activation function）处理以产生神经元的输出。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218140107.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210218140107.png"
 loading="lazy"
 alt="20210218140107"
 >&lt;/p>
@@ -3482,7 +3482,7 @@ alt="20210218140107"
 &lt;ol>
 &lt;li>阶跃函数&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218142053.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210218142053.png"
 loading="lazy"
 alt="20210218142053"
 >&lt;/p>
@@ -3494,7 +3494,7 @@ $$&lt;/p>
 &lt;ol start="2">
 &lt;li>Sigmoid 函数&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218142227.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210218142227.png"
 loading="lazy"
 alt="20210218142227"
 >&lt;/p>
@@ -3502,7 +3502,7 @@ alt="20210218142227"
 &lt;ol start="3">
 &lt;li>ReLU 函数&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218142335.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210218142335.png"
 loading="lazy"
 alt="20210218142335"
 >&lt;/p>
@@ -3513,13 +3513,13 @@ f(x) = \begin{cases}
 $$&lt;/p>
 &lt;h2 id="52-感知机与多层网络">5.2 感知机与多层网络&lt;/h2>
 &lt;p>感知机（Perceptron）由两层神经元组成，如下图所示，输入层接收外界输入信号后传递给输出层，输出层是 M-P 神经元，亦称“阈值逻辑单元”（threshold logic unit）。感知机能容易地实现逻辑与、或、非运算。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218143036.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210218143036.png"
 loading="lazy"
 alt="20210218143036"
 >&lt;/p>
 &lt;p>需注意的是,感知机只有输出层神经元进行激活函数处理,即只拥有一层功能神经元（functional neuron），其学习能力非常有限。&lt;/p>
 &lt;p>一般的，常见的神经网络是形如下图所示的层级结构，每层神经元与下一层神经元全互连，神经元之间不存在同层连接，也不存在跨层连接。这样的神经网络结构通常称为“多层前馈神经网络”（multi-layer feedforward neural networks），其中输入层神经元接收外界输入，隐层与输出层神经元对信号进行加工，最终结果由输出层神经元输出；换言之，输入层神经元仅是接受输入，不进行函数处理，隐层与输出层包含功能神经元。因此，下图通常被称为“两层网络”或“单隐层网络”。只需包含隐层，即可称为多层网络。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210218145023.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210218145023.png"
 loading="lazy"
 alt="20210218145023"
 >&lt;/p>
@@ -3612,7 +3612,7 @@ alt="20210218145023"
 &lt;p>对于连续值属性，可以对使用&lt;strong>中位数填充&lt;/strong>，也可以对&lt;strong>相关性最高的列做线性回归进行估计&lt;/strong>。&lt;/p>
 &lt;h2 id="45-多变量决策树">4.5 多变量决策树&lt;/h2>
 &lt;p>简而言之，单变量决策树（上述决策树）非叶节点，只针对某个（单个）属性取值进行测试分类；而多变量决策树非叶节点，不仅仅局限于单个属性取值，而是对&lt;strong>多个属性取值的线性组合&lt;/strong>进行测试分类。&lt;/p></description></item><item><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title><link>https://jinggqu.github.io/posts/sae-2/</link><pubDate>Thu, 28 Jan 2021 18:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/sae-2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
-&lt;p>在&lt;a class="link" href="https://sudrizzz.github.io/posts/sae-1/" target="_blank" rel="noopener"
+&lt;p>在&lt;a class="link" href="https://jinggqu.github.io/posts/sae-1/" target="_blank" rel="noopener"
 >上一篇文章&lt;/a>中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。&lt;/p>
 &lt;h1 id="tiny_dnn-简介">tiny_dnn 简介&lt;/h1>
 &lt;p>tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。&lt;/p>
@@ -3621,7 +3621,7 @@ alt="20210218145023"
 &lt;p>需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 &lt;strong>Visual Studio 2019&lt;/strong> 为例进行配置。&lt;/p>
 &lt;h2 id="创建项目">创建项目&lt;/h2>
 &lt;p>打开 VS，创建一个名为 testTinyDNN 的&lt;strong>控制台应用&lt;/strong>。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 &lt;code>testTinyDNN.cpp&lt;/code> 属于同一层级。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129112851.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210129112851.png"
 loading="lazy"
 alt="20210129112851"
 >&lt;/p>
@@ -3855,18 +3855,18 @@ alt="20210129112851"
 &lt;/div>&lt;p>在代码中，我们定义了每批次训练数据量为 256 条，总共训练 50 个批次。&lt;/p>
 &lt;p>网络结构为 3 个编码层 + 3 个解码层。编码层将数据从 784（28 * 28） 维分别编码（降维）到 128、64、32 维，解码器再将 32 维的编码结果解码（升维）到 64、128、784 维，完成手写数字重建。各层之间的激活函数选用 &lt;code>relu()&lt;/code> 与 &lt;code>sigmoid()&lt;/code>。&lt;/p>
 &lt;h1 id="结果展示">结果展示&lt;/h1>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129163100.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210129163100.png"
 loading="lazy"
 alt="20210129163100"
 >&lt;/p>
 &lt;p>从上到下，第一行为测试图像，第二行为 keras 搭建的 SAE 网络重建图像，第三行为 tiny_dnn 搭建的 SAE 网络重建图像。下面展示数字 2 和 5 重建的详细效果，左侧为 Python 平台重建结果，右侧为 C++ 平台重建结果。&lt;/p>
 &lt;p>数字 2&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129182201.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210129182201.png"
 loading="lazy"
 alt="20210129182201"
 >&lt;/p>
 &lt;p>数字 5&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210129181931.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210129181931.png"
 loading="lazy"
 alt="20210129181931"
 >&lt;/p>
@@ -3893,19 +3893,19 @@ alt="20210129181931"
 解码器：这部分能重构来自潜在空间表征的输入，可以用解码函数 $r=g(h)$ 表示。&lt;/p>
 &lt;p>因此，整个自编码器可以用函数 $g(f(x)) = r$ 来描述，其中输出 $r$ 与原始输入 $x$ 相近。&lt;/p>
 &lt;p>自动编码器的目标是最大程度地减少输入和输出之间的重构误差。这有助于自动编码器学习数据中存在的重要功能。当表征很好地重建其输入时，则表示这个表征很好地保留了输入中存在的许多信息。整个过程如下图。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210122142001.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210122142001.png"
 loading="lazy"
 alt="20210122142001"
 >&lt;/p>
 &lt;h1 id="stacked-autoencoder-简介">Stacked Autoencoder 简介&lt;/h1>
 &lt;p>Stacked Autoencoder 简写作 SAE。SAE 与 AE 的主要区别在于编码器与解码器的层数，栈式自编码器包含多层隐藏层。具体网络结构如下图所示，图中有两层编码层，两层解码层。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210122154135.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210122154135.png"
 loading="lazy"
 alt="20210122154135"
 >&lt;/p>
 &lt;h1 id="代码实现">代码实现&lt;/h1>
 &lt;blockquote>
-&lt;p>代码环境配置，请参考 &lt;a class="link" href="https://sudrizzz.github.io/posts/gan-for-hand-written-digits/" target="_blank" rel="noopener"
+&lt;p>代码环境配置，请参考 &lt;a class="link" href="https://jinggqu.github.io/posts/gan-for-hand-written-digits/" target="_blank" rel="noopener"
 >GAN 网络之手写数字生成&lt;/a> 第一小节——环境搭建。&lt;/p>
 &lt;/blockquote>
 &lt;p>自编码器只是一种思想，在具体实现中，编码器和解码器可以由多种深度学习模型构成，例如全连接层、卷积层和 LSTM 等，以下使用 Keras 来实现栈式自编码器。&lt;/p>
@@ -4208,7 +4208,7 @@ alt="20210122154135"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">235/235 [==============================] - 3s 12ms/step - loss: 0.0845 - accuracy: 0.0139 - val_loss: 0.0840 - val_accuracy: 0.0165
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20210122160643.png"
+&lt;/div>&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210122160643.png"
 loading="lazy"
 alt="20210122160643"
 >&lt;/p>
@@ -4256,7 +4256,7 @@ $$&lt;/p>
 &lt;p>可否令模型预测值逼近 $y$ 的衍生物呢？譬如说，假设我们认为示例所对应的输出标记是在指数尺度上变化，那就可将输出标记的对数作为线性模型逼近的目标，即&lt;/p>
 &lt;p>$$ \ln y = \boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b $$&lt;/p>
 &lt;p>这就是“对数线性回归”（log-linear regression），它实际上是在试图让 $e^{\boldsymbol{w}^\mathbf{T}\boldsymbol{x} + b}$ 逼近 $y$。上式在形式上仍是线性回归，但实质上已是在求取输入空间到输出空间的非线性函数映射，如下图所示，这里的对数函数起到了将线性回归模型的预测值与真实标记联系起来的作用。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231150756.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201231150756.png"
 loading="lazy"
 alt="20201231150756"
 >&lt;/p>
@@ -4271,7 +4271,7 @@ y = \begin{cases}
 \end{cases}
 $$&lt;/p>
 &lt;p>即若预测值 $z$ 大于零就判为正例，小于零则判为反例，预测值为临界值零则可任意判别，如下图所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231140318.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201231140318.png"
 loading="lazy"
 alt="20201231140318"
 >&lt;/p>
@@ -4290,7 +4290,7 @@ alt="20201231140318"
 &lt;h2 id="34-线性判别分析">3.4 线性判别分析&lt;/h2>
 &lt;p>线性判别分析（Linear Discriminant Analysis，简称 LDA）是一种经典的线性学习方法，在二分类问题上因为最早由 [Fisher，1936] 提出，亦称“Fisher 判别分析”。&lt;/p>
 &lt;p>LDA 的思想非常朴素：给定训练样例集，设法将样例投影到一条直线上，使得同类样例的投影点尽可能接近、异类样例的投影点尽可能远离；在对新样本进行分类时，将其投影到同样的这条直线上，再根据投影点的位置来确定新样本的类别。下图给出了一个二维示意图。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231154207.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201231154207.png"
 loading="lazy"
 alt="20201231154207"
 >&lt;/p>
@@ -4300,7 +4300,7 @@ alt="20201231154207"
 &lt;p>不失一般性，考虑 N 个类别 $C_1, C_2, \cdots, C_N$ 多分类学习的基本思路是“拆解法”，即将多分类任务拆为若干个二分类任务求解。具体来说，先对问题进行拆分，然后为拆出的每个二分类任务训练一个分类器；在测试时，对这些分类器的预测结果进行集成以获得最终的多分类结果。这里的关键是如何对多分类任务进行拆分，以及如何对多个分类器进行集成。&lt;/p>
 &lt;p>最经典的拆分策略有三种；“一对一”（One vs. One，简称 OvO）、“一对其余”（One vs. Rest，简称 OvR）和“多对多”（Many vs. Many，简称 MvM）。&lt;/p>
 &lt;p>给定数据集 $D=\{(\boldsymbol{x}_1, y_1,), (\boldsymbol{x}_2, y_2), \cdots, (\boldsymbol{x}_m, y_m)\}$，$y_i \in \{C_1, C_2, \cdots, C_N\}$。OvO 将这 $N$ 个类别两两配对，从而产生 $N(N-1)/2$ 个二分类任务，例如 OvO 将为区分类别 $C_i$ 和 $C_j$；训练一个分类器，该分类器把 $D$ 中的 $C_i$ 类样例作为正例, $C_j$ 类样例作为反例。在测试阶段，新样本将同时提交给所有分类器，于是我们将得到 $N(N-1)/2$ 个分类结果，最终结果可通过投票产生：即把被预测得最多的类别作为最终分类结果。下图是 OvO 与 OvR 的示意图。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231161216.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201231161216.png"
 loading="lazy"
 alt="20201231161216"
 >&lt;/p>
@@ -4318,7 +4318,7 @@ alt="20201231161216"
 &lt;/li>
 &lt;/ul>
 &lt;p>类别划分通过“编码矩阵”（coding matrix）指定。编码矩阵有多种形式，常见的主要有二元码 [Dietterich and Bakiri，1995] 和三元码 [Allwein et al，2000]。前者将每个类别分别指定为正类和反类，后者在正、反类之外，还可指定“停用类”。下图为二元码和三元码的示意图。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201231162236.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201231162236.png"
 loading="lazy"
 alt="20201231162236"
 >&lt;/p>
@@ -4455,22 +4455,22 @@ alt="20201231162236"
 &lt;p>为了达到更好的学习效果，应该从训练样本中尽可能学出适用于所有潜在样本的“普遍规律”，这样才能在遇到新样本时做出正确的判别。然而，当学习器把训练样本学得“太好”了的时候，很可能已经把训练样本自身的一些特点当作了所有潜在样本都会具有的一般性质，这样就会导致泛化性能下降。这种现象在机器学习中称为“过拟合”（overfitting）。 与“过拟合”相对的是“欠拟合”（underfitting），这是指对训练样本的一般性质尚未学好。&lt;/p>
 &lt;p>下图展示了欠拟合与过拟合，蓝色点为训练数据，橙色点为测试数据，红色曲线为拟合曲线。&lt;/p>
 &lt;p>最优拟合
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201222151854.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201222151854.png"
 loading="lazy"
 alt="20201222151854"
 >&lt;/p>
 &lt;p>欠拟合（underfitting）
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201222153133.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201222153133.png"
 loading="lazy"
 alt="20201222153133"
 >&lt;/p>
 &lt;p>过拟合（overfitting）
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201222152022.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201222152022.png"
 loading="lazy"
 alt="20201222152022"
 >&lt;/p>
 &lt;p>过拟合的训练误差（蓝色）与泛化误差（红色）
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201222152706.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201222152706.png"
 loading="lazy"
 alt="20201222152706"
 >&lt;/p>
@@ -4483,7 +4483,7 @@ alt="20201222152706"
 &lt;p>交叉验证法（cross validation）先将数据集 $D$ 划分为 $k$ 个大小相似的互斥子集，即&lt;/p>
 &lt;p>$$ D = D_1 \cup D_2 \cup \dots \cup D_k , D_i \cap D_j = \varnothing (i \ne j)$$&lt;/p>
 &lt;p>每个子集 $D_{i}$ 都尽可能保持数据分布的一致性，即从 $D$ 中通过分层采样得到。然后每次用 $k - 1$ 个子集的并集作为训练集，余下的那个子集作为测试集；这样就可以获得 $k$ 组训练/测试集，从而可进行 $k$ 次训练和测试，最终返回的是这 $k$ 个测试结果得得得均值。显然，交叉验证法评估结果的稳定性和保真性在很大程度上取决于 $k$ 的取值，为强调这一点，通常把交叉验证法称为 ”$k$ 折交叉验证“（$k$-fold cross validation）。$k$ 最常用的取值是 10，此时成为 10 折交叉验证。下图为 10 折交叉验证的示意图。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201222174250.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201222174250.png"
 loading="lazy"
 alt="20201222174250"
 >&lt;/p>
@@ -4514,7 +4514,7 @@ alt="20201222174250"
 &lt;p>错误率和精度虽常用，但并不能满足所有任务需求。以西瓜问题为例，假定瓜农拉来一车西瓜，我们用训练好的模型对这些西瓜进行判别，显然，错误率衡量了有多少比例的瓜被判别错误。但是若我们关心的是“挑出的西瓜中有多少。比例是好瓜”，或者“所有好瓜中有多少比例被挑了出来”，那么错误率显然就不够用了，这时需要使用其他的性能度量。&lt;/p>
 &lt;p>类似的需求在信息检索、Web 搜索等应用中经常出现，例如在信息检索中，我们经常会关心“检索出的信息中有多少比例是用户感兴趣的”，“用户感兴趣的信息中有多少被检索出来了”。“查准率”（precision）与”查全率“（recall）是更为适用于此类需求的性能度量。&lt;/p>
 &lt;p>对于二分类问题，可将样例根据其真实类别与学习器预测类别的组合划分为真正例（true positive）、假正例（false positive）、真反例（true negative）、假反例（false negative）四种情形，令 TP、FP、TN、FN 分别表示其对应的样例数，则显然有 TP + FP + TN + FN = 样例总数。分类结果的”混淆矩阵“（confusion matrix）如下表所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201225161654.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201225161654.png"
 loading="lazy"
 alt="20201225161654"
 >&lt;/p>
@@ -4528,7 +4528,7 @@ alt="20201225161654"
 查全率：所有正例中，预测为正例所占的比例。&lt;/p>
 &lt;/blockquote>
 &lt;p>在很多情形下，我们可根据学习器的预测结果对样例进行排序，排在前面的是学习器认为”最可能“是正例的样本，排在最后的则是学习器认为”最不可能“是正例的样本。按此顺序逐个把样本作为正例进行预测，则每次可以计算出当前的查全率、查准率。以查准率为纵轴、查全率为横轴作图，就得到了查准率-查全率曲线，简称”P-R 曲线“，显示该曲线的图称为”P-R 图“。下图是”P-R 图“的一个示例。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201225164329.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201225164329.png"
 loading="lazy"
 alt="20201225164329"
 >&lt;/p>
@@ -4541,7 +4541,7 @@ alt="20201225164329"
 &lt;h3 id="234-代价敏感错误率与代价曲线">2.3.4 代价敏感错误率与代价曲线&lt;/h3>
 &lt;p>为权衡不同类型错误所造成的不同损失，可为错误赋予”非均等代价“（unequal cost）。&lt;/p>
 &lt;p>以二分类任务为例，我们可根据任务的领域知识设定一个”代价矩阵“（cost matrix），如下表所示，其中 $cost_{ij}$ 表示将第 $i$ 类样本预测为第 $j$ 类样本的代价；一般来说，$cost_{ii} = 0$；若将第 0 类判别为第 1 类所造成的损失更大，则 $cost_{01} &amp;gt; cost_{10}$；损失程度相差越大，$cost_{01}$ 与 $cost_{10}$ 值的差别越大。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201225171957.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201225171957.png"
 loading="lazy"
 alt="20201225171957"
 >&lt;/p>
@@ -4584,8 +4584,8 @@ alt="20201225171957"
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;p>本例代码存放于 &lt;a class="link" href="https://github.com/sudrizzz/MachineLearning" target="_blank" rel="noopener"
->https://github.com/sudrizzz/MachineLearning&lt;/a>。&lt;/p>
+&lt;p>本例代码存放于 &lt;a class="link" href="https://github.com/jinggqu/MachineLearning" target="_blank" rel="noopener"
+>https://github.com/jinggqu/MachineLearning&lt;/a>。&lt;/p>
 &lt;h2 id="anaconda-安装">Anaconda 安装&lt;/h2>
 &lt;p>通过清华大学开源软件镜像站，我们可以直接下载最新版本的 Anaconda，本例中使用的 Anaconda 下载链接：
 &lt;a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe" target="_blank" rel="noopener"
@@ -4605,11 +4605,11 @@ alt="20201225171957"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>上述配置请根据 Anaconda 实际安装路径进行调整，配置完成的效果如下图所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208152533.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201208152533.png"
 loading="lazy"
 alt="20201208152533"
 >&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208152633.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201208152633.png"
 loading="lazy"
 alt="20201208152633"
 >&lt;/p>
@@ -4812,7 +4812,7 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;h2 id="使用-pycharm-创建项目">使用 PyCharm 创建项目&lt;/h2>
 &lt;p>在创建项目时，需要将虚拟环境（图中 Location 项）配置为前文中创建的虚拟环境所在目录，然后点击创建项目。&lt;/p>
 &lt;p>&lt;em>由于此前作者已经创建过项目，故创建窗口下方会提示虚拟环境目录不为空，忽略即可。&lt;/em>&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208194401.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201208194401.png"
 loading="lazy"
 alt="20201208194401"
 >&lt;/p>
@@ -5089,7 +5089,7 @@ alt="20201208194401"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>运行时的截图如下，可以看到已经生成了多张手写数字的图片。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208201913.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201208201913.png"
 loading="lazy"
 alt="20201208201913"
 >&lt;/p>
@@ -5123,17 +5123,17 @@ alt="20201208201913"
 &lt;p>FastDFS 开源地址：https://github.com/happyfish100/fastdfs&lt;/p>
 &lt;p>由于网络上已有很多详细的关于 FastDFS 的介绍，故此处不再赘述。请查看参考文章中的第 1、2 条。&lt;/p>
 &lt;h2 id="fastdfs-架构图">FastDFS 架构图&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201103150000.jpg"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201103150000.jpg"
 loading="lazy"
 alt="20201103150000"
 >&lt;/p>
 &lt;h2 id="fastdfs-上传流程">FastDFS 上传流程&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104100033.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201104100033.png"
 loading="lazy"
 alt="20201104100033"
 >&lt;/p>
 &lt;h2 id="fastdfs-下载流程">FastDFS 下载流程&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104100107.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201104100107.png"
 loading="lazy"
 alt="20201104100107"
 >&lt;/p>
@@ -5546,12 +5546,12 @@ tcp 0 0 0.0.0.0:22122 0.0.0.0:* LISTEN 6220/fdfs_trackerd
 &lt;/div>
 &lt;/div>&lt;p>上传成功后，会输出文件 ID：group1/M00/00/00/wKg9gF-f0aKAUJAlAARra4mLMhc390.jpg&lt;/p>
 &lt;p>返回的文件 ID 由 group、存储目录、两级子目录、fileid、文件后缀名（由客户端指定，主要用于区分文件类型）拼接而成。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104093640.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201104093640.png"
 loading="lazy"
 alt="20201104093640"
 >&lt;/p>
 &lt;h1 id="配置-nginx">配置 Nginx&lt;/h1>
-&lt;p>安装 Nginx 的相关操作请查看文章 &lt;a class="link" href="https://sudrizzz.github.io/posts/getting-to-know-nginx/" target="_blank" rel="noopener"
+&lt;p>安装 Nginx 的相关操作请查看文章 &lt;a class="link" href="https://jinggqu.github.io/posts/getting-to-know-nginx/" target="_blank" rel="noopener"
 >初识 Nginx&lt;/a>，此处不再赘述。&lt;/p>
 &lt;h2 id="修改配置">修改配置&lt;/h2>
 &lt;p>经过上述操作之后，文件已经可以通过命令行的方式上传到 FastDFS 中，但还无法下载，此时我们需要使用 Nginx 来实现下载功能。修改 Nginx 配置文件，在 server 组内添加以下内容：&lt;/p>
@@ -5581,7 +5581,7 @@ alt="20201104093640"
 &lt;/div>
 &lt;/div>&lt;p>然后重启 Nginx，访问服务器 ip/fileid 进行测试，根据上述例子，此处访问 http://192.168.61.128/group1/M00/00/00/wKg9gF-f0aKAUJAlAARra4mLMhc390.jpg&lt;/p>
 &lt;p>测试结果如下图，可以看到已经访问成功，HTTP 状态码返回 200。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104104028.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201104104028.png"
 loading="lazy"
 alt="20201104104028"
 >&lt;/p>
@@ -5733,7 +5733,7 @@ configure arguments: --prefix=/usr/local/nginx/ --add-module=/usr/local/software
 ngx_http_fastdfs_set pid=11648
 &lt;/code>&lt;/pre>
 &lt;p>此时我们可以在浏览器中访问前文中上传的文件，能下载文件则表示 fastdfs-nginx-module 模块安装成功。注意和和前文中直接使用 Nginx 路由访问不同的是，这里配置 fastdfs-nginx-module 模块，可以重定向文件链接到源服务器取文件。访问结果如下图所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104104028.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201104104028.png"
 loading="lazy"
 alt="20201104104028"
 >&lt;/p>
@@ -5748,7 +5748,7 @@ alt="20201104104028"
 >FastDFS Distributed File Storage&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="http://bbs.chinaunix.net/forum.php?mod=viewthread&amp;amp;tid=1941456" target="_blank" rel="noopener"
 >FastDFS 配置文件详解（修订版 1）&lt;/a>&lt;/li>
-&lt;li>&lt;a class="link" href="https://sudrizzz.github.io/posts/getting-to-know-nginx/" target="_blank" rel="noopener"
+&lt;li>&lt;a class="link" href="https://jinggqu.github.io/posts/getting-to-know-nginx/" target="_blank" rel="noopener"
 >初识 Nginx&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://github.com/happyfish100/fastdfs-nginx-module/blob/master/INSTALL" target="_blank" rel="noopener"
 >fastdfs nginx module installation introduction&lt;/a>&lt;/li>
@@ -5915,8 +5915,8 @@ width: 20%;
 &lt;/table>
 &lt;h1 id="示例">示例&lt;/h1>
 &lt;p>以下两个示例的数据集与源代码均可以在下述链接中进行下载
-&lt;a class="link" href="https://github.com/sudrizzz/BigDataTechnologyFoundation_SourceCodeAndDataSet/tree/main/ch08" target="_blank" rel="noopener"
->https://github.com/sudrizzz/BigDataTechnologyFoundation_SourceCodeAndDataSet/tree/main/ch08&lt;/a>&lt;/p>
+&lt;a class="link" href="https://github.com/jinggqu/BigDataTechnologyFoundation_SourceCodeAndDataSet/tree/main/ch08" target="_blank" rel="noopener"
+>https://github.com/jinggqu/BigDataTechnologyFoundation_SourceCodeAndDataSet/tree/main/ch08&lt;/a>&lt;/p>
 &lt;h2 id="一分词">一、分词&lt;/h2>
 &lt;p>WordCount（单词统计程序）是大数据领域经典的例子，与 Hadoop 实现的 WordCount 程序相比，Spark 实现的版本要显得更加简洁。&lt;/p>
 &lt;h3 id="从-mapreduce-到-spark">从 MapReduce 到 Spark&lt;/h3>
@@ -6193,14 +6193,14 @@ User: davidisbetterthenyou, Number of videos: 16
 &lt;li>&lt;a class="link" href="http://dblab.xmu.edu.cn/blog/1327/" target="_blank" rel="noopener"
 >利用开发工具 IntelliJ IDEA 编写 Spark 应用程序（Scala+Maven）&lt;/a>&lt;/li>
 &lt;/ol></description></item><item><title>MapReduce 分布式编程</title><link>https://jinggqu.github.io/posts/mapreduce-distributed-programming/</link><pubDate>Sat, 17 Oct 2020 20:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/mapreduce-distributed-programming/</guid><description>&lt;h1 id="词频统计程序示例">词频统计程序示例&lt;/h1>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014180000.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201014180000.png"
 loading="lazy"
 alt="20201014180000"
 >&lt;/p>
 &lt;p>假设将一个英文文本大文件作为输入，统计文件中单词出现的频数。最基本的操作是把输入文件的每一行传递给 map 函数完成对单词的拆分并输出中间结果，中间结果为 &amp;lt;word, 1&amp;gt; 的形式， 表示程序对一个单词，都对应一个计数 1。使用 reduce 函数收集 map 函数的结果作为输入值，并生成最终 &amp;lt;word, count&amp;gt; 形式的结果，完成对每个单词的词频统计。它们对应 MapReduce 处理数据流程如上图所示。&lt;/p>
 &lt;h1 id="mapreduce-程序的运行过程">MapReduce 程序的运行过程&lt;/h1>
 &lt;p>如图所示，MapReduce 运行阶段数据传递经过输入文件、Map 阶段、中间文件、 Reduce 阶段、输出文件五个阶段，用户程序只与 Map 阶段和 Reduce 阶段的 Worker 直接相关，其他事情由 Hadoop 平台根据设置自行完成。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014190000.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201014190000.png"
 loading="lazy"
 alt="20201014190000"
 >&lt;/p>
@@ -6223,7 +6223,7 @@ alt="20201014190000"
 &lt;/ol>
 &lt;h1 id="经典-mapreduce-任务调度模型">经典 MapReduce 任务调度模型&lt;/h1>
 &lt;p>经典 MapReduce 任务调度模型采用主从结构（Master/Slave），包含四个组成部分：Client、JobTracker、TaskTracker、Task。支撑 MapReduce 计算框架的是 JobTracker 和 TaskTracker 两类后台进程。框架结构如下图所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014200000.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201014200000.png"
 loading="lazy"
 alt="20201014200000"
 >&lt;/p>
@@ -6254,7 +6254,7 @@ ApplicationMaster 负责向调度器申请、释放资源，清求 NodeManager �
 &lt;p>Container 是 YARN 中资源的抽象，它封装了节点上一定量的资源（CPU 和内存等）。一个应用程序所需的 Container 分为两类：一类是运行 ApplicationMaster 的 Container，是由 ResourceManager（向内部的资源调度器）申请和启动的，用户提交应用程序时，可指定唯一的 ApplicationMaster 所需的资源；另一类是运行各类任务的 Container，是由 ApplicationMaster 向 ResourceManager 申请的，并由 ApplicationMaster 与 NodeManager 通信后启动。&lt;/p>
 &lt;p>用户向 YARN 提交一个应用程序后，YARN 将分为两个阶段运行该应用程序：第一个阶段是启动 ApplicationMaster；第二个阶段是由 ApplicationMaster 创建应用程序，为它申请资源，并监控它的整个运行过程，直到运行成功。&lt;/p>
 &lt;p>YARN 任务调度流程如下图所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201014205100.jpg"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201014205100.jpg"
 loading="lazy"
 alt="20201014205100"
 >&lt;/p>
@@ -6276,8 +6276,8 @@ alt="20201014205100"
 &lt;/ol>
 &lt;h1 id="youtube-数据集统计分析">Youtube 数据集统计分析&lt;/h1>
 &lt;p>本例的数据来自于 Youtube 的数据集，完整的数据集以及源代码下载地址请点击以下链接
-&lt;a class="link" href="https://github.com/sudrizzz/BigDataTechnologyFoundation-SourceCodeAndDataSet/blob/main/ch04" target="_blank" rel="noopener"
->https://github.com/sudrizzz/BigDataTechnologyFoundation-SourceCodeAndDataSet/blob/main/ch04&lt;/a>&lt;/p>
+&lt;a class="link" href="https://github.com/jinggqu/BigDataTechnologyFoundation-SourceCodeAndDataSet/blob/main/ch04" target="_blank" rel="noopener"
+>https://github.com/jinggqu/BigDataTechnologyFoundation-SourceCodeAndDataSet/blob/main/ch04&lt;/a>&lt;/p>
 &lt;p>该数据集各字段的具体含义如表所示：&lt;/p>
 &lt;table>
 &lt;thead>
@@ -6475,8 +6475,8 @@ Science &amp;amp; Technology 80
 Sports 253
 Travel &amp;amp; Events 113
 &lt;/code>&lt;/pre></description></item><item><title>HDFS 文件管理</title><link>https://jinggqu.github.io/posts/hdfs-file-system/</link><pubDate>Mon, 12 Oct 2020 15:20:11 +0800</pubDate><guid>https://jinggqu.github.io/posts/hdfs-file-system/</guid><description>&lt;blockquote>
-&lt;p>本文所有代码均可在 &lt;a class="link" href="https://github.com/sudrizzz/HDFSOperations" target="_blank" rel="noopener"
->https://github.com/sudrizzz/HDFSOperations&lt;/a> 查看。&lt;/p>
+&lt;p>本文所有代码均可在 &lt;a class="link" href="https://github.com/jinggqu/HDFSOperations" target="_blank" rel="noopener"
+>https://github.com/jinggqu/HDFSOperations&lt;/a> 查看。&lt;/p>
 &lt;/blockquote>
 &lt;h1 id="通过命令行访问-hdfs">通过命令行访问 HDFS&lt;/h1>
 &lt;p>命令行是最简单、最直接操作文件的方式。这里介绍通过诸如读取文件、新建目录、移动文件、删除数据、列出目录等命令来进一步认识 HDFS。也可以输入 hadoop fs -help 命令获取每个命令的详细帮助。若熟悉 Linux 命令，Hadoop 命令看起来非常直观且易于使用。&lt;/p>
@@ -6826,23 +6826,23 @@ Travel &amp;amp; Events 113
 &lt;li>客户端调用 close，关闭输入流 DFS InputStream&lt;/li>
 &lt;/ol>
 &lt;h1 id="hdfs-漫画">HDFS 漫画&lt;/h1>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190000.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201023190000.png"
 loading="lazy"
 alt="20201023190000"
 >&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190100.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201023190100.png"
 loading="lazy"
 alt="20201023190100"
 >&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190200.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201023190200.png"
 loading="lazy"
 alt="20201023190200"
 >&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190300.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201023190300.png"
 loading="lazy"
 alt="20201023190300"
 >&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201023190400.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201023190400.png"
 loading="lazy"
 alt="20201023190400"
 >&lt;/p>
@@ -7565,13 +7565,13 @@ alt="20201023190400"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>例如本例中 master 节点地址为 192.168.61.128，则访问 192.168.61.128:50070，页面如下图：&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200926201409.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200926201409.png"
 loading="lazy"
 alt="20200926201409"
 >&lt;/p>
 &lt;h3 id="yarn-页面">YARN 页面&lt;/h3>
 &lt;p>如上例，与 Hadoop 管理页面不同的是，YARN Web 页面地址端口是 8088，页面如下图：&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200926203912.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200926203912.png"
 loading="lazy"
 alt="20200926203912"
 >&lt;/p>
@@ -7587,11 +7587,11 @@ alt="20200926203912"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>Hadoop 的命令类似 Java 命令，通过 jar 指定要运行的程序所在的 jar 包 hadoop-mapreduce-examples-2.10.1.jar。参数 pi 表示需要计算的圆周率 $ \pi $。后面两个参数中，100 是指要运行 100 次 map，100000 表示每个 map 的任务次数，即每个节点要模拟飞镖 100000 次。执行过程及结果如下图：&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200926210747.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200926210747.png"
 loading="lazy"
 alt="20200926210747"
 >&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200926211331.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200926211331.png"
 loading="lazy"
 alt="20200926211331"
 >&lt;/p>
@@ -7658,7 +7658,7 @@ alt="20200926211331"
 &lt;p>需要注意的是，虽然 SRAM 是静态随机访问存储器，但是其“静态”是相对于动态随机访问存储器的，仍然属于“易失性存储器”，而非真正意义上的静态，同时 DRAM 也属于“易失性存储器”。通俗的说，就是断电之后保存的信息就会丢失。&lt;/p>
 &lt;h4 id="sram">SRAM&lt;/h4>
 &lt;p>SRAM 将每个位存储在一个双稳态的存储器单元中，每个单元是用一个六晶体管来实现的，在通电的情况下，它可以无限期地保持在两个不同的电压配置或状态之一，其他任何状态都是不稳定的。当从不稳定状态开始，电路会迅速转换到两个稳定状态中的一个。这样的存储器单元类似于下图倒转的钟摆模型。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200918161742.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200918161742.png"
 loading="lazy"
 alt="20200918161742"
 >&lt;/p>
@@ -7712,7 +7712,7 @@ alt="20200918161742"
 &lt;p>需要说明的是，存储在 ROM 设备中的程序通常被称为固件（firmware）。例如 BIOS、磁盘驱动控制器、显卡驱动控制器等等。&lt;/p>
 &lt;h3 id="访问主存">访问主存&lt;/h3>
 &lt;p>数据流通过称为总线（bus）的共享电子电路在处理器和 DRAM 主存之间来来回回。例如下图中，连接 I/O 桥接器与总线接口的系统总线（system bus），连接主存与 I/O 桥接器的内存总线(memory bus)。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200918171907.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200918171907.png"
 loading="lazy"
 alt="20200918171907"
 >&lt;/p>
@@ -7723,12 +7723,12 @@ alt="20200918171907"
 &lt;h2 id="机械硬盘">机械硬盘&lt;/h2>
 &lt;h3 id="构造">构造&lt;/h3>
 &lt;p>磁盘是由盘片（platter）组成的，每个盘片有两个表面（surface）。盘片中央有一个可以旋转的主轴（spindle），它使得盘片以固定的旋转速率（rotational rate）旋转，通常是 5400-15000 转每分钟（Revolution Per Minute，RPM）。磁盘通常包含一个或多个盘片，并封装在一个密闭的空间中。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200921102634.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200921102634.png"
 loading="lazy"
 alt="20200921102634"
 >&lt;/p>
 &lt;p>每个盘片的表面是由一组磁道（track）同心圆组成的，每个磁道又被划分为一组扇区（sector）。每个扇区包含相等数据量的数据位（通常是 512 字节），扇区之间由一些间隙（gap）隔开，间隙存储用来表示扇区的格式化位。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200921102745.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200921102745.png"
 loading="lazy"
 alt="20200921102745"
 >&lt;/p>
@@ -7752,7 +7752,7 @@ alt="20200921102745"
 $$&lt;/p>
 &lt;h2 id="固态硬盘">固态硬盘&lt;/h2>
 &lt;p>固态硬盘示意图如下：&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200922160917.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200922160917.png"
 loading="lazy"
 alt="20200922160917"
 >&lt;/p>
@@ -7766,7 +7766,7 @@ alt="20200922160917"
 &lt;li>四阶存储单元（Quad-Level Cell，QLC）：一个存储单元能存储 4 bit 信息，寿命为四者之中最短，大约只有 500 次&lt;/li>
 &lt;/ul>
 &lt;p>在假设低电位表示二进制的 0，高电位表示二进制的 1 时，SLC、MLC、TLC 和 QLC 的电位及二进制值对比表如下。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200922162556.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200922162556.png"
 loading="lazy"
 alt="20200922162556"
 >&lt;/p>
@@ -7788,7 +7788,7 @@ alt="20200922162556"
 &lt;/ul>
 &lt;h1 id="发展趋势">发展趋势&lt;/h1>
 &lt;p>下图以半对数为比例，画出了各类存储以及 CPU 性能的发展趋势。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200924145622.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200924145622.png"
 loading="lazy"
 alt="20200924145622"
 >&lt;/p>
@@ -7802,7 +7802,7 @@ alt="20200924145622"
 &lt;/ul>
 &lt;h1 id="存储器层次结构">存储器层次结构&lt;/h1>
 &lt;p>存储器层次结构（Memory Hierarchy）如下图所示，越靠近底部的存储器速度越慢单价越低，越靠近顶部的则反之。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200924160033.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200924160033.png"
 loading="lazy"
 alt="20200924160033"
 >&lt;/p>
@@ -7814,7 +7814,7 @@ alt="20200924160033"
 &lt;h3 id="存储结构产生的原因">存储结构产生的原因&lt;/h3>
 &lt;p>由于局部性，程序通常更倾向于访问第 k 层存储器的数据，而非第 k+1 层存储器的数据。因此，第 k+1 层存储器设备可以做得速度更慢，容量更大以及单价更便宜。&lt;/p>
 &lt;h3 id="存储器层次结构中的缓存示例">存储器层次结构中的缓存示例&lt;/h3>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200924155525.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200924155525.png"
 loading="lazy"
 alt="20200924155525"
 >&lt;/p>
@@ -7825,12 +7825,12 @@ alt="20200924155525"
 &lt;li>&lt;a class="link" href="https://www.bilibili.com/video/av61437877" target="_blank" rel="noopener"
 >https://www.bilibili.com/video/av61437877&lt;/a>&lt;/li>
 &lt;/ol></description></item><item><title>CMU 15-213 浮点数</title><link>https://jinggqu.github.io/posts/cmu-15-213-lesson2/</link><pubDate>Mon, 14 Sep 2020 18:57:11 +0800</pubDate><guid>https://jinggqu.github.io/posts/cmu-15-213-lesson2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
-&lt;p>在 &lt;a class="link" href="https://sudrizzz.github.io/posts/cmu-15-213-lesson1/" target="_blank" rel="noopener"
+&lt;p>在 &lt;a class="link" href="https://jinggqu.github.io/posts/cmu-15-213-lesson1/" target="_blank" rel="noopener"
 >上一篇文章&lt;/a> 中，我们了解了二进制有符号数、无符号数以及其相关的运算方法，在本篇中，我们将进一步了解浮点数在计算机中的相关知识。&lt;/p>
 &lt;h1 id="二进制小数">二进制小数&lt;/h1>
 &lt;h2 id="表示方法">表示方法&lt;/h2>
 &lt;p>二进制小数表达方式：在“二进制小数点”左侧的位表示 2 的 n 次幂，而在“二进制小数点”右侧的位则表示 2 的 -n 次幂。如下图：&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200914190724.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200914190724.png"
 loading="lazy"
 alt="20200914190724"
 >&lt;/p>
@@ -7906,17 +7906,17 @@ alt="20200914190724"
 &lt;li>阶码（exponent）E 的作用是对浮点数进行加权，这个权重是 2 的 E 次幂&lt;/li>
 &lt;/ul>
 &lt;p>32 位或 64 位的浮点数位表示形式如下：&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200914210832.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200914210832.png"
 loading="lazy"
 alt="20200914210832"
 >&lt;/p>
 &lt;p>单精度浮点数各个部分所占的位：&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200914211851.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200914211851.png"
 loading="lazy"
 alt="20200914211851"
 >&lt;/p>
 &lt;p>双精度浮点数各个部分所占的位：
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200914211953.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200914211953.png"
 loading="lazy"
 alt="20200914211953"
 >&lt;/p>
@@ -7927,7 +7927,7 @@ alt="20200914211953"
 &lt;li>n 位小数字段 $ frac = f_{n-1} \dots f_{1}f_{0} $ 编码尾数 M，但是编码出来的值也依赖于阶码字段的值是否等于 0&lt;/li>
 &lt;/ul>
 &lt;h2 id="三种情况">三种情况&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200917101541.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200917101541.png"
 loading="lazy"
 alt="20200917101541"
 >&lt;/p>
@@ -7957,10 +7957,10 @@ alt="20200917101541"
 &lt;tr>
 &lt;th style="text-align:left">舍入方式&lt;/th>
 &lt;th style="text-align:center">1.40&lt;/th>
-&lt;th style="text-align:center"> 1.60&lt;/th>
-&lt;th style="text-align:center"> 1.50&lt;/th>
-&lt;th style="text-align:center"> 2.50&lt;/th>
-&lt;th style="text-align:center"> –1.50&lt;/th>
+&lt;th style="text-align:center">1.60&lt;/th>
+&lt;th style="text-align:center">1.50&lt;/th>
+&lt;th style="text-align:center">2.50&lt;/th>
+&lt;th style="text-align:center">–1.50&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
@@ -8070,7 +8070,7 @@ alt="20200917101541"
 >https://qiankun214.github.io/2019/05/28/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%A4%84%E7%90%86/&lt;/a>&lt;/li>
 &lt;/ol></description></item><item><title>初识 Nginx（二）</title><link>https://jinggqu.github.io/posts/getting-to-know-nginx-2/</link><pubDate>Fri, 11 Sep 2020 19:51:07 +0800</pubDate><guid>https://jinggqu.github.io/posts/getting-to-know-nginx-2/</guid><description>&lt;h1 id="应用示例">应用示例&lt;/h1>
 &lt;blockquote>
-&lt;p>本篇文章中所使用的 Nginx 是通过下载软件包手动编译安装的，详见 &lt;a class="link" href="https://sudrizzz.github.io/posts/getting-to-know-nginx" target="_blank" rel="noopener"
+&lt;p>本篇文章中所使用的 Nginx 是通过下载软件包手动编译安装的，详见 &lt;a class="link" href="https://jinggqu.github.io/posts/getting-to-know-nginx" target="_blank" rel="noopener"
 >上一篇文章&lt;/a> 离线安装部分。&lt;/p>
 &lt;/blockquote>
 &lt;p>在上一篇文章中，我们初步接触了 Nginx 的安装以及使用方法。在本篇文章中我们将以具体的静态网页作为例子，来详细介绍 Nginx 的部分细节。&lt;/p>
@@ -8139,7 +8139,7 @@ alt="20200917101541"
 &lt;/div>
 &lt;/div>&lt;h2 id="访问">访问&lt;/h2>
 &lt;p>执行完以上步骤后，访问 Nginx 的地址，即可看到 dlib 下的静态文件已经被正常加载了。如下图。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911201740.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200911201740.png"
 loading="lazy"
 alt="20200911201740"
 >&lt;/p>
@@ -8147,7 +8147,7 @@ alt="20200911201740"
 &lt;p>以下内容均在 nginx.conf 文件中进行配置。&lt;/p>
 &lt;h2 id="数据压缩">数据压缩&lt;/h2>
 &lt;p>根据以上的配置，我们已经可以正常访问部署好的静态网页，但是根据开发者工具我们可以看到，首页的大小是 26.4 kB。我们还可以进一步进行优化，将所需要加载的数据进行压缩，使其所需数据量大大减少。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203709.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200911203709.png"
 loading="lazy"
 alt="优化前"
 >&lt;/p>
@@ -8199,7 +8199,7 @@ alt="优化前"
 >http://nginx.org/en/docs/http/ngx_http_gzip_module.html&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;p>可以看到，开启 gzip 压缩后，加载的数据量大幅减少。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203017.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200911203017.png"
 loading="lazy"
 alt="优化后"
 >&lt;/p>
@@ -8476,7 +8476,7 @@ alt="优化后"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>至此，日志可视化已经配置完成，我们可以直接访问 Nginx &lt;code>服务地址/report.html&lt;/code> 查看可视化页面，如下。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200913143610.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200913143610.png"
 loading="lazy"
 alt="20200913143610"
 >&lt;/p>
@@ -8933,7 +8933,7 @@ Commercial support is available from Nginx, Inc.&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>在浏览器中访问 &lt;code>虚拟机ip:8090&lt;/code>，即可看到 Nginx 的欢迎页面。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906154034.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200906154034.png"
 loading="lazy"
 alt="20200906154034"
 >&lt;/p>
@@ -8956,7 +8956,7 @@ alt="20200906154034"
 Nginx 服务默认的端口是 &lt;code>80&lt;/code>，如果需要修改端口，也可以参照上一节中的内容进行手动修改，略有不同的是，通过手动编译安装的 Nginx，配置文件地址在 &lt;code>/usr/local/nginx/conf/nginx.conf&lt;/code>，也就是编译时我们手动指定的路径下。
 其余内容此处皆不再赘述。&lt;/p>
 &lt;p>打开宿主机浏览器，访问 &lt;code>虚拟机ip:80&lt;/code>，就可以看到 Nginx 的欢迎页面。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906153613.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200906153613.png"
 loading="lazy"
 alt="20200906153613"
 >&lt;/p>
@@ -9027,14 +9027,14 @@ alt="20200906153613"
 &lt;p>在计算机发展历史上，实际上只有宾夕法尼亚大学建立的第一台计算机 ENIAC 使用了十进制进行了算术运算，他们使用 10 个电子管来表示每个数字。所以他们通过控制电子管的开关来表示 10 个数字中的其中一个。&lt;/p>
 &lt;h2 id="二进制">二进制&lt;/h2>
 &lt;p>随着计算机的发展，十进制逐渐演化为二进制。在计算机中，我们使用电学层面上的电压高低来存储位数据，如图所示，高电压（0.9v-1.1v）记作逻辑 1，而低电压（0.0v-0.2v）记作逻辑 0。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904184249.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200904184249.png"
 loading="lazy"
 alt="20200904184249"
 >&lt;/p>
 &lt;p>之所以这么做，是因为通过区分高低电压，可以有效地过滤噪声和杂讯。&lt;/p>
 &lt;h2 id="十六进制">十六进制&lt;/h2>
 &lt;p>二进制的成功运用也带来了一个问题，由于每一个位只能存储两种信号（即 0 和 1），对于人来说基本属于不可读的，所以我们将每四个二进制在位合并为一个十六进制位，这样大大缩减了数据的展示长度。例如&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904185017.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200904185017.png"
 loading="lazy"
 alt="20200904185017"
 >&lt;/p>
@@ -9104,12 +9104,12 @@ alt="20200904185017"
 &lt;li>异或（^）：两者性质相同时，结果为假，否则为真。&lt;/li>
 &lt;/ol>
 &lt;p>详细示例见下图。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904185942.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200904185942.png"
 loading="lazy"
 alt="20200904185942"
 >&lt;/p>
 &lt;h2 id="与集合的关系">与集合的关系&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904190420.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200904190420.png"
 loading="lazy"
 alt="20200904190420"
 >&lt;/p>
@@ -9220,7 +9220,7 @@ $$ B2U(X) = \sum_{i=0}^{w-1}x_{i} \cdot 2^{i} $$&lt;/p>
 &lt;p>补码的表达形式：&lt;br>
 $$ B2T(X) = -x_{w-1}\cdot 2^{w-1}+\sum_{i=0}^{w-2}x_{i}\cdot 2^{i} $$&lt;/p>
 &lt;p>在补码中，最高值为 1 时，始终代表 -1，例如：&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200904192825.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200904192825.png"
 loading="lazy"
 alt="20200904192825"
 >&lt;/p>
@@ -9333,7 +9333,7 @@ alt="20200904192825"
 &lt;p>$$ |TMin| = TMax + 1 $$&lt;/p>
 &lt;p>$$ UMax = 2 * TMax + 1 $$&lt;/p>
 &lt;h2 id="补码形式转换为无符号数">补码形式转换为无符号数&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905104914.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200905104914.png"
 loading="lazy"
 alt="20200905104914"
 >&lt;/p>
@@ -9345,7 +9345,7 @@ alt="20200905104914"
 &lt;/ol>
 &lt;p>$$ X^{&amp;rsquo;} = \underbrace{X_{w-1},&amp;hellip;, X_{w-1}}&lt;em>{k 个符号位拷贝}, X&lt;/em>{w-1}, X_{w-2},&amp;hellip;, X_{0} $$&lt;/p>
 &lt;p>详细信息如下图所示：&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905110036.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200905110036.png"
 loading="lazy"
 alt="20200905110036"
 >&lt;/p>
@@ -9405,7 +9405,7 @@ alt="20200905110036"
 &lt;h2 id="乘法">乘法&lt;/h2>
 &lt;p>给定一个整数 u，其 2 的次方倍乘法操作相对简单，且对于无符号数和有符号数都是统一的操作，即将数据的二进制位向左移动，再将移动产生的多余位进行舍弃，剩余位即最终结果。也即&lt;/p>
 &lt;p>$$ u &amp;laquo; k = u * 2^{k} $$&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905111913.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200905111913.png"
 loading="lazy"
 alt="20200905111913"
 >&lt;/p>
@@ -9413,7 +9413,7 @@ alt="20200905111913"
 &lt;h3 id="无符号数">无符号数&lt;/h3>
 &lt;p>给定一个无符号数 u，对其做 2 的次方倍除法，相当于将其二进制位向右进行逻辑移位，再将小数部分进行舍弃（向下取整），剩余位即最终结果。也即&lt;/p>
 &lt;p>$$ u &amp;raquo; k = \lfloor u / 2^{k} \rfloor $$&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905112056.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200905112056.png"
 loading="lazy"
 alt="20200905112056"
 >&lt;/p>
@@ -9462,7 +9462,7 @@ alt="20200905112056"
 &lt;h3 id="有符号数">有符号数&lt;/h3>
 &lt;p>给定一个有符号数 x，对其做 2 的次方倍除法，相当于将其二进制位向右进行算术移位，再将小数部分进行舍弃（向下取整），剩余位即最终结果。也即&lt;/p>
 &lt;p>$$ x &amp;raquo; k = \lfloor x / 2^{k} \rfloor $$&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200905112700.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200905112700.png"
 loading="lazy"
 alt="20200905112700"
 >&lt;/p>
@@ -9906,11 +9906,11 @@ alt="20200905112700"
 &lt;p>首先需要在 Github 中创建一个名为 &lt;code>&amp;lt;username&amp;gt;.github.io&lt;/code> 的仓库，其中 &lt;code>&amp;lt;username&amp;gt;&lt;/code> 为你的 Github 用户名。&lt;/p>
 &lt;blockquote>
 &lt;p>注意：&lt;br>
-由于 &lt;code>username&lt;/code> 不方便叙述，故下文中均以 &lt;code>sudrizzz&lt;/code> 为例替代 &lt;code>username&lt;/code>，&lt;br>
+由于 &lt;code>username&lt;/code> 不方便叙述，故下文中均以 &lt;code>jinggqu&lt;/code> 为例替代 &lt;code>username&lt;/code>，&lt;br>
 请根据实际情况进行更改。&lt;/p>
 &lt;/blockquote>
-&lt;p>例如我的 Github 用户名是 &lt;code>sudrizzz&lt;/code>，于是创建的仓库名就是 &lt;code>sudrizzz.github.io&lt;/code>。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809134438.png"
+&lt;p>例如我的 Github 用户名是 &lt;code>jinggqu&lt;/code>，于是创建的仓库名就是 &lt;code>jinggqu.github.io&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200809134438.png"
 loading="lazy"
 alt="20200809134438"
 >&lt;/p>
@@ -9920,7 +9920,7 @@ alt="20200809134438"
 >https://github.com/gohugoio/hugo/releases&lt;/a>&lt;/p>
 &lt;h2 id="配置环境变量">配置环境变量&lt;/h2>
 &lt;p>将安装 Hugo 的目录路径配置到用户环境变量 &lt;code>PATH&lt;/code> 中，如图
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809135128.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200809135128.png"
 loading="lazy"
 alt="20200809135128"
 >&lt;/p>
@@ -9953,7 +9953,7 @@ alt="20200809135128"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">hugo new site &amp;lt;blog_name&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>上述命令将会创建一个名为 blog_name 的文件夹，请按照个人喜好取名。按照我的博客为例，取名为 &lt;code>sudrizzz.github.io&lt;/code>，这样也方便后续进行代码提交&lt;/p>
+&lt;/div>&lt;p>上述命令将会创建一个名为 blog_name 的文件夹，请按照个人喜好取名。按照我的博客为例，取名为 &lt;code>jinggqu.github.io&lt;/code>，这样也方便后续进行代码提交&lt;/p>
 &lt;h2 id="添加主题">添加主题&lt;/h2>
 &lt;p>以 &lt;a class="link" href="https://github.com/joway/hugo-theme-yinyang" target="_blank" rel="noopener"
 >yinyang&lt;/a> 主题为例，按照文档中的安装步骤，执行以下命令&lt;/p>
@@ -9963,11 +9963,11 @@ alt="20200809135128"
 &lt;/span>&lt;span class="lnt">2
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> sudrizzz.github.io
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> jinggqu.github.io
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git clone git@github.com:joway/hugo-theme-yinyang.git themes/yinyang
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>进入 &lt;code>sudrizzz.github.io/themes/yinyang/exampleSite&lt;/code> 目录，将 &lt;code>content&lt;/code> 文件夹和 &lt;code>config.toml&lt;/code> 文件拷贝到 &lt;code>sudrizzz.github.io&lt;/code> 目录。&lt;/p>
+&lt;/div>&lt;p>进入 &lt;code>jinggqu.github.io/themes/yinyang/exampleSite&lt;/code> 目录，将 &lt;code>content&lt;/code> 文件夹和 &lt;code>config.toml&lt;/code> 文件拷贝到 &lt;code>jinggqu.github.io&lt;/code> 目录。&lt;/p>
 &lt;h2 id="自定义主题">自定义主题&lt;/h2>
 &lt;p>根据 &lt;a class="link" href="https://github.com/joway/hugo-theme-yinyang#configuration" target="_blank" rel="noopener"
 >yinyang 主题配置文档&lt;/a>，我们可以按需修改其中的内容即可，以下贴出我自定义的配置内容。&lt;/p>
@@ -10009,7 +10009,7 @@ alt="20200809135128"
 &lt;/span>&lt;span class="lnt">34
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">baseURL&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://sudrizzz.github.com&amp;#34;&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">baseURL&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://jinggqu.github.com&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">languageCode&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;zh-cn&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">title&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Anthony&amp;#39;s Blog&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">theme&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;yinyang&amp;#34;&lt;/span>
@@ -10017,7 +10017,7 @@ alt="20200809135128"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">author&lt;/span>&lt;span class="p">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Anthony Qu&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">homepage&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://github.com/sudrizzz/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">homepage&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://github.com/jinggqu/&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c"># [languages.en]&lt;/span>
@@ -10038,7 +10038,7 @@ alt="20200809135128"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">socials&lt;/span>&lt;span class="p">]]&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Github&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">link&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://github.com/sudrizzz/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">link&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://github.com/jinggqu/&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">socials&lt;/span>&lt;span class="p">]]&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;RSS&amp;#34;&lt;/span>
@@ -10046,7 +10046,7 @@ alt="20200809135128"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h1 id="添加文章">添加文章&lt;/h1>
-&lt;p>在 &lt;code>sudrizzz.github.io&lt;/code> 文件夹中执行以下命令以新增文章&lt;/p>
+&lt;p>在 &lt;code>jinggqu.github.io&lt;/code> 文件夹中执行以下命令以新增文章&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -10123,7 +10123,7 @@ alt="20200809135128"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h1 id="启动服务">启动服务&lt;/h1>
-&lt;p>在 &lt;code>sudrizzz.github.io&lt;/code> 目录执行以下命令&lt;/p>
+&lt;p>在 &lt;code>jinggqu.github.io&lt;/code> 目录执行以下命令&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -10170,8 +10170,8 @@ alt="20200809135128"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Cleaned | 0
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Built in 28 ms
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Watching for changes in D:\Blog\sudrizzz.github.io\{archetypes,content,layouts,themes}
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Watching for config changes in D:\Blog\sudrizzz.github.io\config.toml
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Watching for changes in D:\Blog\jinggqu.github.io\{archetypes,content,layouts,themes}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Watching for config changes in D:\Blog\jinggqu.github.io\config.toml
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Environment: &amp;#34;development&amp;#34;
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Serving pages from memory
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
@@ -10180,12 +10180,12 @@ alt="20200809135128"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>可以看到最后一行显示已经启动成功，页面地址是 http://localhost:1313/ ，访问这个地址即可看到如下效果。&lt;br>
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809143708.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200809143708.png"
 loading="lazy"
 alt="20200809143708"
 >
 点击标题进入文章即可看到全部内容。&lt;br>
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809144430.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200809144430.png"
 loading="lazy"
 alt="20200809144430"
 >&lt;/p>
@@ -10237,7 +10237,7 @@ alt="20200809144430"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Total in 29 ms
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>这样就编译完成了，编译后生成的静态文件放在 &lt;code>sudrizzz.github.io/public&lt;/code> 目录下。结构如下：&lt;/p>
+&lt;/div>&lt;p>这样就编译完成了，编译后生成的静态文件放在 &lt;code>jinggqu.github.io/public&lt;/code> 目录下。结构如下：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -10276,7 +10276,7 @@ alt="20200809144430"
 我们只需要将 Hugo 生成的静态文件托管到 Github，&lt;br>
 所以请确保下述命令是在 &lt;code>/pulic&lt;/code> 目录中执行的。&lt;/p>
 &lt;/blockquote>
-&lt;p>在 &lt;code>sudrizzz.github.io/pulic&lt;/code> 目录中执行以下命令&lt;/p>
+&lt;p>在 &lt;code>jinggqu.github.io/pulic&lt;/code> 目录中执行以下命令&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -10285,13 +10285,13 @@ alt="20200809144430"
 &lt;/span>&lt;span class="lnt">4
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">git clone https://github.com/sudrizzz/sudrizzz.github.io.git
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">git clone https://github.com/jinggqu/jinggqu.github.io.git
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git add .
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m &lt;span class="s2">&amp;#34;&amp;lt;commit_info&amp;gt;&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push origin master
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>这样博客的所有内容就都已经推送到了 Github，稍等片刻，即可访问 sudrizzz.github.io 查看部署结果。&lt;/p>
+&lt;/div>&lt;p>这样博客的所有内容就都已经推送到了 Github，稍等片刻，即可访问 jinggqu.github.io 查看部署结果。&lt;/p>
 &lt;h1 id="总结">总结&lt;/h1>
 &lt;p>前文搭建的博客是由 Github Pages + Hugo 实现的，具体的新增文章步骤可以总结为以下几点。&lt;/p>
 &lt;ol>

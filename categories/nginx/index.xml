@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nginx on Anthony's blog</title><link>https://jinggqu.github.io/categories/nginx/</link><description>Recent content in Nginx on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 11 Sep 2020 19:51:07 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/categories/nginx/index.xml" rel="self" type="application/rss+xml"/><item><title>初识 Nginx（二）</title><link>https://jinggqu.github.io/posts/getting-to-know-nginx-2/</link><pubDate>Fri, 11 Sep 2020 19:51:07 +0800</pubDate><guid>https://jinggqu.github.io/posts/getting-to-know-nginx-2/</guid><description>&lt;h1 id="应用示例">应用示例&lt;/h1>
 &lt;blockquote>
-&lt;p>本篇文章中所使用的 Nginx 是通过下载软件包手动编译安装的，详见 &lt;a class="link" href="https://sudrizzz.github.io/posts/getting-to-know-nginx" target="_blank" rel="noopener"
+&lt;p>本篇文章中所使用的 Nginx 是通过下载软件包手动编译安装的，详见 &lt;a class="link" href="https://jinggqu.github.io/posts/getting-to-know-nginx" target="_blank" rel="noopener"
 >上一篇文章&lt;/a> 离线安装部分。&lt;/p>
 &lt;/blockquote>
 &lt;p>在上一篇文章中，我们初步接触了 Nginx 的安装以及使用方法。在本篇文章中我们将以具体的静态网页作为例子，来详细介绍 Nginx 的部分细节。&lt;/p>
@@ -69,7 +69,7 @@
 &lt;/div>
 &lt;/div>&lt;h2 id="访问">访问&lt;/h2>
 &lt;p>执行完以上步骤后，访问 Nginx 的地址，即可看到 dlib 下的静态文件已经被正常加载了。如下图。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911201740.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200911201740.png"
 loading="lazy"
 alt="20200911201740"
 >&lt;/p>
@@ -77,7 +77,7 @@ alt="20200911201740"
 &lt;p>以下内容均在 nginx.conf 文件中进行配置。&lt;/p>
 &lt;h2 id="数据压缩">数据压缩&lt;/h2>
 &lt;p>根据以上的配置，我们已经可以正常访问部署好的静态网页，但是根据开发者工具我们可以看到，首页的大小是 26.4 kB。我们还可以进一步进行优化，将所需要加载的数据进行压缩，使其所需数据量大大减少。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203709.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200911203709.png"
 loading="lazy"
 alt="优化前"
 >&lt;/p>
@@ -129,7 +129,7 @@ alt="优化前"
 >http://nginx.org/en/docs/http/ngx_http_gzip_module.html&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;p>可以看到，开启 gzip 压缩后，加载的数据量大幅减少。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200911203017.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200911203017.png"
 loading="lazy"
 alt="优化后"
 >&lt;/p>
@@ -406,7 +406,7 @@ alt="优化后"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>至此，日志可视化已经配置完成，我们可以直接访问 Nginx &lt;code>服务地址/report.html&lt;/code> 查看可视化页面，如下。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200913143610.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200913143610.png"
 loading="lazy"
 alt="20200913143610"
 >&lt;/p>
@@ -863,7 +863,7 @@ Commercial support is available from Nginx, Inc.&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>在浏览器中访问 &lt;code>虚拟机ip:8090&lt;/code>，即可看到 Nginx 的欢迎页面。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906154034.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200906154034.png"
 loading="lazy"
 alt="20200906154034"
 >&lt;/p>
@@ -886,7 +886,7 @@ alt="20200906154034"
 Nginx 服务默认的端口是 &lt;code>80&lt;/code>，如果需要修改端口，也可以参照上一节中的内容进行手动修改，略有不同的是，通过手动编译安装的 Nginx，配置文件地址在 &lt;code>/usr/local/nginx/conf/nginx.conf&lt;/code>，也就是编译时我们手动指定的路径下。
 其余内容此处皆不再赘述。&lt;/p>
 &lt;p>打开宿主机浏览器，访问 &lt;code>虚拟机ip:80&lt;/code>，就可以看到 Nginx 的欢迎页面。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906153613.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200906153613.png"
 loading="lazy"
 alt="20200906153613"
 >&lt;/p>

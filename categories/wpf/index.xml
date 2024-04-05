@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>WPF on Anthony's blog</title><link>https://jinggqu.github.io/categories/wpf/</link><description>Recent content in WPF on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 18 Aug 2023 15:00:00 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/categories/wpf/index.xml" rel="self" type="application/rss+xml"/><item><title>使用C#、WPF与ONNX模型实现手写数字识别</title><link>https://jinggqu.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</link><pubDate>Fri, 18 Aug 2023 15:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
 &lt;blockquote>
-&lt;p>项目完整代码见 GitHub 仓库： &lt;a class="link" href="https://github.com/sudrizzz/MLNetDemo" target="_blank" rel="noopener"
->sudrizzz/MLNetDemo&lt;/a>。&lt;/p>
+&lt;p>项目完整代码见 GitHub 仓库： &lt;a class="link" href="https://github.com/jinggqu/MLNetDemo" target="_blank" rel="noopener"
+>jinggqu/MLNetDemo&lt;/a>。&lt;/p>
 &lt;/blockquote>
 &lt;p>本文将介绍如何使用 C#、WPF 与 ONNX 模型实现一个简单的手写数字识别项目。整个流程跑通后，即可应用更加复杂的深度学习模型。&lt;/p>
 &lt;h1 id="wpf-界面开发">WPF 界面开发&lt;/h1>
 &lt;p>项目的用户界面相对简单，主要包含一个 InkCanvas（Name 设置为 inkCanvas） 用于用户绘制数字，一个识别按钮与一个清除 Canvas 内容的按钮。软件用户界面如下图所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20230818102257.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20230818102257.png"
 loading="lazy"
 alt="软件用户界面"
 >&lt;/p>
 &lt;p>项目最终效果图如下图所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20230818110324.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20230818110324.png"
 loading="lazy"
 alt="项目最终效果图"
 >&lt;/p>
@@ -27,7 +27,7 @@ alt="项目最终效果图"
 &lt;h2 id="查看模型结构">查看模型结构&lt;/h2>
 &lt;p>下载 ONNX 模型后，我们还需要找到模型中的输入变量名与输出变量名。因此使用 &lt;a class="link" href="https://github.com/lutzroeder/netron" target="_blank" rel="noopener"
 >Netron&lt;/a> 来检视模型。Netron 打开 ONNX 模型后的效果如下图所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20230818135201.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20230818135201.png"
 loading="lazy"
 alt="手写数字识别 ONNX 模型结构"
 >&lt;/p>
@@ -261,7 +261,7 @@ alt="手写数字识别 ONNX 模型结构"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>变换后得到的灰度图如下图所示（28×28，图片显示效果较小）。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20230818143813.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20230818143813.png"
 loading="lazy"
 alt="灰度图"
 >&lt;/p>

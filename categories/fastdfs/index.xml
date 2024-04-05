@@ -3,17 +3,17 @@
 &lt;p>FastDFS 开源地址：https://github.com/happyfish100/fastdfs&lt;/p>
 &lt;p>由于网络上已有很多详细的关于 FastDFS 的介绍，故此处不再赘述。请查看参考文章中的第 1、2 条。&lt;/p>
 &lt;h2 id="fastdfs-架构图">FastDFS 架构图&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201103150000.jpg"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201103150000.jpg"
 loading="lazy"
 alt="20201103150000"
 >&lt;/p>
 &lt;h2 id="fastdfs-上传流程">FastDFS 上传流程&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104100033.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201104100033.png"
 loading="lazy"
 alt="20201104100033"
 >&lt;/p>
 &lt;h2 id="fastdfs-下载流程">FastDFS 下载流程&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104100107.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201104100107.png"
 loading="lazy"
 alt="20201104100107"
 >&lt;/p>
@@ -426,12 +426,12 @@ tcp 0 0 0.0.0.0:22122 0.0.0.0:* LISTEN 6220/fdfs_trackerd
 &lt;/div>
 &lt;/div>&lt;p>上传成功后，会输出文件 ID：group1/M00/00/00/wKg9gF-f0aKAUJAlAARra4mLMhc390.jpg&lt;/p>
 &lt;p>返回的文件 ID 由 group、存储目录、两级子目录、fileid、文件后缀名（由客户端指定，主要用于区分文件类型）拼接而成。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104093640.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201104093640.png"
 loading="lazy"
 alt="20201104093640"
 >&lt;/p>
 &lt;h1 id="配置-nginx">配置 Nginx&lt;/h1>
-&lt;p>安装 Nginx 的相关操作请查看文章 &lt;a class="link" href="https://sudrizzz.github.io/posts/getting-to-know-nginx/" target="_blank" rel="noopener"
+&lt;p>安装 Nginx 的相关操作请查看文章 &lt;a class="link" href="https://jinggqu.github.io/posts/getting-to-know-nginx/" target="_blank" rel="noopener"
 >初识 Nginx&lt;/a>，此处不再赘述。&lt;/p>
 &lt;h2 id="修改配置">修改配置&lt;/h2>
 &lt;p>经过上述操作之后，文件已经可以通过命令行的方式上传到 FastDFS 中，但还无法下载，此时我们需要使用 Nginx 来实现下载功能。修改 Nginx 配置文件，在 server 组内添加以下内容：&lt;/p>
@@ -461,7 +461,7 @@ alt="20201104093640"
 &lt;/div>
 &lt;/div>&lt;p>然后重启 Nginx，访问服务器 ip/fileid 进行测试，根据上述例子，此处访问 http://192.168.61.128/group1/M00/00/00/wKg9gF-f0aKAUJAlAARra4mLMhc390.jpg&lt;/p>
 &lt;p>测试结果如下图，可以看到已经访问成功，HTTP 状态码返回 200。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104104028.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201104104028.png"
 loading="lazy"
 alt="20201104104028"
 >&lt;/p>
@@ -613,7 +613,7 @@ configure arguments: --prefix=/usr/local/nginx/ --add-module=/usr/local/software
 ngx_http_fastdfs_set pid=11648
 &lt;/code>&lt;/pre>
 &lt;p>此时我们可以在浏览器中访问前文中上传的文件，能下载文件则表示 fastdfs-nginx-module 模块安装成功。注意和和前文中直接使用 Nginx 路由访问不同的是，这里配置 fastdfs-nginx-module 模块，可以重定向文件链接到源服务器取文件。访问结果如下图所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201104104028.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201104104028.png"
 loading="lazy"
 alt="20201104104028"
 >&lt;/p>
@@ -628,7 +628,7 @@ alt="20201104104028"
 >FastDFS Distributed File Storage&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="http://bbs.chinaunix.net/forum.php?mod=viewthread&amp;amp;tid=1941456" target="_blank" rel="noopener"
 >FastDFS 配置文件详解（修订版 1）&lt;/a>&lt;/li>
-&lt;li>&lt;a class="link" href="https://sudrizzz.github.io/posts/getting-to-know-nginx/" target="_blank" rel="noopener"
+&lt;li>&lt;a class="link" href="https://jinggqu.github.io/posts/getting-to-know-nginx/" target="_blank" rel="noopener"
 >初识 Nginx&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://github.com/happyfish100/fastdfs-nginx-module/blob/master/INSTALL" target="_blank" rel="noopener"
 >fastdfs nginx module installation introduction&lt;/a>&lt;/li>

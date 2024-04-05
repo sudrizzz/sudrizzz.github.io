@@ -26,8 +26,8 @@
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;p>本例代码存放于 &lt;a class="link" href="https://github.com/sudrizzz/MachineLearning" target="_blank" rel="noopener"
->https://github.com/sudrizzz/MachineLearning&lt;/a>。&lt;/p>
+&lt;p>本例代码存放于 &lt;a class="link" href="https://github.com/jinggqu/MachineLearning" target="_blank" rel="noopener"
+>https://github.com/jinggqu/MachineLearning&lt;/a>。&lt;/p>
 &lt;h2 id="anaconda-安装">Anaconda 安装&lt;/h2>
 &lt;p>通过清华大学开源软件镜像站，我们可以直接下载最新版本的 Anaconda，本例中使用的 Anaconda 下载链接：
 &lt;a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe" target="_blank" rel="noopener"
@@ -47,11 +47,11 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>上述配置请根据 Anaconda 实际安装路径进行调整，配置完成的效果如下图所示。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208152533.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201208152533.png"
 loading="lazy"
 alt="20201208152533"
 >&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208152633.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201208152633.png"
 loading="lazy"
 alt="20201208152633"
 >&lt;/p>
@@ -254,7 +254,7 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;h2 id="使用-pycharm-创建项目">使用 PyCharm 创建项目&lt;/h2>
 &lt;p>在创建项目时，需要将虚拟环境（图中 Location 项）配置为前文中创建的虚拟环境所在目录，然后点击创建项目。&lt;/p>
 &lt;p>&lt;em>由于此前作者已经创建过项目，故创建窗口下方会提示虚拟环境目录不为空，忽略即可。&lt;/em>&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208194401.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201208194401.png"
 loading="lazy"
 alt="20201208194401"
 >&lt;/p>
@@ -531,7 +531,7 @@ alt="20201208194401"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>运行时的截图如下，可以看到已经生成了多张手写数字的图片。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20201208201913.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201208201913.png"
 loading="lazy"
 alt="20201208201913"
 >&lt;/p>

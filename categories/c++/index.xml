@@ -7,7 +7,7 @@
 &lt;h1 id="环境配置">环境配置&lt;/h1>
 &lt;h2 id="创建项目">创建项目&lt;/h2>
 &lt;p>首先，在 Visual Studio 中创建一个名为 libtorch-toturial 的控制台项目。创建完成后，将项目设置为 &lt;code>Release&lt;/code> 模式，&lt;code>x64&lt;/code> 平台，如下图。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027154904.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20211027154904.png"
 loading="lazy"
 alt="20211027154904"
 >&lt;/p>
@@ -36,7 +36,7 @@ alt="20211027154904"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>配置结果如下图，注意检查窗口顶栏 &lt;code>配置&lt;/code> 是否为 &lt;code>Release&lt;/code>，&lt;code>平台&lt;/code> 是否为 &lt;code>x64&lt;/code>。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027160310.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20211027160310.png"
 loading="lazy"
 alt="20211027160310"
 >&lt;/p>
@@ -88,7 +88,7 @@ alt="20211027160310"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>最后，将 &lt;code>D:\Software\libtorch-lts\lib&lt;/code> 路径下所有的 &lt;code>*.dll&lt;/code> 文件拷贝至 &lt;code>项目路径 -&amp;gt; x64 -&amp;gt; Release&lt;/code> 路径下，如下图。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027163802.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20211027163802.png"
 loading="lazy"
 alt="20211027163802"
 >&lt;/p>
@@ -114,7 +114,7 @@ alt="20211027163802"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211027170451.png"
+&lt;/div>&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20211027170451.png"
 loading="lazy"
 alt="20211027170451"
 >&lt;/p>
@@ -151,7 +151,7 @@ alt="20211027170451"
 >LibTorch 官方示例&lt;/a> 中找到，请将其拷贝到项目的 &lt;code>libtorch-toturial.cpp&lt;/code> 中。&lt;/p>
 &lt;h2 id="结果">结果&lt;/h2>
 &lt;p>与 PyTorch 类似，LibTorch 创建深度学习应用同样包含与其相似的步骤：定义网络、初始化网络、加载数据集、训练、验证及保存模型等，详细代码可以参照上述官方示例，此处不再赘述。训练 10 个 epoch 之后，识别准确率已经达到了 98.4%.&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20211028114206.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20211028114206.png"
 loading="lazy"
 alt="20211028114206"
 >&lt;/p>

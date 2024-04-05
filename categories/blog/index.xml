@@ -2,11 +2,11 @@
 &lt;p>首先需要在 Github 中创建一个名为 &lt;code>&amp;lt;username&amp;gt;.github.io&lt;/code> 的仓库，其中 &lt;code>&amp;lt;username&amp;gt;&lt;/code> 为你的 Github 用户名。&lt;/p>
 &lt;blockquote>
 &lt;p>注意：&lt;br>
-由于 &lt;code>username&lt;/code> 不方便叙述，故下文中均以 &lt;code>sudrizzz&lt;/code> 为例替代 &lt;code>username&lt;/code>，&lt;br>
+由于 &lt;code>username&lt;/code> 不方便叙述，故下文中均以 &lt;code>jinggqu&lt;/code> 为例替代 &lt;code>username&lt;/code>，&lt;br>
 请根据实际情况进行更改。&lt;/p>
 &lt;/blockquote>
-&lt;p>例如我的 Github 用户名是 &lt;code>sudrizzz&lt;/code>，于是创建的仓库名就是 &lt;code>sudrizzz.github.io&lt;/code>。&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809134438.png"
+&lt;p>例如我的 Github 用户名是 &lt;code>jinggqu&lt;/code>，于是创建的仓库名就是 &lt;code>jinggqu.github.io&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200809134438.png"
 loading="lazy"
 alt="20200809134438"
 >&lt;/p>
@@ -16,7 +16,7 @@ alt="20200809134438"
 >https://github.com/gohugoio/hugo/releases&lt;/a>&lt;/p>
 &lt;h2 id="配置环境变量">配置环境变量&lt;/h2>
 &lt;p>将安装 Hugo 的目录路径配置到用户环境变量 &lt;code>PATH&lt;/code> 中，如图
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809135128.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200809135128.png"
 loading="lazy"
 alt="20200809135128"
 >&lt;/p>
@@ -49,7 +49,7 @@ alt="20200809135128"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">hugo new site &amp;lt;blog_name&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>上述命令将会创建一个名为 blog_name 的文件夹，请按照个人喜好取名。按照我的博客为例，取名为 &lt;code>sudrizzz.github.io&lt;/code>，这样也方便后续进行代码提交&lt;/p>
+&lt;/div>&lt;p>上述命令将会创建一个名为 blog_name 的文件夹，请按照个人喜好取名。按照我的博客为例，取名为 &lt;code>jinggqu.github.io&lt;/code>，这样也方便后续进行代码提交&lt;/p>
 &lt;h2 id="添加主题">添加主题&lt;/h2>
 &lt;p>以 &lt;a class="link" href="https://github.com/joway/hugo-theme-yinyang" target="_blank" rel="noopener"
 >yinyang&lt;/a> 主题为例，按照文档中的安装步骤，执行以下命令&lt;/p>
@@ -59,11 +59,11 @@ alt="20200809135128"
 &lt;/span>&lt;span class="lnt">2
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> sudrizzz.github.io
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> jinggqu.github.io
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git clone git@github.com:joway/hugo-theme-yinyang.git themes/yinyang
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>进入 &lt;code>sudrizzz.github.io/themes/yinyang/exampleSite&lt;/code> 目录，将 &lt;code>content&lt;/code> 文件夹和 &lt;code>config.toml&lt;/code> 文件拷贝到 &lt;code>sudrizzz.github.io&lt;/code> 目录。&lt;/p>
+&lt;/div>&lt;p>进入 &lt;code>jinggqu.github.io/themes/yinyang/exampleSite&lt;/code> 目录，将 &lt;code>content&lt;/code> 文件夹和 &lt;code>config.toml&lt;/code> 文件拷贝到 &lt;code>jinggqu.github.io&lt;/code> 目录。&lt;/p>
 &lt;h2 id="自定义主题">自定义主题&lt;/h2>
 &lt;p>根据 &lt;a class="link" href="https://github.com/joway/hugo-theme-yinyang#configuration" target="_blank" rel="noopener"
 >yinyang 主题配置文档&lt;/a>，我们可以按需修改其中的内容即可，以下贴出我自定义的配置内容。&lt;/p>
@@ -105,7 +105,7 @@ alt="20200809135128"
 &lt;/span>&lt;span class="lnt">34
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">baseURL&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://sudrizzz.github.com&amp;#34;&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">baseURL&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://jinggqu.github.com&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">languageCode&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;zh-cn&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">title&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Anthony&amp;#39;s Blog&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">theme&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;yinyang&amp;#34;&lt;/span>
@@ -113,7 +113,7 @@ alt="20200809135128"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">author&lt;/span>&lt;span class="p">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Anthony Qu&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">homepage&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://github.com/sudrizzz/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">homepage&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://github.com/jinggqu/&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c"># [languages.en]&lt;/span>
@@ -134,7 +134,7 @@ alt="20200809135128"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">socials&lt;/span>&lt;span class="p">]]&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Github&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">link&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://github.com/sudrizzz/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">link&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://github.com/jinggqu/&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">socials&lt;/span>&lt;span class="p">]]&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;RSS&amp;#34;&lt;/span>
@@ -142,7 +142,7 @@ alt="20200809135128"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h1 id="添加文章">添加文章&lt;/h1>
-&lt;p>在 &lt;code>sudrizzz.github.io&lt;/code> 文件夹中执行以下命令以新增文章&lt;/p>
+&lt;p>在 &lt;code>jinggqu.github.io&lt;/code> 文件夹中执行以下命令以新增文章&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -219,7 +219,7 @@ alt="20200809135128"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h1 id="启动服务">启动服务&lt;/h1>
-&lt;p>在 &lt;code>sudrizzz.github.io&lt;/code> 目录执行以下命令&lt;/p>
+&lt;p>在 &lt;code>jinggqu.github.io&lt;/code> 目录执行以下命令&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -266,8 +266,8 @@ alt="20200809135128"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Cleaned | 0
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Built in 28 ms
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Watching for changes in D:\Blog\sudrizzz.github.io\{archetypes,content,layouts,themes}
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Watching for config changes in D:\Blog\sudrizzz.github.io\config.toml
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Watching for changes in D:\Blog\jinggqu.github.io\{archetypes,content,layouts,themes}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Watching for config changes in D:\Blog\jinggqu.github.io\config.toml
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Environment: &amp;#34;development&amp;#34;
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Serving pages from memory
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
@@ -276,12 +276,12 @@ alt="20200809135128"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>可以看到最后一行显示已经启动成功，页面地址是 http://localhost:1313/ ，访问这个地址即可看到如下效果。&lt;br>
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809143708.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200809143708.png"
 loading="lazy"
 alt="20200809143708"
 >
 点击标题进入文章即可看到全部内容。&lt;br>
-&lt;img src="https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200809144430.png"
+&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200809144430.png"
 loading="lazy"
 alt="20200809144430"
 >&lt;/p>
@@ -333,7 +333,7 @@ alt="20200809144430"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Total in 29 ms
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>这样就编译完成了，编译后生成的静态文件放在 &lt;code>sudrizzz.github.io/public&lt;/code> 目录下。结构如下：&lt;/p>
+&lt;/div>&lt;p>这样就编译完成了，编译后生成的静态文件放在 &lt;code>jinggqu.github.io/public&lt;/code> 目录下。结构如下：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -372,7 +372,7 @@ alt="20200809144430"
 我们只需要将 Hugo 生成的静态文件托管到 Github，&lt;br>
 所以请确保下述命令是在 &lt;code>/pulic&lt;/code> 目录中执行的。&lt;/p>
 &lt;/blockquote>
-&lt;p>在 &lt;code>sudrizzz.github.io/pulic&lt;/code> 目录中执行以下命令&lt;/p>
+&lt;p>在 &lt;code>jinggqu.github.io/pulic&lt;/code> 目录中执行以下命令&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -381,13 +381,13 @@ alt="20200809144430"
 &lt;/span>&lt;span class="lnt">4
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">git clone https://github.com/sudrizzz/sudrizzz.github.io.git
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">git clone https://github.com/jinggqu/jinggqu.github.io.git
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git add .
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m &lt;span class="s2">&amp;#34;&amp;lt;commit_info&amp;gt;&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push origin master
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>这样博客的所有内容就都已经推送到了 Github，稍等片刻，即可访问 sudrizzz.github.io 查看部署结果。&lt;/p>
+&lt;/div>&lt;p>这样博客的所有内容就都已经推送到了 Github，稍等片刻，即可访问 jinggqu.github.io 查看部署结果。&lt;/p>
 &lt;h1 id="总结">总结&lt;/h1>
 &lt;p>前文搭建的博客是由 Github Pages + Hugo 实现的，具体的新增文章步骤可以总结为以下几点。&lt;/p>
 &lt;ol>

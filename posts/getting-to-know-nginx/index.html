@@ -235,12 +235,12 @@
 </span></span><span class=line><span class=cl>tcp        0      0 0.0.0.0:8090            0.0.0.0:*               LISTEN      -
 </span></span><span class=line><span class=cl>tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN      -
 </span></span><span class=line><span class=cl>...
-</span></span></code></pre></td></tr></table></div></div><p>在浏览器中访问 <code>虚拟机ip:8090</code>，即可看到 Nginx 的欢迎页面。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906154034.png loading=lazy alt=20200906154034></p><blockquote><p>此时返回 404 是因为 Nginx 目录中并没有欢迎页面的 html 文件，但依然可以说明已经 Nginx 服务已经配置正确并启动成功。</p></blockquote><h1 id=离线安装-nginx-的启动方式>离线安装 Nginx 的启动方式</h1><p>首先执行下述命令来启动 Nginx。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span></code></pre></td></tr></table></div></div><p>在浏览器中访问 <code>虚拟机ip:8090</code>，即可看到 Nginx 的欢迎页面。</p><p><img src=https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200906154034.png loading=lazy alt=20200906154034></p><blockquote><p>此时返回 404 是因为 Nginx 目录中并没有欢迎页面的 html 文件，但依然可以说明已经 Nginx 服务已经配置正确并启动成功。</p></blockquote><h1 id=离线安装-nginx-的启动方式>离线安装 Nginx 的启动方式</h1><p>首先执行下述命令来启动 Nginx。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>cd</span> /usr/local/nginx/sbin
 </span></span><span class=line><span class=cl>sudo ./nginx
 </span></span></code></pre></td></tr></table></div></div><p>同样的，我们可以按照上一节中介绍的方法，来验证 Nginx 是否启动成功，以及端口是否开放。<br>Nginx 服务默认的端口是 <code>80</code>，如果需要修改端口，也可以参照上一节中的内容进行手动修改，略有不同的是，通过手动编译安装的 Nginx，配置文件地址在 <code>/usr/local/nginx/conf/nginx.conf</code>，也就是编译时我们手动指定的路径下。
-其余内容此处皆不再赘述。</p><p>打开宿主机浏览器，访问 <code>虚拟机ip:80</code>，就可以看到 Nginx 的欢迎页面。</p><p><img src=https://cdn.jsdelivr.net/gh/sudrizzz/blog_images@main/20200906153613.png loading=lazy alt=20200906153613></p><h1 id=修改-nginxconf>修改 nginx.conf</h1><p>如果后续需要修改 <code>nginx.conf</code> 中的内容，例如更改 Nginx 服务端口号，请务必在修改完成后重启服务。常用的 Nginx 命令如下。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+其余内容此处皆不再赘述。</p><p>打开宿主机浏览器，访问 <code>虚拟机ip:80</code>，就可以看到 Nginx 的欢迎页面。</p><p><img src=https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20200906153613.png loading=lazy alt=20200906153613></p><h1 id=修改-nginxconf>修改 nginx.conf</h1><p>如果后续需要修改 <code>nginx.conf</code> 中的内容，例如更改 Nginx 服务端口号，请务必在修改完成后重启服务。常用的 Nginx 命令如下。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
