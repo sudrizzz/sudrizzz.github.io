@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine-Learning on Anthony's blog</title><link>https://jinggqu.github.io/categories/machine-learning/</link><description>Recent content in Machine-Learning on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 28 Jan 2021 18:00:00 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/categories/machine-learning/index.xml" rel="self" type="application/rss+xml"/><item><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title><link>https://jinggqu.github.io/posts/sae-2/</link><pubDate>Thu, 28 Jan 2021 18:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/sae-2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
-&lt;p>在&lt;a class="link" href="https://jinggqu.github.io/posts/sae-1/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine-Learning on Anthony's blog</title><link>https://jinggqu.github.io/categories/machine-learning/</link><description>Recent content in Machine-Learning on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 28 Jan 2021 18:00:00 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/categories/machine-learning/index.xml" rel="self" type="application/rss+xml"/><item><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title><link>https://jinggqu.github.io/posts/sae-2/</link><pubDate>Thu, 28 Jan 2021 18:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/sae-2/</guid><description>&lt;h1 id="前言">前言
+&lt;/h1>&lt;p>在&lt;a class="link" href="https://jinggqu.github.io/posts/sae-1/" target="_blank" rel="noopener"
 >上一篇文章&lt;/a>中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。&lt;/p>
-&lt;h1 id="tiny_dnn-简介">tiny_dnn 简介&lt;/h1>
-&lt;p>tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。&lt;/p>
-&lt;h1 id="搭建环境">搭建环境&lt;/h1>
-&lt;h2 id="版本要求">版本要求&lt;/h2>
-&lt;p>需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 &lt;strong>Visual Studio 2019&lt;/strong> 为例进行配置。&lt;/p>
-&lt;h2 id="创建项目">创建项目&lt;/h2>
-&lt;p>打开 VS，创建一个名为 testTinyDNN 的&lt;strong>控制台应用&lt;/strong>。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 &lt;code>testTinyDNN.cpp&lt;/code> 属于同一层级。&lt;/p>
+&lt;h1 id="tiny_dnn-简介">tiny_dnn 简介
+&lt;/h1>&lt;p>tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。&lt;/p>
+&lt;h1 id="搭建环境">搭建环境
+&lt;/h1>&lt;h2 id="版本要求">版本要求
+&lt;/h2>&lt;p>需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 &lt;strong>Visual Studio 2019&lt;/strong> 为例进行配置。&lt;/p>
+&lt;h2 id="创建项目">创建项目
+&lt;/h2>&lt;p>打开 VS，创建一个名为 testTinyDNN 的&lt;strong>控制台应用&lt;/strong>。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 &lt;code>testTinyDNN.cpp&lt;/code> 属于同一层级。&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210129112851.png"
 loading="lazy"
 alt="20210129112851"
 >&lt;/p>
-&lt;h2 id="编辑配置">编辑配置&lt;/h2>
-&lt;ol>
+&lt;h2 id="编辑配置">编辑配置
+&lt;/h2>&lt;ol>
 &lt;li>编辑 &lt;code>config.h&lt;/code> 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -43,8 +43,8 @@ alt="20210129112851"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">const&lt;/span> &lt;span class="n">size_t&lt;/span> &lt;span class="n">border_width&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="编写代码">编写代码&lt;/h2>
-&lt;p>打开 &lt;code>testTinyDNN.cpp&lt;/code> 文件，将下列代码粘贴进去。&lt;/p>
+&lt;/div>&lt;h2 id="编写代码">编写代码
+&lt;/h2>&lt;p>打开 &lt;code>testTinyDNN.cpp&lt;/code> 文件，将下列代码粘贴进去。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -241,8 +241,8 @@ alt="20210129112851"
 &lt;/div>
 &lt;/div>&lt;p>在代码中，我们定义了每批次训练数据量为 256 条，总共训练 50 个批次。&lt;/p>
 &lt;p>网络结构为 3 个编码层 + 3 个解码层。编码层将数据从 784（28 * 28） 维分别编码（降维）到 128、64、32 维，解码器再将 32 维的编码结果解码（升维）到 64、128、784 维，完成手写数字重建。各层之间的激活函数选用 &lt;code>relu()&lt;/code> 与 &lt;code>sigmoid()&lt;/code>。&lt;/p>
-&lt;h1 id="结果展示">结果展示&lt;/h1>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210129163100.png"
+&lt;h1 id="结果展示">结果展示
+&lt;/h1>&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210129163100.png"
 loading="lazy"
 alt="20210129163100"
 >&lt;/p>
@@ -257,24 +257,24 @@ alt="20210129182201"
 loading="lazy"
 alt="20210129181931"
 >&lt;/p>
-&lt;h1 id="性能对比">性能对比&lt;/h1>
-&lt;p>测试使用的 CPU 型号为 Intel i5-4200H，基准频率为 2.80GHz。&lt;/p>
+&lt;h1 id="性能对比">性能对比
+&lt;/h1>&lt;p>测试使用的 CPU 型号为 Intel i5-4200H，基准频率为 2.80GHz。&lt;/p>
 &lt;p>基于 tiny_dnn 的 C++ 平台训练时长为 2624.95 秒，基于 keras 的 Python 平台训练时长为 135.70 秒。在 50 个 epoch 测试中，Python 平台比 C++ 平台快了大约 19 倍，Python 平台 loss 大约为 0.08。由重建图片结果不难看出，Python 平台效果明显优于 C++ 平台。&lt;/p>
-&lt;h1 id="存在的不足">存在的不足&lt;/h1>
-&lt;ol>
+&lt;h1 id="存在的不足">存在的不足
+&lt;/h1>&lt;ol>
 &lt;li>C++ 平台目前无法计算每个 epoch 的 loss；&lt;/li>
 &lt;li>将在 C++ 平台测试更多的 epoch，观察图像重建效果是否会有改善。&lt;/li>
 &lt;/ol>
-&lt;h1 id="参考文献">参考文献&lt;/h1>
-&lt;ol>
+&lt;h1 id="参考文献">参考文献
+&lt;/h1>&lt;ol>
 &lt;li>&lt;a class="link" href="https://mightynotes.wordpress.com/2017/10/11/a-simple-and-basic-tutorial-of-tiny-dnn/" target="_blank" rel="noopener"
 >A simple and basic tutorial of tiny-dnn&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://tiny-dnn.readthedocs.io/en/latest/getting_started/Getting-started.html" target="_blank" rel="noopener"
 >A quick introduction to tiny-dnn&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://tiny-dnn.readthedocs.io/en/latest/how_tos/How-Tos.html#construct-the-network-model" target="_blank" rel="noopener"
 >Details about tiny-dnn’s API and short examples&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>SAE 入门（一）</title><link>https://jinggqu.github.io/posts/sae-1/</link><pubDate>Wed, 20 Jan 2021 18:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/sae-1/</guid><description>&lt;h1 id="autoencoder-简介">Autoencoder 简介&lt;/h1>
-&lt;p>自编码器（Autoencoder，AE），是一种利用反向传播（backpropagation，BP）算法&lt;strong>使得输出值等于输入值&lt;/strong>的神经网络，它先将输入压缩成潜在空间表征，然后通过这种表征来重构输出。其中，空间表征可以看作是输入数据的高级抽象，通常是将高维度的数据抽象为低维度的数据。&lt;/p>
+&lt;/ol></description></item><item><title>SAE 入门（一）</title><link>https://jinggqu.github.io/posts/sae-1/</link><pubDate>Wed, 20 Jan 2021 18:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/sae-1/</guid><description>&lt;h1 id="autoencoder-简介">Autoencoder 简介
+&lt;/h1>&lt;p>自编码器（Autoencoder，AE），是一种利用反向传播（backpropagation，BP）算法&lt;strong>使得输出值等于输入值&lt;/strong>的神经网络，它先将输入压缩成潜在空间表征，然后通过这种表征来重构输出。其中，空间表征可以看作是输入数据的高级抽象，通常是将高维度的数据抽象为低维度的数据。&lt;/p>
 &lt;p>自编码器由两部分组成：&lt;br>
 编码器：这部分能将输入压缩成潜在空间表征，可以用编码函数 $h=f(x)$ 表示;&lt;br>
 解码器：这部分能重构来自潜在空间表征的输入，可以用解码函数 $r=g(h)$ 表示。&lt;/p>
@@ -284,14 +284,14 @@ alt="20210129181931"
 loading="lazy"
 alt="20210122142001"
 >&lt;/p>
-&lt;h1 id="stacked-autoencoder-简介">Stacked Autoencoder 简介&lt;/h1>
-&lt;p>Stacked Autoencoder 简写作 SAE。SAE 与 AE 的主要区别在于编码器与解码器的层数，栈式自编码器包含多层隐藏层。具体网络结构如下图所示，图中有两层编码层，两层解码层。&lt;/p>
+&lt;h1 id="stacked-autoencoder-简介">Stacked Autoencoder 简介
+&lt;/h1>&lt;p>Stacked Autoencoder 简写作 SAE。SAE 与 AE 的主要区别在于编码器与解码器的层数，栈式自编码器包含多层隐藏层。具体网络结构如下图所示，图中有两层编码层，两层解码层。&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210122154135.png"
 loading="lazy"
 alt="20210122154135"
 >&lt;/p>
-&lt;h1 id="代码实现">代码实现&lt;/h1>
-&lt;blockquote>
+&lt;h1 id="代码实现">代码实现
+&lt;/h1>&lt;blockquote>
 &lt;p>代码环境配置，请参考 &lt;a class="link" href="https://jinggqu.github.io/posts/gan-for-hand-written-digits/" target="_blank" rel="noopener"
 >GAN 网络之手写数字生成&lt;/a> 第一小节——环境搭建。&lt;/p>
 &lt;/blockquote>
@@ -599,8 +599,8 @@ alt="20210122154135"
 loading="lazy"
 alt="20210122160643"
 >&lt;/p>
-&lt;h1 id="参考文献">参考文献&lt;/h1>
-&lt;ol>
+&lt;h1 id="参考文献">参考文献
+&lt;/h1>&lt;ol>
 &lt;li>&lt;a class="link" href="https://medium.com/@venkatakrishna.jonnalagadda/sparse-stacked-and-variational-autoencoder-efe5bfe73b64" target="_blank" rel="noopener"
 >Sparse, Stacked and Variational Autoencoder&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://medium.com/datadriveninvestor/deep-learning-autoencoders-db265359943e" target="_blank" rel="noopener"
@@ -613,8 +613,8 @@ alt="20210122160643"
 >反向传播算法 - 维基百科&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://github.com/Nana0606/autoencoder" target="_blank" rel="noopener"
 >Autoencoder - Github&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>GAN 网络之手写数字生成</title><link>https://jinggqu.github.io/posts/gan-for-hand-written-digits/</link><pubDate>Tue, 08 Dec 2020 10:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/gan-for-hand-written-digits/</guid><description>&lt;h1 id="环境搭建">环境搭建&lt;/h1>
-&lt;p>本例中，所涉及的系统与软件版本列表如下。&lt;/p>
+&lt;/ol></description></item><item><title>GAN 网络之手写数字生成</title><link>https://jinggqu.github.io/posts/gan-for-hand-written-digits/</link><pubDate>Tue, 08 Dec 2020 10:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/gan-for-hand-written-digits/</guid><description>&lt;h1 id="环境搭建">环境搭建
+&lt;/h1>&lt;p>本例中，所涉及的系统与软件版本列表如下。&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -643,8 +643,8 @@ alt="20210122160643"
 &lt;/table>
 &lt;p>本例代码存放于 &lt;a class="link" href="https://github.com/jinggqu/MachineLearning" target="_blank" rel="noopener"
 >https://github.com/jinggqu/MachineLearning&lt;/a>。&lt;/p>
-&lt;h2 id="anaconda-安装">Anaconda 安装&lt;/h2>
-&lt;p>通过清华大学开源软件镜像站，我们可以直接下载最新版本的 Anaconda，本例中使用的 Anaconda 下载链接：
+&lt;h2 id="anaconda-安装">Anaconda 安装
+&lt;/h2>&lt;p>通过清华大学开源软件镜像站，我们可以直接下载最新版本的 Anaconda，本例中使用的 Anaconda 下载链接：
 &lt;a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe" target="_blank" rel="noopener"
 >https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe&lt;/a>&lt;/p>
 &lt;p>Anaconda 安装教程网络上已经有很多，故此处不再赘述。&lt;/p>
@@ -682,8 +682,8 @@ alt="20201208152633"
 &lt;/div>&lt;pre>&lt;code>输出
 conda 4.9.2
 &lt;/code>&lt;/pre>
-&lt;h2 id="创建虚拟环境">创建虚拟环境&lt;/h2>
-&lt;p>通过如下命令进行创建一个虚拟环境。&lt;/p>
+&lt;h2 id="创建虚拟环境">创建虚拟环境
+&lt;/h2>&lt;p>通过如下命令进行创建一个虚拟环境。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -709,8 +709,8 @@ base * C:\Users\xvyn\anaconda3
 handwrittendigits C:\Users\xvyn\anaconda3\envs\handwrittendigits
 &lt;/code>&lt;/pre>
 &lt;p>其中，标记 * 的表示目前已启用，命令行前半部分的 (base) 也表示目前启用的是哪个虚拟环境，此例中为 base 环境。&lt;/p>
-&lt;h2 id="切换虚拟环境">切换虚拟环境&lt;/h2>
-&lt;p>如果使用 PowerShell 进行 Anaconda 的一些操作，需要以 &lt;strong>管理员&lt;/strong> 身份运行 PowerShell，然后执行下列命令。&lt;/p>
+&lt;h2 id="切换虚拟环境">切换虚拟环境
+&lt;/h2>&lt;p>如果使用 PowerShell 进行 Anaconda 的一些操作，需要以 &lt;strong>管理员&lt;/strong> 身份运行 PowerShell，然后执行下列命令。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -749,8 +749,8 @@ conda environments:
 base C:\Users\xvyn\anaconda3
 handwrittendigits * C:\Users\xvyn\anaconda3\envs\handwrittendigits
 &lt;/code>&lt;/pre>
-&lt;h2 id="更换镜像源不推荐">更换镜像源（不推荐）&lt;/h2>
-&lt;p>由于 Anaconda 和 pip 官方镜像源访问缓慢，故需要将镜像源更换为国内镜像源，例如清华大学、中科大与阿里云镜像源。使用下列命令可以查看当前 Anaconda 镜像源。&lt;/p>
+&lt;h2 id="更换镜像源不推荐">更换镜像源（不推荐）
+&lt;/h2>&lt;p>由于 Anaconda 和 pip 官方镜像源访问缓慢，故需要将镜像源更换为国内镜像源，例如清华大学、中科大与阿里云镜像源。使用下列命令可以查看当前 Anaconda 镜像源。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -767,8 +767,8 @@ default_channels:
 - https://repo.anaconda.com/pkgs/r
 - https://repo.anaconda.com/pkgs/msys2
 &lt;/code>&lt;/pre>
-&lt;h3 id="更换-anaconda-镜像源">更换 Anaconda 镜像源&lt;/h3>
-&lt;p>以清华大学镜像源为例，执行下列命令即可完成更换。&lt;/p>
+&lt;h3 id="更换-anaconda-镜像源">更换 Anaconda 镜像源
+&lt;/h3>&lt;p>以清华大学镜像源为例，执行下列命令即可完成更换。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -818,8 +818,8 @@ menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;/code>&lt;/pre>
-&lt;h3 id="更换-pip-镜像源不推荐">更换 pip 镜像源（不推荐）&lt;/h3>
-&lt;p>以清华大学镜像源为例，执行下列命令即可完成更换。&lt;/p>
+&lt;h3 id="更换-pip-镜像源不推荐">更换 pip 镜像源（不推荐）
+&lt;/h3>&lt;p>以清华大学镜像源为例，执行下列命令即可完成更换。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -828,8 +828,8 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pip config &lt;span class="nb">set&lt;/span> global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="安装-tensorflow">安装 tensorflow&lt;/h2>
-&lt;p>手写数字生成例子所需要的 tensorflow 版本为 1.x，本例中我们使用的实际版本为 1.8.0。将虚拟环境切换到 handwrittendigits 后，执行以下命令开始安装。&lt;/p>
+&lt;/div>&lt;h2 id="安装-tensorflow">安装 tensorflow
+&lt;/h2>&lt;p>手写数字生成例子所需要的 tensorflow 版本为 1.x，本例中我们使用的实际版本为 1.8.0。将虚拟环境切换到 handwrittendigits 后，执行以下命令开始安装。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -847,8 +847,8 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">conda install &lt;span class="nv">tensorflow&lt;/span>&lt;span class="o">=&lt;/span>1.8.0
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="安装-python">安装 Python&lt;/h2>
-&lt;p>由于需要 1.8.0 版本的 tensorflow，此版本仅兼容 3.5 到 3.7 版本的 Python，故需要先删除 conda 环境中默认安装的 Python，并安装 3.6 版本。&lt;/p>
+&lt;/div>&lt;h2 id="安装-python">安装 Python
+&lt;/h2>&lt;p>由于需要 1.8.0 版本的 tensorflow，此版本仅兼容 3.5 到 3.7 版本的 Python，故需要先删除 conda 环境中默认安装的 Python，并安装 3.6 版本。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -865,16 +865,16 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">conda install &lt;span class="nv">python&lt;/span>&lt;span class="o">=&lt;/span>3.6
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="测试-demo">测试 Demo&lt;/h1>
-&lt;h2 id="使用-pycharm-创建项目">使用 PyCharm 创建项目&lt;/h2>
-&lt;p>在创建项目时，需要将虚拟环境（图中 Location 项）配置为前文中创建的虚拟环境所在目录，然后点击创建项目。&lt;/p>
+&lt;/div>&lt;h1 id="测试-demo">测试 Demo
+&lt;/h1>&lt;h2 id="使用-pycharm-创建项目">使用 PyCharm 创建项目
+&lt;/h2>&lt;p>在创建项目时，需要将虚拟环境（图中 Location 项）配置为前文中创建的虚拟环境所在目录，然后点击创建项目。&lt;/p>
 &lt;p>&lt;em>由于此前作者已经创建过项目，故创建窗口下方会提示虚拟环境目录不为空，忽略即可。&lt;/em>&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201208194401.png"
 loading="lazy"
 alt="20201208194401"
 >&lt;/p>
-&lt;h2 id="运行项目">运行项目&lt;/h2>
-&lt;p>将以下代码置于项目 &lt;code>main.py&lt;/code> 中，运行。&lt;/p>
+&lt;h2 id="运行项目">运行项目
+&lt;/h2>&lt;p>将以下代码置于项目 &lt;code>main.py&lt;/code> 中，运行。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1151,8 +1151,8 @@ loading="lazy"
 alt="20201208201913"
 >&lt;/p>
 &lt;p>至此，GAN 网络手写数字生成环境搭建已经完成，后续将进行更加深入的学习。&lt;/p>
-&lt;h1 id="备注">备注&lt;/h1>
-&lt;p>为 jupyter lab 指定 conda 环境，在 conda 环境中执行以下命令后再启动 jupyter lab 即可&lt;/p>
+&lt;h1 id="备注">备注
+&lt;/h1>&lt;p>为 jupyter lab 指定 conda 环境，在 conda 环境中执行以下命令后再启动 jupyter lab 即可&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -1161,8 +1161,8 @@ alt="20201208201913"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">conda install nb_conda
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="参考文章">参考文章&lt;/h1>
-&lt;ol>
+&lt;/div>&lt;h1 id="参考文章">参考文章
+&lt;/h1>&lt;ol>
 &lt;li>&lt;a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda.html" target="_blank" rel="noopener"
 >Anaconda 源使用帮助&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://github.com/yang1688899/gan_practice/blob/master/gan_mnist/gan_mnist.py" target="_blank" rel="noopener"

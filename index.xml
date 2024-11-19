@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://jinggqu.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 13 Nov 2023 21:00:00 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>A Few Thoughts</title><link>https://jinggqu.github.io/posts/a-few-thoughts/</link><pubDate>Mon, 13 Nov 2023 21:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/a-few-thoughts/</guid><description>&lt;h1 id="proof-you-can-do-hard-things">Proof You Can Do Hard Things&lt;/h1>
-&lt;blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://jinggqu.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 13 Nov 2023 21:00:00 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>A Few Thoughts</title><link>https://jinggqu.github.io/posts/a-few-thoughts/</link><pubDate>Mon, 13 Nov 2023 21:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/a-few-thoughts/</guid><description>&lt;h1 id="proof-you-can-do-hard-things">Proof You Can Do Hard Things
+&lt;/h1>&lt;blockquote>
 &lt;p>And if you’re not someone who knows they can do hard things, find a way to prove it to yourself. Build a habit, learn a skill, create something, whatever it is that turns your default stance on challenges from “that seems hard” to “I can figure it out.”&lt;/p>
 &lt;/blockquote>
 &lt;p>source: &lt;a class="link" href="https://blog.nateliason.com/p/proof-you-can-do-hard-things" target="_blank" rel="noopener"
 >https://blog.nateliason.com/p/proof-you-can-do-hard-things&lt;/a>&lt;/p>
-&lt;h1 id="stop-obsessing-over-tools">Stop Obsessing Over Tools&lt;/h1>
-&lt;blockquote>
+&lt;h1 id="stop-obsessing-over-tools">Stop Obsessing Over Tools
+&lt;/h1>&lt;blockquote>
 &lt;p>I often see people in a constant search for the best note taking app. Or the best Linux distro and desktop setup. Or the best AI tool to enhance productivity. Or the best game engine. And so on, you guys get the point.&lt;/p>
 &lt;p>This search takes you nowhere. Doing this doesn’t make you productive. You will never find the best or the most perfect setup. Settling for good enough is most often the best thing you do. Otherwise you’ll find yourself productive in the search of being productive.&lt;/p>
 &lt;/blockquote>
 &lt;p>source: &lt;a class="link" href="https://plug-world.com/posts/stop-obsessing-over-tools/" target="_blank" rel="noopener"
 >https://plug-world.com/posts/stop-obsessing-over-tools/&lt;/a>&lt;/p>
-&lt;h1 id="重来更为简单有效的商业思维">重来：更为简单有效的商业思维&lt;/h1>
-&lt;p>From chapter 音乐就在你的指尖流淌&lt;/p>
+&lt;h1 id="重来更为简单有效的商业思维">重来：更为简单有效的商业思维
+&lt;/h1>&lt;p>From chapter 音乐就在你的指尖流淌&lt;/p>
 &lt;blockquote>
 &lt;p>吉他大师说：“音乐就在你的指尖流淌。”就算你买了和艾迪·范·海伦（Eddie Van Halen）一样的吉他、效果踏板、扩音器，但是当你用这套装备来演奏时，弹出来的依然是你自己的风格。&lt;/p>
 &lt;p>同理，给艾迪配一套从当铺倒腾出来的劣质装备，人家一出手，你还是能听出是艾迪·范·海伦的水平。好的装备的确能带来一些帮助，但事实是，你的演奏水平是由你自己的手指决定的。&lt;/p>
@@ -24,14 +24,14 @@
 &lt;p>就用你现在手头有的或者能负担得起的，然后开始做吧。工具不重要，就用现有的工具也可以做得一样棒，音乐就在你的指尖流淌。&lt;/p>
 &lt;/blockquote>
 &lt;p>source: &lt;a class="link" href="https://book.douban.com/subject/30184215/" target="_blank" rel="noopener"
->https://book.douban.com/subject/30184215/&lt;/a>&lt;/p></description></item><item><title>使用C#、WPF与ONNX模型实现手写数字识别</title><link>https://jinggqu.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</link><pubDate>Fri, 18 Aug 2023 15:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
-&lt;blockquote>
+>https://book.douban.com/subject/30184215/&lt;/a>&lt;/p></description></item><item><title>使用C#、WPF与ONNX模型实现手写数字识别</title><link>https://jinggqu.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</link><pubDate>Fri, 18 Aug 2023 15:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</guid><description>&lt;h1 id="前言">前言
+&lt;/h1>&lt;blockquote>
 &lt;p>项目完整代码见 GitHub 仓库： &lt;a class="link" href="https://github.com/jinggqu/MLNetDemo" target="_blank" rel="noopener"
 >jinggqu/MLNetDemo&lt;/a>。&lt;/p>
 &lt;/blockquote>
 &lt;p>本文将介绍如何使用 C#、WPF 与 ONNX 模型实现一个简单的手写数字识别项目。整个流程跑通后，即可应用更加复杂的深度学习模型。&lt;/p>
-&lt;h1 id="wpf-界面开发">WPF 界面开发&lt;/h1>
-&lt;p>项目的用户界面相对简单，主要包含一个 InkCanvas（Name 设置为 inkCanvas） 用于用户绘制数字，一个识别按钮与一个清除 Canvas 内容的按钮。软件用户界面如下图所示。&lt;/p>
+&lt;h1 id="wpf-界面开发">WPF 界面开发
+&lt;/h1>&lt;p>项目的用户界面相对简单，主要包含一个 InkCanvas（Name 设置为 inkCanvas） 用于用户绘制数字，一个识别按钮与一个清除 Canvas 内容的按钮。软件用户界面如下图所示。&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20230818102257.png"
 loading="lazy"
 alt="软件用户界面"
@@ -42,25 +42,25 @@ loading="lazy"
 alt="项目最终效果图"
 >&lt;/p>
 &lt;p>WPF 界面采用 xaml 文件进行定义，项目界面源代码详见 GitHub 仓库。&lt;/p>
-&lt;h1 id="onnx">ONNX&lt;/h1>
-&lt;h2 id="onnx-简介">ONNX 简介&lt;/h2>
-&lt;p>ONNX 是一种用于表示机器学习模型的开放格式。ONNX 定义了一组通用运算符（机器学习和深度学习模型的构建基块）和通用文件格式，使 AI 开发人员能够使用具有各种框架、工具、运行时和编译器的模型。详见&lt;a class="link" href="https://onnx.ai/" target="_blank" rel="noopener"
+&lt;h1 id="onnx">ONNX
+&lt;/h1>&lt;h2 id="onnx-简介">ONNX 简介
+&lt;/h2>&lt;p>ONNX 是一种用于表示机器学习模型的开放格式。ONNX 定义了一组通用运算符（机器学习和深度学习模型的构建基块）和通用文件格式，使 AI 开发人员能够使用具有各种框架、工具、运行时和编译器的模型。详见&lt;a class="link" href="https://onnx.ai/" target="_blank" rel="noopener"
 >ONNX 官方网站&lt;/a>。&lt;/p>
-&lt;h2 id="onnx-模型库及项目模型选用">ONNX 模型库及项目模型选用&lt;/h2>
-&lt;p>&lt;a class="link" href="https://github.com/onnx/models" target="_blank" rel="noopener"
+&lt;h2 id="onnx-模型库及项目模型选用">ONNX 模型库及项目模型选用
+&lt;/h2>&lt;p>&lt;a class="link" href="https://github.com/onnx/models" target="_blank" rel="noopener"
 >ONNX Model Zoo&lt;/a> 收录了大量的预训练模型，包括计算机视觉领域常用的目标检测、图像分类及自然语言处理领域的 GPT 模型。处于演示需要，本项目选择 ONNX Model Zoo 中的&lt;a class="link" href="https://github.com/onnx/models/tree/main/vision/classification/mnist#mnist---handwritten-digit-recognition" target="_blank" rel="noopener"
 >手写数字识别模型&lt;/a>作为实验模型。&lt;/p>
-&lt;h2 id="查看模型结构">查看模型结构&lt;/h2>
-&lt;p>下载 ONNX 模型后，我们还需要找到模型中的输入变量名与输出变量名。因此使用 &lt;a class="link" href="https://github.com/lutzroeder/netron" target="_blank" rel="noopener"
+&lt;h2 id="查看模型结构">查看模型结构
+&lt;/h2>&lt;p>下载 ONNX 模型后，我们还需要找到模型中的输入变量名与输出变量名。因此使用 &lt;a class="link" href="https://github.com/lutzroeder/netron" target="_blank" rel="noopener"
 >Netron&lt;/a> 来检视模型。Netron 打开 ONNX 模型后的效果如下图所示。&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20230818135201.png"
 loading="lazy"
 alt="手写数字识别 ONNX 模型结构"
 >&lt;/p>
 &lt;p>从图中右侧可以看到，模型输入变量名为 &lt;code>Input3&lt;/code>，数据类型为 float 数组，尺寸为 1×1×28×28。输出变量名为 &lt;code>Plus214_Output_0&lt;/code>，数据类型为 float 数组，尺寸为 1×10，即为十分类中的每个类别概率值。&lt;/p>
-&lt;h1 id="整合模型">整合模型&lt;/h1>
-&lt;h2 id="visual-studio-安装深度学习插件">Visual Studio 安装深度学习插件&lt;/h2>
-&lt;p>针对不同的平台，可以在 ONNX Runtime 官网选择对应的插件或依赖，详见&lt;a class="link" href="https://onnxruntime.ai/#:~:text=Use%20ONNX%20Runtime%20with%20the%20platform%20of%20your%20choice" target="_blank" rel="noopener"
+&lt;h1 id="整合模型">整合模型
+&lt;/h1>&lt;h2 id="visual-studio-安装深度学习插件">Visual Studio 安装深度学习插件
+&lt;/h2>&lt;p>针对不同的平台，可以在 ONNX Runtime 官网选择对应的插件或依赖，详见&lt;a class="link" href="https://onnxruntime.ai/#:~:text=Use%20ONNX%20Runtime%20with%20the%20platform%20of%20your%20choice" target="_blank" rel="noopener"
 >ONNX Runtime&lt;/a>。&lt;/p>
 &lt;p>本项目采用 Visual Studio 2022 开发，按照官方说明需要安装 &lt;a class="link" href="https://www.nuget.org/packages/Microsoft.ML.OnnxRuntime" target="_blank" rel="noopener"
 >Microsoft.ML.OnnxRuntime&lt;/a>，读者可以在 Visual Studio 中解决方案资源管理器中右键单击解决方案名称，选择&lt;code>管理 NuGet 程序包&lt;/code>选项，搜索安装 Microsoft.ML.OnnxRuntime。&lt;/p>
@@ -71,8 +71,8 @@ alt="手写数字识别 ONNX 模型结构"
 &lt;li>Microsoft.ML.OnnxTransformer&lt;/li>
 &lt;li>System.Drawing.Common&lt;/li>
 &lt;/ul>
-&lt;h2 id="输入输出数据定义">输入输出数据定义&lt;/h2>
-&lt;p>对于输入数据，通过 Netron 得到输入变量名和数据类型后，即可得到如下的输入数据定义。&lt;/p>
+&lt;h2 id="输入输出数据定义">输入输出数据定义
+&lt;/h2>&lt;p>对于输入数据，通过 Netron 得到输入变量名和数据类型后，即可得到如下的输入数据定义。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -109,16 +109,16 @@ alt="手写数字识别 ONNX 模型结构"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="c-图像处理">C# 图像处理&lt;/h2>
-&lt;p>本项目涉及的图像处理总体流程：&lt;/p>
+&lt;/div>&lt;h2 id="c-图像处理">C# 图像处理
+&lt;/h2>&lt;p>本项目涉及的图像处理总体流程：&lt;/p>
 &lt;ol>
 &lt;li>获取 InkCanvas 的内容并转为位图 Bitmap&lt;/li>
 &lt;li>将 Bitmap 从原始尺寸变换到到模型输入规定的尺寸&lt;/li>
 &lt;li>将变换尺寸后的 Bitmap 转为单通道 8 位灰度图&lt;/li>
 &lt;li>将 Bitmap 对象转为 float 一维数组&lt;/li>
 &lt;/ol>
-&lt;h3 id="获取-inkcanvas-的内容并转为位图">获取 InkCanvas 的内容并转为位图&lt;/h3>
-&lt;div class="highlight">&lt;div class="chroma">
+&lt;h3 id="获取-inkcanvas-的内容并转为位图">获取 InkCanvas 的内容并转为位图
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
@@ -196,8 +196,8 @@ alt="手写数字识别 ONNX 模型结构"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="变换-bitmap-尺寸">变换 Bitmap 尺寸&lt;/h3>
-&lt;p>本项目中画布的尺寸为 336×336，但手写数组识别模型使用的训练数据集为 MNIST，从模型输入数据中可以看到其图像尺寸为 28×28，因此需要变换位图的尺寸。&lt;/p>
+&lt;/div>&lt;h3 id="变换-bitmap-尺寸">变换 Bitmap 尺寸
+&lt;/h3>&lt;p>本项目中画布的尺寸为 336×336，但手写数组识别模型使用的训练数据集为 MNIST，从模型输入数据中可以看到其图像尺寸为 28×28，因此需要变换位图的尺寸。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -222,8 +222,8 @@ alt="手写数字识别 ONNX 模型结构"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="通道变换">通道变换&lt;/h3>
-&lt;p>由于上述过程中生成的图像为 RGB 图像，但本例仅需要单通道灰度图，即与 MNIST 数据集保持一致，因此需要对其进行通道变换。此处选用 GDI+ 的 &lt;a class="link" href="https://learn.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-using-a-color-matrix-to-transform-a-single-color-use" target="_blank" rel="noopener"
+&lt;/div>&lt;h3 id="通道变换">通道变换
+&lt;/h3>&lt;p>由于上述过程中生成的图像为 RGB 图像，但本例仅需要单通道灰度图，即与 MNIST 数据集保持一致，因此需要对其进行通道变换。此处选用 GDI+ 的 &lt;a class="link" href="https://learn.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-using-a-color-matrix-to-transform-a-single-color-use" target="_blank" rel="noopener"
 >ColorMatrix&lt;/a> 特性实现通道变换，代码参考自&lt;a class="link" href="https://zhuanlan.zhihu.com/p/367047382" target="_blank" rel="noopener"
 >ML.NET (。・∀・)ノ 来用 C# 跑机器学习吧!&lt;/a>。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -291,8 +291,8 @@ alt="手写数字识别 ONNX 模型结构"
 loading="lazy"
 alt="灰度图"
 >&lt;/p>
-&lt;h3 id="将图像转为一维数组">将图像转为一维数组&lt;/h3>
-&lt;p>根据上述分析，输入数据为一维 float 数组，因此还需要将灰度图转换为一维数组。&lt;/p>
+&lt;h3 id="将图像转为一维数组">将图像转为一维数组
+&lt;/h3>&lt;p>根据上述分析，输入数据为一维 float 数组，因此还需要将灰度图转换为一维数组。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -325,8 +325,8 @@ alt="灰度图"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="初始化模型">初始化模型&lt;/h2>
-&lt;p>首先定义两个全局变量 &lt;code>_modelPath&lt;/code> 和 &lt;code>_predictionEngine&lt;/code>，分别代表 ONNX 的模型存放地址与 TTransformer 模型推理变量。在初始化模型时，加载模型后给模型传入一组空输入参数以创建推理变量。&lt;/p>
+&lt;/div>&lt;h2 id="初始化模型">初始化模型
+&lt;/h2>&lt;p>首先定义两个全局变量 &lt;code>_modelPath&lt;/code> 和 &lt;code>_predictionEngine&lt;/code>，分别代表 ONNX 的模型存放地址与 TTransformer 模型推理变量。在初始化模型时，加载模型后给模型传入一组空输入参数以创建推理变量。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -361,8 +361,8 @@ alt="灰度图"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="清除画布">清除画布&lt;/h2>
-&lt;p>为了清除画布，需要为 WPF 布局中的 Clear Digit 按钮绑定名为 &lt;code>ClearButtonClick&lt;/code> 的事件，事件实现如下。其中，&lt;code>numberLabel&lt;/code>为显示识别结果的标签，清除画布时需要同时将其置空。&lt;/p>
+&lt;/div>&lt;h2 id="清除画布">清除画布
+&lt;/h2>&lt;p>为了清除画布，需要为 WPF 布局中的 Clear Digit 按钮绑定名为 &lt;code>ClearButtonClick&lt;/code> 的事件，事件实现如下。其中，&lt;code>numberLabel&lt;/code>为显示识别结果的标签，清除画布时需要同时将其置空。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -379,8 +379,8 @@ alt="灰度图"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="预测结果">预测结果&lt;/h2>
-&lt;p>在上述图像处理的基础上，调用模型预测结果之前还需要将图像处理结果传给模型，同时为 recognize 按钮绑定 &lt;code>RecognizeDigit&lt;/code>。其中，&lt;code>numberLabel&lt;/code>为显示识别结果的标签，因此需要将模型预测结果（1×10 个概率值）中最大的概率值所代表的数字，赋值给 &lt;code>numberLabel&lt;/code>。&lt;/p>
+&lt;/div>&lt;h2 id="预测结果">预测结果
+&lt;/h2>&lt;p>在上述图像处理的基础上，调用模型预测结果之前还需要将图像处理结果传给模型，同时为 recognize 按钮绑定 &lt;code>RecognizeDigit&lt;/code>。其中，&lt;code>numberLabel&lt;/code>为显示识别结果的标签，因此需要将模型预测结果（1×10 个概率值）中最大的概率值所代表的数字，赋值给 &lt;code>numberLabel&lt;/code>。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -397,8 +397,8 @@ alt="灰度图"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="参考文献">参考文献&lt;/h1>
-&lt;ol>
+&lt;/div>&lt;h1 id="参考文献">参考文献
+&lt;/h1>&lt;ol>
 &lt;li>&lt;a class="link" href="https://zhuanlan.zhihu.com/p/367047382" target="_blank" rel="noopener"
 >ML.NET (。・∀・)ノ 来用 C# 跑机器学习吧!&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://www.cnblogs.com/Big-Head/p/17429185.html" target="_blank" rel="noopener"
@@ -428,18 +428,18 @@ alt="灰度图"
 &lt;/tbody>
 &lt;/table>
 &lt;p>本文将详细介绍个人的备考雅思经历，以及如何在短时间内达到目标分数。&lt;/p>
-&lt;h1 id="背景">背景&lt;/h1>
-&lt;p>笔者在 2018 年 6 月通过了大学英语六级考试，获得 524 分（听力 198 分，阅读 202 分，写作和翻译 124 分。写作部分可以说非常拉跨了……），此后再未参加过专业英语考试。笔者平时有观看收听英语视频、影视剧及音乐的习惯，因此单词量基本维持在合理水平，自测单词量保持在 6000~7000 左右。读者可通过以下网站测试单词量，获取自己的词汇大致水平，以便对后续的复习计划做出相应调整。&lt;/p>
+&lt;h1 id="背景">背景
+&lt;/h1>&lt;p>笔者在 2018 年 6 月通过了大学英语六级考试，获得 524 分（听力 198 分，阅读 202 分，写作和翻译 124 分。写作部分可以说非常拉跨了……），此后再未参加过专业英语考试。笔者平时有观看收听英语视频、影视剧及音乐的习惯，因此单词量基本维持在合理水平，自测单词量保持在 6000~7000 左右。读者可通过以下网站测试单词量，获取自己的词汇大致水平，以便对后续的复习计划做出相应调整。&lt;/p>
 &lt;ol>
 &lt;li>&lt;a class="link" href="https://web.shanbay.com/bdc/vocabtest#/" target="_blank" rel="noopener"
 >扇贝词汇量测试&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://preply.com/en/learn/english/test-your-vocab" target="_blank" rel="noopener"
 >Preply - Test your English vocabulary&lt;/a>&lt;/li>
 &lt;/ol>
-&lt;h1 id="重要前提">重要前提&lt;/h1>
-&lt;p>雅思，全称 International English Language Testing System，简写为 IELTS，是评估非英语母语人士的英语语言能力的一套国际标准化测试系统。既然它是一套标准化测试系统，那么读者就应当弄清楚系统的运作方式，方能知己知彼百战不殆。&lt;/p>
-&lt;h2 id="评分标准">评分标准&lt;/h2>
-&lt;p>雅思详细的评分标准可见其官方网站：&lt;a class="link" href="https://www.chinaielts.org/guide/band_descriptors_introdction.shtml" target="_blank" rel="noopener"
+&lt;h1 id="重要前提">重要前提
+&lt;/h1>&lt;p>雅思，全称 International English Language Testing System，简写为 IELTS，是评估非英语母语人士的英语语言能力的一套国际标准化测试系统。既然它是一套标准化测试系统，那么读者就应当弄清楚系统的运作方式，方能知己知彼百战不殆。&lt;/p>
+&lt;h2 id="评分标准">评分标准
+&lt;/h2>&lt;p>雅思详细的评分标准可见其官方网站：&lt;a class="link" href="https://www.chinaielts.org/guide/band_descriptors_introdction.shtml" target="_blank" rel="noopener"
 >雅思评分标准介绍&lt;/a>。&lt;/p>
 &lt;p>雅思题型可见官网介绍&lt;a class="link" href="https://www.chinaielts.org/guide/sample_questions.shtml#" target="_blank" rel="noopener"
 >雅思题型介绍&lt;/a>。&lt;/p>
@@ -499,26 +499,26 @@ alt="灰度图"
 &lt;li>&lt;a class="link" href="https://www.ieltsadvantage.com/ielts-band-score-calculator/" target="_blank" rel="noopener"
 >IELTS Band Score Calculators&lt;/a>&lt;/li>
 &lt;/ol>
-&lt;h2 id="单词量">单词量&lt;/h2>
-&lt;p>又到了老生常谈的背单词环节。作为一门语言的基石，单词的重要性不言而喻。关于如何背单词，笔者已有的经验主要包括以下两点：&lt;/p>
+&lt;h2 id="单词量">单词量
+&lt;/h2>&lt;p>又到了老生常谈的背单词环节。作为一门语言的基石，单词的重要性不言而喻。关于如何背单词，笔者已有的经验主要包括以下两点：&lt;/p>
 &lt;ol>
 &lt;li>&lt;strong>采取“大水漫灌”策略&lt;/strong>。笔者认为，每天仅仅背 50 个甚至 20 个等小数量的单词意义不大，不仅不能有效复习前一天的单词，也不能学习到足量的新词，实属“食之无味，弃之可惜”。&lt;strong>笔者在备考期间，每天花费大约 40~60 分钟记单词，每日总单词量约 240 个，其中包含 180 个之前学过的旧词，以及 60 个新词&lt;/strong>。&lt;/li>
 &lt;li>&lt;strong>配合例句食用&lt;/strong>。如果仅仅记忆一个孤零零的单词，不仅记忆难度大，也容易遗忘。试想一下，我们在学习汉学到新的字或词后，第一反应都是使用这些词造句，以加深记忆。同理，学习英语单词时，我们也应该记忆配合该单词出现的例句。&lt;strong>切勿使用不附带例句的背单词软件或应用&lt;/strong>。&lt;/li>
 &lt;/ol>
-&lt;h2 id="相关资料与应用">相关资料与应用&lt;/h2>
-&lt;p>笔者在复习期间使用的相关应用如下：&lt;/p>
+&lt;h2 id="相关资料与应用">相关资料与应用
+&lt;/h2>&lt;p>笔者在复习期间使用的相关应用如下：&lt;/p>
 &lt;ol>
 &lt;li>背单词：&lt;a class="link" href="https://web.shanbay.com/wordsweb/#/study/entry" target="_blank" rel="noopener"
 >扇贝单词网页版&lt;/a>。扇贝单词网页版可使用键盘快捷操作，同时&lt;strong>在选择不认识当前单词后，首先跳出来的并不是单词的汉语意思，而是单词例句&lt;/strong>，这是笔者认为这款产品最优秀的亮点。&lt;/li>
 &lt;li>真题模拟网页端：&lt;a class="link" href="https://ieltscat.xdf.cn/mock" target="_blank" rel="noopener"
 >新东方雅思机考&lt;/a>。没什么好说的，直接吹爆。软件界面和考试真机界面保持一致，且免费使用，模考后不仅自动打分，还可看到答案与解析，方便听力阅读和作文重听与改错。&lt;/li>
 &lt;/ol>
-&lt;h1 id="逐个击破">逐个击破&lt;/h1>
-&lt;p>雅思考试的四个部分包括听说读写，我们可以将其归类为：输入（听力和阅读）与输出（口语和写作）。一般情况下，输出能力建立在充足的输入信息的基础上，因此如何输入以及大量输入至关重要。&lt;/p>
-&lt;h2 id="听力">听力&lt;/h2>
-&lt;p>笔者身边很多朋友反馈说听力很是头疼，听不懂别人在说什么，也不知道如何提高。&lt;strong>实际上，唯一的办法就是多听&lt;/strong>。根据笔者自己的一些经验，想要提升听力主要可以分为以下两个方面。&lt;/p>
-&lt;h3 id="日常会话听力">日常会话听力&lt;/h3>
-&lt;p>日常会话听力是指随机性较强、没有经过特殊编排、且不需要每个字每个词都完全听得清楚的听力内容，例如英语播客、自媒体视频以及流行音乐等。面对这些听力材料，即使我们并不能听懂所有的内容，但仍然可以根据上下文内容进行合理猜测，以便理解大意。同时，这些材料我们也不需要反反复复精听。在日常生活中，笔者基本上每天都会接触一些英语内容，包括自媒体视频、影视剧等内容，主要以兴趣为导向。为抛砖引玉，笔者在此处推荐一些个人常看常听的英语内容：&lt;/p>
+&lt;h1 id="逐个击破">逐个击破
+&lt;/h1>&lt;p>雅思考试的四个部分包括听说读写，我们可以将其归类为：输入（听力和阅读）与输出（口语和写作）。一般情况下，输出能力建立在充足的输入信息的基础上，因此如何输入以及大量输入至关重要。&lt;/p>
+&lt;h2 id="听力">听力
+&lt;/h2>&lt;p>笔者身边很多朋友反馈说听力很是头疼，听不懂别人在说什么，也不知道如何提高。&lt;strong>实际上，唯一的办法就是多听&lt;/strong>。根据笔者自己的一些经验，想要提升听力主要可以分为以下两个方面。&lt;/p>
+&lt;h3 id="日常会话听力">日常会话听力
+&lt;/h3>&lt;p>日常会话听力是指随机性较强、没有经过特殊编排、且不需要每个字每个词都完全听得清楚的听力内容，例如英语播客、自媒体视频以及流行音乐等。面对这些听力材料，即使我们并不能听懂所有的内容，但仍然可以根据上下文内容进行合理猜测，以便理解大意。同时，这些材料我们也不需要反反复复精听。在日常生活中，笔者基本上每天都会接触一些英语内容，包括自媒体视频、影视剧等内容，主要以兴趣为导向。为抛砖引玉，笔者在此处推荐一些个人常看常听的英语内容：&lt;/p>
 &lt;ol>
 &lt;li>&lt;a class="link" href="https://space.bilibili.com/516902904" target="_blank" rel="noopener"
 >哔哩哔哩 - 汤圆学英语&lt;/a>&lt;/li>
@@ -541,16 +541,16 @@ alt="灰度图"
 &lt;li>&lt;a class="link" href="https://www.youtube.com/@cynthiazhou_" target="_blank" rel="noopener"
 >YouTube - Cynthia Zhou&lt;/a>&lt;/li>
 &lt;/ol>
-&lt;h3 id="应试听力">应试听力&lt;/h3>
-&lt;p>相较于日常会话听力的轻松随意，应试听力就显得有些“刻意而为之”。因此，针对应试听力材料，我们应该采用&lt;strong>三步走策略&lt;/strong>，具体步骤如下：&lt;/p>
+&lt;h3 id="应试听力">应试听力
+&lt;/h3>&lt;p>相较于日常会话听力的轻松随意，应试听力就显得有些“刻意而为之”。因此，针对应试听力材料，我们应该采用&lt;strong>三步走策略&lt;/strong>，具体步骤如下：&lt;/p>
 &lt;ol>
 &lt;li>&lt;strong>第一次听&lt;/strong>：提前快速浏览阅读听力题目与选项，标注题目或选项中的关键词，全神贯注聆听录音并做出选择。做出选择后，除非时间特别富裕或者特别确定选错了，否则不要回头更改答案；&lt;/li>
 &lt;li>&lt;strong>第二次听&lt;/strong>：重新播放听力材料，重新仔细阅读错题题目和选项，重新播放对应部分听力材料再次作答；&lt;/li>
 &lt;li>&lt;strong>第三次听&lt;/strong>：在上述两个步骤之后，如果还有错题，那么可以查看答案、听力原文或者题目解析，再次播放对应部分听力材料，在搞懂正确选项的同时总结错听、漏听的原因。&lt;/li>
 &lt;/ol>
 &lt;p>上述三步走策略是笔者从高中考试就一直应用的一种听力备考方法，虽然没能取得特别高的听力分数，但是至少可以确保听力不会成为短板项目，因此建议读者参考并按照自己的实际情况做出调整。&lt;/p>
-&lt;h2 id="阅读">阅读&lt;/h2>
-&lt;p>与听力类似，阅读也可以采用类似的三步走策略。但是在雅思考试中，总共有三篇文章、40 个题目需要作答，而阅读部分的总时间仅为 60 分钟，这就非常考验我们的阅读能力以及快速寻找信息的能力。&lt;/p>
+&lt;h2 id="阅读">阅读
+&lt;/h2>&lt;p>与听力类似，阅读也可以采用类似的三步走策略。但是在雅思考试中，总共有三篇文章、40 个题目需要作答，而阅读部分的总时间仅为 60 分钟，这就非常考验我们的阅读能力以及快速寻找信息的能力。&lt;/p>
 &lt;p>因此，在有限时间内突破雅思阅读通常依赖&lt;strong>关键词法与平行阅读法&lt;/strong>。通常情况下，不同题型之间可能并不是按照文章段落先后顺序排布，但是每一种题型内部（如 T/F/NG 判断题、关键词填空题、人名材料匹配题等）通常是有序的。因此，我们可以并行多种题型，同时在文中找出与题干相关联的关键词，以达到最大效率。&lt;/p>
 &lt;p>平行阅读法及相关资料可见：&lt;/p>
 &lt;ol>
@@ -559,12 +559,12 @@ alt="灰度图"
 &lt;li>&lt;a class="link" href="https://www.bilibili.com/video/BV1uM4y1F7pT" target="_blank" rel="noopener"
 >&lt;strong>Simon 雅思阅读课程&lt;/strong>&lt;/a>&lt;strong>（请读者务必看一遍，哪怕 2 倍速也要看一遍）&lt;/strong>&lt;/li>
 &lt;/ol>
-&lt;h2 id="写作">写作&lt;/h2>
-&lt;p>写作是笔者花费时间最多、考得最烂的部分，但还是有一些经验可以分享。写作分为小作文和大作文，小作文是看图表做事实写作，无需发表主观意见，描述客观事实即可；大作文是针对题目所给的话题做议论写作，通常是一些社会话题，例如对大学入学前 GAP 一年的看法、对政府大力投资航空航天的看法等，需要旗帜鲜明地写出观点，并举例以支撑提出的观点。&lt;/p>
+&lt;h2 id="写作">写作
+&lt;/h2>&lt;p>写作是笔者花费时间最多、考得最烂的部分，但还是有一些经验可以分享。写作分为小作文和大作文，小作文是看图表做事实写作，无需发表主观意见，描述客观事实即可；大作文是针对题目所给的话题做议论写作，通常是一些社会话题，例如对大学入学前 GAP 一年的看法、对政府大力投资航空航天的看法等，需要旗帜鲜明地写出观点，并举例以支撑提出的观点。&lt;/p>
 &lt;p>时间分配方面，小作文通常安排 20 分钟，大作文 40 分钟。内容方面，小作文最少需要 150 词，大作文最少需要 250 词。根据 Simon 雅思作文思想，笔者的大小作文均采用四段式书写结构，简而言之可以归纳为如下：&lt;/p>
 &lt;blockquote>
-&lt;p>小作文：题干转述（1~2 句）、总体段（1~2 句）、主要对比特征一（3~4 句）、主要对比特征二（3~4 句）&lt;br>
-大作文：题干转述 + 自己观点（2~3 句）、正面观点并举例（5 句）、反面观点并举例（5 句）、结论（2~3 句）&lt;/p>
+&lt;p>小作文：题干转述（1&lt;del>2 句）、总体段（1&lt;/del>2 句）、主要对比特征一（3&lt;del>4 句）、主要对比特征二（3&lt;/del>4 句）&lt;br>
+大作文：题干转述 + 自己观点（2&lt;del>3 句）、正面观点并举例（5 句）、反面观点并举例（5 句）、结论（2&lt;/del>3 句）&lt;/p>
 &lt;/blockquote>
 &lt;p>参考资料方面，笔者主要使用了以下参考资料：&lt;/p>
 &lt;ol>
@@ -574,8 +574,8 @@ alt="灰度图"
 >慎小嶷 - 十天突破雅思写作&lt;/a>。十天突破雅思写作这本书，给出了大量观点语料，同时还提供了适当的观点例子。书中包含大量的真题作文高分范文，并做了详细的点评分析，建议读者通读一遍，牢记语料库中的观点语料，避免考试时大脑宕机一片空白。&lt;/li>
 &lt;/ol>
 &lt;p>由于笔者作文分不高，因此在做题技巧方面没有太多可分享的内容，但请读者一定要多加练习，并严格遵循考试时间限制。&lt;/p>
-&lt;h2 id="口语">口语&lt;/h2>
-&lt;p>口语是最出乎笔者意料的一部分，在备考时笔者曾购买过两次雅思口语模考一对一课程，两次课程的老师都给了笔者口语 5.5，但最终在考试中居然拿到了 6.5，真是不可思议。口语主要分为以下三部分：&lt;/p>
+&lt;h2 id="口语">口语
+&lt;/h2>&lt;p>口语是最出乎笔者意料的一部分，在备考时笔者曾购买过两次雅思口语模考一对一课程，两次课程的老师都给了笔者口语 5.5，但最终在考试中居然拿到了 6.5，真是不可思议。口语主要分为以下三部分：&lt;/p>
 &lt;ol>
 &lt;li>
 &lt;p>在 Topic 1 中，雅思口语考官会提出多个较为基础的问题，针对每个问题考生都应该简要回答，通常是 2~3 句话。通常围绕你所居住的城市、家乡、学习或工作等常见话题；&lt;/p>
@@ -605,16 +605,16 @@ Future / Feelings: 描述对未来的规划或事后的感受&lt;/p>
 &lt;p>读者可以自行搜索“雅思口语题库”拿到当季题库。例如，2023 年 5~8 月的题库可见&lt;a class="link" href="https://ielts.koolearn.com/20230406/859397.html" target="_blank" rel="noopener"
 >新东方在线 - 2023 年雅思口语题库 5 月-8 月完整版（含答案）汇总&lt;/a>。&lt;/p>
 &lt;p>值得注意的是，不论是机考（视频通话形式）还是真人考官面对面口语考试，可以想象成和一位讲英语的朋友面对面聊聊天，这样就可以快速放松下来。&lt;strong>在整个过程中，考生一定要充满自信，同时要和考官保持适当的眼神接触&lt;/strong>。&lt;/p>
-&lt;h1 id="结语">结语&lt;/h1>
-&lt;p>雅思考试分为纸笔考试和上机考试两种模式，纸笔考试出分慢（2~3 周），机考出分快（3 个自然日）。时至今日，除非读者不能熟练操作鼠标和键盘，笔者都建议参加机考。抛开出分的快慢不谈，就只针对机考写作部分可以非常方便地修改调整，并实时显示词数这一优点而言，笔者认为选择机考可以在很大程度上提高雅思作答效率。&lt;/p>
+&lt;h1 id="结语">结语
+&lt;/h1>&lt;p>雅思考试分为纸笔考试和上机考试两种模式，纸笔考试出分慢（2~3 周），机考出分快（3 个自然日）。时至今日，除非读者不能熟练操作鼠标和键盘，笔者都建议参加机考。抛开出分的快慢不谈，就只针对机考写作部分可以非常方便地修改调整，并实时显示词数这一优点而言，笔者认为选择机考可以在很大程度上提高雅思作答效率。&lt;/p>
 &lt;p>最后，下面这句话送给阅读本文的读者，预祝雅思考试顺利。&lt;/p>
 &lt;blockquote>
 &lt;p>纸上得来终觉浅，绝知此事要躬行&lt;/p>
-&lt;/blockquote></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/27）</title><link>https://jinggqu.github.io/posts/meituan-java-note-3/</link><pubDate>Mon, 29 Aug 2022 10:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/meituan-java-note-3/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
-&lt;h2 id="题目描述">题目描述&lt;/h2>
-&lt;p>小美在摆弄她的字符串。最近小团送了小美一个特殊字符 &amp;lsquo;*&amp;rsquo;，这个字符可以和其他所有字符匹配，除了这个字符外，其他字符只能自己和自己匹配。小美先前有一个字符串 S，长度为 n，现在她又新组合了一个可有特殊字符 &amp;lsquo;*&amp;rsquo; 的字符串 s，长度为 m。小美想知道有多少个位置 i，使得 S[i+j] 与 s[j] 对于 1≤j≤m 均能匹配上？其中 X[y] 代表字符串 X 中第 y 位的字符。&lt;/p>
-&lt;h2 id="测试样例">测试样例&lt;/h2>
-&lt;p>第一行两个空格隔开的正整数 n 和 m，分别表示字符串 S 和字符串 s 的长度；&lt;br>
+&lt;/blockquote></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/27）</title><link>https://jinggqu.github.io/posts/meituan-java-note-3/</link><pubDate>Mon, 29 Aug 2022 10:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/meituan-java-note-3/</guid><description>&lt;h1 id="第一题">第一题
+&lt;/h1>&lt;h2 id="题目描述">题目描述
+&lt;/h2>&lt;p>小美在摆弄她的字符串。最近小团送了小美一个特殊字符 &amp;lsquo;*&amp;rsquo;，这个字符可以和其他所有字符匹配，除了这个字符外，其他字符只能自己和自己匹配。小美先前有一个字符串 S，长度为 n，现在她又新组合了一个可有特殊字符 &amp;lsquo;*&amp;rsquo; 的字符串 s，长度为 m。小美想知道有多少个位置 i，使得 S[i+j] 与 s[j] 对于 1≤j≤m 均能匹配上？其中 X[y] 代表字符串 X 中第 y 位的字符。&lt;/p>
+&lt;h2 id="测试样例">测试样例
+&lt;/h2>&lt;p>第一行两个空格隔开的正整数 n 和 m，分别表示字符串 S 和字符串 s 的长度；&lt;br>
 接下来一行长度为 n 的仅包含小写英文字母的字符串 S；&lt;br>
 接下来一行长度为 m 的包含小写英文字母以及特殊字符 &amp;lsquo;*&amp;rsquo; 的字符串 s；&lt;br>
 对于所有数据，1≤m≤n≤2000，输出一行一个整数，表示满足要求的位置数量&lt;/p>
@@ -632,8 +632,8 @@ a*c&lt;br>
 abcaacc&lt;br>
 abcaacc&lt;br>
 abcaacc&lt;/p>
-&lt;h2 id="思路与代码">思路与代码&lt;/h2>
-&lt;p>模拟即可。&lt;/p>
+&lt;h2 id="思路与代码">思路与代码
+&lt;/h2>&lt;p>模拟即可。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -692,11 +692,11 @@ abcaacc&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="第二题">第二题&lt;/h1>
-&lt;h2 id="题目描述-1">题目描述&lt;/h2>
-&lt;p>小美有一个精致的珠宝链子。初始这个链子上有 n 个宝石，从左到右分别编号为 1~n（宝石上的编号不会因为交换位置而改变编号）。接着，小美为了美观对这个项链进行微调，有 m 次操作，每次选择一个编号 x ,将编号 x 的宝石放到最左边（不改变其他宝石的相对位置）。小美想知道，所有操作完成后最终链子从左到右宝石编号是多少。&lt;/p>
-&lt;h2 id="测试样例-1">测试样例&lt;/h2>
-&lt;p>第一行两个正整数 n 和 m，分别表示链子上的宝石数和操作次数。&lt;br>
+&lt;/div>&lt;h1 id="第二题">第二题
+&lt;/h1>&lt;h2 id="题目描述-1">题目描述
+&lt;/h2>&lt;p>小美有一个精致的珠宝链子。初始这个链子上有 n 个宝石，从左到右分别编号为 1~n（宝石上的编号不会因为交换位置而改变编号）。接着，小美为了美观对这个项链进行微调，有 m 次操作，每次选择一个编号 x ,将编号 x 的宝石放到最左边（不改变其他宝石的相对位置）。小美想知道，所有操作完成后最终链子从左到右宝石编号是多少。&lt;/p>
+&lt;h2 id="测试样例-1">测试样例
+&lt;/h2>&lt;p>第一行两个正整数 n 和 m，分别表示链子上的宝石数和操作次数。&lt;br>
 接下来一行 m 个数 x1,x2,&amp;hellip;,xm，依次表示每次操作选择的编号 x 值。&lt;br>
 数字间两两有空格隔开&lt;br>
 对于所有数据，1≤m,n≤50000, 1≤xi≤n，输出一行 n 个整数，表示答案。&lt;/p>
@@ -712,8 +712,8 @@ abcaacc&lt;/p>
 第一次微调完，链子为 2 1 3 4 5&lt;br>
 第二次微调完，链子为 3 2 1 4 5&lt;br>
 第三次微调完，链子为 4 3 2 1 5&lt;/p>
-&lt;h2 id="思路与代码-1">思路与代码&lt;/h2>
-&lt;p>语法题，使用双端队列模拟即可。将指定的宝石从链子中移除，并将其添加到链子头部。&lt;/p>
+&lt;h2 id="思路与代码-1">思路与代码
+&lt;/h2>&lt;p>语法题，使用双端队列模拟即可。将指定的宝石从链子中移除，并将其添加到链子头部。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -774,11 +774,11 @@ abcaacc&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="第三题">第三题&lt;/h1>
-&lt;h2 id="题目描述-2">题目描述&lt;/h2>
-&lt;p>小团最近获得了美美团团国的裁缝资格证，成为了一个裁缝！现在小团有一个长度为 n 的大布料 S（在这个国家布料其实是一个仅包含小写英文字母的字符串），小团可以将布料在任意位置剪切，例如布料 abcd 可以被裁剪为 a 与 bcd 或 ab 与 cd 或 abc 与 d，不过，裁剪完之后是不能拼接起来的，因为小团还不是很擅长拼接布料。现在小团想知道能不能有一种裁剪方式能让他把布料恰好裁剪成客人要求的小布料。形式化地，有一个串 S，问是否能将其划分成 m 个不相交的连续子串，使得这些连续子串可以与要求的连续子串一一对应。两个串相对应是指这两个串完全相等。例如&amp;quot;aab&amp;quot;=&amp;ldquo;aab&amp;rdquo; 但 &amp;ldquo;aab&amp;rdquo;≠&amp;ldquo;baa&amp;rdquo;。&lt;/p>
-&lt;h2 id="测试样例-2">测试样例&lt;/h2>
-&lt;p>第一行两个空格隔开的正整数 n 和 m，分别表示大布料 S 长度和客人要求的小布料数量。&lt;br>
+&lt;/div>&lt;h1 id="第三题">第三题
+&lt;/h1>&lt;h2 id="题目描述-2">题目描述
+&lt;/h2>&lt;p>小团最近获得了美美团团国的裁缝资格证，成为了一个裁缝！现在小团有一个长度为 n 的大布料 S（在这个国家布料其实是一个仅包含小写英文字母的字符串），小团可以将布料在任意位置剪切，例如布料 abcd 可以被裁剪为 a 与 bcd 或 ab 与 cd 或 abc 与 d，不过，裁剪完之后是不能拼接起来的，因为小团还不是很擅长拼接布料。现在小团想知道能不能有一种裁剪方式能让他把布料恰好裁剪成客人要求的小布料。形式化地，有一个串 S，问是否能将其划分成 m 个不相交的连续子串，使得这些连续子串可以与要求的连续子串一一对应。两个串相对应是指这两个串完全相等。例如&amp;quot;aab&amp;quot;=&amp;ldquo;aab&amp;rdquo; 但 &amp;ldquo;aab&amp;rdquo;≠&amp;ldquo;baa&amp;rdquo;。&lt;/p>
+&lt;h2 id="测试样例-2">测试样例
+&lt;/h2>&lt;p>第一行两个空格隔开的正整数 n 和 m，分别表示大布料 S 长度和客人要求的小布料数量。&lt;br>
 接下来一行一个长度为 n 的仅包含小写英文字母的串 S，表示大布料的组成。&lt;br>
 接下来一行 m 个空格隔开的数 x1,x2, &amp;hellip;,xm，依次表示所要求的小布料长度。&lt;br>
 接下来开始 m 行，每行一个长度为 xi 的仅包含小写英文字母的串 si，表示第 i 个小布料的组成。&lt;/p>
@@ -799,8 +799,8 @@ aa
 &lt;/blockquote>
 &lt;p>样例 1 解释&lt;br>
 有两种方案，第一种是 aaaa|aa，第二种是 aa|aaaa，代表一次裁剪。&lt;/p>
-&lt;h2 id="思路与代码-2">思路与代码&lt;/h2>
-&lt;p>根据子集/排列思想，本题元素可重但不可复选。&lt;/p>
+&lt;h2 id="思路与代码-2">思路与代码
+&lt;/h2>&lt;p>根据子集/排列思想，本题元素可重但不可复选。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -891,13 +891,13 @@ aa
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="第四题">第四题&lt;/h1>
-&lt;h2 id="题目描述-3">题目描述&lt;/h2>
-&lt;p>小团正忙着用机器人收衣服！因为快要下雨了，小团找来了不少机器人帮忙收衣服。他有 n 件衣服从左到右成一行排列，所在位置分别为 1~n，在每个位置上已经有一个就绪的机器人可以帮忙收衣服，但第 i 个位置上的机器人需要 pi 的电量来启动，然后这个机器人会用 ti 的时间收衣服，当它收完当前衣服后，会尝试去收紧邻的右边的一件衣服 (如果存在的话)，即 i+1 处的衣服，如果 i+1 处的衣服已经被其他机器人收了或者其他机器人正在收，这个机器人就会进入休眠状态，不再收衣服。不过如果机器人没有休眠，它会同样以 ti 时间来收这件 i+1 处的衣服（注意，不是 ti+1 的时间，收衣服的时间为每个机器人固有属性），然后它会做同样的检测来看能否继续收 i+2 处的衣服，一直直到它进入休眠状态或者右边没有衣服可以收了。形象地来说，机器人会一直尝试往右边收衣服，
+&lt;/div>&lt;h1 id="第四题">第四题
+&lt;/h1>&lt;h2 id="题目描述-3">题目描述
+&lt;/h2>&lt;p>小团正忙着用机器人收衣服！因为快要下雨了，小团找来了不少机器人帮忙收衣服。他有 n 件衣服从左到右成一行排列，所在位置分别为 1~n，在每个位置上已经有一个就绪的机器人可以帮忙收衣服，但第 i 个位置上的机器人需要 pi 的电量来启动，然后这个机器人会用 ti 的时间收衣服，当它收完当前衣服后，会尝试去收紧邻的右边的一件衣服 (如果存在的话)，即 i+1 处的衣服，如果 i+1 处的衣服已经被其他机器人收了或者其他机器人正在收，这个机器人就会进入休眠状态，不再收衣服。不过如果机器人没有休眠，它会同样以 ti 时间来收这件 i+1 处的衣服（注意，不是 ti+1 的时间，收衣服的时间为每个机器人固有属性），然后它会做同样的检测来看能否继续收 i+2 处的衣服，一直直到它进入休眠状态或者右边没有衣服可以收了。形象地来说，机器人会一直尝试往右边收衣服，
 收 k 件的话就耗费 k*ti 的时间，但是当它遇见其他机器人工作的痕迹，就会认为后面的事情它不用管了，开始摸鱼，进入休眠状态。小团手里总共有电量 b，他准备在 0 时刻的时候将所有他想启动的机器人全部一起启动，过后不再启动新的机器人，
 并且启动的机器人的电量之和不大于 b。他想知道在最佳选择的情况下，最快多久能收完衣服。若无论如何怎样都收不完衣服，输出 -1。&lt;/p>
-&lt;h2 id="测试样例-3">测试样例&lt;/h2>
-&lt;p>第一行两个正整数 n 和 b，分别表示衣服数量和小团持有电量。&lt;br>
+&lt;h2 id="测试样例-3">测试样例
+&lt;/h2>&lt;p>第一行两个正整数 n 和 b，分别表示衣服数量和小团持有电量。&lt;br>
 接下来一行 n 个数 p1,p2, &amp;hellip;,pn，含义如题所述，为机器人唤醒需求电量。&lt;br>
 接下来一行 n 个数 t1,t2, &amp;hellip;,tn，含义如题所述，为机器人收衣服所需时间。&lt;br>
 数字间两两有空格隔开。&lt;br>
@@ -926,8 +926,8 @@ aa
 &lt;/blockquote>
 &lt;p>样例 2 解释
 因为必须要启动第一个机器人，耗电量至少为 6，但是持有电量只有 5，因此无法收完所有衣服，输出 -1&lt;/p>
-&lt;h2 id="思路与代码-3">思路与代码&lt;/h2>
-&lt;p>// TODO&lt;/p>
+&lt;h2 id="思路与代码-3">思路与代码
+&lt;/h2>&lt;p>// TODO&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -936,11 +936,11 @@ aa
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// TODO &lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="第五题">第五题&lt;/h1>
-&lt;h2 id="题目描述-4">题目描述&lt;/h2>
-&lt;p>小美在回家路上碰见很多缠人的可爱猫猫！因为猫猫太可爱了以及小美十分有爱心，每遇到一只猫猫，小美忍不住停下来花费 T 的时间抚摸猫猫让猫猫不再缠着小美。而一路上小美能捡到很多亮闪闪的小玩具，这里我们给每个小玩具的种类都编了号，从 1~k，一共 k 种小玩具，对于每个所属种类 i 的小玩具，小美可以选择将它送给遇到的一只猫猫玩，这样的话可以只花费 ti 的时间就可以让这只猫猫心满意足的离开。小美想知道，在她以最佳的对小玩具的用法下，她最少耗费多少时间在打发猫猫（即只考虑摸猫时间以及用小玩具打发猫的时间）。注意，每个捡到的小玩具只能用一次。&lt;/p>
-&lt;h2 id="测试样例-4">测试样例&lt;/h2>
-&lt;p>第一行三个正整数 n、k 和 T，分别表示小美回家遇见的事件数、小玩具种类总数以及摸猫时间！&lt;br>
+&lt;/div>&lt;h1 id="第五题">第五题
+&lt;/h1>&lt;h2 id="题目描述-4">题目描述
+&lt;/h2>&lt;p>小美在回家路上碰见很多缠人的可爱猫猫！因为猫猫太可爱了以及小美十分有爱心，每遇到一只猫猫，小美忍不住停下来花费 T 的时间抚摸猫猫让猫猫不再缠着小美。而一路上小美能捡到很多亮闪闪的小玩具，这里我们给每个小玩具的种类都编了号，从 1~k，一共 k 种小玩具，对于每个所属种类 i 的小玩具，小美可以选择将它送给遇到的一只猫猫玩，这样的话可以只花费 ti 的时间就可以让这只猫猫心满意足的离开。小美想知道，在她以最佳的对小玩具的用法下，她最少耗费多少时间在打发猫猫（即只考虑摸猫时间以及用小玩具打发猫的时间）。注意，每个捡到的小玩具只能用一次。&lt;/p>
+&lt;h2 id="测试样例-4">测试样例
+&lt;/h2>&lt;p>第一行三个正整数 n、k 和 T，分别表示小美回家遇见的事件数、小玩具种类总数以及摸猫时间！&lt;br>
 接下来一行 k 个数 t1,t2, &amp;hellip;,tk, 含义如题所述，为每种小玩具打发猫猫所用时间。&lt;br>
 接下来一行 n 个数 e1,e2, &amp;hellip;,en，表示 n 次事件，对第 i 次事件，如果 ei=0，则表示遇到了一只猫猫，小美可以选择花费 T 的时间去抚摸，或者用一个小玩具送给猫猫来打发它 (如果小美有的话)。 &lt;br>
 如果 ei&amp;gt;0，则表示小美在这里捡到了一个小玩具，种类为 ei。初始时候小美身上没有任何小玩具，她可以携带任意多个小玩具。&lt;br>
@@ -959,8 +959,8 @@ aa
 接下来获得了小玩具 1 和 2，然后遇到一只猫猫，用了小玩具 1，只花费了 1 的时间。&lt;br>
 接下来又获得一个小玩具 1 之后又遇见一只猫猫，因为又有小玩具 1 了，所以还是只用花费 1 的时间。&lt;br>
 总共用时 102&lt;/p>
-&lt;h2 id="思路与代码-4">思路与代码&lt;/h2>
-&lt;p>贪心法。使用 &lt;code>PriorityQueue&lt;/code> 将所有的玩具打发猫猫的时间存储起来，如果玩具打发猫猫的时间大于抚摸猫猫的时间，则该玩具不要也罢。&lt;/p>
+&lt;h2 id="思路与代码-4">思路与代码
+&lt;/h2>&lt;p>贪心法。使用 &lt;code>PriorityQueue&lt;/code> 将所有的玩具打发猫猫的时间存储起来，如果玩具打发猫猫的时间大于抚摸猫猫的时间，则该玩具不要也罢。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1021,11 +1021,11 @@ aa
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/20）</title><link>https://jinggqu.github.io/posts/meituan-java-note-2/</link><pubDate>Wed, 24 Aug 2022 10:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/meituan-java-note-2/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
-&lt;h2 id="题目描述">题目描述&lt;/h2>
-&lt;p>小团想要自己来烤串！不过在烤串之前，需要串好烤串。小团有 n 个荤菜和 n 个素菜，他想按顺序分别一个荤菜一个素菜串起来，想请你帮他串好！给出两个长度分别为 n 的仅包含小写英文字母的串 A 和 B，分别代表荤菜和素菜的种类（用字母来表示菜的种类）。请你以从左到右的顺序依次串好他们！例如对于荤菜串 A1A2&amp;hellip;An 和素菜串 B1B2&amp;hellip;Bn，串好应该是 A1B1A2B2&amp;hellip;AnBn。&lt;/p>
-&lt;h2 id="测试样例">测试样例&lt;/h2>
-&lt;p>第一行一个正整数 n，表示烤串长度；
+&lt;/div></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/20）</title><link>https://jinggqu.github.io/posts/meituan-java-note-2/</link><pubDate>Wed, 24 Aug 2022 10:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/meituan-java-note-2/</guid><description>&lt;h1 id="第一题">第一题
+&lt;/h1>&lt;h2 id="题目描述">题目描述
+&lt;/h2>&lt;p>小团想要自己来烤串！不过在烤串之前，需要串好烤串。小团有 n 个荤菜和 n 个素菜，他想按顺序分别一个荤菜一个素菜串起来，想请你帮他串好！给出两个长度分别为 n 的仅包含小写英文字母的串 A 和 B，分别代表荤菜和素菜的种类（用字母来表示菜的种类）。请你以从左到右的顺序依次串好他们！例如对于荤菜串 A1A2&amp;hellip;An 和素菜串 B1B2&amp;hellip;Bn，串好应该是 A1B1A2B2&amp;hellip;AnBn。&lt;/p>
+&lt;h2 id="测试样例">测试样例
+&lt;/h2>&lt;p>第一行一个正整数 n，表示烤串长度；
 第二行为一个长度为 n 的字符串 A，表示荤菜按次序都是哪些菜；
 第三行为一个长度为 n 的字符串 B，表示素菜按次序都是哪些菜；
 对于 80% 的数据，n≤1000，对于 20% 的数据，n≤50000。于所有数据，A 和 B 为仅包含小写英文字母的字符串；
@@ -1039,8 +1039,8 @@ efgh&lt;br>
 输出&lt;br>
 aebfcgdh&lt;/p>
 &lt;/blockquote>
-&lt;h2 id="思路与代码">思路与代码&lt;/h2>
-&lt;p>语法题，直接交替插入两个字符串的字符即可。&lt;/p>
+&lt;h2 id="思路与代码">思路与代码
+&lt;/h2>&lt;p>语法题，直接交替插入两个字符串的字符即可。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1079,11 +1079,11 @@ aebfcgdh&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="第二题">第二题&lt;/h1>
-&lt;h2 id="题目描述-1">题目描述&lt;/h2>
-&lt;p>小团在地图上放了三个定位装置，想依赖他们来进行定位！小团的地图是一个 n×n 的一个棋盘，他在 (x1,y1),(x2,y2),(x3,y3) xi,yi ∈ Z ∩ [1,n] 这三个位置分别放置了一个定位装置（两两不重叠）。然后小团在一个特定的位置 (a,b)a,b ∈ Z ∩[1,n] 放置了一个信标。每个信标会告诉小团它自身到那个信标的曼哈顿距离，即对 i=1,2,3 小团知道 (|xi-a|+|yi-b|)，现在小团想让你帮他找出信标的位置！注意，题目保证最少有一个正确的信标位置。因为小团不能定位装置确定出来的信标位置是否唯一，如果有多个，输出字典序最小的那个。(a,b) 的字典序比 (c,d) 小，当且仅当 a&amp;lt;c 或者 a==c∧b&amp;lt;d。&lt;/p>
-&lt;h2 id="测试样例-1">测试样例&lt;/h2>
-&lt;p>第一行一个正整数 n，表示棋盘大小；&lt;br>
+&lt;/div>&lt;h1 id="第二题">第二题
+&lt;/h1>&lt;h2 id="题目描述-1">题目描述
+&lt;/h2>&lt;p>小团在地图上放了三个定位装置，想依赖他们来进行定位！小团的地图是一个 n×n 的一个棋盘，他在 (x1,y1),(x2,y2),(x3,y3) xi,yi ∈ Z ∩ [1,n] 这三个位置分别放置了一个定位装置（两两不重叠）。然后小团在一个特定的位置 (a,b)a,b ∈ Z ∩[1,n] 放置了一个信标。每个信标会告诉小团它自身到那个信标的曼哈顿距离，即对 i=1,2,3 小团知道 (|xi-a|+|yi-b|)，现在小团想让你帮他找出信标的位置！注意，题目保证最少有一个正确的信标位置。因为小团不能定位装置确定出来的信标位置是否唯一，如果有多个，输出字典序最小的那个。(a,b) 的字典序比 (c,d) 小，当且仅当 a&amp;lt;c 或者 a==c∧b&amp;lt;d。&lt;/p>
+&lt;h2 id="测试样例-1">测试样例
+&lt;/h2>&lt;p>第一行一个正整数 n，表示棋盘大小；&lt;br>
 第二行两个整数，分别表示 x1 与 y1，即第一个定位器的位置；&lt;br>
 第三行两个整数，分别表示 x2 与 y2，即第二个定位器的位置；&lt;br>
 第四行两个整数，分别表示 x3 与 y3，即第三个定位器的位置；&lt;br>
@@ -1105,8 +1105,8 @@ aebfcgdh&lt;/p>
 与 (2, 2) 的哈曼顿距离为 1 的位置有四个，分别是 (1, 2), (2, 1), (2, 3), (3, 2)&lt;br>
 与 (2, 3) 的哈曼顿距离为 2 的位置有三个，分别是 (1, 2), (2, 1), (3, 2)&lt;br>
 所以只有 (1, 2), (3, 2) 这两个位置有可能是信标，而 (1, 2) 的字典序最小，所以输出 (1, 2)&lt;/p>
-&lt;h2 id="思路与代码-1">思路与代码&lt;/h2>
-&lt;p>曼哈顿距离即水平和竖直方向上的距离之和。使用 &lt;code>directions&lt;/code> 表示方向，对距离 $d$ 进行遍历，若水平方向取距离 $d_x$，则竖直方向距离 $d_y = d - d_x$，枚举出所有点后判断点是否在边界内，若在则有效。&lt;/p>
+&lt;h2 id="思路与代码-1">思路与代码
+&lt;/h2>&lt;p>曼哈顿距离即水平和竖直方向上的距离之和。使用 &lt;code>directions&lt;/code> 表示方向，对距离 $d$ 进行遍历，若水平方向取距离 $d_x$，则竖直方向距离 $d_y = d - d_x$，枚举出所有点后判断点是否在边界内，若在则有效。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1199,11 +1199,11 @@ aebfcgdh&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="第三题">第三题&lt;/h1>
-&lt;h2 id="题目描述-2">题目描述&lt;/h2>
-&lt;p>小美即将进行期末考试！小美现在盘算了一下，一共有 n 道试题，对于第 i 道试题，小美有着 pi 的概率做对，获得 ai 的分值，另外 (1-pi) 的概率做错，获得 0 分。小美的总分即是每道题获得的分数之和。小美不甘于此！她决定突击复习，因为时间有限，她最多复习 m 道试题，使得复习后的试题正确率提升到 100%。小美想知道，如果她以最佳方式进行复习，能获得的期望总分最大是多少。&lt;/p>
-&lt;h2 id="测试样例-2">测试样例&lt;/h2>
-&lt;p>第一行两个正整数 n 和 m，表示总试题数和最多复习试题数。&lt;br>
+&lt;/div>&lt;h1 id="第三题">第三题
+&lt;/h1>&lt;h2 id="题目描述-2">题目描述
+&lt;/h2>&lt;p>小美即将进行期末考试！小美现在盘算了一下，一共有 n 道试题，对于第 i 道试题，小美有着 pi 的概率做对，获得 ai 的分值，另外 (1-pi) 的概率做错，获得 0 分。小美的总分即是每道题获得的分数之和。小美不甘于此！她决定突击复习，因为时间有限，她最多复习 m 道试题，使得复习后的试题正确率提升到 100%。小美想知道，如果她以最佳方式进行复习，能获得的期望总分最大是多少。&lt;/p>
+&lt;h2 id="测试样例-2">测试样例
+&lt;/h2>&lt;p>第一行两个正整数 n 和 m，表示总试题数和最多复习试题数。&lt;br>
 接下来一行 n 个整数，分别为 p1 p2&amp;hellip;pn，表示小美有 pi%的概率，即 pi=pi/100 的概率做对第 i 个题。（注意，这里为了简单起见，将概率 pi 扩张 100 倍成为整数 pi 方便输入）&lt;br>
 接下来一行 n 个整数，分别表示 a1 a2&amp;hellip;an，分别表示第 i 个题做对的分值。&lt;br>
 数字间两两有空格隔开，对于所有数据，1≤m≤n≤50000,0≤pi≤100,1≤ai≤1000&lt;br>
@@ -1223,8 +1223,8 @@ aebfcgdh&lt;/p>
 如果复习第二道题，小美总分的期望为 89% * 445 + 100% * 754 = 1150.05&lt;br>
 所以选择复习第二道题，这样能获得最大期望总分 1150.05&lt;br>
 根据每题复习后的收益进行排序即可&lt;/p>
-&lt;h2 id="思路与代码-2">思路与代码&lt;/h2>
-&lt;p>自定义数据结构 &lt;code>Pair&lt;/code>，使用 &lt;code>PriorityQueue&lt;/code> 对 &lt;code>Pair&lt;/code> 按照收益倒序排列，即收益最大的课排在前。再通过贪心法，选取前 $m$ 门收益最大的课进行复习，剩余 $n-m$ 门课则不复习。&lt;/p>
+&lt;h2 id="思路与代码-2">思路与代码
+&lt;/h2>&lt;p>自定义数据结构 &lt;code>Pair&lt;/code>，使用 &lt;code>PriorityQueue&lt;/code> 对 &lt;code>Pair&lt;/code> 按照收益倒序排列，即收益最大的课排在前。再通过贪心法，选取前 $m$ 门收益最大的课进行复习，剩余 $n-m$ 门课则不复习。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1313,11 +1313,11 @@ aebfcgdh&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="第四题">第四题&lt;/h1>
-&lt;h2 id="题目描述-3">题目描述&lt;/h2>
-&lt;p>小团生日收到妈妈送的两个一模一样的数列作为礼物！他很开心的把玩，不过不小心没拿稳将数列摔坏了！现在他手上的两个数列分别为 A 和 B，长度分别为 n 和 m。小团很想再次让这两个数列变得一样。他现在能做两种操作，操作一是将一个选定数列中的某一个数 a 改成数 b，这会花费|b-a|的时间，操作二是选择一个数列中某个数 a，将它从数列中丢掉，花费|a|的时间。小团想知道，他最少能以多少时间将这两个数列变得再次相同！&lt;/p>
-&lt;h2 id="测试样例-3">测试样例&lt;/h2>
-&lt;p>第一行两个空格隔开的正整数 n 和 m，分别表示数列 A 和 B 的长度。&lt;br>
+&lt;/div>&lt;h1 id="第四题">第四题
+&lt;/h1>&lt;h2 id="题目描述-3">题目描述
+&lt;/h2>&lt;p>小团生日收到妈妈送的两个一模一样的数列作为礼物！他很开心的把玩，不过不小心没拿稳将数列摔坏了！现在他手上的两个数列分别为 A 和 B，长度分别为 n 和 m。小团很想再次让这两个数列变得一样。他现在能做两种操作，操作一是将一个选定数列中的某一个数 a 改成数 b，这会花费|b-a|的时间，操作二是选择一个数列中某个数 a，将它从数列中丢掉，花费|a|的时间。小团想知道，他最少能以多少时间将这两个数列变得再次相同！&lt;/p>
+&lt;h2 id="测试样例-3">测试样例
+&lt;/h2>&lt;p>第一行两个空格隔开的正整数 n 和 m，分别表示数列 A 和 B 的长度。&lt;br>
 接下来一行 n 个整数，分别为 A1 A2&amp;hellip;An&lt;br>
 接下来一行 m 个整数，分别为 B1 B2&amp;hellip;Bm&lt;br>
 对于所有数据，1≤n,m≤2000， |Ai|,|Bi|≤10。输出一行一个整数，表示最少花费时间，来使得两个数列相同。&lt;/p>
@@ -1334,8 +1334,8 @@ aebfcgdh&lt;/p>
 可以选择两次第二种操作，消除数列 A 的第一个数和数列 B 的第一个数，需要花费 9821+7742=17563 的时间&lt;br>
 也可以选择一次第一种操作，将数列 A 的第一个数改成数列 B 的第一个数，也是需要花费 9821+7742=17563 的时间&lt;br>
 所以答案为 17563&lt;/p>
-&lt;h2 id="思路与代码-3">思路与代码&lt;/h2>
-&lt;p>动态规划，与 &lt;a class="link" href="https://leetcode.cn/problems/edit-distance/" target="_blank" rel="noopener"
+&lt;h2 id="思路与代码-3">思路与代码
+&lt;/h2>&lt;p>动态规划，与 &lt;a class="link" href="https://leetcode.cn/problems/edit-distance/" target="_blank" rel="noopener"
 >leetcode 72.编辑距离&lt;/a> 类似，但要注意设置本题的边界条件。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -1417,11 +1417,11 @@ aebfcgdh&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="第五题">第五题&lt;/h1>
-&lt;h2 id="题目描述-4">题目描述&lt;/h2>
-&lt;p>小团的玩具火箭有点磨损了，上面有很多地方翘起来了，小团想要用强力胶进行修补，但在强力胶凝结之前，需要找点东西压住。幸好小团有很多这样的东西。小团有 m 种配重材料，第 i 种材料重 ai 单位重量（因为小团有太多了，可以认为每种都有任意多个）。火箭上有 n 个地方翘起来了，需要至少 bi 单位重量的东西来压住，而且只能用一个配重材料来压，(多了的话不好压，多个配重材料容易散开，所以小团不想用多个来折腾)。小团想一次就把所有翘起来的地方全都修补好，请问他需要使用的配重材料重量之和最少是多少？&lt;/p>
-&lt;h2 id="测试样例-4">测试样例&lt;/h2>
-&lt;p>第一行两个正整数 n 和 m，分别代表需要修补的地方个数以及材料种类数。&lt;br>
+&lt;/div>&lt;h1 id="第五题">第五题
+&lt;/h1>&lt;h2 id="题目描述-4">题目描述
+&lt;/h2>&lt;p>小团的玩具火箭有点磨损了，上面有很多地方翘起来了，小团想要用强力胶进行修补，但在强力胶凝结之前，需要找点东西压住。幸好小团有很多这样的东西。小团有 m 种配重材料，第 i 种材料重 ai 单位重量（因为小团有太多了，可以认为每种都有任意多个）。火箭上有 n 个地方翘起来了，需要至少 bi 单位重量的东西来压住，而且只能用一个配重材料来压，(多了的话不好压，多个配重材料容易散开，所以小团不想用多个来折腾)。小团想一次就把所有翘起来的地方全都修补好，请问他需要使用的配重材料重量之和最少是多少？&lt;/p>
+&lt;h2 id="测试样例-4">测试样例
+&lt;/h2>&lt;p>第一行两个正整数 n 和 m，分别代表需要修补的地方个数以及材料种类数。&lt;br>
 接下来一行 n 个数 b1,b2,&amp;hellip;,bn，含义如题。&lt;br>
 接下来一行 m 个数 a1,a2,&amp;hellip;,am，含义如题。&lt;br>
 对于 40% 的数据，n,m≤100，对于另外 30% 的数据，n,m≤2000，对于所有数据，1≤n,m≤50000，1≤ai,bi≤104，输出小团最少需要使用的配重材料重量之和。如果没有任何办法满足，输出-1。&lt;/p>
@@ -1447,8 +1447,8 @@ aebfcgdh&lt;/p>
 &lt;/blockquote>
 &lt;p>样例 2 解释&lt;br>
 第一个地方需要重量为 4 的，第二个地方可以用重量为 1 的，第三个地方只能选择重量为 4 的才能压住。所以总重量需求为 9。可以证明没有更优方案。&lt;/p>
-&lt;h2 id="思路与代码-4">思路与代码&lt;/h2>
-&lt;p>利用 &lt;code>TreeSet&lt;/code> 的特性，遍历每个需要的重量 $b_i$，通过 &lt;code>ceiling(bi)&lt;/code> 方法得到大于等于 $b_i$ 的最小值，若不存在这样的值则说明压不住，返回-1。或者对材料重量与所需重量排序后，基于上述思路二重遍历即可。&lt;/p>
+&lt;h2 id="思路与代码-4">思路与代码
+&lt;/h2>&lt;p>利用 &lt;code>TreeSet&lt;/code> 的特性，遍历每个需要的重量 $b_i$，通过 &lt;code>ceiling(bi)&lt;/code> 方法得到大于等于 $b_i$ 的最小值，若不存在这样的值则说明压不住，返回-1。或者对材料重量与所需重量排序后，基于上述思路二重遍历即可。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1509,15 +1509,15 @@ aebfcgdh&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="参考文献">参考文献&lt;/h1>
-&lt;p>1.&lt;a class="link" href="https://www.nowcoder.com/discuss/1021869" target="_blank" rel="noopener"
+&lt;/div>&lt;h1 id="参考文献">参考文献
+&lt;/h1>&lt;p>1.&lt;a class="link" href="https://www.nowcoder.com/discuss/1021869" target="_blank" rel="noopener"
 >08/20 美团后端笔试&lt;/a>&lt;br>
 2.&lt;a class="link" href="https://www.nowcoder.com/discuss/1021857" target="_blank" rel="noopener"
->20220820 美团笔试题解&lt;/a>&lt;/p></description></item><item><title>联想面试记录（2022/08/23 更新）</title><link>https://jinggqu.github.io/posts/lenovo-java-interview/</link><pubDate>Tue, 16 Aug 2022 19:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/lenovo-java-interview/</guid><description>&lt;h1 id="投递岗位">投递岗位&lt;/h1>
-&lt;p>&lt;a class="link" href="https://talent.lenovo.com.cn/resume/jdlist/2173" target="_blank" rel="noopener"
+>20220820 美团笔试题解&lt;/a>&lt;/p></description></item><item><title>联想面试记录（2022/08/23 更新）</title><link>https://jinggqu.github.io/posts/lenovo-java-interview/</link><pubDate>Tue, 16 Aug 2022 19:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/lenovo-java-interview/</guid><description>&lt;h1 id="投递岗位">投递岗位
+&lt;/h1>&lt;p>&lt;a class="link" href="https://talent.lenovo.com.cn/resume/jdlist/2173" target="_blank" rel="noopener"
 >Java 开发工程师-China Geo&lt;/a>&lt;/p>
-&lt;h1 id="一面20220816">一面（2022/08/16）&lt;/h1>
-&lt;ol>
+&lt;h1 id="一面20220816">一面（2022/08/16）
+&lt;/h1>&lt;ol>
 &lt;li>面试官自我介绍及团队业务介绍；&lt;/li>
 &lt;li>自我介绍；&lt;/li>
 &lt;li>项目相关问题；&lt;/li>
@@ -1536,8 +1536,8 @@ aebfcgdh&lt;/p>
 &lt;li>是否可以接受工作中编码只占一小部分的情况；&lt;/li>
 &lt;li>评价与结语。&lt;/li>
 &lt;/ol>
-&lt;h1 id="二面20220823">二面（2022/08/23）&lt;/h1>
-&lt;ol>
+&lt;h1 id="二面20220823">二面（2022/08/23）
+&lt;/h1>&lt;ol>
 &lt;li>自我介绍；&lt;/li>
 &lt;li>介绍项目，对负责的部分做详细的介绍；&lt;/li>
 &lt;li>从 Java 层面，如何做跨语言的程序调用；&lt;/li>
@@ -1556,11 +1556,11 @@ aebfcgdh&lt;/p>
 &lt;li>线下及线上服务的调试方法都有哪些，以及相应的工具；&lt;/li>
 &lt;li>未来的职业规划；&lt;/li>
 &lt;li>有没有什么想问的？（ChinaGeo 与 SSG 的区别，剩下几次面试，本次面试表现）&lt;/li>
-&lt;/ol></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/13）</title><link>https://jinggqu.github.io/posts/meituan-java-note-1/</link><pubDate>Mon, 15 Aug 2022 10:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/meituan-java-note-1/</guid><description>&lt;h1 id="第一题">第一题&lt;/h1>
-&lt;h2 id="题目描述">题目描述&lt;/h2>
-&lt;p>炸鸡店拥有一名会传送魔法的外卖派送员。该外卖派送员派送单子时，可以消耗时间 t 来正常派送单子（一次只能派送一个单子，不能多个同时派送），也可以使用魔法不耗费时间地隔空瞬间投送。现在炸鸡店在时刻 0 接收到了若干炸鸡订单，每个单子都有它的截止送达时间。外卖派送员需要保证送达时间小于等于这个截止时间。现在询问外卖员最少要使用几次魔法来保证没有外卖超时。&lt;/p>
-&lt;h2 id="测试样例">测试样例&lt;/h2>
-&lt;p>测试样例 1&lt;/p>
+&lt;/ol></description></item><item><title>美团 Java 岗算法笔试记录（2022/08/13）</title><link>https://jinggqu.github.io/posts/meituan-java-note-1/</link><pubDate>Mon, 15 Aug 2022 10:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/meituan-java-note-1/</guid><description>&lt;h1 id="第一题">第一题
+&lt;/h1>&lt;h2 id="题目描述">题目描述
+&lt;/h2>&lt;p>炸鸡店拥有一名会传送魔法的外卖派送员。该外卖派送员派送单子时，可以消耗时间 t 来正常派送单子（一次只能派送一个单子，不能多个同时派送），也可以使用魔法不耗费时间地隔空瞬间投送。现在炸鸡店在时刻 0 接收到了若干炸鸡订单，每个单子都有它的截止送达时间。外卖派送员需要保证送达时间小于等于这个截止时间。现在询问外卖员最少要使用几次魔法来保证没有外卖超时。&lt;/p>
+&lt;h2 id="测试样例">测试样例
+&lt;/h2>&lt;p>测试样例 1&lt;/p>
 &lt;blockquote>
 &lt;p>输入&lt;br>
 6 5&lt;br>
@@ -1576,8 +1576,8 @@ aebfcgdh&lt;/p>
 输出&lt;br>
 0&lt;/p>
 &lt;/blockquote>
-&lt;h2 id="思路与代码">思路与代码&lt;/h2>
-&lt;p>贪心算法。先排序，然后看看每一次送达时间是否能在截止时间前。&lt;/p>
+&lt;h2 id="思路与代码">思路与代码
+&lt;/h2>&lt;p>贪心算法。先排序，然后看看每一次送达时间是否能在截止时间前。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1620,11 +1620,11 @@ aebfcgdh&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="第二题">第二题&lt;/h1>
-&lt;h2 id="题目描述-1">题目描述&lt;/h2>
-&lt;p>你买了一个扫地机器人，你想要知道这个扫地机器人是否能够将房间打扫干净。为了简化问题，我们不妨假设房间被划分为 n*m 的方格。定义打扫干净为这 n*m 的方格全部被打扫过至少一次。你为扫地机器人下达了若干指令。每个指令为上下左右移动中的一种。机器人会将经过的路径上的方格打扫干净。初始时假设机器人处于第一行第一列的方格中。这个方格初始时会被机器人直接打扫干净。现在询问你机器人能否将房间打扫干净，能则输出 Yes，不能则输出 No。对于 Yes 的情况下，还要求你继续输出到哪个指令结束后，房间就打扫干净了。对于 No 的情况下，还要求你输出还有多少个地块没有打扫干净。保证机器人在打扫的过程中不会越过房间边界。换句话说机器人始终保持在 n*m 的方格图中。&lt;/p>
-&lt;h2 id="测试样例-1">测试样例&lt;/h2>
-&lt;p>测试样例 1&lt;/p>
+&lt;/div>&lt;h1 id="第二题">第二题
+&lt;/h1>&lt;h2 id="题目描述-1">题目描述
+&lt;/h2>&lt;p>你买了一个扫地机器人，你想要知道这个扫地机器人是否能够将房间打扫干净。为了简化问题，我们不妨假设房间被划分为 n*m 的方格。定义打扫干净为这 n*m 的方格全部被打扫过至少一次。你为扫地机器人下达了若干指令。每个指令为上下左右移动中的一种。机器人会将经过的路径上的方格打扫干净。初始时假设机器人处于第一行第一列的方格中。这个方格初始时会被机器人直接打扫干净。现在询问你机器人能否将房间打扫干净，能则输出 Yes，不能则输出 No。对于 Yes 的情况下，还要求你继续输出到哪个指令结束后，房间就打扫干净了。对于 No 的情况下，还要求你输出还有多少个地块没有打扫干净。保证机器人在打扫的过程中不会越过房间边界。换句话说机器人始终保持在 n*m 的方格图中。&lt;/p>
+&lt;h2 id="测试样例-1">测试样例
+&lt;/h2>&lt;p>测试样例 1&lt;/p>
 &lt;blockquote>
 &lt;p>输入&lt;br>
 2 2 5&lt;br>
@@ -1642,8 +1642,8 @@ aebfcgdh&lt;/p>
 &amp;ldquo;No&amp;rdquo;&lt;br>
 2&lt;/p>
 &lt;/blockquote>
-&lt;h2 id="思路与代码-1">思路与代码&lt;/h2>
-&lt;p>暴力解法即可。无须考虑边界问题，因为题目已经保证机器人不会越界。&lt;/p>
+&lt;h2 id="思路与代码-1">思路与代码
+&lt;/h2>&lt;p>暴力解法即可。无须考虑边界问题，因为题目已经保证机器人不会越界。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1718,11 +1718,11 @@ aebfcgdh&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="第三题">第三题&lt;/h1>
-&lt;h2 id="题目描述-2">题目描述&lt;/h2>
-&lt;p>Alice 和 Bob 在玩一个游戏。有 n 张卡牌，点数分别为 1 到 n。进行洗牌后，n 张牌从上到下叠放形成一个牌堆。每次 Alice 先将当前牌堆顶的一张牌放到牌堆底，然后 Bob 再将当前牌堆顶的一张牌放到牌堆底。（特别地，当牌堆中只有一张牌时，相当于不进行任何操作）接着，他们会翻开当前牌堆顶的牌，并记下它的点数。当所有牌都被翻开后，他们也记下了 n 个点数。现在他们想根据记下的这个序列来还原一开始的牌（从牌堆顶到牌堆底每一张牌的点数）。&lt;/p>
-&lt;h2 id="测试样例-2">测试样例&lt;/h2>
-&lt;p>测试样例 1&lt;/p>
+&lt;/div>&lt;h1 id="第三题">第三题
+&lt;/h1>&lt;h2 id="题目描述-2">题目描述
+&lt;/h2>&lt;p>Alice 和 Bob 在玩一个游戏。有 n 张卡牌，点数分别为 1 到 n。进行洗牌后，n 张牌从上到下叠放形成一个牌堆。每次 Alice 先将当前牌堆顶的一张牌放到牌堆底，然后 Bob 再将当前牌堆顶的一张牌放到牌堆底。（特别地，当牌堆中只有一张牌时，相当于不进行任何操作）接着，他们会翻开当前牌堆顶的牌，并记下它的点数。当所有牌都被翻开后，他们也记下了 n 个点数。现在他们想根据记下的这个序列来还原一开始的牌（从牌堆顶到牌堆底每一张牌的点数）。&lt;/p>
+&lt;h2 id="测试样例-2">测试样例
+&lt;/h2>&lt;p>测试样例 1&lt;/p>
 &lt;blockquote>
 &lt;p>输入&lt;br>
 4&lt;br>
@@ -1738,8 +1738,8 @@ aebfcgdh&lt;/p>
 &lt;li>Alice 和 Bob 分别操作后牌堆为：3 4，此时 3 被翻开，牌堆变为 4&lt;/li>
 &lt;li>Alice 和 Bob 分别操作后牌堆依旧为 4，此时 4 被翻开。&lt;/li>
 &lt;/ol>
-&lt;h2 id="思路与代码-2">思路与代码&lt;/h2>
-&lt;p>模拟倒推即可。&lt;/p>
+&lt;h2 id="思路与代码-2">思路与代码
+&lt;/h2>&lt;p>模拟倒推即可。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1800,11 +1800,11 @@ aebfcgdh&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="第四题">第四题&lt;/h1>
-&lt;h2 id="题目描述-3">题目描述&lt;/h2>
-&lt;p>给一个长度为 n 的序列 a[1], a[2], …, a[n]，请问有多少个三元组 (i,j,k) 满足 i&amp;lt;j&amp;lt;k 且 a[i]-a[j]=2a[j]-a[k]？输出符合要求的三元组的数量。&lt;/p>
-&lt;h2 id="测试样例-3">测试样例&lt;/h2>
-&lt;p>测试样例 1&lt;/p>
+&lt;/div>&lt;h1 id="第四题">第四题
+&lt;/h1>&lt;h2 id="题目描述-3">题目描述
+&lt;/h2>&lt;p>给一个长度为 n 的序列 a[1], a[2], …, a[n]，请问有多少个三元组 (i,j,k) 满足 i&amp;lt;j&amp;lt;k 且 a[i]-a[j]=2a[j]-a[k]？输出符合要求的三元组的数量。&lt;/p>
+&lt;h2 id="测试样例-3">测试样例
+&lt;/h2>&lt;p>测试样例 1&lt;/p>
 &lt;blockquote>
 &lt;p>输入&lt;br>
 4&lt;br>
@@ -1812,8 +1812,8 @@ aebfcgdh&lt;/p>
 输出&lt;br>
 3&lt;/p>
 &lt;/blockquote>
-&lt;h2 id="思路与代码-3">思路与代码&lt;/h2>
-&lt;p>直接暴力解即可，注意数据范围（使用 long 而不是 int）。&lt;/p>
+&lt;h2 id="思路与代码-3">思路与代码
+&lt;/h2>&lt;p>直接暴力解即可，注意数据范围（使用 long 而不是 int）。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1874,11 +1874,11 @@ aebfcgdh&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="第五题">第五题&lt;/h1>
-&lt;h2 id="题目描述-4">题目描述&lt;/h2>
-&lt;p>给一棵有 n 个节点的二叉树，节点的编号从 1 到 n。其中，节点 k 的左儿子为节点 2*k（当 2*k 大于 n 时，不存在左儿子），节点 k 的右儿子为节点 2*k+1（当 2*k+1 大于 n 时，不存在右儿子），该二叉树的根节点为节点 1。对于每个节点，节点上有一些金钱。现在你可以从根节点 1 开始，每次选择左儿子或者右儿子向下走，直到走到叶子节点停止，并获得你走过的这些节点上的金钱。你的任务是求出你可以获得的最大的金钱总量。&lt;/p>
-&lt;h2 id="测试样例-4">测试样例&lt;/h2>
-&lt;p>第一行是一个正整数 n，表示二叉树上总共有 n 个节点。第二行有 n 个正整数，第 i 个正整数表示节点 i 上有多少数量的金钱。1 &amp;lt;= n &amp;lt;= 100000。对所有数据保证：单个节点上的金钱数量在 [1, 1000] 之间。&lt;/p>
+&lt;/div>&lt;h1 id="第五题">第五题
+&lt;/h1>&lt;h2 id="题目描述-4">题目描述
+&lt;/h2>&lt;p>给一棵有 n 个节点的二叉树，节点的编号从 1 到 n。其中，节点 k 的左儿子为节点 2*k（当 2*k 大于 n 时，不存在左儿子），节点 k 的右儿子为节点 2*k+1（当 2*k+1 大于 n 时，不存在右儿子），该二叉树的根节点为节点 1。对于每个节点，节点上有一些金钱。现在你可以从根节点 1 开始，每次选择左儿子或者右儿子向下走，直到走到叶子节点停止，并获得你走过的这些节点上的金钱。你的任务是求出你可以获得的最大的金钱总量。&lt;/p>
+&lt;h2 id="测试样例-4">测试样例
+&lt;/h2>&lt;p>第一行是一个正整数 n，表示二叉树上总共有 n 个节点。第二行有 n 个正整数，第 i 个正整数表示节点 i 上有多少数量的金钱。1 &amp;lt;= n &amp;lt;= 100000。对所有数据保证：单个节点上的金钱数量在 [1, 1000] 之间。&lt;/p>
 &lt;p>测试样例 1&lt;/p>
 &lt;blockquote>
 &lt;p>输入&lt;br>
@@ -1897,8 +1897,8 @@ aebfcgdh&lt;/p>
 输出&lt;br>
 1454&lt;/p>
 &lt;/blockquote>
-&lt;h2 id="思路与代码-4">思路与代码&lt;/h2>
-&lt;p>与 &lt;a class="link" href="https://leetcode.cn/problems/binary-tree-maximum-path-sum/" target="_blank" rel="noopener"
+&lt;h2 id="思路与代码-4">思路与代码
+&lt;/h2>&lt;p>与 &lt;a class="link" href="https://leetcode.cn/problems/binary-tree-maximum-path-sum/" target="_blank" rel="noopener"
 >leetcode 124&lt;/a> 类似，采用递归的思路，针对根节点 root，分别求得其左右子树中的路径之和较大者，再加上当前根节点 root 节点值（形成一个单臂，即根节点 + 左子节点，或根节点 + 右子节点），最后返回到上一层递归即可。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -1958,23 +1958,23 @@ aebfcgdh&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="参考文献">参考文献&lt;/h1>
-&lt;p>1.&lt;a class="link" href="https://leetcode.cn/circle/discuss/P7hf9c/" target="_blank" rel="noopener"
->美团 | 后端笔试第二场 | 8/13&lt;/a>&lt;/p></description></item><item><title>LibTorch 上手教程</title><link>https://jinggqu.github.io/posts/libtorch-toturial/</link><pubDate>Wed, 27 Oct 2021 15:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/libtorch-toturial/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
-&lt;h2 id="libtorch-简介">LibTorch 简介&lt;/h2>
-&lt;p>在 Python 深度学习圈，PyTorch 具有举足轻重的地位。同样的，C++ 平台上的 LibTorch 作为 PyTorch 的纯 C++ 接口，它遵循 PyTorch 的设计和架构，旨在支持高性能、低延迟的 C++ 深度学习应用研究。本文基于 Windows 环境与 Visual Studio 2019 开发工具，将从零开始搭建一个完整的深度学习开发环境，包括环境配置、项目演示、自定义数据集及问题排查等部分。&lt;/p>
-&lt;h2 id="libtorch-安装">LibTorch 安装&lt;/h2>
-&lt;p>本文使用的 LibTorch 版本为 &lt;code>LTS(1.8.2) CPU&lt;/code> 版，若需要使用 GPU 版，也可以在&lt;a class="link" href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener"
+&lt;/div>&lt;h1 id="参考文献">参考文献
+&lt;/h1>&lt;p>1.&lt;a class="link" href="https://leetcode.cn/circle/discuss/P7hf9c/" target="_blank" rel="noopener"
+>美团 | 后端笔试第二场 | 8/13&lt;/a>&lt;/p></description></item><item><title>LibTorch 上手教程</title><link>https://jinggqu.github.io/posts/libtorch-toturial/</link><pubDate>Wed, 27 Oct 2021 15:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/libtorch-toturial/</guid><description>&lt;h1 id="前言">前言
+&lt;/h1>&lt;h2 id="libtorch-简介">LibTorch 简介
+&lt;/h2>&lt;p>在 Python 深度学习圈，PyTorch 具有举足轻重的地位。同样的，C++ 平台上的 LibTorch 作为 PyTorch 的纯 C++ 接口，它遵循 PyTorch 的设计和架构，旨在支持高性能、低延迟的 C++ 深度学习应用研究。本文基于 Windows 环境与 Visual Studio 2019 开发工具，将从零开始搭建一个完整的深度学习开发环境，包括环境配置、项目演示、自定义数据集及问题排查等部分。&lt;/p>
+&lt;h2 id="libtorch-安装">LibTorch 安装
+&lt;/h2>&lt;p>本文使用的 LibTorch 版本为 &lt;code>LTS(1.8.2) CPU&lt;/code> 版，若需要使用 GPU 版，也可以在&lt;a class="link" href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener"
 >官方网站&lt;/a>下载。&lt;/p>
-&lt;h1 id="环境配置">环境配置&lt;/h1>
-&lt;h2 id="创建项目">创建项目&lt;/h2>
-&lt;p>首先，在 Visual Studio 中创建一个名为 libtorch-toturial 的控制台项目。创建完成后，将项目设置为 &lt;code>Release&lt;/code> 模式，&lt;code>x64&lt;/code> 平台，如下图。&lt;/p>
+&lt;h1 id="环境配置">环境配置
+&lt;/h1>&lt;h2 id="创建项目">创建项目
+&lt;/h2>&lt;p>首先，在 Visual Studio 中创建一个名为 libtorch-toturial 的控制台项目。创建完成后，将项目设置为 &lt;code>Release&lt;/code> 模式，&lt;code>x64&lt;/code> 平台，如下图。&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20211027154904.png"
 loading="lazy"
 alt="20211027154904"
 >&lt;/p>
-&lt;h2 id="配置-libtorch-依赖">配置 LibTorch 依赖&lt;/h2>
-&lt;blockquote>
+&lt;h2 id="配置-libtorch-依赖">配置 LibTorch 依赖
+&lt;/h2>&lt;blockquote>
 &lt;p>本文中 LibTorch 解压后的存放目录为 &lt;code>D:\Software\libtorch-lts&lt;/code>，后续配置过程中，读者请按照自己实际情况进行相关设置。&lt;/p>
 &lt;/blockquote>
 &lt;p>在 Visual Studio 中，点击 &lt;code>项目 -&amp;gt; libtorch-toturial 项目属性&lt;/code>，在左侧导航栏中找到 &lt;code>VC++ 目录&lt;/code> 选项。在右侧的 &lt;code>包含目录&lt;/code> 选项中将 LibTorch include 目录添加进去，详细如下。&lt;/p>
@@ -2054,8 +2054,8 @@ alt="20211027160310"
 loading="lazy"
 alt="20211027163802"
 >&lt;/p>
-&lt;h2 id="示例程序">示例程序&lt;/h2>
-&lt;p>至此，开发环境搭建就已经完成了。我们可以通过运行以下示例程序，来检验上述配置是否正确。若输出如图中所示，则配置无误。&lt;/p>
+&lt;h2 id="示例程序">示例程序
+&lt;/h2>&lt;p>至此，开发环境搭建就已经完成了。我们可以通过运行以下示例程序，来检验上述配置是否正确。若输出如图中所示，则配置无误。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -2080,9 +2080,9 @@ alt="20211027163802"
 loading="lazy"
 alt="20211027170451"
 >&lt;/p>
-&lt;h1 id="手写数字识别">手写数字识别&lt;/h1>
-&lt;h2 id="数据准备">数据准备&lt;/h2>
-&lt;p>本节将以深度学习经典案例——手写数字识别来演示 LibTorch 的使用。首先需要下载 mnist 手写数字数据集，你可以在&lt;a class="link" href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="noopener"
+&lt;h1 id="手写数字识别">手写数字识别
+&lt;/h1>&lt;h2 id="数据准备">数据准备
+&lt;/h2>&lt;p>本节将以深度学习经典案例——手写数字识别来演示 LibTorch 的使用。首先需要下载 mnist 手写数字数据集，你可以在&lt;a class="link" href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="noopener"
 >这里下载&lt;/a>，下载完成后将其解压到 &lt;code>libtorch-toturial.cpp&lt;/code> 同一目录 &lt;code>data&lt;/code> 文件夹下，目录结构如下。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -2108,19 +2108,19 @@ alt="20211027170451"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ...
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="源代码">源代码&lt;/h2>
-&lt;p>手写数字识别的源代码可以在 &lt;a class="link" href="https://github.com/pytorch/examples/blob/master/cpp/mnist/mnist.cpp" target="_blank" rel="noopener"
+&lt;/div>&lt;h2 id="源代码">源代码
+&lt;/h2>&lt;p>手写数字识别的源代码可以在 &lt;a class="link" href="https://github.com/pytorch/examples/blob/master/cpp/mnist/mnist.cpp" target="_blank" rel="noopener"
 >LibTorch 官方示例&lt;/a> 中找到，请将其拷贝到项目的 &lt;code>libtorch-toturial.cpp&lt;/code> 中。&lt;/p>
-&lt;h2 id="结果">结果&lt;/h2>
-&lt;p>与 PyTorch 类似，LibTorch 创建深度学习应用同样包含与其相似的步骤：定义网络、初始化网络、加载数据集、训练、验证及保存模型等，详细代码可以参照上述官方示例，此处不再赘述。训练 10 个 epoch 之后，识别准确率已经达到了 98.4%.&lt;/p>
+&lt;h2 id="结果">结果
+&lt;/h2>&lt;p>与 PyTorch 类似，LibTorch 创建深度学习应用同样包含与其相似的步骤：定义网络、初始化网络、加载数据集、训练、验证及保存模型等，详细代码可以参照上述官方示例，此处不再赘述。训练 10 个 epoch 之后，识别准确率已经达到了 98.4%.&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20211028114206.png"
 loading="lazy"
 alt="20211028114206"
 >&lt;/p>
-&lt;h1 id="自定义数据集">自定义数据集&lt;/h1>
-&lt;p>在本节中，我们将介绍如何将已有的数据集读取到神经网络中，生成 PyTorch 张量。在这之前，需要先介绍 NumCpp 工具，它可以大幅提升数据处理的效率。&lt;/p>
-&lt;h2 id="numcpp-简介与配置">NumCpp 简介与配置&lt;/h2>
-&lt;p>在 Python 开发环境中，最常用的工具非 NumPy 莫属，因其极为便捷高效的特性被开发者广为使用。同样的，在 C++ 平台上，也有开发者开发出了一款与 NumPy 体验“几乎一致”的 NumCpp ———— Python NumPy 库的模板头文件 C++ 实现[2]。&lt;/p>
+&lt;h1 id="自定义数据集">自定义数据集
+&lt;/h1>&lt;p>在本节中，我们将介绍如何将已有的数据集读取到神经网络中，生成 PyTorch 张量。在这之前，需要先介绍 NumCpp 工具，它可以大幅提升数据处理的效率。&lt;/p>
+&lt;h2 id="numcpp-简介与配置">NumCpp 简介与配置
+&lt;/h2>&lt;p>在 Python 开发环境中，最常用的工具非 NumPy 莫属，因其极为便捷高效的特性被开发者广为使用。同样的，在 C++ 平台上，也有开发者开发出了一款与 NumPy 体验“几乎一致”的 NumCpp ———— Python NumPy 库的模板头文件 C++ 实现[2]。&lt;/p>
 &lt;p>由于 NumCpp 依赖 Boost 库，因此在配置 NumCpp 之前，需要先配置 Boost 库。相关文件可以在 &lt;a class="link" href="https://www.boost.org/users/download/" target="_blank" rel="noopener"
 >Boost 官方网站&lt;/a> 与 &lt;a class="link" href="https://github.com/dpilger26/NumCpp" target="_blank" rel="noopener"
 >NumCpp Github 页面&lt;/a> 进行下载。&lt;/p>
@@ -2209,8 +2209,8 @@ alt="20211028114206"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">/&lt;/span> &lt;span class="n">nc&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">tile&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_std&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">input_data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">numRows&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="p">});&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="自定义数据集-1">自定义数据集&lt;/h2>
-&lt;p>要实现自定义数据集，首先要继承 &lt;code>torch::data::Dataset&amp;lt;CustomDataset&amp;gt;&lt;/code> 类，实现 &lt;code>CustomDataset()&lt;/code> 构造方法、 &lt;code>get()&lt;/code> 方法与 &lt;code>size()&lt;/code> 方法。示例代码如下。&lt;/p>
+&lt;/div>&lt;h2 id="自定义数据集-1">自定义数据集
+&lt;/h2>&lt;p>要实现自定义数据集，首先要继承 &lt;code>torch::data::Dataset&amp;lt;CustomDataset&amp;gt;&lt;/code> 类，实现 &lt;code>CustomDataset()&lt;/code> 构造方法、 &lt;code>get()&lt;/code> 方法与 &lt;code>size()&lt;/code> 方法。示例代码如下。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -2317,9 +2317,9 @@ alt="20211028114206"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="疑难排查">疑难排查&lt;/h1>
-&lt;h2 id="网络浮点数精度">网络浮点数精度&lt;/h2>
-&lt;p>由于上述教程中使用 NumCpp 来读取数据，得到的数据集数据类型为泛型中指定的类型。LibTorch 网络初始化后的数据类型默认为 &lt;code>float(float32)&lt;/code>，若我们读取的数据类型为 &lt;code>double(float64)&lt;/code> 型，则需要手动将网络数据类型指定为 &lt;code>double&lt;/code>，否则程序将会抛出异常[3]。&lt;/p>
+&lt;/div>&lt;h1 id="疑难排查">疑难排查
+&lt;/h1>&lt;h2 id="网络浮点数精度">网络浮点数精度
+&lt;/h2>&lt;p>由于上述教程中使用 NumCpp 来读取数据，得到的数据集数据类型为泛型中指定的类型。LibTorch 网络初始化后的数据类型默认为 &lt;code>float(float32)&lt;/code>，若我们读取的数据类型为 &lt;code>double(float64)&lt;/code> 型，则需要手动将网络数据类型指定为 &lt;code>double&lt;/code>，否则程序将会抛出异常[3]。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -2330,8 +2330,8 @@ alt="20211028114206"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">model&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">to&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">device&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">kDouble&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="模型保存再读取异常">模型保存再读取异常&lt;/h2>
-&lt;p>当读取本地保存好的模型后，进行预测产生 loss 为 nan 的情况。经过 Debug 查看权重和张量数据，可以发现其均已经溢出了。这可能是由于保存的模型是 &lt;code>double&lt;/code> 类型，而重新读取后初始化的模型为 &lt;code>float&lt;/code> 类型，导致数据溢出。代码如下。&lt;/p>
+&lt;/div>&lt;h2 id="模型保存再读取异常">模型保存再读取异常
+&lt;/h2>&lt;p>当读取本地保存好的模型后，进行预测产生 loss 为 nan 的情况。经过 Debug 查看权重和张量数据，可以发现其均已经溢出了。这可能是由于保存的模型是 &lt;code>double&lt;/code> 类型，而重新读取后初始化的模型为 &lt;code>float&lt;/code> 类型，导致数据溢出。代码如下。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -2358,8 +2358,8 @@ alt="20211028114206"
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">load&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">new_model&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;test.pt&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="c10-error">C10 Error&lt;/h2>
-&lt;p>如果在程序运行过程中抛出了 C10 Error，控制台也没有打印出错误信息，这是 LibTorch 一个已知的问题，详见参考文献[4]。为了得到实际的错误信息，此时我们可以使用 &lt;code>try catch&lt;/code> 来手动捕获异常，代码如下。&lt;/p>
+&lt;/div>&lt;h2 id="c10-error">C10 Error
+&lt;/h2>&lt;p>如果在程序运行过程中抛出了 C10 Error，控制台也没有打印出错误信息，这是 LibTorch 一个已知的问题，详见参考文献[4]。为了得到实际的错误信息，此时我们可以使用 &lt;code>try catch&lt;/code> 来手动捕获异常，代码如下。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -2378,8 +2378,8 @@ alt="20211028114206"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="参考文献">参考文献&lt;/h1>
-&lt;ol>
+&lt;/div>&lt;h1 id="参考文献">参考文献
+&lt;/h1>&lt;ol>
 &lt;li>&lt;a class="link" href="https://allentdan.github.io/tags/libtorch/" target="_blank" rel="noopener"
 >LibTorch 教程 - Allent Dan&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://dpilger26.github.io/NumCpp/" target="_blank" rel="noopener"
@@ -2388,22 +2388,22 @@ alt="20211028114206"
 >Does LibTorch not support float64 data training?&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://discuss.pytorch.org/t/after-torch-load-model-and-predict-then-got-nan/133142/4" target="_blank" rel="noopener"
 >After torch::load model and predict, then got NaN&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title><link>https://jinggqu.github.io/posts/sae-2/</link><pubDate>Thu, 28 Jan 2021 18:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/sae-2/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
-&lt;p>在&lt;a class="link" href="https://jinggqu.github.io/posts/sae-1/" target="_blank" rel="noopener"
+&lt;/ol></description></item><item><title>SAE 入门（二）——基于 tiny_dnn 的手写数字重建</title><link>https://jinggqu.github.io/posts/sae-2/</link><pubDate>Thu, 28 Jan 2021 18:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/sae-2/</guid><description>&lt;h1 id="前言">前言
+&lt;/h1>&lt;p>在&lt;a class="link" href="https://jinggqu.github.io/posts/sae-1/" target="_blank" rel="noopener"
 >上一篇文章&lt;/a>中，我们使用 Python 使用 SAE 网络实现了手写数字的重建。在本文中，我们将尝试使用 tiny_dnn 库实现手写数字重建。&lt;/p>
-&lt;h1 id="tiny_dnn-简介">tiny_dnn 简介&lt;/h1>
-&lt;p>tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。&lt;/p>
-&lt;h1 id="搭建环境">搭建环境&lt;/h1>
-&lt;h2 id="版本要求">版本要求&lt;/h2>
-&lt;p>需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 &lt;strong>Visual Studio 2019&lt;/strong> 为例进行配置。&lt;/p>
-&lt;h2 id="创建项目">创建项目&lt;/h2>
-&lt;p>打开 VS，创建一个名为 testTinyDNN 的&lt;strong>控制台应用&lt;/strong>。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 &lt;code>testTinyDNN.cpp&lt;/code> 属于同一层级。&lt;/p>
+&lt;h1 id="tiny_dnn-简介">tiny_dnn 简介
+&lt;/h1>&lt;p>tiny-dnn 项目地址：https://github.com/tiny-dnn/tiny-dnn，这是深度学习的一个 C ++ 14 实现。它适合在有限的计算资源，嵌入式系统和 IoT 设备上进行深度学习。整个项目仅由头文件构成，使用时无需编译，直接引用即可。&lt;/p>
+&lt;h1 id="搭建环境">搭建环境
+&lt;/h1>&lt;h2 id="版本要求">版本要求
+&lt;/h2>&lt;p>需要一个 C++ 14 编译器，例如 gcc 4.9+，clang 3.6+ 或者 VS 2015+。本文中使用 &lt;strong>Visual Studio 2019&lt;/strong> 为例进行配置。&lt;/p>
+&lt;h2 id="创建项目">创建项目
+&lt;/h2>&lt;p>打开 VS，创建一个名为 testTinyDNN 的&lt;strong>控制台应用&lt;/strong>。将 tiny_dnn 下载解压之后，放置到如下图所示的位置，与 &lt;code>testTinyDNN.cpp&lt;/code> 属于同一层级。&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210129112851.png"
 loading="lazy"
 alt="20210129112851"
 >&lt;/p>
-&lt;h2 id="编辑配置">编辑配置&lt;/h2>
-&lt;ol>
+&lt;h2 id="编辑配置">编辑配置
+&lt;/h2>&lt;ol>
 &lt;li>编辑 &lt;code>config.h&lt;/code> 文件第 61 行，将其取消注释；这样我们才可以将栈式自编码器预测的图片保存到本地。涉及内容如下：&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -2433,8 +2433,8 @@ alt="20210129112851"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">const&lt;/span> &lt;span class="n">size_t&lt;/span> &lt;span class="n">border_width&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="编写代码">编写代码&lt;/h2>
-&lt;p>打开 &lt;code>testTinyDNN.cpp&lt;/code> 文件，将下列代码粘贴进去。&lt;/p>
+&lt;/div>&lt;h2 id="编写代码">编写代码
+&lt;/h2>&lt;p>打开 &lt;code>testTinyDNN.cpp&lt;/code> 文件，将下列代码粘贴进去。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -2631,8 +2631,8 @@ alt="20210129112851"
 &lt;/div>
 &lt;/div>&lt;p>在代码中，我们定义了每批次训练数据量为 256 条，总共训练 50 个批次。&lt;/p>
 &lt;p>网络结构为 3 个编码层 + 3 个解码层。编码层将数据从 784（28 * 28） 维分别编码（降维）到 128、64、32 维，解码器再将 32 维的编码结果解码（升维）到 64、128、784 维，完成手写数字重建。各层之间的激活函数选用 &lt;code>relu()&lt;/code> 与 &lt;code>sigmoid()&lt;/code>。&lt;/p>
-&lt;h1 id="结果展示">结果展示&lt;/h1>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210129163100.png"
+&lt;h1 id="结果展示">结果展示
+&lt;/h1>&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210129163100.png"
 loading="lazy"
 alt="20210129163100"
 >&lt;/p>
@@ -2647,24 +2647,24 @@ alt="20210129182201"
 loading="lazy"
 alt="20210129181931"
 >&lt;/p>
-&lt;h1 id="性能对比">性能对比&lt;/h1>
-&lt;p>测试使用的 CPU 型号为 Intel i5-4200H，基准频率为 2.80GHz。&lt;/p>
+&lt;h1 id="性能对比">性能对比
+&lt;/h1>&lt;p>测试使用的 CPU 型号为 Intel i5-4200H，基准频率为 2.80GHz。&lt;/p>
 &lt;p>基于 tiny_dnn 的 C++ 平台训练时长为 2624.95 秒，基于 keras 的 Python 平台训练时长为 135.70 秒。在 50 个 epoch 测试中，Python 平台比 C++ 平台快了大约 19 倍，Python 平台 loss 大约为 0.08。由重建图片结果不难看出，Python 平台效果明显优于 C++ 平台。&lt;/p>
-&lt;h1 id="存在的不足">存在的不足&lt;/h1>
-&lt;ol>
+&lt;h1 id="存在的不足">存在的不足
+&lt;/h1>&lt;ol>
 &lt;li>C++ 平台目前无法计算每个 epoch 的 loss；&lt;/li>
 &lt;li>将在 C++ 平台测试更多的 epoch，观察图像重建效果是否会有改善。&lt;/li>
 &lt;/ol>
-&lt;h1 id="参考文献">参考文献&lt;/h1>
-&lt;ol>
+&lt;h1 id="参考文献">参考文献
+&lt;/h1>&lt;ol>
 &lt;li>&lt;a class="link" href="https://mightynotes.wordpress.com/2017/10/11/a-simple-and-basic-tutorial-of-tiny-dnn/" target="_blank" rel="noopener"
 >A simple and basic tutorial of tiny-dnn&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://tiny-dnn.readthedocs.io/en/latest/getting_started/Getting-started.html" target="_blank" rel="noopener"
 >A quick introduction to tiny-dnn&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://tiny-dnn.readthedocs.io/en/latest/how_tos/How-Tos.html#construct-the-network-model" target="_blank" rel="noopener"
 >Details about tiny-dnn’s API and short examples&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>SAE 入门（一）</title><link>https://jinggqu.github.io/posts/sae-1/</link><pubDate>Wed, 20 Jan 2021 18:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/sae-1/</guid><description>&lt;h1 id="autoencoder-简介">Autoencoder 简介&lt;/h1>
-&lt;p>自编码器（Autoencoder，AE），是一种利用反向传播（backpropagation，BP）算法&lt;strong>使得输出值等于输入值&lt;/strong>的神经网络，它先将输入压缩成潜在空间表征，然后通过这种表征来重构输出。其中，空间表征可以看作是输入数据的高级抽象，通常是将高维度的数据抽象为低维度的数据。&lt;/p>
+&lt;/ol></description></item><item><title>SAE 入门（一）</title><link>https://jinggqu.github.io/posts/sae-1/</link><pubDate>Wed, 20 Jan 2021 18:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/sae-1/</guid><description>&lt;h1 id="autoencoder-简介">Autoencoder 简介
+&lt;/h1>&lt;p>自编码器（Autoencoder，AE），是一种利用反向传播（backpropagation，BP）算法&lt;strong>使得输出值等于输入值&lt;/strong>的神经网络，它先将输入压缩成潜在空间表征，然后通过这种表征来重构输出。其中，空间表征可以看作是输入数据的高级抽象，通常是将高维度的数据抽象为低维度的数据。&lt;/p>
 &lt;p>自编码器由两部分组成：&lt;br>
 编码器：这部分能将输入压缩成潜在空间表征，可以用编码函数 $h=f(x)$ 表示;&lt;br>
 解码器：这部分能重构来自潜在空间表征的输入，可以用解码函数 $r=g(h)$ 表示。&lt;/p>
@@ -2674,14 +2674,14 @@ alt="20210129181931"
 loading="lazy"
 alt="20210122142001"
 >&lt;/p>
-&lt;h1 id="stacked-autoencoder-简介">Stacked Autoencoder 简介&lt;/h1>
-&lt;p>Stacked Autoencoder 简写作 SAE。SAE 与 AE 的主要区别在于编码器与解码器的层数，栈式自编码器包含多层隐藏层。具体网络结构如下图所示，图中有两层编码层，两层解码层。&lt;/p>
+&lt;h1 id="stacked-autoencoder-简介">Stacked Autoencoder 简介
+&lt;/h1>&lt;p>Stacked Autoencoder 简写作 SAE。SAE 与 AE 的主要区别在于编码器与解码器的层数，栈式自编码器包含多层隐藏层。具体网络结构如下图所示，图中有两层编码层，两层解码层。&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20210122154135.png"
 loading="lazy"
 alt="20210122154135"
 >&lt;/p>
-&lt;h1 id="代码实现">代码实现&lt;/h1>
-&lt;blockquote>
+&lt;h1 id="代码实现">代码实现
+&lt;/h1>&lt;blockquote>
 &lt;p>代码环境配置，请参考 &lt;a class="link" href="https://jinggqu.github.io/posts/gan-for-hand-written-digits/" target="_blank" rel="noopener"
 >GAN 网络之手写数字生成&lt;/a> 第一小节——环境搭建。&lt;/p>
 &lt;/blockquote>
@@ -2989,8 +2989,8 @@ alt="20210122154135"
 loading="lazy"
 alt="20210122160643"
 >&lt;/p>
-&lt;h1 id="参考文献">参考文献&lt;/h1>
-&lt;ol>
+&lt;h1 id="参考文献">参考文献
+&lt;/h1>&lt;ol>
 &lt;li>&lt;a class="link" href="https://medium.com/@venkatakrishna.jonnalagadda/sparse-stacked-and-variational-autoencoder-efe5bfe73b64" target="_blank" rel="noopener"
 >Sparse, Stacked and Variational Autoencoder&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://medium.com/datadriveninvestor/deep-learning-autoencoders-db265359943e" target="_blank" rel="noopener"
@@ -3003,8 +3003,8 @@ alt="20210122160643"
 >反向传播算法 - 维基百科&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://github.com/Nana0606/autoencoder" target="_blank" rel="noopener"
 >Autoencoder - Github&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>GAN 网络之手写数字生成</title><link>https://jinggqu.github.io/posts/gan-for-hand-written-digits/</link><pubDate>Tue, 08 Dec 2020 10:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/gan-for-hand-written-digits/</guid><description>&lt;h1 id="环境搭建">环境搭建&lt;/h1>
-&lt;p>本例中，所涉及的系统与软件版本列表如下。&lt;/p>
+&lt;/ol></description></item><item><title>GAN 网络之手写数字生成</title><link>https://jinggqu.github.io/posts/gan-for-hand-written-digits/</link><pubDate>Tue, 08 Dec 2020 10:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/gan-for-hand-written-digits/</guid><description>&lt;h1 id="环境搭建">环境搭建
+&lt;/h1>&lt;p>本例中，所涉及的系统与软件版本列表如下。&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -3033,8 +3033,8 @@ alt="20210122160643"
 &lt;/table>
 &lt;p>本例代码存放于 &lt;a class="link" href="https://github.com/jinggqu/MachineLearning" target="_blank" rel="noopener"
 >https://github.com/jinggqu/MachineLearning&lt;/a>。&lt;/p>
-&lt;h2 id="anaconda-安装">Anaconda 安装&lt;/h2>
-&lt;p>通过清华大学开源软件镜像站，我们可以直接下载最新版本的 Anaconda，本例中使用的 Anaconda 下载链接：
+&lt;h2 id="anaconda-安装">Anaconda 安装
+&lt;/h2>&lt;p>通过清华大学开源软件镜像站，我们可以直接下载最新版本的 Anaconda，本例中使用的 Anaconda 下载链接：
 &lt;a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe" target="_blank" rel="noopener"
 >https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.11-Windows-x86_64.exe&lt;/a>&lt;/p>
 &lt;p>Anaconda 安装教程网络上已经有很多，故此处不再赘述。&lt;/p>
@@ -3072,8 +3072,8 @@ alt="20201208152633"
 &lt;/div>&lt;pre>&lt;code>输出
 conda 4.9.2
 &lt;/code>&lt;/pre>
-&lt;h2 id="创建虚拟环境">创建虚拟环境&lt;/h2>
-&lt;p>通过如下命令进行创建一个虚拟环境。&lt;/p>
+&lt;h2 id="创建虚拟环境">创建虚拟环境
+&lt;/h2>&lt;p>通过如下命令进行创建一个虚拟环境。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -3099,8 +3099,8 @@ base * C:\Users\xvyn\anaconda3
 handwrittendigits C:\Users\xvyn\anaconda3\envs\handwrittendigits
 &lt;/code>&lt;/pre>
 &lt;p>其中，标记 * 的表示目前已启用，命令行前半部分的 (base) 也表示目前启用的是哪个虚拟环境，此例中为 base 环境。&lt;/p>
-&lt;h2 id="切换虚拟环境">切换虚拟环境&lt;/h2>
-&lt;p>如果使用 PowerShell 进行 Anaconda 的一些操作，需要以 &lt;strong>管理员&lt;/strong> 身份运行 PowerShell，然后执行下列命令。&lt;/p>
+&lt;h2 id="切换虚拟环境">切换虚拟环境
+&lt;/h2>&lt;p>如果使用 PowerShell 进行 Anaconda 的一些操作，需要以 &lt;strong>管理员&lt;/strong> 身份运行 PowerShell，然后执行下列命令。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -3139,8 +3139,8 @@ conda environments:
 base C:\Users\xvyn\anaconda3
 handwrittendigits * C:\Users\xvyn\anaconda3\envs\handwrittendigits
 &lt;/code>&lt;/pre>
-&lt;h2 id="更换镜像源不推荐">更换镜像源（不推荐）&lt;/h2>
-&lt;p>由于 Anaconda 和 pip 官方镜像源访问缓慢，故需要将镜像源更换为国内镜像源，例如清华大学、中科大与阿里云镜像源。使用下列命令可以查看当前 Anaconda 镜像源。&lt;/p>
+&lt;h2 id="更换镜像源不推荐">更换镜像源（不推荐）
+&lt;/h2>&lt;p>由于 Anaconda 和 pip 官方镜像源访问缓慢，故需要将镜像源更换为国内镜像源，例如清华大学、中科大与阿里云镜像源。使用下列命令可以查看当前 Anaconda 镜像源。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -3157,8 +3157,8 @@ default_channels:
 - https://repo.anaconda.com/pkgs/r
 - https://repo.anaconda.com/pkgs/msys2
 &lt;/code>&lt;/pre>
-&lt;h3 id="更换-anaconda-镜像源">更换 Anaconda 镜像源&lt;/h3>
-&lt;p>以清华大学镜像源为例，执行下列命令即可完成更换。&lt;/p>
+&lt;h3 id="更换-anaconda-镜像源">更换 Anaconda 镜像源
+&lt;/h3>&lt;p>以清华大学镜像源为例，执行下列命令即可完成更换。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -3208,8 +3208,8 @@ menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;/code>&lt;/pre>
-&lt;h3 id="更换-pip-镜像源不推荐">更换 pip 镜像源（不推荐）&lt;/h3>
-&lt;p>以清华大学镜像源为例，执行下列命令即可完成更换。&lt;/p>
+&lt;h3 id="更换-pip-镜像源不推荐">更换 pip 镜像源（不推荐）
+&lt;/h3>&lt;p>以清华大学镜像源为例，执行下列命令即可完成更换。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -3218,8 +3218,8 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pip config &lt;span class="nb">set&lt;/span> global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="安装-tensorflow">安装 tensorflow&lt;/h2>
-&lt;p>手写数字生成例子所需要的 tensorflow 版本为 1.x，本例中我们使用的实际版本为 1.8.0。将虚拟环境切换到 handwrittendigits 后，执行以下命令开始安装。&lt;/p>
+&lt;/div>&lt;h2 id="安装-tensorflow">安装 tensorflow
+&lt;/h2>&lt;p>手写数字生成例子所需要的 tensorflow 版本为 1.x，本例中我们使用的实际版本为 1.8.0。将虚拟环境切换到 handwrittendigits 后，执行以下命令开始安装。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -3237,8 +3237,8 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">conda install &lt;span class="nv">tensorflow&lt;/span>&lt;span class="o">=&lt;/span>1.8.0
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="安装-python">安装 Python&lt;/h2>
-&lt;p>由于需要 1.8.0 版本的 tensorflow，此版本仅兼容 3.5 到 3.7 版本的 Python，故需要先删除 conda 环境中默认安装的 Python，并安装 3.6 版本。&lt;/p>
+&lt;/div>&lt;h2 id="安装-python">安装 Python
+&lt;/h2>&lt;p>由于需要 1.8.0 版本的 tensorflow，此版本仅兼容 3.5 到 3.7 版本的 Python，故需要先删除 conda 环境中默认安装的 Python，并安装 3.6 版本。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -3255,16 +3255,16 @@ simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">conda install &lt;span class="nv">python&lt;/span>&lt;span class="o">=&lt;/span>3.6
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="测试-demo">测试 Demo&lt;/h1>
-&lt;h2 id="使用-pycharm-创建项目">使用 PyCharm 创建项目&lt;/h2>
-&lt;p>在创建项目时，需要将虚拟环境（图中 Location 项）配置为前文中创建的虚拟环境所在目录，然后点击创建项目。&lt;/p>
+&lt;/div>&lt;h1 id="测试-demo">测试 Demo
+&lt;/h1>&lt;h2 id="使用-pycharm-创建项目">使用 PyCharm 创建项目
+&lt;/h2>&lt;p>在创建项目时，需要将虚拟环境（图中 Location 项）配置为前文中创建的虚拟环境所在目录，然后点击创建项目。&lt;/p>
 &lt;p>&lt;em>由于此前作者已经创建过项目，故创建窗口下方会提示虚拟环境目录不为空，忽略即可。&lt;/em>&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20201208194401.png"
 loading="lazy"
 alt="20201208194401"
 >&lt;/p>
-&lt;h2 id="运行项目">运行项目&lt;/h2>
-&lt;p>将以下代码置于项目 &lt;code>main.py&lt;/code> 中，运行。&lt;/p>
+&lt;h2 id="运行项目">运行项目
+&lt;/h2>&lt;p>将以下代码置于项目 &lt;code>main.py&lt;/code> 中，运行。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -3541,8 +3541,8 @@ loading="lazy"
 alt="20201208201913"
 >&lt;/p>
 &lt;p>至此，GAN 网络手写数字生成环境搭建已经完成，后续将进行更加深入的学习。&lt;/p>
-&lt;h1 id="备注">备注&lt;/h1>
-&lt;p>为 jupyter lab 指定 conda 环境，在 conda 环境中执行以下命令后再启动 jupyter lab 即可&lt;/p>
+&lt;h1 id="备注">备注
+&lt;/h1>&lt;p>为 jupyter lab 指定 conda 环境，在 conda 环境中执行以下命令后再启动 jupyter lab 即可&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -3551,8 +3551,8 @@ alt="20201208201913"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">conda install nb_conda
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="参考文章">参考文章&lt;/h1>
-&lt;ol>
+&lt;/div>&lt;h1 id="参考文章">参考文章
+&lt;/h1>&lt;ol>
 &lt;li>&lt;a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda.html" target="_blank" rel="noopener"
 >Anaconda 源使用帮助&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://github.com/yang1688899/gan_practice/blob/master/gan_mnist/gan_mnist.py" target="_blank" rel="noopener"

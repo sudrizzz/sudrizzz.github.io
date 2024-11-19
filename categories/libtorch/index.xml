@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Libtorch on Anthony's blog</title><link>https://jinggqu.github.io/categories/libtorch/</link><description>Recent content in Libtorch on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 27 Oct 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/categories/libtorch/index.xml" rel="self" type="application/rss+xml"/><item><title>LibTorch 上手教程</title><link>https://jinggqu.github.io/posts/libtorch-toturial/</link><pubDate>Wed, 27 Oct 2021 15:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/libtorch-toturial/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
-&lt;h2 id="libtorch-简介">LibTorch 简介&lt;/h2>
-&lt;p>在 Python 深度学习圈，PyTorch 具有举足轻重的地位。同样的，C++ 平台上的 LibTorch 作为 PyTorch 的纯 C++ 接口，它遵循 PyTorch 的设计和架构，旨在支持高性能、低延迟的 C++ 深度学习应用研究。本文基于 Windows 环境与 Visual Studio 2019 开发工具，将从零开始搭建一个完整的深度学习开发环境，包括环境配置、项目演示、自定义数据集及问题排查等部分。&lt;/p>
-&lt;h2 id="libtorch-安装">LibTorch 安装&lt;/h2>
-&lt;p>本文使用的 LibTorch 版本为 &lt;code>LTS(1.8.2) CPU&lt;/code> 版，若需要使用 GPU 版，也可以在&lt;a class="link" href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Libtorch on Anthony's blog</title><link>https://jinggqu.github.io/categories/libtorch/</link><description>Recent content in Libtorch on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 27 Oct 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/categories/libtorch/index.xml" rel="self" type="application/rss+xml"/><item><title>LibTorch 上手教程</title><link>https://jinggqu.github.io/posts/libtorch-toturial/</link><pubDate>Wed, 27 Oct 2021 15:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/libtorch-toturial/</guid><description>&lt;h1 id="前言">前言
+&lt;/h1>&lt;h2 id="libtorch-简介">LibTorch 简介
+&lt;/h2>&lt;p>在 Python 深度学习圈，PyTorch 具有举足轻重的地位。同样的，C++ 平台上的 LibTorch 作为 PyTorch 的纯 C++ 接口，它遵循 PyTorch 的设计和架构，旨在支持高性能、低延迟的 C++ 深度学习应用研究。本文基于 Windows 环境与 Visual Studio 2019 开发工具，将从零开始搭建一个完整的深度学习开发环境，包括环境配置、项目演示、自定义数据集及问题排查等部分。&lt;/p>
+&lt;h2 id="libtorch-安装">LibTorch 安装
+&lt;/h2>&lt;p>本文使用的 LibTorch 版本为 &lt;code>LTS(1.8.2) CPU&lt;/code> 版，若需要使用 GPU 版，也可以在&lt;a class="link" href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener"
 >官方网站&lt;/a>下载。&lt;/p>
-&lt;h1 id="环境配置">环境配置&lt;/h1>
-&lt;h2 id="创建项目">创建项目&lt;/h2>
-&lt;p>首先，在 Visual Studio 中创建一个名为 libtorch-toturial 的控制台项目。创建完成后，将项目设置为 &lt;code>Release&lt;/code> 模式，&lt;code>x64&lt;/code> 平台，如下图。&lt;/p>
+&lt;h1 id="环境配置">环境配置
+&lt;/h1>&lt;h2 id="创建项目">创建项目
+&lt;/h2>&lt;p>首先，在 Visual Studio 中创建一个名为 libtorch-toturial 的控制台项目。创建完成后，将项目设置为 &lt;code>Release&lt;/code> 模式，&lt;code>x64&lt;/code> 平台，如下图。&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20211027154904.png"
 loading="lazy"
 alt="20211027154904"
 >&lt;/p>
-&lt;h2 id="配置-libtorch-依赖">配置 LibTorch 依赖&lt;/h2>
-&lt;blockquote>
+&lt;h2 id="配置-libtorch-依赖">配置 LibTorch 依赖
+&lt;/h2>&lt;blockquote>
 &lt;p>本文中 LibTorch 解压后的存放目录为 &lt;code>D:\Software\libtorch-lts&lt;/code>，后续配置过程中，读者请按照自己实际情况进行相关设置。&lt;/p>
 &lt;/blockquote>
 &lt;p>在 Visual Studio 中，点击 &lt;code>项目 -&amp;gt; libtorch-toturial 项目属性&lt;/code>，在左侧导航栏中找到 &lt;code>VC++ 目录&lt;/code> 选项。在右侧的 &lt;code>包含目录&lt;/code> 选项中将 LibTorch include 目录添加进去，详细如下。&lt;/p>
@@ -92,8 +92,8 @@ alt="20211027160310"
 loading="lazy"
 alt="20211027163802"
 >&lt;/p>
-&lt;h2 id="示例程序">示例程序&lt;/h2>
-&lt;p>至此，开发环境搭建就已经完成了。我们可以通过运行以下示例程序，来检验上述配置是否正确。若输出如图中所示，则配置无误。&lt;/p>
+&lt;h2 id="示例程序">示例程序
+&lt;/h2>&lt;p>至此，开发环境搭建就已经完成了。我们可以通过运行以下示例程序，来检验上述配置是否正确。若输出如图中所示，则配置无误。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -118,9 +118,9 @@ alt="20211027163802"
 loading="lazy"
 alt="20211027170451"
 >&lt;/p>
-&lt;h1 id="手写数字识别">手写数字识别&lt;/h1>
-&lt;h2 id="数据准备">数据准备&lt;/h2>
-&lt;p>本节将以深度学习经典案例——手写数字识别来演示 LibTorch 的使用。首先需要下载 mnist 手写数字数据集，你可以在&lt;a class="link" href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="noopener"
+&lt;h1 id="手写数字识别">手写数字识别
+&lt;/h1>&lt;h2 id="数据准备">数据准备
+&lt;/h2>&lt;p>本节将以深度学习经典案例——手写数字识别来演示 LibTorch 的使用。首先需要下载 mnist 手写数字数据集，你可以在&lt;a class="link" href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="noopener"
 >这里下载&lt;/a>，下载完成后将其解压到 &lt;code>libtorch-toturial.cpp&lt;/code> 同一目录 &lt;code>data&lt;/code> 文件夹下，目录结构如下。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -146,19 +146,19 @@ alt="20211027170451"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ...
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="源代码">源代码&lt;/h2>
-&lt;p>手写数字识别的源代码可以在 &lt;a class="link" href="https://github.com/pytorch/examples/blob/master/cpp/mnist/mnist.cpp" target="_blank" rel="noopener"
+&lt;/div>&lt;h2 id="源代码">源代码
+&lt;/h2>&lt;p>手写数字识别的源代码可以在 &lt;a class="link" href="https://github.com/pytorch/examples/blob/master/cpp/mnist/mnist.cpp" target="_blank" rel="noopener"
 >LibTorch 官方示例&lt;/a> 中找到，请将其拷贝到项目的 &lt;code>libtorch-toturial.cpp&lt;/code> 中。&lt;/p>
-&lt;h2 id="结果">结果&lt;/h2>
-&lt;p>与 PyTorch 类似，LibTorch 创建深度学习应用同样包含与其相似的步骤：定义网络、初始化网络、加载数据集、训练、验证及保存模型等，详细代码可以参照上述官方示例，此处不再赘述。训练 10 个 epoch 之后，识别准确率已经达到了 98.4%.&lt;/p>
+&lt;h2 id="结果">结果
+&lt;/h2>&lt;p>与 PyTorch 类似，LibTorch 创建深度学习应用同样包含与其相似的步骤：定义网络、初始化网络、加载数据集、训练、验证及保存模型等，详细代码可以参照上述官方示例，此处不再赘述。训练 10 个 epoch 之后，识别准确率已经达到了 98.4%.&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20211028114206.png"
 loading="lazy"
 alt="20211028114206"
 >&lt;/p>
-&lt;h1 id="自定义数据集">自定义数据集&lt;/h1>
-&lt;p>在本节中，我们将介绍如何将已有的数据集读取到神经网络中，生成 PyTorch 张量。在这之前，需要先介绍 NumCpp 工具，它可以大幅提升数据处理的效率。&lt;/p>
-&lt;h2 id="numcpp-简介与配置">NumCpp 简介与配置&lt;/h2>
-&lt;p>在 Python 开发环境中，最常用的工具非 NumPy 莫属，因其极为便捷高效的特性被开发者广为使用。同样的，在 C++ 平台上，也有开发者开发出了一款与 NumPy 体验“几乎一致”的 NumCpp ———— Python NumPy 库的模板头文件 C++ 实现[2]。&lt;/p>
+&lt;h1 id="自定义数据集">自定义数据集
+&lt;/h1>&lt;p>在本节中，我们将介绍如何将已有的数据集读取到神经网络中，生成 PyTorch 张量。在这之前，需要先介绍 NumCpp 工具，它可以大幅提升数据处理的效率。&lt;/p>
+&lt;h2 id="numcpp-简介与配置">NumCpp 简介与配置
+&lt;/h2>&lt;p>在 Python 开发环境中，最常用的工具非 NumPy 莫属，因其极为便捷高效的特性被开发者广为使用。同样的，在 C++ 平台上，也有开发者开发出了一款与 NumPy 体验“几乎一致”的 NumCpp ———— Python NumPy 库的模板头文件 C++ 实现[2]。&lt;/p>
 &lt;p>由于 NumCpp 依赖 Boost 库，因此在配置 NumCpp 之前，需要先配置 Boost 库。相关文件可以在 &lt;a class="link" href="https://www.boost.org/users/download/" target="_blank" rel="noopener"
 >Boost 官方网站&lt;/a> 与 &lt;a class="link" href="https://github.com/dpilger26/NumCpp" target="_blank" rel="noopener"
 >NumCpp Github 页面&lt;/a> 进行下载。&lt;/p>
@@ -247,8 +247,8 @@ alt="20211028114206"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">/&lt;/span> &lt;span class="n">nc&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">tile&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_std&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">input_data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">numRows&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="p">});&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="自定义数据集-1">自定义数据集&lt;/h2>
-&lt;p>要实现自定义数据集，首先要继承 &lt;code>torch::data::Dataset&amp;lt;CustomDataset&amp;gt;&lt;/code> 类，实现 &lt;code>CustomDataset()&lt;/code> 构造方法、 &lt;code>get()&lt;/code> 方法与 &lt;code>size()&lt;/code> 方法。示例代码如下。&lt;/p>
+&lt;/div>&lt;h2 id="自定义数据集-1">自定义数据集
+&lt;/h2>&lt;p>要实现自定义数据集，首先要继承 &lt;code>torch::data::Dataset&amp;lt;CustomDataset&amp;gt;&lt;/code> 类，实现 &lt;code>CustomDataset()&lt;/code> 构造方法、 &lt;code>get()&lt;/code> 方法与 &lt;code>size()&lt;/code> 方法。示例代码如下。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -355,9 +355,9 @@ alt="20211028114206"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="疑难排查">疑难排查&lt;/h1>
-&lt;h2 id="网络浮点数精度">网络浮点数精度&lt;/h2>
-&lt;p>由于上述教程中使用 NumCpp 来读取数据，得到的数据集数据类型为泛型中指定的类型。LibTorch 网络初始化后的数据类型默认为 &lt;code>float(float32)&lt;/code>，若我们读取的数据类型为 &lt;code>double(float64)&lt;/code> 型，则需要手动将网络数据类型指定为 &lt;code>double&lt;/code>，否则程序将会抛出异常[3]。&lt;/p>
+&lt;/div>&lt;h1 id="疑难排查">疑难排查
+&lt;/h1>&lt;h2 id="网络浮点数精度">网络浮点数精度
+&lt;/h2>&lt;p>由于上述教程中使用 NumCpp 来读取数据，得到的数据集数据类型为泛型中指定的类型。LibTorch 网络初始化后的数据类型默认为 &lt;code>float(float32)&lt;/code>，若我们读取的数据类型为 &lt;code>double(float64)&lt;/code> 型，则需要手动将网络数据类型指定为 &lt;code>double&lt;/code>，否则程序将会抛出异常[3]。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -368,8 +368,8 @@ alt="20211028114206"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">model&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">to&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">device&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">kDouble&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="模型保存再读取异常">模型保存再读取异常&lt;/h2>
-&lt;p>当读取本地保存好的模型后，进行预测产生 loss 为 nan 的情况。经过 Debug 查看权重和张量数据，可以发现其均已经溢出了。这可能是由于保存的模型是 &lt;code>double&lt;/code> 类型，而重新读取后初始化的模型为 &lt;code>float&lt;/code> 类型，导致数据溢出。代码如下。&lt;/p>
+&lt;/div>&lt;h2 id="模型保存再读取异常">模型保存再读取异常
+&lt;/h2>&lt;p>当读取本地保存好的模型后，进行预测产生 loss 为 nan 的情况。经过 Debug 查看权重和张量数据，可以发现其均已经溢出了。这可能是由于保存的模型是 &lt;code>double&lt;/code> 类型，而重新读取后初始化的模型为 &lt;code>float&lt;/code> 类型，导致数据溢出。代码如下。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -396,8 +396,8 @@ alt="20211028114206"
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="n">torch&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">load&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">new_model&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;test.pt&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="c10-error">C10 Error&lt;/h2>
-&lt;p>如果在程序运行过程中抛出了 C10 Error，控制台也没有打印出错误信息，这是 LibTorch 一个已知的问题，详见参考文献[4]。为了得到实际的错误信息，此时我们可以使用 &lt;code>try catch&lt;/code> 来手动捕获异常，代码如下。&lt;/p>
+&lt;/div>&lt;h2 id="c10-error">C10 Error
+&lt;/h2>&lt;p>如果在程序运行过程中抛出了 C10 Error，控制台也没有打印出错误信息，这是 LibTorch 一个已知的问题，详见参考文献[4]。为了得到实际的错误信息，此时我们可以使用 &lt;code>try catch&lt;/code> 来手动捕获异常，代码如下。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -416,8 +416,8 @@ alt="20211028114206"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="参考文献">参考文献&lt;/h1>
-&lt;ol>
+&lt;/div>&lt;h1 id="参考文献">参考文献
+&lt;/h1>&lt;ol>
 &lt;li>&lt;a class="link" href="https://allentdan.github.io/tags/libtorch/" target="_blank" rel="noopener"
 >LibTorch 教程 - Allent Dan&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://dpilger26.github.io/NumCpp/" target="_blank" rel="noopener"

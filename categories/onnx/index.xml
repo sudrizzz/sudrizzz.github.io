@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ONNX on Anthony's blog</title><link>https://jinggqu.github.io/categories/onnx/</link><description>Recent content in ONNX on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 18 Aug 2023 15:00:00 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/categories/onnx/index.xml" rel="self" type="application/rss+xml"/><item><title>使用C#、WPF与ONNX模型实现手写数字识别</title><link>https://jinggqu.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</link><pubDate>Fri, 18 Aug 2023 15:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
-&lt;blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ONNX on Anthony's blog</title><link>https://jinggqu.github.io/categories/onnx/</link><description>Recent content in ONNX on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 18 Aug 2023 15:00:00 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/categories/onnx/index.xml" rel="self" type="application/rss+xml"/><item><title>使用C#、WPF与ONNX模型实现手写数字识别</title><link>https://jinggqu.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</link><pubDate>Fri, 18 Aug 2023 15:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/handwritten-digits-recognition-using-csharp-wpf-onnx/</guid><description>&lt;h1 id="前言">前言
+&lt;/h1>&lt;blockquote>
 &lt;p>项目完整代码见 GitHub 仓库： &lt;a class="link" href="https://github.com/jinggqu/MLNetDemo" target="_blank" rel="noopener"
 >jinggqu/MLNetDemo&lt;/a>。&lt;/p>
 &lt;/blockquote>
 &lt;p>本文将介绍如何使用 C#、WPF 与 ONNX 模型实现一个简单的手写数字识别项目。整个流程跑通后，即可应用更加复杂的深度学习模型。&lt;/p>
-&lt;h1 id="wpf-界面开发">WPF 界面开发&lt;/h1>
-&lt;p>项目的用户界面相对简单，主要包含一个 InkCanvas（Name 设置为 inkCanvas） 用于用户绘制数字，一个识别按钮与一个清除 Canvas 内容的按钮。软件用户界面如下图所示。&lt;/p>
+&lt;h1 id="wpf-界面开发">WPF 界面开发
+&lt;/h1>&lt;p>项目的用户界面相对简单，主要包含一个 InkCanvas（Name 设置为 inkCanvas） 用于用户绘制数字，一个识别按钮与一个清除 Canvas 内容的按钮。软件用户界面如下图所示。&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20230818102257.png"
 loading="lazy"
 alt="软件用户界面"
@@ -16,25 +16,25 @@ loading="lazy"
 alt="项目最终效果图"
 >&lt;/p>
 &lt;p>WPF 界面采用 xaml 文件进行定义，项目界面源代码详见 GitHub 仓库。&lt;/p>
-&lt;h1 id="onnx">ONNX&lt;/h1>
-&lt;h2 id="onnx-简介">ONNX 简介&lt;/h2>
-&lt;p>ONNX 是一种用于表示机器学习模型的开放格式。ONNX 定义了一组通用运算符（机器学习和深度学习模型的构建基块）和通用文件格式，使 AI 开发人员能够使用具有各种框架、工具、运行时和编译器的模型。详见&lt;a class="link" href="https://onnx.ai/" target="_blank" rel="noopener"
+&lt;h1 id="onnx">ONNX
+&lt;/h1>&lt;h2 id="onnx-简介">ONNX 简介
+&lt;/h2>&lt;p>ONNX 是一种用于表示机器学习模型的开放格式。ONNX 定义了一组通用运算符（机器学习和深度学习模型的构建基块）和通用文件格式，使 AI 开发人员能够使用具有各种框架、工具、运行时和编译器的模型。详见&lt;a class="link" href="https://onnx.ai/" target="_blank" rel="noopener"
 >ONNX 官方网站&lt;/a>。&lt;/p>
-&lt;h2 id="onnx-模型库及项目模型选用">ONNX 模型库及项目模型选用&lt;/h2>
-&lt;p>&lt;a class="link" href="https://github.com/onnx/models" target="_blank" rel="noopener"
+&lt;h2 id="onnx-模型库及项目模型选用">ONNX 模型库及项目模型选用
+&lt;/h2>&lt;p>&lt;a class="link" href="https://github.com/onnx/models" target="_blank" rel="noopener"
 >ONNX Model Zoo&lt;/a> 收录了大量的预训练模型，包括计算机视觉领域常用的目标检测、图像分类及自然语言处理领域的 GPT 模型。处于演示需要，本项目选择 ONNX Model Zoo 中的&lt;a class="link" href="https://github.com/onnx/models/tree/main/vision/classification/mnist#mnist---handwritten-digit-recognition" target="_blank" rel="noopener"
 >手写数字识别模型&lt;/a>作为实验模型。&lt;/p>
-&lt;h2 id="查看模型结构">查看模型结构&lt;/h2>
-&lt;p>下载 ONNX 模型后，我们还需要找到模型中的输入变量名与输出变量名。因此使用 &lt;a class="link" href="https://github.com/lutzroeder/netron" target="_blank" rel="noopener"
+&lt;h2 id="查看模型结构">查看模型结构
+&lt;/h2>&lt;p>下载 ONNX 模型后，我们还需要找到模型中的输入变量名与输出变量名。因此使用 &lt;a class="link" href="https://github.com/lutzroeder/netron" target="_blank" rel="noopener"
 >Netron&lt;/a> 来检视模型。Netron 打开 ONNX 模型后的效果如下图所示。&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/jinggqu/blog_images@main/20230818135201.png"
 loading="lazy"
 alt="手写数字识别 ONNX 模型结构"
 >&lt;/p>
 &lt;p>从图中右侧可以看到，模型输入变量名为 &lt;code>Input3&lt;/code>，数据类型为 float 数组，尺寸为 1×1×28×28。输出变量名为 &lt;code>Plus214_Output_0&lt;/code>，数据类型为 float 数组，尺寸为 1×10，即为十分类中的每个类别概率值。&lt;/p>
-&lt;h1 id="整合模型">整合模型&lt;/h1>
-&lt;h2 id="visual-studio-安装深度学习插件">Visual Studio 安装深度学习插件&lt;/h2>
-&lt;p>针对不同的平台，可以在 ONNX Runtime 官网选择对应的插件或依赖，详见&lt;a class="link" href="https://onnxruntime.ai/#:~:text=Use%20ONNX%20Runtime%20with%20the%20platform%20of%20your%20choice" target="_blank" rel="noopener"
+&lt;h1 id="整合模型">整合模型
+&lt;/h1>&lt;h2 id="visual-studio-安装深度学习插件">Visual Studio 安装深度学习插件
+&lt;/h2>&lt;p>针对不同的平台，可以在 ONNX Runtime 官网选择对应的插件或依赖，详见&lt;a class="link" href="https://onnxruntime.ai/#:~:text=Use%20ONNX%20Runtime%20with%20the%20platform%20of%20your%20choice" target="_blank" rel="noopener"
 >ONNX Runtime&lt;/a>。&lt;/p>
 &lt;p>本项目采用 Visual Studio 2022 开发，按照官方说明需要安装 &lt;a class="link" href="https://www.nuget.org/packages/Microsoft.ML.OnnxRuntime" target="_blank" rel="noopener"
 >Microsoft.ML.OnnxRuntime&lt;/a>，读者可以在 Visual Studio 中解决方案资源管理器中右键单击解决方案名称，选择&lt;code>管理 NuGet 程序包&lt;/code>选项，搜索安装 Microsoft.ML.OnnxRuntime。&lt;/p>
@@ -45,8 +45,8 @@ alt="手写数字识别 ONNX 模型结构"
 &lt;li>Microsoft.ML.OnnxTransformer&lt;/li>
 &lt;li>System.Drawing.Common&lt;/li>
 &lt;/ul>
-&lt;h2 id="输入输出数据定义">输入输出数据定义&lt;/h2>
-&lt;p>对于输入数据，通过 Netron 得到输入变量名和数据类型后，即可得到如下的输入数据定义。&lt;/p>
+&lt;h2 id="输入输出数据定义">输入输出数据定义
+&lt;/h2>&lt;p>对于输入数据，通过 Netron 得到输入变量名和数据类型后，即可得到如下的输入数据定义。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -83,16 +83,16 @@ alt="手写数字识别 ONNX 模型结构"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="c-图像处理">C# 图像处理&lt;/h2>
-&lt;p>本项目涉及的图像处理总体流程：&lt;/p>
+&lt;/div>&lt;h2 id="c-图像处理">C# 图像处理
+&lt;/h2>&lt;p>本项目涉及的图像处理总体流程：&lt;/p>
 &lt;ol>
 &lt;li>获取 InkCanvas 的内容并转为位图 Bitmap&lt;/li>
 &lt;li>将 Bitmap 从原始尺寸变换到到模型输入规定的尺寸&lt;/li>
 &lt;li>将变换尺寸后的 Bitmap 转为单通道 8 位灰度图&lt;/li>
 &lt;li>将 Bitmap 对象转为 float 一维数组&lt;/li>
 &lt;/ol>
-&lt;h3 id="获取-inkcanvas-的内容并转为位图">获取 InkCanvas 的内容并转为位图&lt;/h3>
-&lt;div class="highlight">&lt;div class="chroma">
+&lt;h3 id="获取-inkcanvas-的内容并转为位图">获取 InkCanvas 的内容并转为位图
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
@@ -170,8 +170,8 @@ alt="手写数字识别 ONNX 模型结构"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="变换-bitmap-尺寸">变换 Bitmap 尺寸&lt;/h3>
-&lt;p>本项目中画布的尺寸为 336×336，但手写数组识别模型使用的训练数据集为 MNIST，从模型输入数据中可以看到其图像尺寸为 28×28，因此需要变换位图的尺寸。&lt;/p>
+&lt;/div>&lt;h3 id="变换-bitmap-尺寸">变换 Bitmap 尺寸
+&lt;/h3>&lt;p>本项目中画布的尺寸为 336×336，但手写数组识别模型使用的训练数据集为 MNIST，从模型输入数据中可以看到其图像尺寸为 28×28，因此需要变换位图的尺寸。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -196,8 +196,8 @@ alt="手写数字识别 ONNX 模型结构"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="通道变换">通道变换&lt;/h3>
-&lt;p>由于上述过程中生成的图像为 RGB 图像，但本例仅需要单通道灰度图，即与 MNIST 数据集保持一致，因此需要对其进行通道变换。此处选用 GDI+ 的 &lt;a class="link" href="https://learn.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-using-a-color-matrix-to-transform-a-single-color-use" target="_blank" rel="noopener"
+&lt;/div>&lt;h3 id="通道变换">通道变换
+&lt;/h3>&lt;p>由于上述过程中生成的图像为 RGB 图像，但本例仅需要单通道灰度图，即与 MNIST 数据集保持一致，因此需要对其进行通道变换。此处选用 GDI+ 的 &lt;a class="link" href="https://learn.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-using-a-color-matrix-to-transform-a-single-color-use" target="_blank" rel="noopener"
 >ColorMatrix&lt;/a> 特性实现通道变换，代码参考自&lt;a class="link" href="https://zhuanlan.zhihu.com/p/367047382" target="_blank" rel="noopener"
 >ML.NET (。・∀・)ノ 来用 C# 跑机器学习吧!&lt;/a>。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -265,8 +265,8 @@ alt="手写数字识别 ONNX 模型结构"
 loading="lazy"
 alt="灰度图"
 >&lt;/p>
-&lt;h3 id="将图像转为一维数组">将图像转为一维数组&lt;/h3>
-&lt;p>根据上述分析，输入数据为一维 float 数组，因此还需要将灰度图转换为一维数组。&lt;/p>
+&lt;h3 id="将图像转为一维数组">将图像转为一维数组
+&lt;/h3>&lt;p>根据上述分析，输入数据为一维 float 数组，因此还需要将灰度图转换为一维数组。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -299,8 +299,8 @@ alt="灰度图"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="初始化模型">初始化模型&lt;/h2>
-&lt;p>首先定义两个全局变量 &lt;code>_modelPath&lt;/code> 和 &lt;code>_predictionEngine&lt;/code>，分别代表 ONNX 的模型存放地址与 TTransformer 模型推理变量。在初始化模型时，加载模型后给模型传入一组空输入参数以创建推理变量。&lt;/p>
+&lt;/div>&lt;h2 id="初始化模型">初始化模型
+&lt;/h2>&lt;p>首先定义两个全局变量 &lt;code>_modelPath&lt;/code> 和 &lt;code>_predictionEngine&lt;/code>，分别代表 ONNX 的模型存放地址与 TTransformer 模型推理变量。在初始化模型时，加载模型后给模型传入一组空输入参数以创建推理变量。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -335,8 +335,8 @@ alt="灰度图"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="清除画布">清除画布&lt;/h2>
-&lt;p>为了清除画布，需要为 WPF 布局中的 Clear Digit 按钮绑定名为 &lt;code>ClearButtonClick&lt;/code> 的事件，事件实现如下。其中，&lt;code>numberLabel&lt;/code>为显示识别结果的标签，清除画布时需要同时将其置空。&lt;/p>
+&lt;/div>&lt;h2 id="清除画布">清除画布
+&lt;/h2>&lt;p>为了清除画布，需要为 WPF 布局中的 Clear Digit 按钮绑定名为 &lt;code>ClearButtonClick&lt;/code> 的事件，事件实现如下。其中，&lt;code>numberLabel&lt;/code>为显示识别结果的标签，清除画布时需要同时将其置空。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -353,8 +353,8 @@ alt="灰度图"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="预测结果">预测结果&lt;/h2>
-&lt;p>在上述图像处理的基础上，调用模型预测结果之前还需要将图像处理结果传给模型，同时为 recognize 按钮绑定 &lt;code>RecognizeDigit&lt;/code>。其中，&lt;code>numberLabel&lt;/code>为显示识别结果的标签，因此需要将模型预测结果（1×10 个概率值）中最大的概率值所代表的数字，赋值给 &lt;code>numberLabel&lt;/code>。&lt;/p>
+&lt;/div>&lt;h2 id="预测结果">预测结果
+&lt;/h2>&lt;p>在上述图像处理的基础上，调用模型预测结果之前还需要将图像处理结果传给模型，同时为 recognize 按钮绑定 &lt;code>RecognizeDigit&lt;/code>。其中，&lt;code>numberLabel&lt;/code>为显示识别结果的标签，因此需要将模型预测结果（1×10 个概率值）中最大的概率值所代表的数字，赋值给 &lt;code>numberLabel&lt;/code>。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -371,8 +371,8 @@ alt="灰度图"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="参考文献">参考文献&lt;/h1>
-&lt;ol>
+&lt;/div>&lt;h1 id="参考文献">参考文献
+&lt;/h1>&lt;ol>
 &lt;li>&lt;a class="link" href="https://zhuanlan.zhihu.com/p/367047382" target="_blank" rel="noopener"
 >ML.NET (。・∀・)ノ 来用 C# 跑机器学习吧!&lt;/a>&lt;/li>
 &lt;li>&lt;a class="link" href="https://www.cnblogs.com/Big-Head/p/17429185.html" target="_blank" rel="noopener"
