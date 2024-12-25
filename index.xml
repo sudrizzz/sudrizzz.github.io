@@ -1,4 +1,225 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://jinggqu.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 13 Nov 2023 21:00:00 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>A Few Thoughts</title><link>https://jinggqu.github.io/posts/a-few-thoughts/</link><pubDate>Mon, 13 Nov 2023 21:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/a-few-thoughts/</guid><description>&lt;h1 id="proof-you-can-do-hard-things">Proof You Can Do Hard Things
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthony's blog</title><link>https://jinggqu.github.io/</link><description>Recent content on Anthony's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 25 Dec 2024 12:00:00 +0800</lastBuildDate><atom:link href="https://jinggqu.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>使用 VSCode 编写 LaTeX 项目的一些技巧</title><link>https://jinggqu.github.io/posts/latex-tricks/</link><pubDate>Wed, 25 Dec 2024 12:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/latex-tricks/</guid><description>&lt;h1 id="表格单元格多行内容">表格单元格多行内容
+&lt;/h1>&lt;p>在 LaTeX 中，表格中的单元格内容默认是单行显示的，如果内容过长，会导致表格宽度过宽。此问题有两种解决方案：&lt;/p>
+&lt;ol>
+&lt;li>使用 &lt;code>makecell&lt;/code> 宏包中的 &lt;code>\makecell&lt;/code> 命令来实现多行内容。&lt;/li>
+&lt;li>使用 &lt;code>p{width}&lt;/code> 来指定单元格宽度，其中 &lt;code>width&lt;/code> 为单元格宽度，如 &lt;code>p{3cm}&lt;/code>。&lt;/li>
+&lt;li>使用 &lt;code>m{width}&lt;/code> 来指定单元格垂直居中，其中 &lt;code>width&lt;/code> 为单元格宽度，如 &lt;code>m{3cm}&lt;/code>。&lt;/li>
+&lt;li>结合 &lt;code>m{width}&lt;/code> 的自定义命令&lt;/li>
+&lt;/ol>
+&lt;h2 id="使用-makecell">使用 &lt;code>makecell&lt;/code>
+&lt;/h2>&lt;p>&lt;code>makecell&lt;/code> 宏包提供了 &lt;code>\makecell&lt;/code> 命令，可以在表格中的单元格中插入多行内容。使用方法如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">&lt;span class="k">\usepackage&lt;/span>&lt;span class="nb">{&lt;/span>makecell&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\begin&lt;/span>&lt;span class="nb">{&lt;/span>tabular&lt;span class="nb">}{&lt;/span>|c|&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\makecell&lt;/span>&lt;span class="nb">{&lt;/span>This is a long line &lt;span class="k">\\&lt;/span> with a line break&lt;span class="nb">}&lt;/span> &lt;span class="k">\\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\end&lt;/span>&lt;span class="nb">{&lt;/span>tabular&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但 &lt;code>makecell&lt;/code> 宏包的缺点是，如果表格中有多个单元格需要多行内容，需要在每个单元格中都使用 &lt;code>\makecell&lt;/code> 命令，这样会使得代码变得冗长。同时，&lt;code>\makecell&lt;/code> 命令需要手动在需要换行的地方插入 &lt;code>\\&lt;/code>，这样会使得表格内容发生变化时难以维护。&lt;/p>
+&lt;h2 id="使用-pwidth">使用 &lt;code>p{width}&lt;/code>
+&lt;/h2>&lt;p>&lt;code>p{width}&lt;/code> 是 LaTeX 中的一个列格式，可以指定单元格的宽度。使用方法如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">&lt;span class="k">\begin&lt;/span>&lt;span class="nb">{&lt;/span>tabular&lt;span class="nb">}{&lt;/span>|p&lt;span class="nb">{&lt;/span>3cm&lt;span class="nb">}&lt;/span>|&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> This is a long line with a line break &lt;span class="k">\\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\end&lt;/span>&lt;span class="nb">{&lt;/span>tabular&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>使用 &lt;code>p{width}&lt;/code> 后，单元格中的内容默认顶部对齐且两端对齐，如果需要垂直居中，需要手动添加 &lt;code>\centering&lt;/code> 命令。&lt;/p>
+&lt;h2 id="使用-mwidth">使用 &lt;code>m{width}&lt;/code>
+&lt;/h2>&lt;p>&lt;code>m{width}&lt;/code> 是 LaTeX 中的一个列格式，可以指定单元格的宽度并且垂直居中。使用方法如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">&lt;span class="k">\begin&lt;/span>&lt;span class="nb">{&lt;/span>tabular&lt;span class="nb">}{&lt;/span>|m&lt;span class="nb">{&lt;/span>3cm&lt;span class="nb">}&lt;/span>|&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> This is a long line with a line break &lt;span class="k">\\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\end&lt;/span>&lt;span class="nb">{&lt;/span>tabular&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>使用 &lt;code>m{width}&lt;/code> 后，单元格中的内容默认垂直居中且两端对齐，如果需要左对齐，需要手动添加 &lt;code>\raggedright&lt;/code> 命令。&lt;/p>
+&lt;h2 id="结合-mwidth-的自定义命令">结合 &lt;code>m{width}&lt;/code> 的自定义命令
+&lt;/h2>&lt;p>为了方便使用 &lt;code>m{width}&lt;/code> 列格式，同时实现更好的代码复用，可以定义以下命令用于在表格中插入多行内容。使用方法如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">&lt;span class="k">\newcolumntype&lt;/span>&lt;span class="nb">{&lt;/span>L&lt;span class="nb">}&lt;/span>[1]&lt;span class="nb">{&lt;/span>&amp;gt;&lt;span class="nb">{&lt;/span>&lt;span class="k">\raggedright\let\newline\\\arraybackslash\hspace&lt;/span>&lt;span class="nb">{&lt;/span>0pt&lt;span class="nb">}}&lt;/span>m&lt;span class="nb">{&lt;/span>#1&lt;span class="nb">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\newcolumntype&lt;/span>&lt;span class="nb">{&lt;/span>C&lt;span class="nb">}&lt;/span>[1]&lt;span class="nb">{&lt;/span>&amp;gt;&lt;span class="nb">{&lt;/span>&lt;span class="k">\centering\let\newline\\\arraybackslash\hspace&lt;/span>&lt;span class="nb">{&lt;/span>0pt&lt;span class="nb">}}&lt;/span>m&lt;span class="nb">{&lt;/span>#1&lt;span class="nb">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\newcolumntype&lt;/span>&lt;span class="nb">{&lt;/span>R&lt;span class="nb">}&lt;/span>[1]&lt;span class="nb">{&lt;/span>&amp;gt;&lt;span class="nb">{&lt;/span>&lt;span class="k">\raggedleft\let\newline\\\arraybackslash\hspace&lt;/span>&lt;span class="nb">{&lt;/span>0pt&lt;span class="nb">}}&lt;/span>m&lt;span class="nb">{&lt;/span>#1&lt;span class="nb">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>上述命令中，&lt;code>L&lt;/code> 里通过 &lt;code>\raggedright&lt;/code> 指令让文字左对齐且右边不做对齐（即“ragged right”），而 &lt;code>p{width}&lt;/code> 默认会进行左右对齐（两端对齐）或者受表格全局设置影响。&lt;code>C&lt;/code> 里通过 \centering 指令让文字居中对齐，&lt;code>R&lt;/code> 里通过 &lt;code>\raggedleft&lt;/code> 指令让文字右对齐且左边不做对齐（即“ragged left”）。&lt;/p>
+&lt;p>使用方法如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">&lt;span class="k">\begin&lt;/span>&lt;span class="nb">{&lt;/span>tabular&lt;span class="nb">}{&lt;/span>|L&lt;span class="nb">{&lt;/span>3cm&lt;span class="nb">}&lt;/span>|&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> This is a long line with a line break &lt;span class="k">\\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\end&lt;/span>&lt;span class="nb">{&lt;/span>tabular&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>通过定义 &lt;code>L{width}&lt;/code>、&lt;code>C{width}&lt;/code>、&lt;code>R{width}&lt;/code> 三个命令，可以快速实现在表格中插入多行内容，并且与默认的 &lt;code>l&lt;/code>、&lt;code>c&lt;/code>、&lt;code>r&lt;/code> 一样，可以显式指定内容的对齐方式。&lt;/p>
+&lt;h1 id="表格自动格式化">表格自动格式化
+&lt;/h1>&lt;p>在 VSCode 编写 LaTeX 项目中的表格时，最常用到的功能即为自动格式化。LaTeX 文件自动格式化依赖 VSCode 中的 &lt;a class="link" href="https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop" target="_blank" rel="noopener"
+>LaTeX Workshop&lt;/a> 插件，在使用格式化前请先安装该插件。&lt;/p>
+&lt;p>在 Windows 平台中格式化的快捷键为 &lt;code>Alt&lt;/code> + &lt;code>Shift&lt;/code> + &lt;code>F&lt;/code>。格式化时，VSCode 会根据 &lt;code>&amp;amp;&lt;/code> 与 &lt;code>\\&lt;/code> 的位置自动调整表格的对齐方式。通常情况下，表格中的每一行内容末尾都会有 &lt;code>\\&lt;/code> 符号用于标志换行，而每一列内容之间都会有 &lt;code>&amp;amp;&lt;/code> 符号用于标志列的分隔。但在某些情况下，我们可能使用 &lt;code>\makecell&lt;/code> 命令手动插入 &lt;code>\\&lt;/code> 符号用于单元格内容手动换行。而在格式化时，VSCode 会根据 &lt;code>&amp;amp;&lt;/code> 与 &lt;code>\\&lt;/code> 的位置自动调整表格的对齐方式，再使用 &lt;code>\makecell&lt;/code> 的情况下，自动格式化功能可能会出现一些问题，这时候我们可以通过改变 LaTeX Workshop 设置来调整格式化的方式。&lt;/p>
+&lt;p>通过在 LaTeX Workshop 设置中指定按照每行最后一个 &lt;code>\\&lt;/code> 作为右边界格式化表格，即可解决上述问题。打开 VSCode 设置，搜索 &lt;code>latex-workshop.formatting.latexindent.args&lt;/code>，点击 &lt;code>Add Item&lt;/code> 选项，添加以下内容：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl">&lt;span class="err">-y=lookForAlignDelims:tabular:alignFinalDoubleBackSlash:&lt;/span>&lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="表格列分隔宽度">表格列分隔宽度
+&lt;/h1>&lt;p>在 LaTeX 中，表格中的列默认是没有分隔线的，如果需要添加分隔线，可以使用 &lt;code>\hline&lt;/code> 和 &lt;code>\cline{x-y}&lt;/code> 命令添加水平分隔线，或者使用 &lt;code>|&lt;/code> 符号添加垂直分隔线。但在某些情况下，我们可能需要调整列分隔线的宽度，这时我们可以手动指定列分隔线的宽度。&lt;/p>
+&lt;p>在 LaTeX 中，可以通过 &lt;code>\tabcolsep&lt;/code> 命令来指定分隔线的宽度。使用方法如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">&lt;span class="k">\begin&lt;/span>&lt;span class="nb">{&lt;/span>table&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\setlength&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\tabcolsep&lt;/span>&lt;span class="nb">}{&lt;/span>10pt&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\begin&lt;/span>&lt;span class="nb">{&lt;/span>tabular&lt;span class="nb">}{&lt;/span>|c|c|&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\hline&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1 &lt;span class="nb">&amp;amp;&lt;/span> 2 &lt;span class="k">\\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\hline&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 3 &lt;span class="nb">&amp;amp;&lt;/span> 4 &lt;span class="k">\\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\hline&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\end&lt;/span>&lt;span class="nb">{&lt;/span>tabular&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在上述代码中，&lt;code>\setlength{\tabcolsep}{10pt}&lt;/code> 命令用于设置分隔线的宽度为 &lt;code>10pt&lt;/code>。在表格中，每个单元格的左右两侧都会有 &lt;code>10pt&lt;/code> 的空白，即分隔线的宽度为 &lt;code>10pt&lt;/code>。&lt;/p>
+&lt;h1 id="自带类型的引用-cref">自带类型的引用 &lt;code>\cref&lt;/code>
+&lt;/h1>&lt;p>在 LaTeX 中，引用文献、公式、图表等内容时，通常使用 &lt;code>\ref&lt;/code> 命令。但 &lt;code>\ref&lt;/code> 命令只能引用编号，无法引用内容的类型（如“figure”、“section”、“table”等）。为了引用内容的类型，可以使用 &lt;code>cleveref&lt;/code> 宏包中的 &lt;code>\cref&lt;/code> 命令。使用方法如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">&lt;span class="k">\usepackage&lt;/span>&lt;span class="nb">{&lt;/span>cleveref&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\begin&lt;/span>&lt;span class="nb">{&lt;/span>figure&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\caption&lt;/span>&lt;span class="nb">{&lt;/span>This is a figure&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\label&lt;/span>&lt;span class="nb">{&lt;/span>fig:example&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\end&lt;/span>&lt;span class="nb">{&lt;/span>figure&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\cref&lt;/span>&lt;span class="nb">{&lt;/span>fig:example&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在上述代码中，&lt;code>\cref{fig:example}&lt;/code> 命令会输出 &lt;code>figure 1&lt;/code>，即引用了图表类型。但在某些情况下，我们可能需要引用内容的类型的缩写（如“fig”、“sec”、“tab”等），这时我们可以通过改变 &lt;code>\cref&lt;/code> 命令的设置来实现。&lt;/p>
+&lt;p>通过在 LaTeX 文件中添加以下代码，即可实现引用内容类型的缩写：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">&lt;span class="k">\crefname&lt;/span>&lt;span class="nb">{&lt;/span>figure&lt;span class="nb">}{&lt;/span>fig.&lt;span class="nb">}{&lt;/span>figs.&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\Crefname&lt;/span>&lt;span class="nb">{&lt;/span>figure&lt;span class="nb">}{&lt;/span>Fig.&lt;span class="nb">}{&lt;/span>Figs.&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在上述代码中，&lt;code>\crefname{figure}{fig.}{figs.}&lt;/code> 命令用于设置引用图表类型的缩写为“fig.”、“figs.”，使用方式仍为 &lt;code>\cref{fig:example}&lt;/code>。&lt;code>\Crefname{figure}{Fig.}{Figs.}&lt;/code> 命令用于设置引用图表类型的缩写为“Fig.”、“Figs.”，使用方式为 &lt;code>\Cref{fig:example}&lt;/code>。&lt;/p>
+&lt;p>若只需要大写的类型缩写，则可直接将 &lt;code>\crefname&lt;/code> 中的 &lt;code>fig.&lt;/code> 改为 &lt;code>Fig.&lt;/code>，&lt;code>figs.&lt;/code> 改为 &lt;code>Figs.&lt;/code>。如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">&lt;span class="k">\crefname&lt;/span>&lt;span class="nb">{&lt;/span>figure&lt;span class="nb">}{&lt;/span>Fig.&lt;span class="nb">}{&lt;/span>Figs.&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\crefname&lt;/span>&lt;span class="nb">{&lt;/span>table&lt;span class="nb">}{&lt;/span>Table&lt;span class="nb">}{&lt;/span>Tables&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\crefname&lt;/span>&lt;span class="nb">{&lt;/span>equation&lt;span class="nb">}{&lt;/span>Eq.&lt;span class="nb">}{&lt;/span>Eqs.&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="常用缩写定义">常用缩写定义
+&lt;/h1>&lt;p>在 LaTeX 中，有一些常用的缩写，如“e.g.”、“i.e.”、“etc.”等，这些缩写在文档中经常使用，为了方便使用，可以在 LaTeX 文件中定义这些缩写。使用方法如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">&lt;span class="k">\newcommand&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\eg&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\textit&lt;/span>&lt;span class="nb">{&lt;/span>e.g.&lt;span class="nb">}&lt;/span> &lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\newcommand&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\ie&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\textit&lt;/span>&lt;span class="nb">{&lt;/span>i.e.&lt;span class="nb">}&lt;/span> &lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\newcommand&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\etc&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\textit&lt;/span>&lt;span class="nb">{&lt;/span>etc.&lt;span class="nb">}&lt;/span> &lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\newcommand&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\etal&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\textit&lt;/span>&lt;span class="nb">{&lt;/span>et~al.&lt;span class="nb">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在上述代码中，分别定义了 &lt;code>\eg&lt;/code>、&lt;code>\ie&lt;/code>、&lt;code>\etc&lt;/code>、&lt;code>\etal&lt;/code> 四个命令，用于输出“&lt;em>e.g.&lt;/em>”、“&lt;em>i.e.&lt;/em>”、“&lt;em>etc.&lt;/em>”、“&lt;em>et al.&lt;/em>”。在文档中使用时，只需要调用相应的命令即可。&lt;/p>
+&lt;h1 id="空格的使用">空格的使用
+&lt;/h1>&lt;p>在 LaTeX 中，空格的使用是非常重要的，不同的空格符号会产生不同的效果。在 LaTeX 中，空格符号有以下几种：&lt;/p>
+&lt;ol>
+&lt;li>空格符号：&lt;code> &lt;/code>（空格键）&lt;/li>
+&lt;li>硬空格符号：&lt;code>~&lt;/code>（波浪线键）&lt;/li>
+&lt;li>空格命令：&lt;code>\quad&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;p>其中，空格符号是最常用的空格符号，用于在单词之间添加&lt;strong>可断行&lt;/strong>空格。硬空格符号用于在单词之间添加&lt;strong>不可断行&lt;/strong>的空格，即在硬空格符号处断行时，硬空格符号不会断开。空格命令 &lt;code>\ &lt;/code> 用于在单词之间添加空格，效果与空格符号相同。空格命令 &lt;code>\quad&lt;/code> 用于在单词之间添加一个较大的空格。若需要添加更大的空格，可以使用 &lt;code>\qquad&lt;/code>、&lt;code>\hspace{1cm}&lt;/code> 等命令。&lt;/p>
+&lt;p>在引用文献、公式、图表、使用缩写等情况下，通常在连接处添加硬空格符号，以避免断行时内容分离。示例如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">Zhang~&lt;span class="k">\etal&lt;/span>~&lt;span class="k">\cite&lt;/span>&lt;span class="nb">{&lt;/span>zhang2024&lt;span class="nb">}&lt;/span> proposed a new method.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="参考资料">参考资料
+&lt;/h1>&lt;ol>
+&lt;li>&lt;a class="link" href="https://tex.stackexchange.com/a/12712" target="_blank" rel="noopener"
+>How to create fixed width table columns with text raggedright/centered/raggedleft?&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://github.com/cmhughes/latexindent.pl/issues/179#issuecomment-596623217" target="_blank" rel="noopener"
+>tabular aligning on first double backslash instead of last&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.overleaf.com/learn/latex/Questions/How_do_I_change_column_or_row_separation_in_LaTeX_tables%3F" target="_blank" rel="noopener"
+>How do I change column or row separation in LaTeX tables?&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://ctan.org/pkg/cleveref?lang=en" target="_blank" rel="noopener"
+>cleveref – Intelligent cross-referencing&lt;/a>&lt;/li>
+&lt;/ol></description></item><item><title>A Few Thoughts</title><link>https://jinggqu.github.io/posts/a-few-thoughts/</link><pubDate>Mon, 13 Nov 2023 21:00:00 +0800</pubDate><guid>https://jinggqu.github.io/posts/a-few-thoughts/</guid><description>&lt;h1 id="proof-you-can-do-hard-things">Proof You Can Do Hard Things
 &lt;/h1>&lt;blockquote>
 &lt;p>And if you’re not someone who knows they can do hard things, find a way to prove it to yourself. Build a habit, learn a skill, create something, whatever it is that turns your default stance on challenges from “that seems hard” to “I can figure it out.”&lt;/p>
 &lt;/blockquote>
