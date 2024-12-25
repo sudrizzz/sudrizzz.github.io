@@ -44,15 +44,16 @@
 </span></span><span class=line><span class=cl><span class=k>\end</span><span class=nb>{</span>tabular<span class=nb>}</span>
 </span></span></code></pre></td></tr></table></div></div><p>通过定义 <code>L{width}</code>、<code>C{width}</code>、<code>R{width}</code> 三个命令，可以快速实现在表格中插入多行内容，并且与默认的 <code>l</code>、<code>c</code>、<code>r</code> 类似，可以显式指定内容的对齐方式。</p><h1 id=表格自动格式化>表格自动格式化</h1><p>在 VSCode 编写 LaTeX 项目中的表格时，最常用到的功能即为自动格式化。LaTeX 文件自动格式化依赖 VSCode 中的 <a class=link href="https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop" target=_blank rel=noopener>LaTeX Workshop</a> 插件，在使用格式化前请先安装该插件。</p><p>在 Windows 平台中格式化的快捷键为 <code>Alt</code> + <code>Shift</code> + <code>F</code>。格式化时，VSCode 会根据 <code>&</code> 与 <code>\\</code> 的位置自动调整表格的对齐方式。通常情况下，表格中的每一行内容末尾都会有 <code>\\</code> 符号用于标志换行，而每一列内容之间都会有 <code>&</code> 符号用于标志列的分隔。</p><p>但在某些情况下，我们可能使用 <code>\makecell</code> 命令手动插入 <code>\\</code> 符号用于单元格内容手动换行。而在格式化时，VSCode 会根据 <code>&</code> 与 <code>\\</code> 的位置自动调整表格的对齐方式，在使用 <code>\makecell</code> 的情况下，自动格式化功能可能会依据第一个 <code>\\</code> 作为表格行末，这时候我们可以通过改变 LaTeX Workshop 设置来调整格式化的方式。</p><p>通过在 LaTeX Workshop 设置中指定按照每行最后一个 <code>\\</code> 作为右边界格式化表格，即可解决上述问题。打开 VSCode 设置，搜索 <code>latex-workshop.formatting.latexindent.args</code>，点击 <code>Add Item</code> 选项，添加以下内容：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=err>-y=lookForAlignDelims:tabular:alignFinalDoubleBackSlash:</span><span class=mi>1</span>
-</span></span></code></pre></td></tr></table></div></div><h1 id=表格列分隔宽度>表格列分隔宽度</h1><p>在 LaTeX 中，表格中的列默认是没有分隔线的，如果需要添加分隔线，可以使用 <code>\hline</code> 和 <code>\cline{x-y}</code> 命令添加水平分隔线，或者使用 <code>|</code> 符号添加垂直分隔线。但在某些情况下，我们可能需要调整列分隔线的宽度，这时我们可以手动指定列分隔线的宽度。</p><p>在 LaTeX 中，可以通过 <code>\tabcolsep</code> 命令来指定分隔线的宽度。使用方法如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span><span class=lnt>8
-</span><span class=lnt>9
+</span></span></code></pre></td></tr></table></div></div><h1 id=表格列分隔宽度>表格列分隔宽度</h1><p>在 LaTeX 中，表格中的列默认是没有分隔线的，如果需要添加分隔线，可以使用 <code>\hline</code> 和 <code>\cline{x-y}</code> 命令添加水平分隔线，或者使用 <code>|</code> 符号添加垂直分隔线。但在某些情况下，我们可能需要调整列分隔线的宽度，这时我们可以手动指定列分隔线的宽度。</p><p>在 LaTeX 中，可以通过 <code>\tabcolsep</code> 命令来指定分隔线的宽度。使用方法如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-latex data-lang=latex><span class=line><span class=cl><span class=k>\begin</span><span class=nb>{</span>table<span class=nb>}</span>
 </span></span><span class=line><span class=cl>    <span class=k>\setlength</span><span class=nb>{</span><span class=k>\tabcolsep</span><span class=nb>}{</span>10pt<span class=nb>}</span>
 </span></span><span class=line><span class=cl>    <span class=k>\begin</span><span class=nb>{</span>tabular<span class=nb>}{</span>|c|c|<span class=nb>}</span>
@@ -62,6 +63,7 @@
 </span></span><span class=line><span class=cl>        3 <span class=nb>&amp;</span> 4 <span class=k>\\</span>
 </span></span><span class=line><span class=cl>        <span class=k>\hline</span>
 </span></span><span class=line><span class=cl>    <span class=k>\end</span><span class=nb>{</span>tabular<span class=nb>}</span>
+</span></span><span class=line><span class=cl><span class=k>\end</span><span class=nb>{</span>table<span class=nb>}</span>
 </span></span></code></pre></td></tr></table></div></div><p>在上述代码中，<code>\setlength{\tabcolsep}{10pt}</code> 命令用于设置分隔线的宽度为 <code>10pt</code>。在表格中，每个单元格的左右两侧都会有 <code>10pt</code> 的空白，即分隔线的宽度为 <code>10pt</code>。</p><h1 id=自带类型引用-cref>自带类型引用 <code>\cref</code></h1><p>在 LaTeX 中，引用文献、公式、图表等内容时，通常使用 <code>\ref</code> 命令。但 <code>\ref</code> 命令只能引用编号，无法引用内容的类型（如“figure”、“section”、“table”等）。为了引用内容的类型，可以使用 <code>cleveref</code> 宏包中的 <code>\cref</code> 命令。使用方法如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
