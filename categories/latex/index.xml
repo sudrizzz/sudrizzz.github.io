@@ -126,7 +126,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>在上述代码中，&lt;code>\setlength{\tabcolsep}{10pt}&lt;/code> 命令用于设置分隔线的宽度为 &lt;code>10pt&lt;/code>。在表格中，每个单元格的左右两侧都会有 &lt;code>10pt&lt;/code> 的空白，即分隔线的宽度为 &lt;code>10pt&lt;/code>。&lt;/p>
-&lt;h1 id="自带类型的引用-cref">自带类型的引用 &lt;code>\cref&lt;/code>
+&lt;h1 id="自带类型引用-cref">自带类型引用 &lt;code>\cref&lt;/code>
 &lt;/h1>&lt;p>在 LaTeX 中，引用文献、公式、图表等内容时，通常使用 &lt;code>\ref&lt;/code> 命令。但 &lt;code>\ref&lt;/code> 命令只能引用编号，无法引用内容的类型（如“figure”、“section”、“table”等）。为了引用内容的类型，可以使用 &lt;code>cleveref&lt;/code> 宏包中的 &lt;code>\cref&lt;/code> 命令。使用方法如下：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
